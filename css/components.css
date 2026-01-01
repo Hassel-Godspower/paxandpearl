@@ -39,6 +39,19 @@ input, select {
   box-shadow: 0 6px 18px rgba(0,0,0,0.05);
 }
 
+.greeting h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.greeting p {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--primary);
+}
+
 .promo-card {
   margin: 12px 16px;
   padding: 18px;
