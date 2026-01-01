@@ -39,8 +39,31 @@
 
     <!-- GREETING -->
     <section class="greeting">
-      <h2>Good Morning 👋</h2>
+      <h2 id="greeting">Hello 👋</h2>
     </section>
+    
+    <script>
+      // Function to set greeting based on user's time
+      function setGreeting() {
+        const greetingEl = document.getElementById('greeting');
+        const now = new Date();
+        const hour = now.getHours();
+        let greetingText = '';
+    
+        if (hour >= 5 && hour < 12) {
+          greetingText = 'Good Morning 👋';
+        } else if (hour >= 12 && hour < 17) {
+          greetingText = 'Good Afternoon 👋';
+        } else {
+          greetingText = 'Good Evening 🌙';
+        }
+    
+        greetingEl.textContent = greetingText;
+      }
+    
+      // Run on page load
+      setGreeting();
+    </script>
 
     <!-- PROMO -->
     <section class="promo-card">
