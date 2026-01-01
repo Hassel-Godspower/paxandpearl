@@ -4,101 +4,185 @@
   <meta charset="UTF-8">
   <title>Pax & Pearl Body Works</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Google Icons (REQUIRED) -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
 </head>
 
-<body style="margin:0; font-family:'DM Sans', sans-serif; background:#fafafa; color:#333;">
+<body>
 
-  <div class="container" style="padding:16px; max-width:420px; margin:0 auto;">
+  <!-- =========================
+       APP CONTAINER
+  ========================== -->
+  <div class="container">
 
     <!-- HEADER -->
-    <header style="text-align:center; padding:16px 0;">
-      <h1 style="margin:0; font-family:'Poppins', sans-serif; font-weight:600;">Pax & Pearl Body Works</h1>
-      <p style="margin:4px 0 0; font-size:14px; color:#666;">Lagos, Nigeria</p>
+    <header class="header">
+      <div class="logo">Pax & Pearl Body Works</div>
+      <p>Lagos, Nigeria</p>
     </header>
 
     <!-- HERO -->
-    <section class="hero" style="padding:24px 0; text-align:center; background:#f4f0ff; border-radius:12px; margin-bottom:20px;">
-      <h2 style="margin:0 0 8px; font-family:'Poppins', sans-serif; font-weight:600;">Relax. Refresh. Rejuvenate.</h2>
-      <p style="margin:0; font-size:15px; color:#555;">Book premium spa treatments with ease</p>
+    <section class="hero">
+      <h1>Relax. Refresh. Rejuvenate.</h1>
+      <p>Book premium spa treatments with ease</p>
     </section>
 
     <!-- GREETING -->
-    <section class="greeting" style="margin-bottom:20px;">
-      <h2 id="greeting" style="margin:0; font-family:'Poppins', sans-serif; font-weight:600;"></h2>
+    <section class="greeting">
+      <h2 id="greeting">Hello 👋</h2>
     </section>
-
+    
     <script>
+      // Function to set greeting based on user's time
       function setGreeting() {
         const greetingEl = document.getElementById('greeting');
-        const hour = new Date().getHours();
-        let greetingText = hour >= 5 && hour < 12 ? 'Good Morning 👋' :
-                           hour >= 12 && hour < 17 ? 'Good Afternoon 👋' :
-                           'Good Evening 🌙';
+        const now = new Date();
+        const hour = now.getHours();
+        let greetingText = '';
+    
+        if (hour >= 5 && hour < 12) {
+          greetingText = 'Good Morning 👋';
+        } else if (hour >= 12 && hour < 17) {
+          greetingText = 'Good Afternoon 👋';
+        } else {
+          greetingText = 'Good Evening 🌙';
+        }
+    
         greetingEl.textContent = greetingText;
       }
+    
+      // Run on page load
       setGreeting();
     </script>
 
-    <!-- PROMO CARD -->
-    <section class="promo-card" style="background:#7b5cff; color:#fff; padding:16px; border-radius:12px; text-align:center; margin-bottom:20px;">
-      <h3 style="margin:0 0 12px; font-family:'Poppins', sans-serif; font-weight:600;">20% Off Haircut</h3>
-      <button onclick="location.href='services.html'" style="padding:12px 24px; border:none; border-radius:8px; font-size:14px; font-weight:600; color:#fff; background:linear-gradient(90deg, #ff4b2b, #ff416c); cursor:pointer;">
+    <!-- PROMO -->
+    <section class="promo-card">
+      <h3>20% Off Haircut</h3>
+      <button class="btn" onclick="location.href='services.html'">
         Book Now
       </button>
     </section>
 
     <!-- POPULAR SERVICES -->
-    <section class="quick-services" style="margin-bottom:20px;">
-      <h3 style="margin-bottom:12px; font-family:'Poppins', sans-serif; font-weight:600;">Popular Services</h3>
-      <div class="grid" style="display:flex; justify-content:space-between; gap:10px;">
-        <button onclick="goService('Haircut')" style="flex:1; padding:12px; border-radius:10px; border:1px solid #ddd; background:#fff; font-size:14px;">✂ Hair</button>
-        <button onclick="goService('Facial')" style="flex:1; padding:12px; border-radius:10px; border:1px solid #ddd; background:#fff; font-size:14px;">🧖 Facial</button>
-        <button onclick="goService('Massage')" style="flex:1; padding:12px; border-radius:10px; border:1px solid #ddd; background:#fff; font-size:14px;">💆 Massage</button>
+    <section class="quick-services">
+      <h3>Popular Services</h3>
+
+      <div class="grid">
+        <button onclick="goService('Haircut')">✂ Hair</button>
+        <button onclick="goService('Facial')">🧖 Facial</button>
+        <button onclick="goService('Massage')">💆 Massage</button>
       </div>
     </section>
 
     <!-- SERVICES LIST -->
-    <section class="services-section" style="margin-bottom:80px;">
-      <h2 style="margin-bottom:12px; font-family:'Poppins', sans-serif; font-weight:600;">Our Services</h2>
+    <section class="services-section">
+      <h2>Our Services</h2>
       <div class="services" id="serviceList"></div>
     </section>
 
   </div>
 
-  <!-- =========================
-       MOBILE BOTTOM NAV
+ <!-- =========================
+       MOBILE BOTTOM NAV (FULL WIDTH)
   ========================== -->
-  <nav class="mobile-nav" style="position:fixed; bottom:0; left:0; width:100%; height:64px; background:#fff; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #eee; font-family:'Poppins', sans-serif; z-index:9999;">
-    <a href="index.html" class="active" style="flex:1; text-align:center; color:#7b5cff; text-decoration:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;">
-      <span class="material-icons-round" style="font-size:22px;">home</span>
+  <nav class="mobile-nav">
+    <a href="index.html" class="active">
+      <span class="material-icons-round">home</span>
       <small>Home</small>
     </a>
-
-    <a href="booking.html" style="flex:1; text-align:center; color:#777; text-decoration:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;">
-      <span class="material-icons-round" style="font-size:22px;">event</span>
+  
+    <a href="booking.html">
+      <span class="material-icons-round">event</span>
       <small>Booking</small>
     </a>
-
-    <a href="saved.html" style="flex:1; text-align:center; color:#777; text-decoration:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;">
-      <span class="material-icons-round" style="font-size:22px;">favorite</span>
+  
+    <a href="saved.html">
+      <span class="material-icons-round">favorite</span>
       <small>Saved</small>
     </a>
-
-    <a href="https://wa.me/234XXXXXXXXXX" target="_blank" style="flex:1; text-align:center; color:#777; text-decoration:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;">
-      <span class="material-icons-round" style="font-size:22px;">chat</span>
+  
+    <a href="https://wa.me/234XXXXXXXXXX" target="_blank">
+      <span class="material-icons-round">chat</span>
       <small>Message</small>
     </a>
-
-    <a href="profile.html" style="flex:1; text-align:center; color:#777; text-decoration:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;">
-      <span class="material-icons-round" style="font-size:22px;">person</span>
+  
+    <a href="profile.html">
+      <span class="material-icons-round">person</span>
       <small>Profile</small>
     </a>
   </nav>
+  
+  <style>
+  /* =========================
+     MOBILE BOTTOM NAV
+  ========================= */
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #eee;
+    z-index: 9999;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* NAV ITEMS */
+  .mobile-nav a {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    color: #777;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+  
+  /* ICONS */
+  .mobile-nav .material-icons-round {
+    font-size: 22px;
+    line-height: 1;
+  }
+  
+  /* ACTIVE STATE */
+  .mobile-nav a.active {
+    color: #7b5cff;
+  }
+  
+  /* TAP FEEDBACK */
+  .mobile-nav a:active {
+    transform: scale(0.96);
+  }
+  
+  /* HIDE ON DESKTOP */
+  @media (min-width: 768px) {
+    .mobile-nav {
+      display: none;
+    }
+  }
+  </style>
 
+
+  <!-- =========================
+       SCRIPTS
+  ========================== -->
   <script src="js/data.js"></script>
   <script src="js/booking.js"></script>
 
