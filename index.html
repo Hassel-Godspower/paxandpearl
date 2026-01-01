@@ -26,10 +26,9 @@
        TOP BAR (GREETING + NOTIFICATION)
   ========================== -->
   <header class="top-bar">
-    <div class="greeting-block">
-      <p class="greeting-text" id="greeting">Good Morning</p>
-      <h2 class="user-name" id="username">Paul</h2>
-      <span class="location">Lagos, Nigeria</span>
+    <section class="greeting"> 
+      <h2>Good Morning 👋</h2> 
+    </section>
     </div>
 
     <button class="notification-btn">
@@ -151,23 +150,28 @@
      SCRIPTS
 ========================== -->
 <script>
-  function setGreetingAndUser() {
-    const greetingEl = document.getElementById('greeting');
-    const userEl = document.getElementById('username');
-
-    const hour = new Date().getHours();
-    greetingEl.textContent =
-      hour < 12 ? 'Good Morning,' :
-      hour < 17 ? 'Good Afternoon,' :
-      'Good Evening,';
-
-    userEl.textContent =
-      localStorage.getItem('user_name') || 'Paul';
-  }
-
-  setGreetingAndUser();
-</script>
-
+      // Function to set greeting based on user's time
+      function setGreeting() {
+        const greetingEl = document.getElementById('greeting');
+        const now = new Date();
+        const hour = now.getHours();
+        let greetingText = '';
+    
+        if (hour >= 5 && hour < 12) {
+          greetingText = 'Good Morning 👋';
+        } else if (hour >= 12 && hour < 17) {
+          greetingText = 'Good Afternoon 👋';
+        } else {
+          greetingText = 'Good Evening 🌙';
+        }
+    
+        greetingEl.textContent = greetingText;
+      }
+    
+      // Run on page load
+      setGreeting();
+    </script>
+    
 <script src="js/data.js"></script>
 <script src="js/booking.js"></script>
 
