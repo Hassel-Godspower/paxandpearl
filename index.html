@@ -150,27 +150,28 @@
      SCRIPTS
 ========================== -->
 <script>
-      // Function to set greeting based on user's time
-      function setGreeting() {
-        const greetingEl = document.getElementById('greeting');
-        const now = new Date();
-        const hour = now.getHours();
-        let greetingText = '';
-    
-        if (hour >= 5 && hour < 12) {
-          greetingText = 'Good Morning 👋';
-        } else if (hour >= 12 && hour < 17) {
-          greetingText = 'Good Afternoon 👋';
-        } else {
-          greetingText = 'Good Evening 🌙';
-        }
-    
-        greetingEl.textContent = greetingText;
-      }
-    
-      // Run on page load
-      setGreeting();
-    </script>
+  // Function to set greeting based on user's local time
+  function setGreeting() {
+    const greetingEl = document.getElementById('greeting');
+    const now = new Date(); // User's local time
+    const hour = now.getHours();
+    let greetingText = '';
+
+    if (hour >= 5 && hour < 12) {
+      greetingText = 'Good Morning 👋';
+    } else if (hour >= 12 && hour < 17) {
+      greetingText = 'Good Afternoon 👋';
+    } else {
+      greetingText = 'Good Evening 🌙';
+    }
+
+    greetingEl.textContent = greetingText;
+  }
+
+  // Run on page load
+  setGreeting();
+</script>
+
     
 <script src="js/data.js"></script>
 <script src="js/booking.js"></script>
