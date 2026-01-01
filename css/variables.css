@@ -1,13 +1,28 @@
 :root {
-  --primary: #7a0c0c;
-  --gold: #d4af37;
-  --gradient: linear-gradient(135deg, #7a0c0c, #d4af37);
+  /* Brand */
+  --primary-red: #7a0c0c;
+  --primary-gold: #c9a24d;
 
-  --bg: #faf7f5;
-  --card-bg: #ffffff;
-  --text: #1f1f1f; 
-  --muted: #6b6b6b;
+  /* Neutrals */
+  --bg: #f6f6f8;
+  --card: #ffffff;
+  --text-main: #1c1c1e;
+  --text-sub: #8e8e93;
+  --border: #e5e5ea;
 
-  --radius: 18px;
-  --shadow: 0 20px 40px rgba(0,0,0,0.08);
+  /* Radius */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  /* Shadow */
+  --shadow-soft: 0 8px 20px rgba(0,0,0,0.08);
+  --shadow-card: 0 4px 12px rgba(0,0,0,0.06);
+
+  /* Spacing (iOS-style) */
+  --space-xs: 6px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 24px;
 }
