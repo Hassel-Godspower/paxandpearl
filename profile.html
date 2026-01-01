@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Your Profile</h2>
+
+  <input id="pname" placeholder="Full Name">
+  <input id="pemail" placeholder="Email">
+  <input id="pphone" placeholder="WhatsApp Number">
+
+  <button onclick="saveProfile()">Save Profile</button>
+</div>
+
+<nav class="mobile-nav">
+  <a href="index.html"><span class="material-icons-round">home</span><small>Home</small></a>
+  <a href="booking.html"><span class="material-icons-round">event</span><small>Booking</small></a>
+  <a href="saved.html"><span class="material-icons-round">favorite</span><small>Saved</small></a>
+  <a href="https://wa.me/234XXXXXXXXXX" target="_blank"><span class="material-icons-round">chat</span><small>Message</small></a>
+  <a href="profile.html" class="active"><span class="material-icons-round">person</span><small>Profile</small></a>
+</nav>
+
+<style>
+.container { padding-bottom:90px; font-family:'DM Sans',sans-serif; }
+input, button {
+  width:100%; padding:12px; margin-bottom:12px;
+  border-radius:8px; border:1px solid #ddd;
+}
+button { background:#7b5cff; color:#fff; border:none; }
+.mobile-nav { position:fixed; bottom:0; left:0; width:100%; height:64px; display:flex; border-top:1px solid #eee; background:#fff; }
+.mobile-nav a { flex:1; text-align:center; font-size:11px; color:#777; text-decoration:none; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.mobile-nav a.active { color:#7b5cff; }
+@media(min-width:768px){.mobile-nav{display:none;}}
+</style>
+
+<script>
+const profile = JSON.parse(localStorage.getItem("profile") || "{}");
+
+["pname","pemail","pphone"].forEach(id=>{
+  if(profile[id]) document.getElementById(id).value = profile[id];
+});
+
+function saveProfile(){
+  localStorage.setItem("profile", JSON.stringify({
+    pname: pname.value,
+    pemail: pemail.value,
+    pphone: pphone.value
+  }));
+  alert("Profile saved");
+}
+</script>
+
+</body>
+</html>
