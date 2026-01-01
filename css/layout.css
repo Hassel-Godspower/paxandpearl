@@ -1,1 +1,26 @@
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.hero {
+  background: var(--gradient);
+  color: white;
+  padding: 60px;
+  border-radius: var(--radius);
+  margin-bottom: 60px;
+}
 
