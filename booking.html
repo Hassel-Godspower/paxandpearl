@@ -1,18 +1,161 @@
-<h2>Your Booking</h2>
-<div id="cartItems"></div>
-<h3>Total: $<span id="total"></span></h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Booking | Pax & Pearl Body Works</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<input placeholder="Full Name" id="name">
-<input placeholder="Email" id="email">
-<input placeholder="WhatsApp Number" id="phone">
-<input type="date" id="date">
-<input type="time" id="time">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
-<button class="btn" onclick="confirmBooking()">
-  Book Now
-</button>
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
 
-<script src="js/data.js"></script>
-<script src="js/calendar.js"></script>
-<script src="js/booking.js"></script>
+<body>
 
+  <!-- =========================
+       PAGE CONTAINER
+  ========================== -->
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo">Your Booking</div>
+    </header>
+
+    <!-- CART SUMMARY -->
+    <section class="booking-summary">
+      <h2>Your Booking</h2>
+
+      <div id="cartItems" class="cart-items"></div>
+
+      <div class="total-row">
+        <span>Total</span>
+        <strong>$<span id="total">0</span></strong>
+      </div>
+    </section>
+
+    <!-- CUSTOMER DETAILS -->
+    <section class="booking-form">
+      <h3>Your Details</h3>
+
+      <input id="name" type="text" placeholder="Full Name">
+      <input id="email" type="email" placeholder="Email">
+      <input id="phone" type="tel" placeholder="WhatsApp Number">
+
+      <div class="datetime-row">
+        <input id="date" type="date">
+        <input id="time" type="time">
+      </div>
+
+      <button class="btn btn-primary" onclick="confirmBooking()">
+        Book Now
+      </button>
+
+      <p class="note">
+        *Booking time subject to admin confirmation
+      </p>
+    </section>
+
+  </div>
+
+  <!-- =========================
+       MOBILE BOTTOM NAV
+  ========================== -->
+  <nav class="mobile-nav">
+    <a href="index.html">
+      <span class="material-icons-round">home</span>
+      <small>Home</small>
+    </a>
+
+    <a href="booking.html" class="active">
+      <span class="material-icons-round">event</span>
+      <small>Booking</small>
+    </a>
+
+    <a href="saved.html">
+      <span class="material-icons-round">favorite</span>
+      <small>Saved</small>
+    </a>
+
+    <a href="https://wa.me/234XXXXXXXXXX" target="_blank">
+      <span class="material-icons-round">chat</span>
+      <small>Message</small>
+    </a>
+
+    <a href="profile.html">
+      <span class="material-icons-round">person</span>
+      <small>Profile</small>
+    </a>
+  </nav>
+
+  <!-- =========================
+       INLINE NAV STYLES
+  ========================== -->
+  <style>
+    .container {
+      padding-bottom: 90px;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid #eee;
+      z-index: 9999;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .mobile-nav a {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      color: #777;
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .mobile-nav .material-icons-round {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .mobile-nav a.active {
+      color: #7b5cff;
+    }
+
+    .mobile-nav a:active {
+      transform: scale(0.96);
+    }
+
+    @media (min-width: 768px) {
+      .mobile-nav {
+        display: none;
+      }
+    }
+  </style>
+
+  <!-- =========================
+       SCRIPTS
+  ========================== -->
+  <script src="js/data.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/booking.js"></script>
+
+</body>
+</html>
