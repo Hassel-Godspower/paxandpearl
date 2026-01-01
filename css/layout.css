@@ -1,26 +1,33 @@
 .container {
   max-width: 1100px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 24px 16px 90px; /* bottom space for mobile nav */
 }
 
+/* HEADER */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
+  color: var(--primary);
 }
 
+.header .location {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* HERO */
 .hero {
   background: var(--gradient);
   color: white;
-  padding: 60px;
+  padding: 48px 20px;
   border-radius: var(--radius);
-  margin-bottom: 60px;
+  margin: 16px;
+  text-align: center;
 }
-
