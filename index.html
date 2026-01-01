@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <title>Pax & Pearl Body Works</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-  <!-- Google Icons (REQUIRED) -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
   <!-- Core Styles -->
   <link rel="stylesheet" href="css/variables.css">
@@ -31,23 +31,6 @@
       <p class="location">Lagos, Nigeria</p>
     </header>
 
-    <style>
-    .header {
-      text-align: center !important;
-    }
-    
-    .header .logo {
-      font-size: 20px !important;
-      font-weight: 600 !important;
-    }
-    
-    .header .location {
-      font-size: 14px !important;
-      color: #777 !important;
-      margin-top: 4px !important;
-    }
-    <style>
-
     <!-- HERO -->
     <section class="hero">
       <h1>Relax. Refresh. Rejuvenate.</h1>
@@ -55,49 +38,26 @@
     </section>
 
     <!-- GREETING -->
-    <section class="greeting" style="padding: 20px 16px; background-color: #f9f9f9; border-radius: 12px; margin: 16px 16px 8px 16px;">
-      <h2 id="greeting" style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 20px; color: #333;">Hello 👋</h2>
+    <section class="greeting">
+      <h2 id="greeting">Hello 👋</h2>
     </section>
-    
-    <script>
-      // Function to set greeting based on user's time
-      function setGreeting() {
-        const greetingEl = document.getElementById('greeting');
-        const now = new Date();
-        const hour = now.getHours();
-        let greetingText = '';
-    
-        if (hour >= 5 && hour < 12) {
-          greetingText = 'Good Morning 👋';
-        } else if (hour >= 12 && hour < 17) {
-          greetingText = 'Good Afternoon 👋';
-        } else {
-          greetingText = 'Good Evening 🌙';
-        }
-    
-        greetingEl.textContent = greetingText;
-      }
-    
-      // Run on page load
-      setGreeting();
-    </script>
-    
+
     <!-- PROMO -->
-    <section class="promo-card" style="padding: 20px 16px; margin: 8px 16px; border-radius: 16px; background: linear-gradient(90deg, #7b5cff, #b86bff); color: #fff; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-      <h3 style="margin-bottom: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px;">20% Off Haircut</h3>
-      <button style="padding: 10px 20px; background: #fff; color: #7b5cff; border: none; border-radius: 8px; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer;" onclick="location.href='services.html'">
+    <section class="promo-card">
+      <h3>20% Off Haircut</h3>
+      <button class="promo-btn" onclick="location.href='services.html'">
         Book Now
       </button>
     </section>
-    
+
     <!-- POPULAR SERVICES -->
-    <section class="quick-services" style="padding: 20px 16px; margin: 8px 16px; border-radius: 12px; background-color: #fefefe; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
-      <h3 style="margin-bottom: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; color: #333;">Popular Services</h3>
-    
-      <div class="grid" style="display: flex; gap: 12px; justify-content: space-between; flex-wrap: wrap;">
-        <button style="flex: 1 1 30%; padding: 12px 0; background: #fff; border: 1px solid #ddd; border-radius: 12px; font-family: 'Poppins', sans-serif; font-weight: 500; cursor: pointer; font-size: 14px;">✂ Hair</button>
-        <button style="flex: 1 1 30%; padding: 12px 0; background: #fff; border: 1px solid #ddd; border-radius: 12px; font-family: 'Poppins', sans-serif; font-weight: 500; cursor: pointer; font-size: 14px;">🧖 Facial</button>
-        <button style="flex: 1 1 30%; padding: 12px 0; background: #fff; border: 1px solid #ddd; border-radius: 12px; font-family: 'Poppins', sans-serif; font-weight: 500; cursor: pointer; font-size: 14px;">💆 Massage</button>
+    <section class="quick-services">
+      <h3>Popular Services</h3>
+
+      <div class="grid">
+        <button onclick="goService('Haircut')">✂ Hair</button>
+        <button onclick="goService('Facial')">🧖 Facial</button>
+        <button onclick="goService('Massage')">💆 Massage</button>
       </div>
     </section>
 
@@ -109,97 +69,56 @@
 
   </div>
 
- <!-- =========================
-       MOBILE BOTTOM NAV (FULL WIDTH)
+  <!-- =========================
+       MOBILE BOTTOM NAV
   ========================== -->
   <nav class="mobile-nav">
     <a href="index.html" class="active">
       <span class="material-icons-round">home</span>
       <small>Home</small>
     </a>
-  
+
     <a href="booking.html">
       <span class="material-icons-round">event</span>
       <small>Booking</small>
     </a>
-  
+
     <a href="saved.html">
       <span class="material-icons-round">favorite</span>
       <small>Saved</small>
     </a>
-  
+
     <a href="https://wa.me/234XXXXXXXXXX" target="_blank">
       <span class="material-icons-round">chat</span>
       <small>Message</small>
     </a>
-  
+
     <a href="profile.html">
       <span class="material-icons-round">person</span>
       <small>Profile</small>
     </a>
   </nav>
-  
-  <style>
-  /* =========================
-     MOBILE BOTTOM NAV
-  ========================= */
-  .mobile-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 64px;
-    background: #ffffff;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-top: 1px solid #eee;
-    z-index: 9999;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  /* NAV ITEMS */
-  .mobile-nav a {
-    flex: 1;
-    text-align: center;
-    text-decoration: none;
-    color: #777;
-    font-size: 11px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-  }
-  
-  /* ICONS */
-  .mobile-nav .material-icons-round {
-    font-size: 22px;
-    line-height: 1;
-  }
-  
-  /* ACTIVE STATE */
-  .mobile-nav a.active {
-    color: #7b5cff;
-  }
-  
-  /* TAP FEEDBACK */
-  .mobile-nav a:active {
-    transform: scale(0.96);
-  }
-  
-  /* HIDE ON DESKTOP */
-  @media (min-width: 768px) {
-    .mobile-nav {
-      display: none;
-    }
-  }
-  </style>
-
 
   <!-- =========================
        SCRIPTS
   ========================== -->
+  <script>
+    function setGreeting() {
+      const greetingEl = document.getElementById('greeting');
+      const hour = new Date().getHours();
+
+      if (hour >= 5 && hour < 12) {
+        greetingEl.textContent = 'Good Morning 👋';
+      } else if (hour >= 12 && hour < 17) {
+        greetingEl.textContent = 'Good Afternoon 👋';
+      } else {
+        greetingEl.textContent = 'Good Evening 🌙';
+      }
+    }
+
+    setGreeting();
+  </script>
+
   <script src="js/data.js"></script>
   <script src="js/booking.js"></script>
 
