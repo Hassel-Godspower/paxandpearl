@@ -20,119 +20,156 @@
 
 <body>
 
+<div class="container">
+
   <!-- =========================
-       APP CONTAINER
+       TOP BAR (GREETING + NOTIFICATION)
   ========================== -->
-  <div class="container">
+  <header class="top-bar">
+    <div class="greeting-block">
+      <p class="greeting-text" id="greeting">Good Morning</p>
+      <h2 class="user-name" id="username">Paul</h2>
+      <span class="location">Lagos, Nigeria</span>
+    </div>
 
-    <!-- HEADER -->
-    <header class="header">
-      <div class="logo">Pax & Pearl Body Works</div>
-      <p class="location">Lagos, Nigeria</p>
-    </header>
+    <button class="notification-btn">
+      <span class="material-icons-round">notifications_none</span>
+    </button>
+  </header>
 
-    <!-- HERO -->
-    <section class="hero">
-      <h1>Relax. Refresh. Rejuvenate.</h1>
-      <p>Book premium spa treatments with ease</p>
-    </section>
+  <!-- =========================
+       SEARCH
+  ========================== -->
+  <section class="search-section">
+    <div class="search-box">
+      <span class="material-icons-round">search</span>
+      <input type="text" placeholder="Search services, stylists..." />
+    </div>
+  </section>
 
-    <!-- GREETING -->
-    <section class="greeting">
-      <h2 id="greeting">Hello 👋</h2>
-      <p id="username">Paul</p>
-    </section>
+  <!-- =========================
+       CATEGORIES
+  ========================== -->
+  <section class="categories">
+    <button class="category-btn">
+      <span class="material-icons-round">content_cut</span>
+      <small>Hair</small>
+    </button>
 
+    <button class="category-btn">
+      <span class="material-icons-round">spa</span>
+      <small>Facial</small>
+    </button>
 
-    <!-- PROMO -->
-    <section class="promo-card">
-      <h3>20% Off Haircut</h3>
+    <button class="category-btn">
+      <span class="material-icons-round">self_improvement</span>
+      <small>Massage</small>
+    </button>
+
+    <button class="category-btn">
+      <span class="material-icons-round">palette</span>
+      <small>Makeup</small>
+    </button>
+  </section>
+
+  <!-- =========================
+       SPECIAL OFFER
+  ========================== -->
+  <section class="promo-card">
+    <div class="promo-content">
+      <h3>Haircut</h3>
+      <p class="promo-discount">20% Off</p>
+      <span class="promo-dates">Jul 15 – Jul 24</span>
+
       <button class="promo-btn" onclick="location.href='services.html'">
-        Book Now
+        Get Offer Now
       </button>
-    </section>
+    </div>
+  </section>
 
-    <!-- POPULAR SERVICES -->
-    <section class="quick-services">
+  <!-- =========================
+       POPULAR SERVICES
+  ========================== -->
+  <section class="quick-services">
+    <div class="section-header">
       <h3>Popular Services</h3>
+      <a href="services.html">See all</a>
+    </div>
 
-      <div class="grid">
-        <button onclick="goService('Haircut')">✂ Hair</button>
-        <button onclick="goService('Facial')">🧖 Facial</button>
-        <button onclick="goService('Massage')">💆 Massage</button>
-      </div>
-    </section>
-
-    <!-- SERVICES LIST -->
-    <section class="services-section">
-      <h2>Our Services</h2>
-      <div class="services" id="serviceList"></div>
-    </section>
-
-  </div>
+    <div class="grid">
+      <button onclick="goService('Haircut')">✂ Haircut</button>
+      <button onclick="goService('Facial')">🧖 Facial</button>
+      <button onclick="goService('Massage')">💆 Massage</button>
+    </div>
+  </section>
 
   <!-- =========================
-       MOBILE BOTTOM NAV
+       SERVICES LIST
   ========================== -->
-  <nav class="mobile-nav">
-    <a href="index.html" class="active">
-      <span class="material-icons-round">home</span>
-      <small>Home</small>
-    </a>
+  <section class="services-section">
+    <div class="section-header">
+      <h3>Nearby Services</h3>
+      <a href="services.html">See all</a>
+    </div>
 
-    <a href="booking.html">
-      <span class="material-icons-round">event</span>
-      <small>Booking</small>
-    </a>
+    <div class="services" id="serviceList"></div>
+  </section>
 
-    <a href="saved.html">
-      <span class="material-icons-round">favorite</span>
-      <small>Saved</small>
-    </a>
+</div>
 
-    <a href="https://wa.me/234XXXXXXXXXX" target="_blank">
-      <span class="material-icons-round">chat</span>
-      <small>Message</small>
-    </a>
+<!-- =========================
+     MOBILE BOTTOM NAV
+========================== -->
+<nav class="mobile-nav">
+  <a href="index.html" class="active">
+    <span class="material-icons-round">home</span>
+    <small>Home</small>
+  </a>
 
-    <a href="profile.html">
-      <span class="material-icons-round">person</span>
-      <small>Profile</small>
-    </a>
-  </nav>
+  <a href="booking.html">
+    <span class="material-icons-round">event</span>
+    <small>Booking</small>
+  </a>
 
-  <!-- =========================
-       SCRIPTS
-  ========================== -->
-  <script>
-    function setGreetingAndUser() {
-      const greetingEl = document.getElementById('greeting');
-      const userEl = document.getElementById('username');
-  
-      const now = new Date();
-      const hour = now.getHours();
-  
-      let greetingText;
-      if (hour >= 5 && hour < 12) {
-        greetingText = 'Good Morning,';
-      } else if (hour >= 12 && hour < 17) {
-        greetingText = 'Good Afternoon,';
-      } else {
-        greetingText = 'Good Evening,';
-      }
-  
-      greetingEl.textContent = greetingText;
-  
-      // Replace later with real auth/user data
-      const userName = localStorage.getItem('user_name') || 'Paul';
-      userEl.textContent = userName;
-    }
-  
-    setGreetingAndUser();
-  </script>
+  <a href="saved.html">
+    <span class="material-icons-round">favorite</span>
+    <small>Saved</small>
+  </a>
 
-  <script src="js/data.js"></script>
-  <script src="js/booking.js"></script>
+  <a href="https://wa.me/234XXXXXXXXXX" target="_blank">
+    <span class="material-icons-round">chat</span>
+    <small>Message</small>
+  </a>
+
+  <a href="profile.html">
+    <span class="material-icons-round">person</span>
+    <small>Profile</small>
+  </a>
+</nav>
+
+<!-- =========================
+     SCRIPTS
+========================== -->
+<script>
+  function setGreetingAndUser() {
+    const greetingEl = document.getElementById('greeting');
+    const userEl = document.getElementById('username');
+
+    const hour = new Date().getHours();
+    greetingEl.textContent =
+      hour < 12 ? 'Good Morning,' :
+      hour < 17 ? 'Good Afternoon,' :
+      'Good Evening,';
+
+    userEl.textContent =
+      localStorage.getItem('user_name') || 'Paul';
+  }
+
+  setGreetingAndUser();
+</script>
+
+<script src="js/data.js"></script>
+<script src="js/booking.js"></script>
 
 </body>
 </html>
