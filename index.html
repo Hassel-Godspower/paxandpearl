@@ -39,8 +39,10 @@
 
     <!-- GREETING -->
     <section class="greeting">
-      <h2 id="greeting">Hello 👋</h2>
+      <h2 id="greeting">Good Evening,</h2>
+      <p id="username">Paul</p>
     </section>
+
 
     <!-- PROMO -->
     <section class="promo-card">
@@ -103,20 +105,30 @@
        SCRIPTS
   ========================== -->
   <script>
-    function setGreeting() {
+    function setGreetingAndUser() {
       const greetingEl = document.getElementById('greeting');
-      const hour = new Date().getHours();
-
+      const userEl = document.getElementById('username');
+  
+      const now = new Date();
+      const hour = now.getHours();
+  
+      let greetingText;
       if (hour >= 5 && hour < 12) {
-        greetingEl.textContent = 'Good Morning 👋';
+        greetingText = 'Good Morning,';
       } else if (hour >= 12 && hour < 17) {
-        greetingEl.textContent = 'Good Afternoon 👋';
+        greetingText = 'Good Afternoon,';
       } else {
-        greetingEl.textContent = 'Good Evening 🌙';
+        greetingText = 'Good Evening,';
       }
+  
+      greetingEl.textContent = greetingText;
+  
+      // Replace later with real auth/user data
+      const userName = localStorage.getItem('user_name') || 'Paul';
+      userEl.textContent = userName;
     }
-
-    setGreeting();
+  
+    setGreetingAndUser();
   </script>
 
   <script src="js/data.js"></script>
