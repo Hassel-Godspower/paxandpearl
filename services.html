@@ -18,227 +18,207 @@
 
 <body>
 
-  <!-- =========================
-       PAGE CONTAINER
-  ========================== -->
-  <div class="container">
+<div class="container">
 
-    <!-- HEADER -->
-    <header class="header">
-      <div class="logo">Select Services</div>
-    </header>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">Select Services</div>
+  </header>
 
-    <!-- SEE BOOKING FLOAT -->
-    <a href="booking.html" class="see-booking" id="seeBooking">
-      <span class="material-icons-round">event</span>
-      <small>Booking</small>
-      <span class="badge" id="bookingCount">0</span>
-    </a>
+  <!-- FLOATING BOOKING CART -->
+  <a href="booking.html" class="see-booking" id="seeBooking">
+    <span class="material-icons-round">event</span>
+    <small>Booking</small>
+    <span class="badge" id="bookingCount">0</span>
+  </a>
 
-    <!-- =========================
-         CATEGORY FILTER
-    ========================== -->
-    <section class="category-filter">
-      <button data-filter="all" class="active">All</button>
-      <button data-filter="massage">Massage</button>
-      <button data-filter="facials">Facials</button>
-      <button data-filter="pedicure-manicure">Pedicure & Manicure</button>
-      <button data-filter="steam-scrub">Steam & Scrub</button>
-      <button data-filter="chemical-peel">Chemical Peel</button>
-      <button data-filter="waxing">Waxing</button>
-      <button data-filter="hammam">Hammam</button>
-    </section>
+  <!-- CATEGORY FILTER -->
+  <section class="category-filter">
+    <button data-filter="all" class="active">All</button>
+    <button data-filter="massage">Massage</button>
+    <button data-filter="facials">Facials</button>
+    <button data-filter="pedicure-manicure">Pedicure & Manicure</button>
+    <button data-filter="steam-scrub">Steam & Scrub</button>
+    <button data-filter="chemical-peel">Chemical Peel</button>
+    <button data-filter="waxing">Waxing</button>
+    <button data-filter="hammam">Hammam</button>
+  </section>
 
-    <!-- =========================
-         SEARCH SERVICES
-    ========================== -->
-    <section class="search-section">
-      <div class="search-box">
-        <span class="material-icons-round">search</span>
-        <input
-          type="text"
-          id="serviceSearch"
-          placeholder="Search services..."
-          autocomplete="off"
-        />
-      </div>
-    </section>
+  <!-- SEARCH -->
+  <section class="search-section">
+    <div class="search-box">
+      <span class="material-icons-round">search</span>
+      <input
+        type="text"
+        id="serviceSearch"
+        placeholder="Search services..."
+        autocomplete="off"
+      />
+    </div>
+  </section>
 
+  <!-- SERVICES -->
+  <section class="services-section">
+    <h2>Select Services</h2>
+    <div id="services" class="services"></div>
+  </section>
 
-    <!-- SERVICES LIST -->
-    <section class="services-section">
-      <h2>Select Services</h2>
-      <div id="services" class="services"></div>
-    </section>
+</div>
 
-  </div>
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+  <a href="index.html">
+    <span class="material-icons-round">home</span>
+    <small>Home</small>
+  </a>
 
-  <!-- =========================
-       MOBILE BOTTOM NAV
-  ========================== -->
-  <nav class="mobile-nav">
-    <a href="index.html" class="active">
-      <span class="material-icons-round">home</span>
-      <small>Home</small>
-    </a>
+  <a href="booking.html">
+    <span class="material-icons-round">event</span>
+    <small>Booking</small>
+  </a>
 
-    <a href="booking.html">
-      <span class="material-icons-round">event</span>
-      <small>Booking</small>
-    </a>
+  <a href="saved.html">
+    <span class="material-icons-round">favorite</span>
+    <small>Saved</small>
+  </a>
 
-    <a href="saved.html">
-      <span class="material-icons-round">favorite</span>
-      <small>Saved</small>
-    </a>
+  <a href="https://wa.me/234XXXXXXXXXX" target="_blank">
+    <span class="material-icons-round">chat</span>
+    <small>Message</small>
+  </a>
 
-    <a href="https://wa.me/234XXXXXXXXXX" target="_blank">
-      <span class="material-icons-round">chat</span>
-      <small>Message</small>
-    </a>
+  <a href="profile.html">
+    <span class="material-icons-round">person</span>
+    <small>Profile</small>
+  </a>
+</nav>
 
-    <a href="profile.html">
-      <span class="material-icons-round">person</span>
-      <small>Profile</small>
-    </a>
-  </nav>
+<!-- INLINE NAV STYLES -->
+<style>
+  .container { padding-bottom: 90px; }
 
-  <!-- =========================
-       INLINE NAV STYLES
-  ========================== -->
-  <style>
-    .container {
-      padding-bottom: 90px;
-    }
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #eee;
+    z-index: 9999;
+    font-family: 'Poppins', sans-serif;
+  }
 
-    .mobile-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 64px;
-      background: #fff;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      border-top: 1px solid #eee;
-      z-index: 9999;
-      font-family: 'Poppins', sans-serif;
-    }
+  .mobile-nav a {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    color: #777;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
 
-    .mobile-nav a {
-      flex: 1;
-      text-align: center;
-      text-decoration: none;
-      color: #777;
-      font-size: 11px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2px;
-    }
+  .mobile-nav .material-icons-round {
+    font-size: 22px;
+  }
 
-    .mobile-nav .material-icons-round {
-      font-size: 22px;
-      line-height: 1;
-    }
+  .mobile-nav a:active {
+    transform: scale(0.96);
+  }
 
-    .mobile-nav a.active {
-      color: #7b5cff;
-    }
+  @media (min-width: 768px) {
+    .mobile-nav { display: none; }
+  }
+</style>
 
-    .mobile-nav a:active {
-      transform: scale(0.96);
-    }
+<!-- =========================
+     SCRIPTS (ORDER MATTERS)
+========================= -->
 
-    @media (min-width: 768px) {
-      .mobile-nav {
-        display: none;
-      }
-    }
-  </style>
+<script src="js/data.js"></script>
+<script src="js/booking.js"></script>
 
-  <!-- =========================
-       SCRIPTS
-  ========================== -->
+<script>
+  const servicesContainer = document.getElementById("services");
+  const searchInput = document.getElementById("serviceSearch");
+  const filterButtons = document.querySelectorAll(".category-filter button");
 
-  <script>
-    const servicesContainer = document.getElementById("services");
-    const searchInput = document.getElementById("serviceSearch");
-    const filterButtons = document.querySelectorAll(".category-filter button");
-  
-    let activeCategory = "all";
-    let searchQuery = "";
-  
-    function renderServices() {
-      servicesContainer.innerHTML = "";
-  
-      servicesData
-        .filter(service => {
-          const matchesCategory =
-            activeCategory === "all" || service.category === activeCategory;
-  
-          const matchesSearch =
-            service.name.toLowerCase().includes(searchQuery.toLowerCase());
-  
-          return matchesCategory && matchesSearch;
-        })
-        .forEach(service => {
-          const div = document.createElement("div");
-          div.className = "card service-card";
-  
-          div.innerHTML = `
-            <h3>${service.name}</h3>
-            <p>₦${service.price.toLocaleString()}</p>
-            <button class="btn add-btn">Add to Booking</button>
-          `;
+  let activeCategory = "all";
+  let searchQuery = "";
 
-          div.querySelector(".add-btn").addEventListener("click", () => {
-            addToCart(service);
+  function renderServices() {
+    if (!servicesContainer || !SPA_DATA) return;
+
+    servicesContainer.innerHTML = "";
+
+    SPA_DATA.services
+      .filter(service => {
+        const matchesCategory =
+          activeCategory === "all" || service.category === activeCategory;
+
+        const matchesSearch =
+          service.name.toLowerCase().includes(searchQuery.toLowerCase());
+
+        return matchesCategory && matchesSearch;
+      })
+      .forEach(service => {
+        const card = document.createElement("div");
+        card.className = "card service-card";
+
+        card.innerHTML = `
+          <h3>${service.name}</h3>
+          <p><strong>₦${Number(service.price).toLocaleString()}</strong></p>
+          <button class="btn add-btn">Add to Booking</button>
+        `;
+
+        card.querySelector(".add-btn").addEventListener("click", () => {
+          addToCart({
+            name: service.name,
+            price: service.price
           });
-
-          servicesContainer.appendChild(div);
+          alert(`${service.name} added to booking`);
         });
-    }
-  
-    // Category click
-    filterButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        filterButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        activeCategory = btn.dataset.filter;
-        renderServices();
+
+        servicesContainer.appendChild(card);
       });
-    });
-  
-    // Search input
-    searchInput.addEventListener("input", e => {
-      searchQuery = e.target.value;
+  }
+
+  // Category filter
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeCategory = btn.dataset.filter;
       renderServices();
     });
-  
-    // Read category from URL
-    const params = new URLSearchParams(window.location.search);
-    const urlCategory = params.get("category");
-  
-    if (urlCategory) {
-      activeCategory = urlCategory;
-      filterButtons.forEach(btn => {
-        if (btn.dataset.filter === urlCategory) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-    }
-  
-    renderServices();
-  </script>
+  });
 
-  
-  <script src="js/data.js"></script>
-  <script src="js/cart.js"></script>
+  // Search
+  searchInput.addEventListener("input", e => {
+    searchQuery = e.target.value;
+    renderServices();
+  });
+
+  // Category from URL (?category=massage)
+  const params = new URLSearchParams(window.location.search);
+  const urlCategory = params.get("category");
+
+  if (urlCategory) {
+    activeCategory = urlCategory;
+    filterButtons.forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.filter === urlCategory);
+    });
+  }
+
+  renderServices();
+</script>
 
 </body>
 </html>
