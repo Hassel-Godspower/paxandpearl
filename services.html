@@ -156,54 +156,74 @@
   ========================== -->
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const initialCategory = params.get("category") || "all";
+    const servicesContainer = document.getElementById("services");
+    const searchInput = document.getElementById("serviceSearch");
+    const filterButtons = document.querySelectorAll(".category-filter button");
   
-    renderServices(initialCategory);
+    let activeCategory = "all";
+    let searchQuery = "";
   
-    document.querySelectorAll(".category-filter button").forEach(btn => {
+    function renderServices() {
+      servicesContainer.innerHTML = "";
+  
+      servicesData
+        .filter(service => {
+          const matchesCategory =
+            activeCategory === "all" || service.category === activeCategory;
+  
+          const matchesSearch =
+            service.name.toLowerCase().includes(searchQuery.toLowerCase());
+  
+          return matchesCategory && matchesSearch;
+        })
+        .forEach(service => {
+          const div = document.createElement("div");
+          div.className = "card service-card";
+  
+          div.innerHTML = `
+            <h3>${service.name}</h3>
+            <p>₦${service.price.toLocaleString()}</p>
+            <button class="btn">Add to Booking</button>
+          `;
+  
+          servicesContainer.appendChild(div);
+        });
+    }
+  
+    // Category click
+    filterButtons.forEach(btn => {
       btn.addEventListener("click", () => {
-        document
-          .querySelectorAll(".category-filter button")
-          .forEach(b => b.classList.remove("active"));
-  
+        filterButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-        renderServices(btn.dataset.filter);
+        activeCategory = btn.dataset.filter;
+        renderServices();
       });
     });
   
-    // Activate correct pill on load
-    document.querySelectorAll(".category-filter button").forEach(btn => {
-      if (btn.dataset.filter === initialCategory) {
-        btn.classList.add("active");
-      }
+    // Search input
+    searchInput.addEventListener("input", e => {
+      searchQuery = e.target.value;
+      renderServices();
     });
-  </script>
-
-  <script>
-
-  const servicesContainer = document.getElementById("services");
-
-  function renderServices(category = "all") {
-    servicesContainer.innerHTML = "";
   
-    servicesData
-      .filter(service => category === "all" || service.category === category)
-      .forEach(service => {
-        const div = document.createElement("div");
-        div.className = "card service-card";
-        div.dataset.category = service.category;
+    // Read category from URL
+    const params = new URLSearchParams(window.location.search);
+    const urlCategory = params.get("category");
   
-        div.innerHTML = `
-          <h3>${service.name}</h3>
-          <p>₦${service.price.toLocaleString()}</p>
-          <button class="btn">Add to Booking</button>
-        `;
-  
-        servicesContainer.appendChild(div);
+    if (urlCategory) {
+      activeCategory = urlCategory;
+      filterButtons.forEach(btn => {
+        if (btn.dataset.filter === urlCategory) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
       });
-  }
+    }
+  
+    renderServices();
   </script>
+
   
   <script src="js/data.js"></script>
   <script src="js/cart.js"></script>
