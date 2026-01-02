@@ -1,48 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<section id="admin-login">
+  <h2>Admin Login</h2>
+  <input id="user" placeholder="Username">
+  <input id="pass" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+</section>
 
-  <link rel="stylesheet" href="css/base.css">
-</head>
-
-<body class="container">
-
-  <!-- =========================
-       ADMIN LOGIN
-  ========================== -->
-  <section id="admin-login">
-    <h2>Admin Login</h2>
-
-    <input id="user" type="text" placeholder="Username">
-    <input id="pass" type="password" placeholder="Password">
-
-    <button onclick="login()">Login</button>
-  </section>
-
-
-  <!-- =========================
-       ADMIN DASHBOARD
-  ========================== -->
-  <section id="admin-dashboard" style="display:none;">
-    
-    <h2>Bookings</h2>
-    <div id="bookings"></div>
-
-    <h2>Edit Prices</h2>
-    <div id="services"></div>
-
-  </section>
-
-
-  <!-- =========================
-       SCRIPTS
-  ========================== -->
-  <script src="js/data.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/admin.js"></script>
-
-</body>
-</html>
