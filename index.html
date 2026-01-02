@@ -180,36 +180,6 @@
   // Run on page load
   setGreetingWAT();
 </script>
-
-
-<script>
-  function setGreetingWAT() {
-    const greetingEl = document.getElementById('greeting');
-
-    // Get current time in Lagos (WAT)
-    const now = new Date();
-
-    // Convert to WAT using Intl.DateTimeFormat
-    const options = { hour: 'numeric', hour12: false, timeZone: 'Africa/Lagos' };
-    const hour = new Intl.DateTimeFormat('en-US', options).format(now);
-
-    let greetingText = '';
-
-    if (hour >= 5 && hour < 12) {
-      greetingText = 'Good Morning 👋';
-    } else if (hour >= 12 && hour < 17) {
-      greetingText = 'Good Afternoon 👋';
-    } else {
-      greetingText = 'Good Evening 🌙';
-    }
-
-    greetingEl.textContent = greetingText;
-  }
-
-  // Run on page load
-  setGreetingWAT();
-</script>
-
     
 <script src="js/data.js"></script>
 <script src="js/booking.js"></script>
