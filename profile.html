@@ -78,20 +78,35 @@
 const ADMIN = { user: "admin", pass: "1234" };
 
 /* ============================
+   INPUT REFERENCES (IMPORTANT)
+============================ */
+const nameInput  = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("phone");
+
+const usernameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
+
+/* ============================
    AUTO LOAD USER
 ============================ */
 const userProfile = JSON.parse(localStorage.getItem("userProfile") || "{}");
+
 if (userProfile.name) {
-  name.value = userProfile.name;
-  email.value = userProfile.email;
-  phone.value = userProfile.phone;
+  nameInput.value  = userProfile.name;
+  emailInput.value = userProfile.email || "";
+  phoneInput.value = userProfile.phone || "";
 }
 
 /* ============================
    USER SIGN UP / LOGIN
 ============================ */
 function signupUser() {
-  if (!name.value || !phone.value) {
+  const name  = nameInput.value.trim();
+  const phone = phoneInput.value.trim();
+  const email = emailInput.value.trim();
+
+  if (name === "" || phone === "") {
     alert("Please enter at least your name and WhatsApp number.");
     return;
   }
@@ -99,9 +114,9 @@ function signupUser() {
   localStorage.setItem("userSession", "true");
 
   localStorage.setItem("userProfile", JSON.stringify({
-    name: name.value.trim(),
-    email: email.value.trim(),
-    phone: phone.value.trim()
+    name,
+    email,
+    phone
   }));
 
   window.location.href = "index.html";
@@ -111,11 +126,14 @@ function signupUser() {
    ADMIN LOGIN
 ============================ */
 function loginAdmin() {
-  if (username.value === ADMIN.user && password.value === ADMIN.pass) {
+  if (
+    usernameInput.value === ADMIN.user &&
+    passwordInput.value === ADMIN.pass
+  ) {
     localStorage.setItem("adminSession", "true");
 
     localStorage.setItem("adminProfile", JSON.stringify({
-      phone: phone.value
+      phone: phoneInput.value.trim()
     }));
 
     window.location.href = "admin-dashboard.html";
