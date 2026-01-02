@@ -28,29 +28,34 @@
       <div class="logo">Your Booking</div>
     </header>
 
-    <!-- CART SUMMARY -->
+    <!-- =========================
+         CART SUMMARY
+    ========================== -->
     <section class="booking-summary">
       <h2>Your Booking</h2>
 
+      <!-- Cart Items Injected by JS -->
       <div id="cartItems" class="cart-items"></div>
 
       <div class="total-row">
         <span>Total</span>
-        <strong>$<span id="total">0</span></strong>
+        <strong id="total">₦0</strong>
       </div>
     </section>
 
-    <!-- CUSTOMER DETAILS -->
+    <!-- =========================
+         CUSTOMER DETAILS
+    ========================== -->
     <section class="booking-form">
       <h3>Your Details</h3>
 
-      <input id="name" type="text" placeholder="Full Name">
-      <input id="email" type="email" placeholder="Email">
-      <input id="phone" type="tel" placeholder="WhatsApp Number">
+      <input id="name" type="text" placeholder="Full Name" required>
+      <input id="email" type="email" placeholder="Email" required>
+      <input id="phone" type="tel" placeholder="WhatsApp Number" required>
 
       <div class="datetime-row">
-        <input id="date" type="date">
-        <input id="time" type="time">
+        <input id="date" type="date" required>
+        <input id="time" type="time" required>
       </div>
 
       <button class="btn btn-primary" onclick="confirmBooking()">
@@ -68,6 +73,7 @@
        MOBILE BOTTOM NAV
   ========================== -->
   <nav class="mobile-nav">
+
     <a href="index.html">
       <span class="material-icons-round">home</span>
       <small>Home</small>
@@ -92,6 +98,7 @@
       <span class="material-icons-round">person</span>
       <small>Profile</small>
     </a>
+
   </nav>
 
   <!-- =========================
@@ -154,7 +161,6 @@
        SCRIPTS
   ========================== -->
   <script src="js/data.js"></script>
-  <script src="js/calendar.js"></script>
   <script src="js/booking.js"></script>
 
 </body>
