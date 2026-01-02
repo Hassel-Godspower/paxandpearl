@@ -27,6 +27,14 @@
     <header class="header">
       <div class="logo">Select Services</div>
     </header>
+
+    <!-- SEE BOOKING FLOAT -->
+    <a href="booking.html" class="see-booking" id="seeBooking">
+      <span class="material-icons-round">event</span>
+      <small>Booking</small>
+      <span class="badge" id="bookingCount">0</span>
+    </a>
+
     <!-- =========================
          CATEGORY FILTER
     ========================== -->
@@ -183,9 +191,13 @@
           div.innerHTML = `
             <h3>${service.name}</h3>
             <p>₦${service.price.toLocaleString()}</p>
-            <button class="btn">Add to Booking</button>
+            <button class="btn add-btn">Add to Booking</button>
           `;
-  
+
+          div.querySelector(".add-btn").addEventListener("click", () => {
+            addToCart(service);
+          });
+
           servicesContainer.appendChild(div);
         });
     }
