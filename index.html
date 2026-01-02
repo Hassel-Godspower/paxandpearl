@@ -151,12 +151,19 @@
 ========================== -->
 
 
+
+
 <script>
-  // Function to set greeting based on user's local time
-  function setGreeting() {
+  function setGreetingWAT() {
     const greetingEl = document.getElementById('greeting');
-    const now = new Date(); // User's local time
-    const hour = now.getHours();
+
+    // Get current time in Lagos (WAT)
+    const now = new Date();
+
+    // Convert to WAT using Intl.DateTimeFormat
+    const options = { hour: 'numeric', hour12: false, timeZone: 'Africa/Lagos' };
+    const hour = new Intl.DateTimeFormat('en-US', options).format(now);
+
     let greetingText = '';
 
     if (hour >= 5 && hour < 12) {
@@ -171,7 +178,7 @@
   }
 
   // Run on page load
-  setGreeting();
+  setGreetingWAT();
 </script>
 
     
