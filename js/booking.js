@@ -89,22 +89,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function confirmBooking() {
   const cart = getCart();
+  if (!cart.length) return alert("Add at least one service");
 
-  if (!cart.length) {
-    alert("Please add at least one service.");
-    return;
-  }
+  const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
 
   const bookingData = {
-    name: getValue("name"),
-    email: getValue("email"),
-    phone: getValue("phone"),
+    name: profile.pname || getValue("name"),
+    email: profile.pemail || getValue("email"),
+    phone: profile.pphone || getValue("phone"),
     date: getValue("date"),
     time: getValue("time"),
     services: cart.map(s => s.name).join(", "),
     total: cart.reduce((sum, s) => sum + Number(s.price), 0),
     paymentMethod: "Bank Transfer"
   };
+
+  const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+  bookings.push(bookingData);
+  localStorage.setItem("bookings", JSON.stringify(bookings));
 
   sendWhatsAppBooking(bookingData);
   clearCart();
@@ -186,8 +188,11 @@ Email: ${data.email}
 ${data.paymentMethod ? `Payment: ${data.paymentMethod}` : ""}
 `;
 
-  window.open(
-    `https://wa.me/${SPA_DATA.whatsappAdmin}?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
+const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
+const adminPhone = adminProfile.phone || SPA_DATA.whatsappAdmin;
+
+window.open(
+`https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`,
+"_blank"
+);
 }
