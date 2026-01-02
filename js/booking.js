@@ -1,3 +1,35 @@
+/* =========================
+   BOOKING CART CORE
+========================= */
+
+const CART_KEY = "bookingCart";
+
+function getCart() {
+  return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  updateCartBadge();
+}
+
+function addToCart(service) {
+  const cart = getCart();
+  cart.push(service);
+  saveCart(cart);
+}
+
+function removeFromCart(index) {
+  const cart = getCart();
+  cart.splice(index, 1);
+  saveCart(cart);
+  renderBooking();
+}
+
+function clearCart() {
+  localStorage.removeItem(CART_KEY);
+}
+
 /* ============================
    SERVICE LIST RENDERING
 ============================ */
