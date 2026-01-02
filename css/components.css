@@ -195,6 +195,27 @@
     transform: translateY(0);
   }
 }
+.search-section {
+  padding: 8px 16px 12px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card);
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+}
 
 
 
