@@ -227,10 +227,13 @@
 
 <script>
   // Example: get username dynamically (replace this with your actual logic)
-  const userName = "Kay"; // Replace with dynamic username
+   const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
 
-  // Set user name
-  document.getElementById('user-name').textContent = `Hello ${userName}`;
+  if (profile.name) {
+    document.getElementById("user-name").textContent = `Hello ${profile.name} 👋`;
+  } else {
+    document.getElementById("user-name").textContent = "Hello 👋";
+  }
 
   // Function to set greeting based on WAT time
   function setGreetingWAT() {
