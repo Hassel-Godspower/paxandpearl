@@ -37,6 +37,39 @@ function updateCartBadge() {
 
 document.addEventListener("DOMContentLoaded", updateCartBadge);
 
+function renderBooking() {
+  const cart = getCart();
+  const cartEl = document.getElementById("cartItems");
+  const totalEl = document.getElementById("total");
+
+  if (!cartEl) return;
+
+  cartEl.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    const div = document.createElement("div");
+    div.className = "cart-item";
+
+    div.innerHTML = `
+      <div>
+        <strong>${item.name}</strong>
+        <p>₦${item.price.toLocaleString()}</p>
+      </div>
+      <button onclick="removeFromCart(${index})">✕</button>
+    `;
+
+    cartEl.appendChild(div);
+  });
+
+  totalEl.textContent = total.toLocaleString();
+}
+
+document.addEventListener("DOMContentLoaded", renderBooking);
+
+
 /* ============================
    SERVICE LIST RENDERING
 ============================ */
