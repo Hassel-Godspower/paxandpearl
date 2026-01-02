@@ -29,6 +29,13 @@ function removeFromCart(index) {
 function clearCart() {
   localStorage.removeItem(CART_KEY);
 }
+function updateCartBadge() {
+  const badge = document.getElementById("bookingCount");
+  if (!badge) return;
+  badge.textContent = getCart().length;
+}
+
+document.addEventListener("DOMContentLoaded", updateCartBadge);
 
 /* ============================
    SERVICE LIST RENDERING
