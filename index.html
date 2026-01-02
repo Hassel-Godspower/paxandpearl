@@ -149,22 +149,14 @@
 <!-- =========================
      SCRIPTS
 ========================== -->
+
+
 <script>
-  async function setGreeting() {
+  // Function to set greeting based on user's local time
+  function setGreeting() {
     const greetingEl = document.getElementById('greeting');
-
-    let userTime;
-
-    // Try to get timezone via Intl API
-    try {
-      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      userTime = new Date(new Date().toLocaleString("en-US", { timeZone }));
-    } catch (err) {
-      console.warn("Timezone detection failed, using local time.", err);
-      userTime = new Date(); // fallback to device time
-    }
-
-    const hour = userTime.getHours();
+    const now = new Date(); // User's local time
+    const hour = now.getHours();
     let greetingText = '';
 
     if (hour >= 5 && hour < 12) {
@@ -181,6 +173,7 @@
   // Run on page load
   setGreeting();
 </script>
+
     
 <script src="js/data.js"></script>
 <script src="js/booking.js"></script>
