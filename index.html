@@ -25,7 +25,7 @@
   <!-- =========================
        TOP BAR (GREETING + NOTIFICATION)
   ========================== -->
-  <header class="top-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #fff;">
+  <header class="top-bar">
     <section class="greeting">
       <h2 id="greeting">
         <span id="user-name">Hello 👋</span><br>
@@ -34,27 +34,72 @@
     </section>
   
     <!-- Notification Button -->
-    <button class="notification-btn" style="background: none; border: none; cursor: pointer; font-size: 24px;">
+    <button class="notification-btn">
       <span class="material-icons-round">notifications_none</span>
     </button>
   </header>
-
+  
   <style>
-    /* Smaller font for the user name line */
-    .user-name {
-      font-size: 16px;   /* Adjust size as needed */
-      font-weight: normal; /* Optional: make it lighter */
-      color: #555;       /* Optional: subtle color */
+    /* =====================
+       TOP BAR STYLES
+    ===================== */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px; /* smaller padding for mobile */
+      background: #fff;
+      width: 100%;
+      box-sizing: border-box;
+      border-bottom: 1px solid #eee; /* subtle separation */
     }
   
-    /* Optional: keep time greeting bigger */
+    .top-bar .greeting h2 {
+      margin: 0;
+      line-height: 1.2;
+    }
+  
+    .user-name {
+      font-size: 14px;   /* smaller for mobile */
+      font-weight: 500;
+      color: #555;
+    }
+  
     .time-greeting {
-      font-size: 20px;   /* Larger font for greeting */
-      font-weight: bold;
+      font-size: 16px;   /* slightly larger than username */
+      font-weight: 600;
       color: #000;
     }
+  
+    .notification-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 22px; /* slightly smaller for mobile */
+      color: #333;
+    }
+  
+    /* =====================
+       RESPONSIVE ADJUSTMENTS
+    ===================== */
+    @media (min-width: 600px) {
+      .top-bar {
+        padding: 10px 20px;
+      }
+  
+      .user-name {
+        font-size: 16px;
+      }
+  
+      .time-greeting {
+        font-size: 20px;
+      }
+  
+      .notification-btn {
+        font-size: 24px;
+      }
+    }
   </style>
-
 
   <!-- =========================
        SEARCH
