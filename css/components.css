@@ -164,6 +164,23 @@
   );
   color: #fff;
 }
+/* Sticky category filter */
+.category-filter {
+  position: sticky;
+  top: 64px; /* below header */
+  z-index: 20;
+  background: var(--bg);
+  padding: 8px 16px 12px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.category-filter::-webkit-scrollbar {
+  display: none;
+}
+
 
 /* =========================================================
    PROMO CARD (Animated)
