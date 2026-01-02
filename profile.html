@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login / Profile</title>
+  <title>Sign Up / Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -23,14 +23,13 @@
     }
     button:active { transform:scale(.98); }
 
-    .hint {
+    .divider {
+      text-align:center;
       font-size:12px;
       color:#777;
-      margin-top:8px;
-      text-align:center;
+      margin:14px 0;
     }
 
-    /* Mobile Nav */
     .mobile-nav {
       position:fixed; bottom:0; left:0; width:100%; height:64px;
       display:flex; border-top:1px solid #eee; background:#fff;
@@ -48,28 +47,27 @@
 <body>
 
 <div class="container">
-  <h2>Login / Profile</h2>
+  <h2>Create Account / Login</h2>
 
+  <!-- USER SIGN UP -->
   <input id="name" placeholder="Full Name">
   <input id="email" placeholder="Email">
   <input id="phone" placeholder="WhatsApp Number">
 
-  <input id="username" placeholder="Username (Admin only)">
-  <input id="password" type="password" placeholder="Password (Admin only)">
+  <button onclick="signupUser()">Continue</button>
 
-  <button onclick="handleLogin()">Continue</button>
+  <div class="divider">Admin login</div>
 
-  <div class="hint">
-    Admins use username & password.<br>
-    Users can skip them.
-  </div>
+  <!-- ADMIN LOGIN -->
+  <input id="username" placeholder="Admin Username">
+  <input id="password" type="password" placeholder="Admin Password">
+
+  <button onclick="loginAdmin()">Login as Admin</button>
 </div>
 
-<!-- MOBILE NAV -->
 <nav class="mobile-nav">
   <a href="index.html"><span class="material-icons-round">home</span><small>Home</small></a>
   <a href="booking.html"><span class="material-icons-round">event</span><small>Booking</small></a>
-  <a href="saved.html"><span class="material-icons-round">favorite</span><small>Saved</small></a>
   <a href="profile.html" class="active"><span class="material-icons-round">person</span><small>Profile</small></a>
 </nav>
 
@@ -80,11 +78,9 @@
 const ADMIN = { user: "admin", pass: "1234" };
 
 /* ============================
-   LOAD EXISTING PROFILE
+   AUTO LOAD USER
 ============================ */
 const userProfile = JSON.parse(localStorage.getItem("userProfile") || "{}");
-const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-
 if (userProfile.name) {
   name.value = userProfile.name;
   email.value = userProfile.email;
@@ -92,36 +88,40 @@ if (userProfile.name) {
 }
 
 /* ============================
-   LOGIN HANDLER
+   USER SIGN UP / LOGIN
 ============================ */
-function handleLogin() {
-  const uname = username.value.trim();
-  const pass = password.value.trim();
+function signupUser() {
+  if (!name.value || !phone.value) {
+    alert("Please enter at least your name and WhatsApp number.");
+    return;
+  }
 
-  // ADMIN LOGIN
-  if (uname === ADMIN.user && pass === ADMIN.pass) {
+  localStorage.setItem("userSession", "true");
+
+  localStorage.setItem("userProfile", JSON.stringify({
+    name: name.value.trim(),
+    email: email.value.trim(),
+    phone: phone.value.trim()
+  }));
+
+  window.location.href = "index.html";
+}
+
+/* ============================
+   ADMIN LOGIN
+============================ */
+function loginAdmin() {
+  if (username.value === ADMIN.user && password.value === ADMIN.pass) {
     localStorage.setItem("adminSession", "true");
 
     localStorage.setItem("adminProfile", JSON.stringify({
       phone: phone.value
     }));
 
-    alert("Admin login successful");
     window.location.href = "admin-dashboard.html";
-    return;
+  } else {
+    alert("Invalid admin credentials");
   }
-
-  // USER LOGIN
-  localStorage.setItem("userSession", "true");
-
-  localStorage.setItem("userProfile", JSON.stringify({
-    name: name.value,
-    email: email.value,
-    phone: phone.value
-  }));
-
-  alert("Welcome!");
-  window.location.href = "index.html";
 }
 </script>
 
