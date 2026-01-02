@@ -43,14 +43,14 @@ button { background:#7b5cff; color:#fff; border:none; }
 </style>
 
 <script>
-const profile = JSON.parse(localStorage.getItem("profile") || "{}");
+const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
 
 ["pname","pemail","pphone"].forEach(id=>{
   if(profile[id]) document.getElementById(id).value = profile[id];
 });
 
 function saveProfile(){
-  localStorage.setItem("profile", JSON.stringify({
+  localStorage.setItem("userProfile", JSON.stringify({
     pname: pname.value,
     pemail: pemail.value,
     pphone: pphone.value
