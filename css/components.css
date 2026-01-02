@@ -180,6 +180,22 @@
 .category-filter::-webkit-scrollbar {
   display: none;
 }
+/* Service card animation */
+.service-card {
+  animation: serviceFadeIn 0.35s ease both;
+}
+
+@keyframes serviceFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 
 /* =========================================================
