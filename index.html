@@ -26,9 +26,11 @@
        TOP BAR (GREETING + NOTIFICATION)
   ========================== -->
   <header class="top-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #fff;">
-    <!-- Greeting -->
     <section class="greeting">
-      <h2 id="greeting">Hello 👋</h2>
+      <h2 id="greeting">
+        <span id="user-name">Hello 👋</span><br>
+        <span id="time-greeting"></span>
+      </h2>
     </section>
   
     <!-- Notification Button -->
@@ -153,30 +155,31 @@
 ========================== -->
 
 <script>
+  // Example: get username dynamically (replace this with your actual logic)
+  const userName = "Kay"; // Replace with dynamic username
+
+  // Set user name
+  document.getElementById('user-name').textContent = `Hello ${userName}`;
+
+  // Function to set greeting based on WAT time
   function setGreetingWAT() {
-    const greetingEl = document.getElementById('greeting');
+    const timeGreetingEl = document.getElementById('time-greeting');
 
-    // Get current time in Lagos (WAT)
     const now = new Date();
-
-    // Convert to WAT using Intl.DateTimeFormat
     const options = { hour: 'numeric', hour12: false, timeZone: 'Africa/Lagos' };
     const hour = parseInt(new Intl.DateTimeFormat('en-US', options).format(now), 10);
 
     let greetingText = '';
 
     if (hour >= 0 && hour < 12) {
-      // 12 AM to 11 AM → Morning
       greetingText = 'Good Morning 👋';
     } else if (hour >= 12 && hour <= 15) {
-      // 12 PM to 3 PM → Afternoon
       greetingText = 'Good Afternoon 👋';
     } else if (hour >= 16 && hour <= 23) {
-      // 4 PM to 11 PM → Evening
       greetingText = 'Good Evening 🌙';
     }
 
-    greetingEl.textContent = greetingText;
+    timeGreetingEl.textContent = greetingText;
   }
 
   // Run on page load
