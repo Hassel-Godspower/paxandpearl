@@ -97,6 +97,39 @@
   font-size: 11px;
   color: var(--text-main);
 }
+/* =========================
+   SEE MORE (Categories)
+========================= */
+.categories-wrapper {
+  padding: 0 12px;
+}
+
+.see-more-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.see-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--primary-red);
+  text-decoration: none;
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.see-more-btn .material-icons-round {
+  font-size: 16px;
+}
+
+.see-more-btn:active {
+  opacity: 0.7;
+}
 
 /* =========================================================
    PROMO CARD (Animated)
