@@ -1,32 +1,41 @@
 /* ============================
    AUTH GUARD
 ============================ */
-
-if (!localStorage.getItem("admin")) {
+if (!localStorage.getItem("adminSession")) {
   window.location.href = "admin.html";
 }
-
 
 /* ============================
    DOM REFERENCES
 ============================ */
-
 const bookingsContainer = document.getElementById("bookings");
 const servicesContainer = document.getElementById("services");
-
+const adminPhoneInput = document.getElementById("adminPhone");
 
 /* ============================
    LOAD DATA
 ============================ */
-
 const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
 const services = SPA_DATA.services;
+const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
 
+/* ============================
+   ADMIN PROFILE
+============================ */
+if (adminPhoneInput && adminProfile.phone) {
+  adminPhoneInput.value = adminProfile.phone;
+}
+
+function saveAdminProfile() {
+  localStorage.setItem("adminProfile", JSON.stringify({
+    phone: adminPhoneInput.value
+  }));
+  alert("Admin WhatsApp saved");
+}
 
 /* ============================
    RENDER BOOKINGS
 ============================ */
-
 function renderBookings() {
   bookingsContainer.innerHTML = "";
 
@@ -35,75 +44,51 @@ function renderBookings() {
     return;
   }
 
-  bookings.forEach(booking => {
+  bookings.forEach(b => {
     bookingsContainer.insertAdjacentHTML(
       "beforeend",
-      bookingCardTemplate(booking)
+      `
+      <div class="card">
+        <strong>${b.name}</strong><br>
+        ${b.services}<br>
+        Total: ₦${Number(b.total).toLocaleString()}<br>
+        ${b.date} @ ${b.time}<br>
+        📞 ${b.phone}<br>
+        ✉️ ${b.email}
+      </div>
+      `
     );
   });
 }
 
-function bookingCardTemplate(b) {
-  return `
-    <div class="card">
-      <strong>${b.name}</strong><br>
-      ${b.service || b.services}<br>
-      ${b.total ? `Total: $${b.total}<br>` : ""}
-      ${b.date ? `${b.date} @ ${b.time}<br>` : ""}
-      📞 ${b.phone}<br>
-      ✉️ ${b.email}
-    </div>
-  `;
-}
-
-
 /* ============================
-   RENDER SERVICES & PRICES
+   SERVICES
 ============================ */
-
 function renderServices() {
   servicesContainer.innerHTML = "";
 
   services.forEach(service => {
     servicesContainer.insertAdjacentHTML(
       "beforeend",
-      servicePriceTemplate(service)
+      `
+      <div class="card">
+        <strong>${service.name}</strong><br>
+        <input type="number" value="${service.price}"
+          onchange="updatePrice(${service.id}, this.value)">
+      </div>
+      `
     );
   });
 }
 
-function servicePriceTemplate(service) {
-  return `
-    <div class="card">
-      <strong>${service.name}</strong><br>
-      <input 
-        type="number"
-        value="${service.price}"
-        onchange="updatePrice(${service.id}, this.value)"
-      >
-    </div>
-  `;
-}
-
-
-/* ============================
-   UPDATE SERVICE PRICE
-============================ */
-
-function updatePrice(serviceId, newPrice) {
-  const service = services.find(s => s.id === serviceId);
+function updatePrice(id, price) {
+  const service = services.find(s => s.id === id);
   if (!service) return;
 
-  service.price = Number(newPrice);
-
-  // TODO: Persist to backend or localStorage
-  alert("Price updated. Persist to backend when ready.");
+  service.price = Number(price);
+  localStorage.setItem("services", JSON.stringify(services));
+  alert("Price updated");
 }
-
-
-/* ============================
-   INITIALIZE
-============================ */
 
 renderBookings();
 renderServices();
