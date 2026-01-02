@@ -2,60 +2,126 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Profile</title>
+  <title>Login / Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+  <style>
+    body { font-family:'DM Sans',sans-serif; background:#fafafa; }
+    .container { padding:20px 16px 90px; max-width:420px; margin:auto; }
+    h2 { margin-bottom:12px; }
+    input, button {
+      width:100%; padding:12px; margin-bottom:12px;
+      border-radius:10px; border:1px solid #ddd;
+      font-size:14px;
+    }
+    button {
+      background:#7b5cff; color:#fff;
+      border:none; font-weight:600;
+    }
+    button:active { transform:scale(.98); }
+
+    .hint {
+      font-size:12px;
+      color:#777;
+      margin-top:8px;
+      text-align:center;
+    }
+
+    /* Mobile Nav */
+    .mobile-nav {
+      position:fixed; bottom:0; left:0; width:100%; height:64px;
+      display:flex; border-top:1px solid #eee; background:#fff;
+    }
+    .mobile-nav a {
+      flex:1; text-align:center; font-size:11px; color:#777;
+      text-decoration:none; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+    }
+    .mobile-nav a.active { color:#7b5cff; }
+    @media(min-width:768px){.mobile-nav{display:none;}}
+  </style>
 </head>
 
 <body>
 
 <div class="container">
-  <h2>Your Profile</h2>
+  <h2>Login / Profile</h2>
 
-  <input id="pname" placeholder="Full Name">
-  <input id="pemail" placeholder="Email">
-  <input id="pphone" placeholder="WhatsApp Number">
+  <input id="name" placeholder="Full Name">
+  <input id="email" placeholder="Email">
+  <input id="phone" placeholder="WhatsApp Number">
 
-  <button onclick="saveProfile()">Save Profile</button>
+  <input id="username" placeholder="Username (Admin only)">
+  <input id="password" type="password" placeholder="Password (Admin only)">
+
+  <button onclick="handleLogin()">Continue</button>
+
+  <div class="hint">
+    Admins use username & password.<br>
+    Users can skip them.
+  </div>
 </div>
 
+<!-- MOBILE NAV -->
 <nav class="mobile-nav">
   <a href="index.html"><span class="material-icons-round">home</span><small>Home</small></a>
   <a href="booking.html"><span class="material-icons-round">event</span><small>Booking</small></a>
   <a href="saved.html"><span class="material-icons-round">favorite</span><small>Saved</small></a>
-  <a href="https://wa.me/234XXXXXXXXXX" target="_blank"><span class="material-icons-round">chat</span><small>Message</small></a>
   <a href="profile.html" class="active"><span class="material-icons-round">person</span><small>Profile</small></a>
 </nav>
 
-<style>
-.container { padding-bottom:90px; font-family:'DM Sans',sans-serif; }
-input, button {
-  width:100%; padding:12px; margin-bottom:12px;
-  border-radius:8px; border:1px solid #ddd;
-}
-button { background:#7b5cff; color:#fff; border:none; }
-.mobile-nav { position:fixed; bottom:0; left:0; width:100%; height:64px; display:flex; border-top:1px solid #eee; background:#fff; }
-.mobile-nav a { flex:1; text-align:center; font-size:11px; color:#777; text-decoration:none; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-.mobile-nav a.active { color:#7b5cff; }
-@media(min-width:768px){.mobile-nav{display:none;}}
-</style>
-
 <script>
-const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
+/* ============================
+   ADMIN CREDENTIALS
+============================ */
+const ADMIN = { user: "admin", pass: "1234" };
 
-["pname","pemail","pphone"].forEach(id=>{
-  if(profile[id]) document.getElementById(id).value = profile[id];
-});
+/* ============================
+   LOAD EXISTING PROFILE
+============================ */
+const userProfile = JSON.parse(localStorage.getItem("userProfile") || "{}");
+const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
 
-function saveProfile(){
+if (userProfile.name) {
+  name.value = userProfile.name;
+  email.value = userProfile.email;
+  phone.value = userProfile.phone;
+}
+
+/* ============================
+   LOGIN HANDLER
+============================ */
+function handleLogin() {
+  const uname = username.value.trim();
+  const pass = password.value.trim();
+
+  // ADMIN LOGIN
+  if (uname === ADMIN.user && pass === ADMIN.pass) {
+    localStorage.setItem("adminSession", "true");
+
+    localStorage.setItem("adminProfile", JSON.stringify({
+      phone: phone.value
+    }));
+
+    alert("Admin login successful");
+    window.location.href = "admin-dashboard.html";
+    return;
+  }
+
+  // USER LOGIN
+  localStorage.setItem("userSession", "true");
+
   localStorage.setItem("userProfile", JSON.stringify({
-    pname: pname.value,
-    pemail: pemail.value,
-    pphone: pphone.value
+    name: name.value,
+    email: email.value,
+    phone: phone.value
   }));
-  alert("Profile saved");
+
+  alert("Welcome!");
+  window.location.href = "index.html";
 }
 </script>
 
