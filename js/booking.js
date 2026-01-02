@@ -69,6 +69,16 @@ function renderBooking() {
 
 document.addEventListener("DOMContentLoaded", renderBooking);
 
+function confirmBooking() {
+  if (getCart().length === 0) {
+    alert("Please add at least one service.");
+    return;
+  }
+
+  alert("Booking submitted! We’ll contact you shortly.");
+  clearCart();
+  location.href = "index.html";
+}
 
 /* ============================
    SERVICE LIST RENDERING
