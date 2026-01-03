@@ -26,7 +26,7 @@ async function login() {
 
   if (data.success) {
     localStorage.setItem("adminToken", data.token);
-    window.location.href = "/admin/dashboard.html";
+    window.location.href = "admin-dashboard.html";
   } else {
     alert("Invalid credentials");
   }
