@@ -187,49 +187,243 @@
   </style>
 
   <!-- =========================
-       SPECIAL OFFER
-  ========================== -->
-  <section class="promo-card">
-    <div class="promo-content">
-      <h3>Haircut</h3>
-      <p class="promo-discount">20% Off</p>
-      <span class="promo-dates">Jul 15 – Jul 24</span>
+     POST FLYER SLIDER
+========================== -->
+<section class="post-slider">
+  <div class="slider-container" id="postSlider">
+    <!-- Slides injected dynamically by JS -->
+  </div>
 
-      <button class="promo-btn" onclick="location.href='services.html'">
-        Get Offer Now
-      </button>
-    </div>
-  </section>
+  <!-- Slider navigation -->
+  <button class="slider-prev" onclick="movePostSlide(-1)">&#10094;</button>
+  <button class="slider-next" onclick="movePostSlide(1)">&#10095;</button>
+</section>
 
-  <!-- =========================
-       POPULAR SERVICES
-  ========================== -->
-  <section class="quick-services">
-    <div class="section-header">
-      <h3>Popular Services</h3>
-      <a href="services.html">See all</a>
-    </div>
+<!-- =========================
+     SERVICE CARD SLIDER
+========================== -->
+<section class="service-slider">
+  <h3>Our Services</h3>
+  <div class="service-container" id="serviceSlider">
+    <!-- Service cards injected dynamically by JS -->
+  </div>
 
-    <div class="grid">
-      <button onclick="goService('Haircut')">✂ Haircut</button>
-      <button onclick="goService('Facial')">🧖 Facial</button>
-      <button onclick="goService('Massage')">💆 Massage</button>
-    </div>
-  </section>
+  <!-- Slider navigation -->
+  <button class="service-prev" onclick="moveServiceSlide(-1)">&#10094;</button>
+  <button class="service-next" onclick="moveServiceSlide(1)">&#10095;</button>
+</section>
 
-  <!-- =========================
-       SERVICES LIST
-  ========================== -->
-  <section class="services-section">
-    <div class="section-header">
-      <h3>Nearby Services</h3>
-      <a href="services.html">See all</a>
-    </div>
+<!-- =========================
+     MAP / DIRECTIONS
+========================== -->
+<section class="spa-map">
+  <h3>Find Us</h3>
+  <div id="map" style="width:100%;height:300px;border-radius:10px;"></div>
+  <p>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Your+Spa+Address+Here" target="_blank">
+      Get Directions
+    </a>
+  </p>
+</section>
 
-    <div class="services" id="serviceList"></div>
-  </section>
+<style>
+/* ---------------------------
+   POST SLIDER
+--------------------------- */
+.post-slider {
+  position: relative;
+  overflow: hidden;
+  margin: 20px 0;
+  border-radius: 12px;
+}
 
-</div>
+.slider-container {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.slider-container img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.slider-prev, .slider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.slider-prev { left: 10px; }
+.slider-next { right: 10px; }
+
+/* ---------------------------
+   SERVICE CARD SLIDER
+--------------------------- */
+.service-slider {
+  margin: 30px 0;
+  position: relative;
+}
+
+.service-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.service-card {
+  flex: 0 0 200px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+  padding: 10px;
+}
+
+.service-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.service-card h4 {
+  margin: 8px 0 4px;
+  font-size: 16px;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.service-card button {
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* ---------------------------
+   MAP SECTION
+--------------------------- */
+.spa-map {
+  margin: 30px 0;
+}
+
+.spa-map h3 {
+  margin-bottom: 12px;
+}
+
+.spa-map p a {
+  color: #d32f2f;
+  text-decoration: none;
+  font-weight: 500;
+}
+</style>
+
+<script>
+/* =========================
+   POST SLIDER LOGIC
+========================== */
+const postImages = [
+  "images/post1.jpg",
+  "images/post2.jpg",
+  "images/post3.jpg"
+];
+
+const postSlider = document.getElementById("postSlider");
+
+postImages.forEach(src => {
+  const img = document.createElement("img");
+  img.src = src;
+  postSlider.appendChild(img);
+});
+
+let currentPostIndex = 0;
+
+function movePostSlide(step) {
+  const total = postImages.length;
+  currentPostIndex = (currentPostIndex + step + total) % total;
+  postSlider.style.transform = `translateX(-${currentPostIndex * 100}%)`;
+}
+
+/* =========================
+   SERVICE CARD SLIDER LOGIC
+========================== */
+const services = [
+  {
+    name: "Haircut",
+    desc: "Professional haircut for men & women",
+    img: "images/service_haircut.jpg"
+  },
+  {
+    name: "Facial",
+    desc: "Relaxing facial for glowing skin",
+    img: "images/service_facial.jpg"
+  },
+  {
+    name: "Massage",
+    desc: "Full body massage to relieve stress",
+    img: "images/service_massage.jpg"
+  }
+];
+
+const serviceSlider = document.getElementById("serviceSlider");
+
+services.forEach(service => {
+  const card = document.createElement("div");
+  card.classList.add("service-card");
+  card.innerHTML = `
+    <img src="${service.img}" alt="${service.name}">
+    <h4>${service.name}</h4>
+    <p>${service.desc}</p>
+    <button onclick="location.href='services.html?service=${service.name}'">Book Now</button>
+  `;
+  serviceSlider.appendChild(card);
+});
+
+function moveServiceSlide(step) {
+  serviceSlider.scrollBy({ left: step * 220, behavior: 'smooth' });
+}
+
+/* =========================
+   GOOGLE MAP
+========================== */
+function initMap() {
+  const spaLocation = { lat: 6.5244, lng: 3.3792 }; // Replace with actual coordinates
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: spaLocation,
+    zoom: 15
+  });
+  const marker = new google.maps.Marker({
+    position: spaLocation,
+    map: map,
+    title: "Pax & Pearl Spa"
+  });
+}
+</script>
+
+<!-- Google Maps API -->
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
+
 
 <!-- =========================
      MOBILE BOTTOM NAV
