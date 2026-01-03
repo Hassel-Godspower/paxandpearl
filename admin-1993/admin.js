@@ -6,6 +6,9 @@ const token = localStorage.getItem("adminToken");
 if (!token) {
   window.location.href = "/admin-1993/login.html";
 }
+if (!localStorage.getItem("adminToken")) {
+  window.location.href = "/admin-1993/admin.html";
+}
 
 /* ============================
    DOM REFERENCES
