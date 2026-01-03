@@ -11,6 +11,7 @@ if (sessionStorage.getItem("adminSession") !== "true") {
 const bookingsContainer = document.getElementById("bookings");
 const servicesContainer = document.getElementById("services");
 const adminPhoneInput = document.getElementById("adminPhone");
+const logoutBtn = document.getElementById("logoutBtn");
 
 /* ============================
    LOAD DATA
@@ -19,7 +20,7 @@ const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
 const services =
   JSON.parse(localStorage.getItem("services")) || SPA_DATA.services;
 
-const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
 
 /* ============================
    ADMIN PROFILE (WhatsApp)
@@ -59,7 +60,8 @@ function renderBookings() {
         <strong>Total:</strong> ₦${Number(b.total).toLocaleString()}<br>
         ${b.date} @ ${b.time}<br>
         📞 ${b.phone}<br>
-        ✉️ ${b.email}
+        ✉️ ${b.email}<br>
+        <strong>Status:</strong> ${b.status?.toUpperCase() || "PENDING"}
       </div>
       `
     );
@@ -99,22 +101,19 @@ function updatePrice(id, price) {
 }
 
 /* ============================
+   LOGOUT
+============================ */
+function logoutAdmin() {
+  sessionStorage.removeItem("adminSession");
+  window.location.href = "/admin-1993/login.html";
+}
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", logoutAdmin);
+}
+
+/* ============================
    INIT
 ============================ */
 renderBookings();
 renderServices();
-
-function logoutAdmin() {
-  // Remove admin session
-  sessionStorage.removeItem("adminSession");
-
-  // Optional: clear admin-only data
-  // localStorage.removeItem("adminProfile");
-
-  // Redirect to admin login
-  window.location.href = "/admin-1993/login.html";
-}
-const logoutBtn = document.getElementById("logoutBtn");
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", logoutAdmin);
-}
