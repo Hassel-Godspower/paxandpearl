@@ -69,7 +69,7 @@
     <small>Saved</small>
   </a>
 
-  <a href="https://wa.me/234XXXXXXXXXX" target="_blank">
+  <a href="#" id="messageAdmin">
     <span class="material-icons-round">chat</span>
     <small>Message</small>
   </a>
@@ -123,6 +123,20 @@ function signupUser() {
 
   window.location.href = "index.html";
 }
+</script> 
+
+<script>
+  const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
+  const msgBtn = document.getElementById("messageAdmin");
+
+  if (msgBtn && adminProfile.phone) {
+    msgBtn.href = `https://wa.me/${adminProfile.phone}`;
+    msgBtn.target = "_blank";
+  } else if (msgBtn) {
+    msgBtn.addEventListener("click", () => {
+      alert("Admin contact not available yet.");
+    });
+  }
 </script>
 
 </body>
