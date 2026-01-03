@@ -196,3 +196,30 @@ window.open(
 "_blank"
 );
 }
+
+
+function notifyAdminOnWhatsApp(booking) {
+  const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+  if (!adminProfile.phone) return;
+
+  const message = `
+New Booking 📅
+
+Name: ${booking.name}
+Services: ${booking.services}
+Total: ₦${booking.total}
+Date: ${booking.date}
+Time: ${booking.time}
+Phone: ${booking.phone}
+`;
+
+  window.open(
+    `https://wa.me/${adminProfile.phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+}
+
+bookings.push(newBooking);
+localStorage.setItem("bookings", JSON.stringify(bookings));
+
+notifyAdminOnWhatsApp(newBooking);
