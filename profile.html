@@ -17,7 +17,23 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
-  
+  <style>
+    body { font-family:'DM Sans',sans-serif; background:#fafafa; }
+    .container { padding:20px 16px 90px; max-width:420px; margin:auto; }
+    h2 { margin-bottom:12px; }
+    input, button {
+      width:100%; padding:12px; margin-bottom:12px;
+      border-radius:10px; border:1px solid #ddd;
+      font-size:14px;
+    }
+    
+    .divider {
+      text-align:center;
+      font-size:12px;
+      color:#777;
+      margin:14px 0;
+    }
+  </style>
   
 </head>
 
@@ -31,7 +47,7 @@
   <input id="email" placeholder="Email">
   <input id="phone" placeholder="WhatsApp Number">
 
-  <button onclick="signupUser()">Continue</button>
+  <button class="btn btn-primary" onclick="signupUser()">Continue</button>
 </div>
 
 <!-- =========================
