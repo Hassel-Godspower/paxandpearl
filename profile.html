@@ -55,14 +55,6 @@
   <input id="phone" placeholder="WhatsApp Number">
 
   <button onclick="signupUser()">Continue</button>
-
-  <div class="divider">Admin login</div>
-
-  <!-- ADMIN LOGIN -->
-  <input id="username" placeholder="Admin Username">
-  <input id="password" type="password" placeholder="Admin Password">
-
-  <button onclick="loginAdmin()">Login as Admin</button>
 </div>
 
 <nav class="mobile-nav">
@@ -72,10 +64,6 @@
 </nav>
 
 <script>
-/* ============================
-   ADMIN CREDENTIALS
-============================ */
-const ADMIN = { user: "admin", pass: "1234" };
 
 /* ============================
    INPUT REFERENCES (IMPORTANT)
@@ -83,9 +71,6 @@ const ADMIN = { user: "admin", pass: "1234" };
 const nameInput  = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
-
-const usernameInput = document.getElementById("username");
-const passwordInput = document.getElementById("password");
 
 /* ============================
    AUTO LOAD USER
@@ -120,26 +105,6 @@ function signupUser() {
   }));
 
   window.location.href = "index.html";
-}
-
-/* ============================
-   ADMIN LOGIN
-============================ */
-function loginAdmin() {
-  if (
-    usernameInput.value === ADMIN.user &&
-    passwordInput.value === ADMIN.pass
-  ) {
-    localStorage.setItem("adminSession", "true");
-
-    localStorage.setItem("adminProfile", JSON.stringify({
-      phone: phoneInput.value.trim()
-    }));
-
-    window.location.href = "admin-dashboard.html";
-  } else {
-    alert("Invalid admin credentials");
-  }
 }
 </script>
 
