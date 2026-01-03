@@ -1,15 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
+
 <body>
 
-<h2>Admin Dashboard</h2>
+<!-- HEADER -->
+<header>
+  <h2>Admin Dashboard</h2>
+  <button id="logoutBtn">Logout</button>
+</header>
 
-<button id="logoutBtn">Logout</button>
+<hr>
 
-<div id="bookings"></div>
+<!-- BUSINESS STATS -->
+<section id="stats">
+  <div>
+    <strong>Total Bookings:</strong>
+    <span id="totalBookings">0</span>
+  </div>
+  <div>
+    <strong>Total Revenue:</strong>
+    ₦<span id="totalRevenue">0</span>
+  </div>
+  <div>
+    <strong>Pending:</strong>
+    <span id="pendingCount">0</span>
+  </div>
+  <div>
+    <strong>Approved:</strong>
+    <span id="approvedCount">0</span>
+  </div>
+</section>
+
+<hr>
+
+<!-- ADMIN WHATSAPP -->
+<section>
+  <h3>Admin WhatsApp</h3>
+  <input id="adminPhone" placeholder="234XXXXXXXXXX">
+  <button onclick="saveAdminProfile()">Save WhatsApp</button>
+</section>
+
+<hr>
+
+<!-- BOOKINGS -->
+<section>
+  <h3>Bookings</h3>
+  <div id="bookings"></div>
+</section>
+
+<hr>
+
+<!-- SERVICES -->
+<section>
+  <h3>Services & Pricing</h3>
+  <div id="services"></div>
+</section>
 
 <script src="/admin-1993/admin.js"></script>
 </body>
