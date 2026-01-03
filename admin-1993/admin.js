@@ -64,22 +64,54 @@ function renderBookings() {
     return;
   }
 
-  bookings.forEach(b => {
+  bookings.forEach((b, index) => {
+    const status = b.status || "pending";
+
     bookingsContainer.insertAdjacentHTML(
       "beforeend",
       `
-      <div class="card">
+      <div class="card" style="margin-bottom:16px;">
         <strong>${b.name}</strong><br>
         ${b.services}<br>
+
         <strong>Total:</strong> ₦${Number(b.total).toLocaleString()}<br>
         ${b.date} @ ${b.time}<br>
+
         📞 ${b.phone}<br>
         ✉️ ${b.email}<br>
-        <strong>Status:</strong> ${b.status?.toUpperCase() || "PENDING"}
+
+        <strong>Status:</strong> 
+        <span style="
+          color:${status === "approved" ? "green" : status === "cancelled" ? "red" : "orange"};
+          font-weight:600;
+        ">
+          ${status.toUpperCase()}
+        </span>
+
+        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+          <button onclick="updateBookingStatus(${index}, 'approved')">Approve</button>
+          <button onclick="updateBookingStatus(${index}, 'cancelled')">Cancel</button>
+          <a 
+            href="https://wa.me/${b.phone}?text=${encodeURIComponent(
+              `Hello ${b.name}, your booking status is ${status.toUpperCase()}`
+            )}"
+            target="_blank"
+          >
+            Message Customer
+          </a>
+        </div>
       </div>
       `
     );
   });
+
+  updateStats();
+}
+
+function updateBookingStatus(index, status) {
+  bookings[index].status = status;
+  localStorage.setItem("bookings", JSON.stringify(bookings));
+  renderBookings();
 }
 
 /* ============================
