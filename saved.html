@@ -6,10 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Fonts & Icons -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Google Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
 </head>
 
 <body>
@@ -20,12 +27,34 @@
 </div>
 
 <!-- MOBILE NAV -->
+<!-- =========================
+     MOBILE BOTTOM NAV
+========================== -->
 <nav class="mobile-nav">
-  <a href="index.html"><span class="material-icons-round">home</span><small>Home</small></a>
-  <a href="booking.html"><span class="material-icons-round">event</span><small>Booking</small></a>
-  <a href="saved.html" class="active"><span class="material-icons-round">favorite</span><small>Saved</small></a>
-  <a href="https://wa.me/234XXXXXXXXXX" target="_blank"><span class="material-icons-round">chat</span><small>Message</small></a>
-  <a href="profile.html"><span class="material-icons-round">person</span><small>Profile</small></a>
+  <a href="index.html" class="active">
+    <span class="material-icons-round">home</span>
+    <small>Home</small>
+  </a>
+
+  <a href="booking.html">
+    <span class="material-icons-round">event</span>
+    <small>Booking</small>
+  </a>
+
+  <a href="saved.html">
+    <span class="material-icons-round">favorite</span>
+    <small>Saved</small>
+  </a>
+
+  <a href="https://wa.me/234XXXXXXXXXX" target="_blank">
+    <span class="material-icons-round">chat</span>
+    <small>Message</small>
+  </a>
+
+  <a href="profile.html">
+    <span class="material-icons-round">person</span>
+    <small>Profile</small>
+  </a>
 </nav>
 
 <style>
@@ -37,18 +66,6 @@
   border-radius:10px;
   box-shadow:0 4px 12px rgba(0,0,0,.05);
 }
-.mobile-nav {
-  position:fixed; bottom:0; left:0; width:100%; height:64px;
-  background:#fff; display:flex; border-top:1px solid #eee;
-  font-family:'Poppins',sans-serif;
-}
-.mobile-nav a {
-  flex:1; text-align:center; font-size:11px;
-  text-decoration:none; color:#777;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-}
-.mobile-nav a.active { color:#7b5cff; }
-@media (min-width:768px){ .mobile-nav{display:none;} }
 </style>
 
 <script>
