@@ -114,6 +114,31 @@ function updateBookingStatus(index, status) {
   renderBookings();
 }
 
+function updateStats() {
+  document.getElementById("totalBookings").textContent = bookings.length;
+
+  let revenue = 0;
+  let pending = 0;
+  let approved = 0;
+
+  bookings.forEach(b => {
+    if (b.status === "approved") {
+      revenue += Number(b.total);
+      approved++;
+    }
+    if (!b.status || b.status === "pending") {
+      pending++;
+    }
+  });
+
+  document.getElementById("totalRevenue").textContent =
+    revenue.toLocaleString();
+
+  document.getElementById("pendingCount").textContent = pending;
+  document.getElementById("approvedCount").textContent = approved;
+}
+
+
 /* ============================
    SERVICES & PRICE UPDATE
 ============================ */
