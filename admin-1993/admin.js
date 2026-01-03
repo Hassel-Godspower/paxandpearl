@@ -1,7 +1,9 @@
 /* ============================
-   AUTH GUARD (ADMIN ONLY)
+   AUTH GUARD (TOKEN BASED)
 ============================ */
-if (sessionStorage.getItem("adminSession") !== "true") {
+const token = localStorage.getItem("adminToken");
+
+if (!token) {
   window.location.href = "/admin-1993/login.html";
 }
 
@@ -23,7 +25,7 @@ const services =
 const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
 
 /* ============================
-   ADMIN PROFILE (WhatsApp)
+   ADMIN PROFILE
 ============================ */
 if (adminPhoneInput && adminProfile.phone) {
   adminPhoneInput.value = adminProfile.phone;
@@ -37,6 +39,18 @@ function saveAdminProfile() {
     })
   );
   alert("Admin WhatsApp number saved");
+}
+
+/* ============================
+   LOGOUT
+============================ */
+function logoutAdmin() {
+  localStorage.removeItem("adminToken");
+  window.location.href = "/admin-1993/login.html";
+}
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", logoutAdmin);
 }
 
 /* ============================
@@ -98,18 +112,6 @@ function updatePrice(id, price) {
   service.price = Number(price);
   localStorage.setItem("services", JSON.stringify(services));
   alert("Price updated successfully");
-}
-
-/* ============================
-   LOGOUT
-============================ */
-function logoutAdmin() {
-  sessionStorage.removeItem("adminSession");
-  window.location.href = "/admin-1993/login.html";
-}
-
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", logoutAdmin);
 }
 
 /* ============================
