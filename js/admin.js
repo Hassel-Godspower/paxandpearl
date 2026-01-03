@@ -1,8 +1,8 @@
 /* ============================
-   AUTH GUARD
+   AUTH GUARD (ADMIN ONLY)
 ============================ */
-if (!localStorage.getItem("adminSession")) {
-  window.location.href = "admin.html";
+if (sessionStorage.getItem("adminSession") !== "true") {
+  window.location.href = "/admin/login.html";
 }
 
 /* ============================
@@ -16,21 +16,26 @@ const adminPhoneInput = document.getElementById("adminPhone");
    LOAD DATA
 ============================ */
 const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-const services = SPA_DATA.services;
+const services =
+  JSON.parse(localStorage.getItem("services")) || SPA_DATA.services;
+
 const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
 
 /* ============================
-   ADMIN PROFILE
+   ADMIN PROFILE (WhatsApp)
 ============================ */
 if (adminPhoneInput && adminProfile.phone) {
   adminPhoneInput.value = adminProfile.phone;
 }
 
 function saveAdminProfile() {
-  localStorage.setItem("adminProfile", JSON.stringify({
-    phone: adminPhoneInput.value
-  }));
-  alert("Admin WhatsApp saved");
+  localStorage.setItem(
+    "adminProfile",
+    JSON.stringify({
+      phone: adminPhoneInput.value.trim()
+    })
+  );
+  alert("Admin WhatsApp number saved");
 }
 
 /* ============================
@@ -51,7 +56,7 @@ function renderBookings() {
       <div class="card">
         <strong>${b.name}</strong><br>
         ${b.services}<br>
-        Total: ₦${Number(b.total).toLocaleString()}<br>
+        <strong>Total:</strong> ₦${Number(b.total).toLocaleString()}<br>
         ${b.date} @ ${b.time}<br>
         📞 ${b.phone}<br>
         ✉️ ${b.email}
@@ -62,7 +67,7 @@ function renderBookings() {
 }
 
 /* ============================
-   SERVICES
+   SERVICES & PRICE UPDATE
 ============================ */
 function renderServices() {
   servicesContainer.innerHTML = "";
@@ -73,8 +78,11 @@ function renderServices() {
       `
       <div class="card">
         <strong>${service.name}</strong><br>
-        <input type="number" value="${service.price}"
-          onchange="updatePrice(${service.id}, this.value)">
+        <input
+          type="number"
+          value="${service.price}"
+          onchange="updatePrice(${service.id}, this.value)"
+        >
       </div>
       `
     );
@@ -87,8 +95,11 @@ function updatePrice(id, price) {
 
   service.price = Number(price);
   localStorage.setItem("services", JSON.stringify(services));
-  alert("Price updated");
+  alert("Price updated successfully");
 }
 
+/* ============================
+   INIT
+============================ */
 renderBookings();
 renderServices();
