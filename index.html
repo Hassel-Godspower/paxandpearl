@@ -257,7 +257,21 @@
   // Run on page load
   setGreetingWAT();
 </script>
-    
+  
+<script>
+  const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
+  const msgBtn = document.getElementById("messageAdmin");
+
+  if (msgBtn && adminProfile.phone) {
+    msgBtn.href = `https://wa.me/${adminProfile.phone}`;
+    msgBtn.target = "_blank";
+  } else if (msgBtn) {
+    msgBtn.addEventListener("click", () => {
+      alert("Admin contact not available yet.");
+    });
+  }
+</script>
+  
 <script src="js/data.js"></script>
 <script src="js/booking.js"></script>
 
