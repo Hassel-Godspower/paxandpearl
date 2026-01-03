@@ -2,7 +2,7 @@
    AUTH GUARD (ADMIN ONLY)
 ============================ */
 if (sessionStorage.getItem("adminSession") !== "true") {
-  window.location.href = "/admin/login.html";
+  window.location.href = "/admin-1993/login.html";
 }
 
 /* ============================
@@ -103,3 +103,18 @@ function updatePrice(id, price) {
 ============================ */
 renderBookings();
 renderServices();
+
+function logoutAdmin() {
+  // Remove admin session
+  sessionStorage.removeItem("adminSession");
+
+  // Optional: clear admin-only data
+  // localStorage.removeItem("adminProfile");
+
+  // Redirect to admin login
+  window.location.href = "/admin-1993/login.html";
+}
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", logoutAdmin);
+}
