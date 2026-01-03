@@ -190,66 +190,16 @@
 <style>
 body { font-family: 'Poppins', sans-serif; margin:0; padding:0; }
 
-/* ---------------------------
-   POST SLIDER
---------------------------- */
-.post-slider { position: relative; overflow: hidden; margin: 20px 0; border-radius: 12px; }
-.slider-container { display: flex; transition: transform 0.4s ease; }
-.post-slide { flex: 0 0 100%; position: relative; }
-.post-slide img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; }
-.post-slide .slide-title { position: absolute; bottom: 10px; left: 15px; color: #fff; background: rgba(0,0,0,0.4); padding: 4px 8px; border-radius: 4px; font-weight: 500; }
-
-.slider-prev, .slider-next {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  font-size: 20px; background: rgba(0,0,0,0.4); color: #fff; border: none; padding: 6px 10px;
-  cursor: pointer; border-radius: 50%; z-index: 10; font-weight: 500;
-}
-
-.slider-prev { left: 10px; } .slider-next { right: 10px; }
-
-/* ---------------------------
-   SERVICE CARD SLIDER
---------------------------- */
-.service-slider { margin: 30px 0; position: relative; }
-.service-slider h3 { margin-bottom: 12px; }
-.service-container { display: flex; overflow-x: auto; gap: 16px; scroll-behavior: smooth; padding-bottom: 10px; }
-.service-card { flex: 0 0 calc(50% - 8px); background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; padding: 10px; }
-.service-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; }
-.service-card h4 { margin: 8px 0 4px; font-size: 16px; }
-.service-card p { font-size: 14px; color: #555; margin-bottom: 8px; }
-.service-card button.btn-primary { background: #d32f2f; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: 500; }
-
-.service-prev, .service-next {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  font-size: 20px; background: rgba(0,0,0,0.2); color: #fff; border: none; padding: 6px 10px; cursor: pointer; border-radius: 50%;
-}
-.service-prev { left: 5px; } .service-next { right: 5px; }
-
-/* Responsive adjustments */
-@media(min-width:768px) {
-  .post-slide { flex: 0 0 50%; }
-  .service-card { flex: 0 0 calc(33.33% - 12px); }
-  .slider-prev, .slider-next, .service-prev, .service-next { font-size: 24px; padding: 8px 12px; }
-}
-
-/* ---------------------------
-   MAP / DIRECTIONS
---------------------------- */
-.spa-map { margin: 30px 0; }
-.spa-map h3 { margin-bottom: 12px; }
-.spa-map p a { color: #d32f2f; text-decoration: none; font-weight: 500; }
-</style>
-</head>
-
-<body>
-
 <!-- =========================
      POST FLYER SLIDER
 ========================== -->
 <section class="post-slider">
-  <div class="slider-container" id="postSlider"></div>
-  <button class="slider-prev primary-btn" onclick="movePostSlide(-1)">&#10094;</button>
-  <button class="slider-next primary-btn" onclick="movePostSlide(1)">&#10095;</button>
+  <div class="slider-container" id="postSlider">
+    <!-- Slides will be injected dynamically -->
+  </div>
+
+  <button class="primary-btn slider-prev" onclick="movePostSlide(-1)">&#10094;</button>
+  <button class="primary-btn slider-next" onclick="movePostSlide(1)">&#10095;</button>
 </section>
 
 <!-- =========================
@@ -257,9 +207,12 @@ body { font-family: 'Poppins', sans-serif; margin:0; padding:0; }
 ========================== -->
 <section class="service-slider">
   <h3>Our Services</h3>
-  <div class="service-container" id="serviceSlider"></div>
-  <button class="service-prev primary-btn" onclick="moveServiceSlide(-1)">&#10094;</button>
-  <button class="service-next primary-btn" onclick="moveServiceSlide(1)">&#10095;</button>
+  <div class="service-container" id="serviceSlider">
+    <!-- Cards injected dynamically -->
+  </div>
+
+  <button class="primary-btn service-prev" onclick="moveServiceSlide(-1)">&#10094;</button>
+  <button class="primary-btn service-next" onclick="moveServiceSlide(1)">&#10095;</button>
 </section>
 
 <!-- =========================
@@ -269,85 +222,253 @@ body { font-family: 'Poppins', sans-serif; margin:0; padding:0; }
   <h3>Find Us</h3>
   <div id="map" style="width:100%;height:300px;border-radius:10px;"></div>
   <p>
-    <a id="directionsLink" href="#" target="_blank">Get Directions</a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Your+Spa+Address+Here" target="_blank">
+      Get Directions
+    </a>
   </p>
 </section>
 
-<!-- =========================
-     SCRIPTS
-========================== -->
-<script>
-/* -------------------
+<style>
+/* ---------------------------
    POST SLIDER
-------------------- */
+--------------------------- */
+.post-slider {
+  position: relative;
+  overflow: hidden;
+  margin: 20px 0;
+  border-radius: 12px;
+}
+
+.slider-container {
+  display: flex;
+  transition: transform 0.4s ease;
+  gap: 12px;
+}
+
+.post-slide {
+  flex: 0 0 100%;
+  position: relative;
+  display: block;
+}
+
+.post-slide img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.post-slide .slide-title {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  color: #fff;
+  background: rgba(0,0,0,0.4);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* Slider buttons */
+.primary-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.slider-prev { left: 10px; }
+.slider-next { right: 10px; }
+
+/* ---------------------------
+   SERVICE CARD SLIDER
+--------------------------- */
+.service-slider {
+  margin: 30px 0;
+  position: relative;
+}
+
+.service-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.service-card {
+  flex: 0 0 200px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+  padding: 10px;
+}
+
+.service-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.service-card h4 {
+  margin: 8px 0 4px;
+  font-size: 16px;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.service-card .btn-primary {
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* ---------------------------
+   MAP SECTION
+--------------------------- */
+.spa-map {
+  margin: 30px 0;
+}
+
+.spa-map h3 {
+  margin-bottom: 12px;
+}
+
+.spa-map p a {
+  color: #d32f2f;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ---------------------------
+   RESPONSIVE
+--------------------------- */
+@media(min-width:600px){
+  .post-slide { flex: 0 0 50%; }
+}
+
+@media(min-width:1024px){
+  .post-slide { flex: 0 0 33.33%; }
+}
+</style>
+
+<script>
+/* =========================
+   POST SLIDER LOGIC
+========================== */
+const postImages = [
+  { image: "assets/images/post1.jpg", title: "Summer Promo", link: "#" },
+  { image: "assets/images/post2.jpg", title: "Facial Special", link: "#" },
+  { image: "assets/images/post3.jpg", title: "Massage Discount", link: "#" },
+  { image: "assets/images/post4.jpg", title: "Haircut Offer", link: "#" }
+];
+
+const postSlider = document.getElementById("postSlider");
 let currentPostIndex = 0;
-let totalPosts = 0;
+const totalPosts = postImages.length;
 
-fetch('posts.json') // Admin editable posts
-.then(res => res.json())
-.then(posts => {
-  totalPosts = posts.length;
-  const container = document.getElementById('postSlider');
-
-  posts.forEach(post => {
-    const slide = document.createElement('a');
-    slide.href = post.link;
-    slide.classList.add('post-slide');
-    slide.innerHTML = `<img src="${post.image}" alt="${post.title}"><div class="slide-title">${post.title}</div>`;
-    container.appendChild(slide);
-  });
+postImages.forEach(post => {
+  const slide = document.createElement("a");
+  slide.href = post.link;
+  slide.classList.add("post-slide");
+  slide.innerHTML = `
+    <img src="${post.image}" alt="${post.title}">
+    <div class="slide-title">${post.title}</div>
+  `;
+  postSlider.appendChild(slide);
 });
 
 function movePostSlide(step) {
-  const container = document.getElementById('postSlider');
-  if(totalPosts === 0) return;
-  currentPostIndex = (currentPostIndex + step + totalPosts) % totalPosts;
-  const width = container.offsetWidth / (window.innerWidth >= 768 ? 2 : 1); // 2 slides on desktop
-  container.style.transform = `translateX(-${currentPostIndex * width}px)`;
+  const containerWidth = postSlider.offsetWidth;
+  const slideWidth = postSlider.querySelector(".post-slide").offsetWidth;
+  const maxIndex = totalPosts - Math.floor(containerWidth / slideWidth);
+  currentPostIndex = Math.min(Math.max(currentPostIndex + step, 0), maxIndex);
+  postSlider.style.transform = `translateX(-${currentPostIndex * slideWidth}px)`;
 }
 
-/* -------------------
-   SERVICE CARD SLIDER
-------------------- */
-fetch('services.json') // Admin editable services
-.then(res => res.json())
-.then(services => {
-  const container = document.getElementById('serviceSlider');
-  services.forEach(service => {
-    const card = document.createElement('div');
-    card.classList.add('service-card');
-    card.innerHTML = `
-      <img src="${service.img}" alt="${service.name}">
-      <h4>${service.name}</h4>
-      <p>${service.desc}</p>
-      <button class="btn btn-primary" onclick="location.href='services.html?service=${service.name}'">Book Now</button>
-    `;
-    container.appendChild(card);
-  });
+/* =========================
+   SERVICE CARD SLIDER LOGIC
+========================== */
+const services = [
+  {
+    name: "Haircut",
+    desc: "Professional haircut for men & women",
+    img: "assets/images/service_haircut.jpg"
+  },
+  {
+    name: "Facial",
+    desc: "Relaxing facial for glowing skin",
+    img: "assets/images/service_facial.jpg"
+  },
+  {
+    name: "Massage",
+    desc: "Full body massage to relieve stress",
+    img: "assets/images/service_massage.jpg"
+  },
+  {
+    name: "Pedicure",
+    desc: "Luxury pedicure services",
+    img: "assets/images/service_pedicure.jpg"
+  }
+];
+
+const serviceSlider = document.getElementById("serviceSlider");
+
+services.forEach(service => {
+  const card = document.createElement("div");
+  card.classList.add("service-card");
+  card.innerHTML = `
+    <img src="${service.img}" alt="${service.name}">
+    <h4>${service.name}</h4>
+    <p>${service.desc}</p>
+    <button class="btn btn-primary" onclick="location.href='services.html?service=${service.name}'">Book Now</button>
+  `;
+  serviceSlider.appendChild(card);
 });
 
 function moveServiceSlide(step) {
-  const container = document.getElementById('serviceSlider');
-  const cardWidth = container.querySelector('.service-card').offsetWidth + 16; // card + gap
-  container.scrollBy({ left: step * cardWidth, behavior: 'smooth' });
+  const cardWidth = serviceSlider.querySelector(".service-card").offsetWidth + 16; // include gap
+  serviceSlider.scrollBy({ left: step * cardWidth, behavior: 'smooth' });
 }
 
-/* -------------------
+/* =========================
    GOOGLE MAP
-------------------- */
+========================== */
 function initMap() {
-  const spaLocation = { lat: 6.5244, lng: 3.3792 }; // Editable by admin
-  const map = new google.maps.Map(document.getElementById("map"), { center: spaLocation, zoom: 15 });
-  new google.maps.Marker({ position: spaLocation, map: map, title: "Pax & Pearl Spa" });
-
-  // Editable directions link
-  const link = document.getElementById("directionsLink");
-  link.href = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent('Pax & Pearl Spa, Lagos, Nigeria')}`;
+  const spaLocation = { lat: 6.5244, lng: 3.3792 }; // Replace with admin coordinates
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: spaLocation,
+    zoom: 15
+  });
+  new google.maps.Marker({
+    position: spaLocation,
+    map: map,
+    title: "Pax & Pearl Spa"
+  }); 
 }
 </script>
 
 <!-- Google Maps API -->
-<script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
 
 <!-- =========================
      MOBILE BOTTOM NAV
