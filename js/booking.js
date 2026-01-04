@@ -78,15 +78,15 @@ function confirmBooking() {
   const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
 
   const booking = {
-    name: profile.name,
-    email: profile.email,
-    phone: profile.phone,
-    date: getValue("date"),
-    time: getValue("time"),
-    services: cart.map(s => s.name).join(", "),
-    total: cart.reduce((s, i) => s + Number(i.price), 0),
-    status: "pending",
-    paymentMethod: "Bank Transfer"
+   name: profile.name || getValue("name"),
+   email: profile.email || getValue("email"),
+   phone: profile.phone || getValue("phone"),
+   date: getValue("date"),
+   time: getValue("time"),
+   services: cart.map(s => s.name).join(", "),
+   total: cart.reduce((s, i) => s + Number(i.price), 0),
+   status: "pending",
+   paymentMethod: "Bank Transfer"
   };
 
   const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
