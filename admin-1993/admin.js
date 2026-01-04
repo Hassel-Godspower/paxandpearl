@@ -160,41 +160,85 @@ function persistBookings() {
    SERVICES MANAGEMENT
 ============================ */
 function renderServices() {
-  if (!servicesContainer) return;
   servicesContainer.innerHTML = "";
 
-  services.forEach((s, i) => {
-    servicesContainer.insertAdjacentHTML(
-      "beforeend",
-      `
-      <div class="card">
-        <strong>${s.name}</strong>
+  catalog.services
+    .sort((a, b) => a.order - b.order)
+    .forEach((service, index) => {
+      servicesContainer.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="card" draggable="true" data-id="${service.id}">
+          <strong>${service.name}</strong><br>
+          ₦${service.price.toLocaleString()} • ${service.duration} mins<br>
 
-        <input type="number"
-          value="${s.price}"
-          onchange="updateServicePrice(${i}, this.value)">
+          <div class="row">
+            <button class="btn btn-primary" onclick="editService('${service.id}')">Edit</button>
+            <button class="btn btn-primary" onclick="deleteService('${service.id}')">Delete</button>
+          </div>
+        </div>
+        `
+      );
+    });
 
-        <label>
-          <input type="checkbox"
-            ${s.active !== false ? "checked" : ""}
-            onchange="toggleService(${i}, this.checked)">
-          Active
-        </label>
-      </div>
-      `
-    );
+  enableDragSort();
+}
+window.editService = function (id) {
+  const service = catalog.services.find(s => s.id === id);
+  if (!service) return;
+
+  const name = prompt("Service name", service.name);
+  const price = prompt("Price", service.price);
+  const duration = prompt("Duration (minutes)", service.duration);
+
+  if (!name || !price || !duration) return;
+
+  service.name = name;
+  service.price = Number(price);
+  service.duration = Number(duration);
+
+  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+  renderServices();
+};
+
+window.deleteService = function (id) {
+  if (!confirm("Delete this service?")) return;
+
+  catalog.services = catalog.services.filter(s => s.id !== id);
+  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+  renderServices();
+};
+function enableDragSort() {
+  let dragged;
+
+  document.querySelectorAll(".card[draggable]").forEach(card => {
+    card.addEventListener("dragstart", e => {
+      dragged = card;
+      e.dataTransfer.effectAllowed = "move";
+    });
+
+    card.addEventListener("dragover", e => {
+      e.preventDefault();
+    });
+
+    card.addEventListener("drop", e => {
+      e.preventDefault();
+      if (dragged !== card) {
+        card.before(dragged);
+        updateServiceOrder();
+      }
+    });
   });
 }
 
-window.updateServicePrice = (i, price) => {
-  services[i].price = Number(price);
-  localStorage.setItem("services", JSON.stringify(services));
-};
+function updateServiceOrder() {
+  document.querySelectorAll(".card[draggable]").forEach((card, index) => {
+    const service = catalog.services.find(s => s.id === card.dataset.id);
+    if (service) service.order = index;
+  });
 
-window.toggleService = (i, active) => {
-  services[i].active = active;
-  localStorage.setItem("services", JSON.stringify(services));
-};
+  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+}
 
 /* ============================
    SPA CATALOG (ADMIN)
