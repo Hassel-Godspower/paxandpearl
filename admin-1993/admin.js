@@ -57,9 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     localStorage.setItem(
-      "adminProfile",
-      JSON.stringify({ phone })
-    );
+     "adminProfile",
+     JSON.stringify({
+       phone: phone.replace(/\D/g, "") // digits only
+     })
+   );
 
     alert("Admin WhatsApp saved successfully ✅");
   });
