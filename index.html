@@ -17,6 +17,32 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
+  
+<script>
+  function updateAdminWhatsAppLink() {
+    const adminProfile = JSON.parse(
+      localStorage.getItem("adminProfile") || "{}"
+    );
+
+    const msgBtn = document.getElementById("messageAdmin");
+
+    if (!msgBtn) return;
+
+    if (adminProfile.phone) {
+      msgBtn.href = `https://wa.me/${adminProfile.phone}`;
+      msgBtn.target = "_blank";
+    } else {
+      msgBtn.href = "#";
+      msgBtn.onclick = e => {
+        e.preventDefault();
+        alert("Admin WhatsApp not available yet.");
+      };
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", updateAdminWhatsAppLink);
+  window.addEventListener("storage", updateAdminWhatsAppLink);
+</script>
 
 <body>
 
