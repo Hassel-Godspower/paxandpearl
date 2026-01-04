@@ -1,53 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Admin Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body { font-family: system-ui, sans-serif; padding:16px; }
-    header { display:flex; justify-content:space-between; align-items:center; }
-    section { margin:20px 0; }
-    .card { padding:12px; border:1px solid #eee; border-radius:10px; margin-bottom:12px; }
-    select, input, button, textarea {
-      width:100%; padding:10px; margin-top:6px;
-      border-radius:8px; border:1px solid #ddd;
-    }
-    button { background:#7b5cff; color:#fff; border:none; cursor:pointer; }
-    textarea { resize:vertical; }
-    .row { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-  </style>
+<meta charset="UTF-8" />
+<title>Admin Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+/* =============================
+   BASE
+============================= */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background:#f7f8fc;
+  margin:0;
+  padding:16px;
+  color:#1f2937;
+}
+
+h2, h3 {
+  margin:0 0 10px;
+}
+
+small { color:#6b7280; }
+
+/* =============================
+   HEADER
+============================= */
+header {
+  background:#ffffff;
+  padding:16px;
+  border-radius:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
+
+.header-left h2 {
+  font-size:20px;
+}
+
+.header-right {
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+/* =============================
+   BUTTONS
+============================= */
+.btn {
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:600;
+  border:none;
+  cursor:pointer;
+}
+
+.btn-primary {
+  background:#7b5cff;
+  color:#fff;
+}
+
+.btn-primary:hover {
+  background:#6a4ee6;
+}
+
+/* =============================
+   STATS
+============================= */
+.stats {
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:14px;
+}
+
+.stat-card {
+  background:#ffffff;
+  padding:14px;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.05);
+}
+
+.stat-card span {
+  font-size:20px;
+  font-weight:700;
+}
+
+/* =============================
+   SECTIONS
+============================= */
+section {
+  margin-top:24px;
+  background:#ffffff;
+  padding:16px;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
+
+/* =============================
+   FORMS
+============================= */
+input, select, textarea {
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #e5e7eb;
+  margin-top:6px;
+  font-size:14px;
+}
+
+textarea { resize:vertical; }
+
+/* =============================
+   CARDS
+============================= */
+.card {
+  border:1px solid #f1f1f1;
+  border-radius:12px;
+  padding:14px;
+  margin-bottom:14px;
+  background:#fafafa;
+}
+
+/* =============================
+   UTIL
+============================= */
+.row {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+}
+
+a {
+  color:#7b5cff;
+  font-weight:600;
+  text-decoration:none;
+}
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- =============================
+     HEADER
+============================= -->
 <header>
-  <h2>Admin Dashboard</h2>
-  <small id="headerWhatsApp" style="opacity:0.7;"></small>
-  <button id="logoutBtn">Logout</button>
+  <div class="header-left">
+    <h2>Admin Dashboard</h2>
+    <small id="headerWhatsApp"></small>
+  </div>
+
+  <div class="header-right">
+    <button id="logoutBtn" class="btn btn-primary">Logout</button>
+  </div>
 </header>
 
-<hr>
-
-<!-- BUSINESS STATS -->
-<section id="stats">
-  <div>
-    <strong>Total Bookings:</strong>
+<!-- =============================
+     STATS
+============================= -->
+<div class="stats">
+  <div class="stat-card">
+    <small>Total Bookings</small>
     <span id="totalBookings">0</span>
   </div>
-  <div>
-    <strong>Total Revenue:</strong>
+
+  <div class="stat-card">
+    <small>Total Revenue</small>
     ₦<span id="totalRevenue">0</span>
   </div>
-  <div>
-    <strong>Pending:</strong>
+
+  <div class="stat-card">
+    <small>Pending</small>
     <span id="pendingCount">0</span>
   </div>
-  <div>
-    <strong>Approved:</strong>
+
+  <div class="stat-card">
+    <small>Approved</small>
     <span id="approvedCount">0</span>
   </div>
+</div>
 </section>
 
 <hr>
