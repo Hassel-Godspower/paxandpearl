@@ -208,10 +208,11 @@
     <small>Saved</small>
   </a>
 
-  <a href="https://wa.me/${adminProfile.phone}" id="messageAdmin">
+  <a id="messageAdmin" href="https://wa.me/2347064302016" target="_blank">
     <span class="material-icons-round">chat</span>
     <small>Message</small>
   </a>
+
 
   <a href="profile.html">
     <span class="material-icons-round">person</span>
@@ -257,34 +258,6 @@
   // Run on page load
   setGreetingWAT();
 </script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const msgBtn = document.getElementById("messageAdmin");
-  if (!msgBtn) return;
-
-  function updateButton() {
-    const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-    if (adminProfile.phone) {
-      msgBtn.href = `https://wa.me/${adminProfile.phone}`;
-      msgBtn.target = "_blank";
-      msgBtn.classList.remove("disabled");
-    } else {
-      msgBtn.href = "#";
-      msgBtn.classList.add("disabled");
-    }
-  }
-
-  // Initial setup
-  updateButton();
-
-  // Listen for changes from other tabs / dashboard
-  window.addEventListener("storage", e => {
-    if (e.key === "adminProfile") updateButton();
-  });
-});
-</script>
-
 
   
 <script src="js/data.js"></script>
