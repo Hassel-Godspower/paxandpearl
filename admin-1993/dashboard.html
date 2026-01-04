@@ -51,27 +51,40 @@ const adminPhoneInput = document.getElementById("adminPhone");
 const saveBtn = document.getElementById("saveAdminPhone");
 
 function updateMessageButton() {
-  // Optional: just to trigger storage event for index.html
-  localStorage.setItem("adminProfileUpdate", Date.now());
+  // Update all nav buttons with ID messageAdmin
+  document.querySelectorAll("#messageAdmin").forEach(btn => {
+    const savedProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+    if (savedProfile.phone) {
+      btn.href = `https://wa.me/${savedProfile.phone}`;
+      btn.target = "_blank";
+      btn.classList.remove("disabled");
+    } else {
+      btn.href = "#";
+      btn.classList.add("disabled");
+    }
+  });
 }
 
-if (saveBtn && adminPhoneInput) {
-  const savedProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-  if (savedProfile.phone) adminPhoneInput.value = savedProfile.phone;
+// Load existing number
+const savedProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+if (savedProfile.phone) adminPhoneInput.value = savedProfile.phone;
 
+// Save button click
+if (saveBtn) {
   saveBtn.addEventListener("click", () => {
     const phone = adminPhoneInput.value.trim();
     if (!phone) return alert("Enter WhatsApp number");
 
-    // Optional: strip non-digits
-    const cleanedPhone = phone.replace(/\D/g, "");
-    localStorage.setItem("adminProfile", JSON.stringify({ phone: cleanedPhone }));
+    localStorage.setItem("adminProfile", JSON.stringify({ phone }));
     alert("Admin WhatsApp number saved");
 
-    // Trigger update in other tabs
+    // Update nav button immediately
     updateMessageButton();
   });
 }
+
+// Initial button update
+updateMessageButton();
 </script>
 
 
