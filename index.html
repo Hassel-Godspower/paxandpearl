@@ -278,16 +278,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial setup
   updateButton();
 
-  // Click handler
-  msgBtn.addEventListener("click", e => {
-    const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-    if (!adminProfile.phone) {
-      e.preventDefault();
-      alert("Admin WhatsApp not available yet.");
-      return;
-    }
-  });
-
   // Listen for changes from other tabs / dashboard
   window.addEventListener("storage", e => {
     if (e.key === "adminProfile") updateButton();
