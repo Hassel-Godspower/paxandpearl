@@ -9,72 +9,41 @@ if (!localStorage.getItem("adminToken")) {
    DOM READY
 ============================ */
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* ============================
-     DOM REFERENCES
-  ============================ */
   const adminPhoneInput = document.getElementById("adminPhone");
   const saveBtn = document.getElementById("saveAdminPhone");
-  const adminPhoneStatus = document.getElementById("adminPhoneStatus");
-  const headerWhatsApp = document.getElementById("headerWhatsApp");
   const logoutBtn = document.getElementById("logoutBtn");
-  const bookingsContainer = document.getElementById("bookings");
-  const servicesContainer = document.getElementById("services");
 
-  /* ============================
-     LOAD DATA
-  ============================ */
-  let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-  let services = JSON.parse(localStorage.getItem("services")) || SPA_DATA.services;
+  if (!adminPhoneInput || !saveBtn) return;
 
   /* ============================
      LOAD SAVED ADMIN PROFILE
   ============================ */
-  function getAdminProfile() {
-    return JSON.parse(localStorage.getItem("adminProfile") || "{}");
-  }
+  const storedProfile =
+    JSON.parse(localStorage.getItem("adminProfile")) || {};
 
-  function updateAdminPhoneStatus() {
-    const profile = getAdminProfile();
-    if (profile.phone) {
-      adminPhoneStatus.textContent = "✅ Admin WhatsApp saved";
-      adminPhoneStatus.style.color = "green";
-      adminPhoneInput.value = profile.phone;
-    } else {
-      adminPhoneStatus.textContent = "❌ No WhatsApp set";
-      adminPhoneStatus.style.color = "red";
-      adminPhoneInput.value = "";
-    }
+  if (storedProfile.phone) {
+    adminPhoneInput.value = storedProfile.phone;
   }
-
-  function updateHeaderWhatsApp() {
-    const profile = getAdminProfile();
-    if (profile.phone && headerWhatsApp) {
-      headerWhatsApp.textContent = `WhatsApp: ${profile.phone}`;
-    } else if (headerWhatsApp) {
-      headerWhatsApp.textContent = "";
-    }
-  }
-
-  updateAdminPhoneStatus();
-  updateHeaderWhatsApp();
 
   /* ============================
-     PHONE NORMALIZER
+     NORMALIZE PHONE
   ============================ */
   function normalizePhone(phone) {
-    phone = phone.replace(/[^\d]/g, ""); // remove all non-digits
-    if (phone.startsWith("0")) phone = "234" + phone.slice(1);
+    phone = phone.replace(/[^\d]/g, "");
+
+    if (phone.startsWith("0")) {
+      phone = "234" + phone.slice(1);
+    }
+
     return phone;
   }
 
   /* ============================
      SAVE ADMIN WHATSAPP
   ============================ */
-  saveBtn?.addEventListener("click", () => {
-    if (!adminPhoneInput) return;
-
+  saveBtn.addEventListener("click", () => {
     const rawPhone = adminPhoneInput.value.trim();
+
     if (!rawPhone) {
       alert("Please enter a WhatsApp number");
       return;
@@ -87,24 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Save to localStorage
-    localStorage.setItem("adminProfile", JSON.stringify({ phone }));
+    localStorage.setItem(
+      "adminProfile",
+      JSON.stringify({ phone })
+    );
 
     alert("Admin WhatsApp saved successfully ✅");
-
-    // Update status and header
-    updateAdminPhoneStatus();
-    updateHeaderWhatsApp();
-  });
-
-  /* ============================
-     UNSAVED CHANGES INDICATOR
-  ============================ */
-  adminPhoneInput?.addEventListener("input", () => {
-    if (adminPhoneStatus) {
-      adminPhoneStatus.textContent = "⚠️ Unsaved changes";
-      adminPhoneStatus.style.color = "orange";
-    }
   });
 
   /* ============================
@@ -114,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("adminToken");
     window.location.href = "/admin-1993/login.html";
   });
+});
 
   /* ============================
      BOOKINGS MANAGEMENT
