@@ -267,8 +267,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateButton() {
     const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
 
-    if (adminProfile.phone) {
-      msgBtn.href = `https://wa.me/${adminProfile.phone}`;
+    if (savedProfile.phone) {
+      msgBtn.href = `https://wa.me/${savedProfile.phone}`;
       msgBtn.target = "_blank";
       msgBtn.classList.remove("disabled");
     } else {
@@ -284,14 +284,14 @@ document.addEventListener("DOMContentLoaded", () => {
   msgBtn.addEventListener("click", e => {
     const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
     
-    if (!adminProfile.phone) {
+    if (!savedProfile.phone) {
       e.preventDefault();
       alert("Admin WhatsApp not available yet.");
       return;
     }
 
     // Open WhatsApp in new tab
-    window.open(`https://wa.me/${adminProfile.phone}`, "_blank");
+    window.open(`https://wa.me/${savedProfile.phone}`, "_blank");
   });
 
   // Optional: observe localStorage changes (if admin updates phone)
