@@ -266,8 +266,9 @@
     msgBtn.href = `https://wa.me/${adminProfile.phone}`;
     msgBtn.target = "_blank";
   } else if (msgBtn) {
-    msgBtn.addEventListener("click", () => {
-      alert("Admin contact not available yet.");
+    msgBtn.addEventListener("click", e => {
+      e.preventDefault();
+      alert("Admin WhatsApp not set yet. Please try again later.");
     });
   }
 </script>
