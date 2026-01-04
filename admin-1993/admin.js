@@ -64,6 +64,68 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Admin WhatsApp saved successfully ✅");
   });
 
+   const adminPhoneStatus = document.getElementById("adminPhoneStatus");
+
+   function updateAdminPhoneStatus() {
+     const adminProfile = JSON.parse(
+       localStorage.getItem("adminProfile") || "{}"
+     );
+   
+     if (adminProfile.phone) {
+       adminPhoneStatus.textContent = "✅ Admin WhatsApp saved";
+       adminPhoneStatus.style.color = "green";
+     } else {
+       adminPhoneStatus.textContent = "❌ No WhatsApp set";
+       adminPhoneStatus.style.color = "red";
+     }
+   }
+
+   // On page load
+   updateAdminPhoneStatus();
+   
+   // After saving
+   function saveAdminProfile() {
+     ...
+     localStorage.setItem("adminProfile", JSON.stringify(adminProfile));
+     updateAdminPhoneStatus();
+   }
+
+   function updateAdminPhoneStatus() {
+     const adminProfile = JSON.parse(
+       localStorage.getItem("adminProfile") || "{}"
+     );
+   
+     if (adminProfile.phone) {
+       adminPhoneStatus.textContent = "✅ Admin WhatsApp saved";
+       adminPhoneStatus.style.color = "green";
+       adminPhoneInput.value = adminProfile.phone;
+     }
+   }
+
+      adminPhoneInput.addEventListener("input", () => {
+      adminPhoneStatus.textContent = "Unsaved changes";
+      adminPhoneStatus.style.color = "orange";
+   });
+
+   const headerWhatsApp = document.getElementById("headerWhatsApp");
+
+   function updateHeaderWhatsApp() {
+     const adminProfile = JSON.parse(
+       localStorage.getItem("adminProfile") || "{}"
+     );
+   
+     if (adminProfile.phone && headerWhatsApp) {
+       headerWhatsApp.textContent = `WhatsApp: ${adminProfile.phone}`;
+     }
+   }
+   
+   updateHeaderWhatsApp();
+
+   console.log(
+     "Admin Profile:",
+     JSON.parse(localStorage.getItem("adminProfile"))
+   );
+
   /* ============================
      LOGOUT
   ============================ */
