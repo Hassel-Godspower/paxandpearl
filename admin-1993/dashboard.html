@@ -78,6 +78,10 @@ header {
 .btn-primary:hover {
   background:#6a4ee6;
 }
+  
+.form-group {
+  margin-top: 12px;
+}
 
 /* =============================
    STATS
@@ -201,10 +205,14 @@ a {
 <!-- ADMIN WHATSAPP -->
 <section>
   <h3>Admin WhatsApp</h3>
-  
+
   <input id="adminPhone" placeholder="Admin WhatsApp Number">
-  
-  <button  class="btn btn-primary" id="saveAdminPhone">Save WhatsApp</button>
+
+  <div class="form-group">
+    <button id="saveAdminPhone" class="btn btn-primary">
+      Save WhatsApp
+    </button>
+  </div>
 </section>
 
 <script>
