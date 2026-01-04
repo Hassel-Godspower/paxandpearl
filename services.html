@@ -147,9 +147,13 @@ function renderServices() {
 
       card.innerHTML = `
         <h3>${service.name}</h3>
-        <p><strong>₦${service.price.toLocaleString()}</strong></p>
+        <p>
+          <strong>₦${service.price.toLocaleString()}</strong><br>
+          <small>${service.duration} mins</small>
+        </p>
         <button class="btn btn-primary">Add to Booking</button>
       `;
+
 
       card.querySelector("button").onclick = () => {
         addToCart({ name: service.name, price: service.price });
