@@ -18,6 +18,33 @@
   <link rel="stylesheet" href="css/components.css">
 </head>
 
+<script>
+/* ============================
+   ADMIN WHATSAPP BINDING
+   (Runs on every page load)
+============================ */
+(function bindAdminWhatsApp() {
+  const msgBtn = document.getElementById("messageAdmin");
+  if (!msgBtn) return;
+
+  const adminProfile = JSON.parse(
+    localStorage.getItem("adminProfile") || "{}"
+  );
+
+  if (adminProfile.phone) {
+    msgBtn.href = "https://wa.me/" + adminProfile.phone;
+    msgBtn.target = "_blank";
+  } else {
+    msgBtn.href = "#";
+    msgBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      alert("Admin WhatsApp number not set yet.");
+    });
+  }
+})();
+</script>
+
+
 <body>
 
 <div class="container">
@@ -283,30 +310,6 @@ updateMessageButton();
   // Run on page load
   setGreetingWAT();
 </script
-
-<script>
-  function bindAdminWhatsApp() {
-    const msgBtn = document.getElementById("messageAdmin");
-    if (!msgBtn) return;
-  
-    const adminProfile = JSON.parse(
-      localStorage.getItem("adminProfile") || "{}"
-    );
-  
-    if (adminProfile.phone) {
-      msgBtn.href = `https://wa.me/${adminProfile.phone}`;
-      msgBtn.target = "_blank";
-    } else {
-      msgBtn.href = "#";
-      msgBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        alert("Admin WhatsApp number not set yet.");
-      });
-    }
-  });
-</script>
-
-
   
 <script src="js/data.js"></script>
 <script src="js/booking.js"></script>
