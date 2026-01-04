@@ -244,12 +244,15 @@ addCategoryBtn?.addEventListener("click", () => {
 });
 
 /* ---------- Add Service ---------- */
+const serviceDurationInput = document.getElementById("serviceDuration");
+
 addServiceBtn?.addEventListener("click", () => {
   const name = serviceNameInput.value.trim();
   const price = Number(servicePriceInput.value);
+  const duration = Number(serviceDurationInput.value);
   const category = serviceCategorySelect.value;
 
-  if (!name || !price || !category) {
+  if (!name || !price || !duration || !category) {
     return alert("Fill all fields");
   }
 
@@ -257,13 +260,15 @@ addServiceBtn?.addEventListener("click", () => {
     id: "svc_" + Date.now(),
     name,
     price,
-    category
+    duration,
+    category,
+    order: catalog.services.length
   });
 
   localStorage.setItem("spaCatalog", JSON.stringify(catalog));
-
   serviceNameInput.value = "";
   servicePriceInput.value = "";
+  serviceDurationInput.value = "";
 
   alert("Service added ✅");
 });
