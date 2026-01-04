@@ -197,6 +197,82 @@ window.toggleService = (i, active) => {
 };
 
 /* ============================
+   SPA CATALOG (ADMIN)
+============================ */
+const catalog =
+  JSON.parse(localStorage.getItem("spaCatalog")) || {
+    categories: [],
+    services: []
+  };
+
+const categoryInput = document.getElementById("categoryName");
+const addCategoryBtn = document.getElementById("addCategory");
+
+const serviceNameInput = document.getElementById("serviceName");
+const servicePriceInput = document.getElementById("servicePrice");
+const serviceCategorySelect = document.getElementById("serviceCategory");
+const addServiceBtn = document.getElementById("addService");
+
+/* ---------- Populate category dropdown ---------- */
+function refreshCategorySelect() {
+  serviceCategorySelect.innerHTML = "";
+  catalog.categories.forEach(cat => {
+    const option = document.createElement("option");
+    option.value = cat.id;
+    option.textContent = cat.name;
+    serviceCategorySelect.appendChild(option);
+  });
+}
+
+/* ---------- Add Category ---------- */
+addCategoryBtn?.addEventListener("click", () => {
+  const name = categoryInput.value.trim();
+  if (!name) return alert("Enter category name");
+
+  const id = name.toLowerCase().replace(/\s+/g, "-");
+
+  if (catalog.categories.some(c => c.id === id)) {
+    return alert("Category already exists");
+  }
+
+  catalog.categories.push({ id, name });
+  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+
+  categoryInput.value = "";
+  refreshCategorySelect();
+  alert("Category added ✅");
+});
+
+/* ---------- Add Service ---------- */
+addServiceBtn?.addEventListener("click", () => {
+  const name = serviceNameInput.value.trim();
+  const price = Number(servicePriceInput.value);
+  const category = serviceCategorySelect.value;
+
+  if (!name || !price || !category) {
+    return alert("Fill all fields");
+  }
+
+  catalog.services.push({
+    id: "svc_" + Date.now(),
+    name,
+    price,
+    category
+  });
+
+  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+
+  serviceNameInput.value = "";
+  servicePriceInput.value = "";
+
+  alert("Service added ✅");
+});
+
+/* ---------- Init ---------- */
+refreshCategorySelect();
+
+
+/* ============================
    LOGOUT
 ============================ */
 function bindLogout() {
