@@ -259,29 +259,48 @@
 </script>
   
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const msgBtn = document.getElementById("messageAdmin");
-    if (!msgBtn) return;
+document.addEventListener("DOMContentLoaded", () => {
+  const msgBtn = document.getElementById("messageAdmin");
+  if (!msgBtn) return;
 
-    msgBtn.addEventListener("click", e => {
+  // Function to update the button based on admin phone
+  function updateButton() {
+    const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+
+    if (adminProfile.phone) {
+      msgBtn.href = `https://wa.me/${adminProfile.phone}`;
+      msgBtn.target = "_blank";
+      msgBtn.classList.remove("disabled");
+    } else {
+      msgBtn.href = "#";
+      msgBtn.classList.add("disabled");
+    }
+  }
+
+  // Initial setup
+  updateButton();
+
+  // Click handler
+  msgBtn.addEventListener("click", e => {
+    const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+    
+    if (!adminProfile.phone) {
       e.preventDefault();
+      alert("Admin WhatsApp not available yet.");
+      return;
+    }
 
-      const adminProfile = JSON.parse(
-        localStorage.getItem("adminProfile") || "{}"
-      );
-
-      if (!adminProfile.phone) {
-        alert("Admin WhatsApp not available yet.");
-        return;
-      }
-
-      window.open(
-        `https://wa.me/${adminProfile.phone}`,
-        "_blank"
-      );
-    });
+    // Open WhatsApp in new tab
+    window.open(`https://wa.me/${adminProfile.phone}`, "_blank");
   });
+
+  // Optional: observe localStorage changes (if admin updates phone)
+  window.addEventListener("storage", e => {
+    if (e.key === "adminProfile") updateButton();
+  });
+});
 </script>
+
   
 <script src="js/data.js"></script>
 <script src="js/booking.js"></script>
