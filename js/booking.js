@@ -1,13 +1,11 @@
 /* =========================
    CONFIG
 ========================= */
-
 const CART_KEY = "bookingCart";
 
 /* =========================
    CART CORE
 ========================= */
-
 function getCart() {
   return JSON.parse(localStorage.getItem(CART_KEY)) || [];
 }
@@ -43,7 +41,6 @@ function updateCartBadge() {
 /* =========================
    CART RENDER
 ========================= */
-
 function renderBooking() {
   const cart = getCart();
   const cartEl = document.getElementById("cartItems");
@@ -56,15 +53,12 @@ function renderBooking() {
 
   cart.forEach((item, index) => {
     total += Number(item.price);
-
     cartEl.insertAdjacentHTML(
       "beforeend",
       `
       <div class="cart-item">
-        <div>
-          <strong>${item.name}</strong>
-          <p>₦${Number(item.price).toLocaleString()}</p>
-        </div>
+        <strong>${item.name}</strong>
+        ₦${Number(item.price).toLocaleString()}
         <button onclick="removeFromCart(${index})">✕</button>
       </div>
       `
@@ -75,151 +69,72 @@ function renderBooking() {
 }
 
 /* =========================
-   PAGE LOAD
+   CONFIRM BOOKING
 ========================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-  updateCartBadge();
-  renderBooking();
-});
-
-/* =========================
-   CONFIRM CART BOOKING
-========================= */
-
 function confirmBooking() {
   const cart = getCart();
   if (!cart.length) return alert("Add at least one service");
 
   const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
 
-  const bookingData = {
-    name: profile.pname || getValue("name"),
-    email: profile.pemail || getValue("email"),
-    phone: profile.pphone || getValue("phone"),
+  const booking = {
+    name: profile.name,
+    email: profile.email,
+    phone: profile.phone,
     date: getValue("date"),
     time: getValue("time"),
     services: cart.map(s => s.name).join(", "),
-    total: cart.reduce((sum, s) => sum + Number(s.price), 0),
+    total: cart.reduce((s, i) => s + Number(i.price), 0),
+    status: "pending",
     paymentMethod: "Bank Transfer"
   };
 
   const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-  bookings.push(bookingData);
+  bookings.push(booking);
   localStorage.setItem("bookings", JSON.stringify(bookings));
 
-  sendWhatsAppBooking(bookingData);
+  notifyAdmin(booking);
   clearCart();
 
-  alert("Booking sent. We’ll contact you shortly.");
+  alert("Booking submitted successfully");
   location.href = "index.html";
 }
 
 /* =========================
-   SERVICE LIST RENDERING
+   WHATSAPP NOTIFY ADMIN
 ========================= */
+function notifyAdmin(b) {
+  const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
+  const adminPhone = adminProfile.phone || SPA_DATA.whatsappAdmin;
+  if (!adminPhone) return;
 
-const serviceList = document.getElementById("serviceList");
+  const message = `
+New Booking 📅
+Name: ${b.name}
+Services: ${b.services}
+Total: ₦${b.total}
+Date: ${b.date}
+Time: ${b.time}
+Phone: ${b.phone}
+`;
 
-if (serviceList) {
-  SPA_DATA.services.forEach(service => {
-    serviceList.insertAdjacentHTML("beforeend", renderServiceCard(service));
-  });
-}
-
-function renderServiceCard(service) {
-  return `
-    <div class="card">
-      <h3>${service.name}</h3>
-      <p><strong>₦${service.price.toLocaleString()}</strong></p>
-
-      <input placeholder="Your Name" id="name-${service.id}">
-      <input placeholder="Email" id="email-${service.id}">
-      <input placeholder="WhatsApp Number" id="phone-${service.id}">
-      <input type="date" id="date-${service.id}">
-      <input type="time" id="time-${service.id}">
-
-      <button class="btn" onclick="bookSingleService(${service.id})">
-        Book via WhatsApp
-      </button>
-    </div>
-  `;
-}
-
-/* =========================
-   SINGLE SERVICE BOOKING
-========================= */
-
-function bookSingleService(serviceId) {
-  const service = SPA_DATA.services.find(s => s.id === serviceId);
-  if (!service) return;
-
-  const bookingData = {
-    name: getValue(`name-${serviceId}`),
-    email: getValue(`email-${serviceId}`),
-    phone: getValue(`phone-${serviceId}`),
-    date: getValue(`date-${serviceId}`),
-    time: getValue(`time-${serviceId}`),
-    service: service.name,
-    price: service.price
-  };
-
-  sendWhatsAppBooking(bookingData);
+  window.open(
+    `https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
 }
 
 /* =========================
    HELPERS
 ========================= */
-
 function getValue(id) {
   return document.getElementById(id)?.value || "";
 }
 
-function sendWhatsAppBooking(data) {
-  const message = `
-New Spa Booking
-Name: ${data.name}
-Service(s): ${data.service || data.services}
-${data.price ? `Price: ₦${data.price}` : `Total: ₦${data.total}`}
-Date: ${data.date}
-Time: ${data.time}
-Phone: ${data.phone}
-Email: ${data.email}
-${data.paymentMethod ? `Payment: ${data.paymentMethod}` : ""}
-`;
-
-const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
-const adminPhone = adminProfile.phone || SPA_DATA.whatsappAdmin;
-
-window.open(
-`https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`,
-"_blank"
-);
-}
-
-
-function notifyAdminOnWhatsApp(booking) {
-  const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-  if (!adminProfile.phone) return;
-
-  const message = `
-New Booking 📅
-
-Name: ${booking.name}
-Services: ${booking.services}
-Total: ₦${booking.total}
-Date: ${booking.date}
-Time: ${booking.time}
-Phone: ${booking.phone}
-`;
-
-  window.open(
-    `https://wa.me/${adminProfile.phone}?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
-}
-
-bookings.push(newBooking);
-localStorage.setItem("bookings", JSON.stringify(bookings));
-
-notifyAdminOnWhatsApp(newBooking);
+/* =========================
+   INIT
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  updateCartBadge();
+  renderBooking();
+});
