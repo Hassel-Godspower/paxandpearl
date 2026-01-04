@@ -208,11 +208,10 @@
     <small>Saved</small>
   </a>
 
-  <a id="messageAdmin" href="https://wa.me/2347064302016" target="_blank">
+  <a id="messageAdmin" href="#" target="_blank">
     <span class="material-icons-round">chat</span>
     <small>Message</small>
   </a>
-
 
   <a href="profile.html">
     <span class="material-icons-round">person</span>
@@ -223,6 +222,32 @@
 <!-- =========================
      SCRIPTS
 ========================== -->
+<script>
+function updateMessageButton() {
+  const msgBtn = document.getElementById("messageAdmin");
+  const savedProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+
+  if (msgBtn && savedProfile.phone) {
+    // Ensure phone only has digits
+    const phoneNumber = savedProfile.phone.replace(/\D/g, "");
+    msgBtn.href = `https://wa.me/${phoneNumber}`;
+    msgBtn.target = "_blank";
+    msgBtn.addEventListener("click", () => {
+      console.log("Opening WhatsApp to admin:", phoneNumber);
+    });
+  } else if (msgBtn) {
+    // Fallback if no number is saved
+    msgBtn.href = "#";
+    msgBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("Admin WhatsApp not set yet.");
+    });
+  }
+}
+
+// Run immediately on page load
+updateMessageButton();
+</script>
 
 <script>
   // Example: get username dynamically (replace this with your actual logic)
