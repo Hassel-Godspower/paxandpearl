@@ -42,11 +42,31 @@
 <!-- ADMIN WHATSAPP -->
 <section>
   <h3>Admin WhatsApp</h3>
-  <input id="adminPhone" placeholder="234XXXXXXXXXX">
+  <input id="adminPhone" placeholder="Admin WhatsApp Number">
   <button id="saveAdminPhone">Save WhatsApp</button>
 </section>
 
-<script src="/admin-1993/admin.js"></script>
+<script 
+  const adminPhoneInput = document.getElementById("adminPhone");
+  const saveBtn = document.getElementById("saveAdminPhone");
+  
+  if (saveBtn && adminPhoneInput) {
+    // Load existing number if available
+    const savedProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+    if (savedProfile.phone) adminPhoneInput.value = savedProfile.phone;
+  
+    saveBtn.addEventListener("click", () => {
+      const phone = adminPhoneInput.value.trim();
+      if (!phone) return alert("Enter WhatsApp number");
+  
+      localStorage.setItem("adminProfile", JSON.stringify({ phone }));
+      alert("Admin WhatsApp number saved");
+  
+      // Update nav button instantly
+      updateMessageButton();
+    });
+  }  
+</script>
 
 <hr>
 
