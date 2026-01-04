@@ -6,73 +6,71 @@ if (!localStorage.getItem("adminToken")) {
 }
 
 /* ============================
-   DOM REFERENCES
+   DOM READY
 ============================ */
-const adminPhoneInput = document.getElementById("adminPhone");
-const bookingsContainer = document.getElementById("bookings");
-const servicesContainer = document.getElementById("services");
-const logoutBtn = document.getElementById("logoutBtn");
+document.addEventListener("DOMContentLoaded", () => {
+  const adminPhoneInput = document.getElementById("adminPhone");
+  const saveBtn = document.getElementById("saveAdminPhone");
+  const logoutBtn = document.getElementById("logoutBtn");
 
-/* ============================
-   LOAD DATA
-============================ */
-let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-let services =
-  JSON.parse(localStorage.getItem("services")) || SPA_DATA.services;
+  if (!adminPhoneInput || !saveBtn) return;
 
-let adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+  /* ============================
+     LOAD SAVED ADMIN PROFILE
+  ============================ */
+  const storedProfile =
+    JSON.parse(localStorage.getItem("adminProfile")) || {};
 
-/* ============================
-   LOAD ADMIN WHATSAPP
-============================ */
-if (adminPhoneInput && adminProfile.phone) {
-  adminPhoneInput.value = adminProfile.phone;
-}
-
-/* ============================
-   PHONE NORMALIZER
-============================ */
-function normalizePhone(phone) {
-  phone = phone.replace(/[^\d]/g, "");
-
-  if (phone.startsWith("0")) {
-    phone = "234" + phone.slice(1);
+  if (storedProfile.phone) {
+    adminPhoneInput.value = storedProfile.phone;
   }
 
-  return phone;
-}
+  /* ============================
+     NORMALIZE PHONE
+  ============================ */
+  function normalizePhone(phone) {
+    phone = phone.replace(/[^\d]/g, "");
 
-/* ============================
-   SAVE ADMIN PROFILE
-============================ */
-function saveAdminProfile() {
-  if (!adminPhoneInput) return;
+    if (phone.startsWith("0")) {
+      phone = "234" + phone.slice(1);
+    }
 
-  const rawPhone = adminPhoneInput.value.trim();
-  if (!rawPhone) {
-    alert("Please enter a WhatsApp number");
-    return;
+    return phone;
   }
 
-  const phone = normalizePhone(rawPhone);
+  /* ============================
+     SAVE ADMIN WHATSAPP
+  ============================ */
+  saveBtn.addEventListener("click", () => {
+    const rawPhone = adminPhoneInput.value.trim();
 
-  if (!phone.startsWith("234") || phone.length < 13) {
-    alert("Enter a valid Nigerian WhatsApp number (234XXXXXXXXXX)");
-    return;
-  }
+    if (!rawPhone) {
+      alert("Please enter a WhatsApp number");
+      return;
+    }
 
-  adminProfile = { phone };
-  localStorage.setItem("adminProfile", JSON.stringify(adminProfile));
+    const phone = normalizePhone(rawPhone);
 
-  alert("Admin WhatsApp saved successfully");
-}
+    if (!phone.startsWith("234") || phone.length < 13) {
+      alert("Enter a valid Nigerian WhatsApp number (234XXXXXXXXXX)");
+      return;
+    }
 
-/* ============================
-   LOGOUT
-============================ */
-logoutBtn?.addEventListener("click", () => {
-  localStorage.removeItem("adminToken");
-  window.location.href = "/admin-1993/login.html";
+    localStorage.setItem(
+      "adminProfile",
+      JSON.stringify({ phone })
+    );
+
+    alert("Admin WhatsApp saved successfully ✅");
+  });
+
+  /* ============================
+     LOGOUT
+  ============================ */
+  logoutBtn?.addEventListener("click", () => {
+    localStorage.removeItem("adminToken");
+    window.location.href = "/admin-1993/login.html";
+  });
 });
 
 
