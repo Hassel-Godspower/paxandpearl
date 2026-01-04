@@ -285,18 +285,28 @@
 </script>
   
 <script>
-  const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
-  const msgBtn = document.getElementById("messageAdmin");
+  document.addEventListener("DOMContentLoaded", () => {
+    const msgBtn = document.getElementById("messageAdmin");
+    if (!msgBtn) return;
 
-  if (msgBtn && adminProfile.phone) {
-    msgBtn.href = `https://wa.me/${adminProfile.phone}`;
-    msgBtn.target = "_blank";
-  } else if (msgBtn) {
     msgBtn.addEventListener("click", e => {
       e.preventDefault();
-      alert("Admin WhatsApp not set yet. Please try again later.");
+
+      const adminProfile = JSON.parse(
+        localStorage.getItem("adminProfile") || "{}"
+      );
+
+      if (!adminProfile.phone) {
+        alert("Admin WhatsApp not available yet.");
+        return;
+      }
+
+      window.open(
+        `https://wa.me/${adminProfile.phone}`,
+        "_blank"
+      );
     });
-  }
+  });
 </script>
   
 <script src="js/data.js"></script>
