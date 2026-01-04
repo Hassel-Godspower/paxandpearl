@@ -32,17 +32,6 @@
     <span class="badge" id="bookingCount">0</span>
   </a>
 
-  <!-- CATEGORY FILTER -->
-  <section class="category-filter">
-    <button data-filter="all" class="active">All</button>
-    <button data-filter="massage">Massage</button>
-    <button data-filter="facials">Facials</button>
-    <button data-filter="pedicure-manicure">Pedicure & Manicure</button>
-    <button data-filter="steam-scrub">Steam & Scrub</button>
-    <button data-filter="chemical-peel">Chemical Peel</button>
-    <button data-filter="waxing">Waxing</button>
-    <button data-filter="hammam">Hammam</button>
-  </section>
 
   <!-- SEARCH -->
   <section class="search-section">
@@ -109,79 +98,79 @@
 <script src="js/booking.js"></script>
 
 <script>
-  const servicesContainer = document.getElementById("services");
-  const searchInput = document.getElementById("serviceSearch");
-  const filterButtons = document.querySelectorAll(".category-filter button");
+const servicesContainer = document.getElementById("services");
+const filterContainer = document.querySelector(".category-filter");
+const searchInput = document.getElementById("serviceSearch");
 
-  let activeCategory = "all";
-  let searchQuery = "";
+const catalog =
+  JSON.parse(localStorage.getItem("spaCatalog")) || {
+    categories: [],
+    services: []
+  };
 
-  function renderServices() {
-    if (!servicesContainer || !SPA_DATA) return;
+let activeCategory = "all";
+let searchQuery = "";
 
-    servicesContainer.innerHTML = "";
+/* ---------- Render Categories ---------- */
+function renderCategories() {
+  filterContainer.innerHTML = `<button data-filter="all" class="active">All</button>`;
 
-    SPA_DATA.services
-      .filter(service => {
-        const matchesCategory =
-          activeCategory === "all" || service.category === activeCategory;
+  catalog.categories.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.dataset.filter = cat.id;
+    btn.textContent = cat.name;
+    filterContainer.appendChild(btn);
+  });
 
-        const matchesSearch =
-          service.name.toLowerCase().includes(searchQuery.toLowerCase());
-
-        return matchesCategory && matchesSearch;
-      })
-      .forEach(service => {
-        const card = document.createElement("div");
-        card.className = "card service-card";
-
-        card.innerHTML = `
-          <h3>${service.name}</h3>
-          <p><strong>₦${Number(service.price).toLocaleString()}</strong></p>
-          <button class="btn add-btn">Add to Booking</button>
-        `;
-
-        card.querySelector(".add-btn").addEventListener("click", () => {
-          addToCart({
-            name: service.name,
-            price: service.price
-          });
-          alert(`${service.name} added to booking`);
-        });
-
-        servicesContainer.appendChild(card);
-      });
-  }
-
-  // Category filter
-  filterButtons.forEach(btn => {
+  filterContainer.querySelectorAll("button").forEach(btn => {
     btn.addEventListener("click", () => {
-      filterButtons.forEach(b => b.classList.remove("active"));
+      filterContainer.querySelectorAll("button").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       activeCategory = btn.dataset.filter;
       renderServices();
     });
   });
+}
 
-  // Search
-  searchInput.addEventListener("input", e => {
-    searchQuery = e.target.value;
-    renderServices();
-  });
+/* ---------- Render Services ---------- */
+function renderServices() {
+  servicesContainer.innerHTML = "";
 
-  // Category from URL (?category=massage)
-  const params = new URLSearchParams(window.location.search);
-  const urlCategory = params.get("category");
+  catalog.services
+    .filter(s =>
+      (activeCategory === "all" || s.category === activeCategory) &&
+      s.name.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .forEach(service => {
+      const card = document.createElement("div");
+      card.className = "card service-card";
 
-  if (urlCategory) {
-    activeCategory = urlCategory;
-    filterButtons.forEach(btn => {
-      btn.classList.toggle("active", btn.dataset.filter === urlCategory);
+      card.innerHTML = `
+        <h3>${service.name}</h3>
+        <p><strong>₦${service.price.toLocaleString()}</strong></p>
+        <button class="btn btn-primary">Add to Booking</button>
+      `;
+
+      card.querySelector("button").onclick = () => {
+        addToCart({ name: service.name, price: service.price });
+        alert(`${service.name} added`);
+      };
+
+      servicesContainer.appendChild(card);
     });
-  }
+}
 
+/* ---------- Search ---------- */
+searchInput.addEventListener("input", e => {
+  searchQuery = e.target.value;
   renderServices();
+});
+
+/* ---------- Init ---------- */
+renderCategories();
+renderServices();
 </script>
+
   
 <script>
   const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
