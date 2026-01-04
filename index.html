@@ -285,25 +285,25 @@ updateMessageButton();
 </script
 
 <script>
-function bindAdminWhatsApp() {
-  const msgBtn = document.getElementById("messageAdmin");
-  if (!msgBtn) return;
-
-  const adminProfile = JSON.parse(
-    localStorage.getItem("adminProfile") || "{}"
-  );
-
-  if (adminProfile.phone) {
-    msgBtn.href = `https://wa.me/${adminProfile.phone}`;
-    msgBtn.target = "_blank";
-  } else {
-    msgBtn.href = "#";
-    msgBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      alert("Admin WhatsApp number not set yet.");
-    });
-  }
-})();
+  function bindAdminWhatsApp() {
+    const msgBtn = document.getElementById("messageAdmin");
+    if (!msgBtn) return;
+  
+    const adminProfile = JSON.parse(
+      localStorage.getItem("adminProfile") || "{}"
+    );
+  
+    if (adminProfile.phone) {
+      msgBtn.href = `https://wa.me/${adminProfile.phone}`;
+      msgBtn.target = "_blank";
+    } else {
+      msgBtn.href = "#";
+      msgBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        alert("Admin WhatsApp number not set yet.");
+      });
+    }
+  });
 </script>
 
 
