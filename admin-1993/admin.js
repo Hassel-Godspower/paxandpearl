@@ -1,5 +1,5 @@
 /* ============================
-   AUTH GUARD (TOKEN BASED)
+   AUTH GUARD
 ============================ */
 if (!localStorage.getItem("adminToken")) {
   window.location.href = "/admin-1993/login.html";
@@ -8,9 +8,9 @@ if (!localStorage.getItem("adminToken")) {
 /* ============================
    DOM REFERENCES
 ============================ */
+const adminPhoneInput = document.getElementById("adminPhone");
 const bookingsContainer = document.getElementById("bookings");
 const servicesContainer = document.getElementById("services");
-const adminPhoneInput = document.getElementById("adminPhone");
 const logoutBtn = document.getElementById("logoutBtn");
 
 /* ============================
@@ -20,23 +20,21 @@ let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
 let services =
   JSON.parse(localStorage.getItem("services")) || SPA_DATA.services;
 
-const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+let adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
 
 /* ============================
-   ADMIN PROFILE
+   LOAD ADMIN WHATSAPP
 ============================ */
-const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-
 if (adminPhoneInput && adminProfile.phone) {
   adminPhoneInput.value = adminProfile.phone;
 }
 
-
+/* ============================
+   PHONE NORMALIZER
+============================ */
 function normalizePhone(phone) {
-  // Remove spaces, +, dashes
   phone = phone.replace(/[^\d]/g, "");
 
-  // If starts with 0, replace with 234
   if (phone.startsWith("0")) {
     phone = "234" + phone.slice(1);
   }
@@ -44,9 +42,13 @@ function normalizePhone(phone) {
   return phone;
 }
 
+/* ============================
+   SAVE ADMIN PROFILE
+============================ */
 function saveAdminProfile() {
-  const rawPhone = adminPhoneInput.value.trim();
+  if (!adminPhoneInput) return;
 
+  const rawPhone = adminPhoneInput.value.trim();
   if (!rawPhone) {
     alert("Please enter a WhatsApp number");
     return;
@@ -55,28 +57,24 @@ function saveAdminProfile() {
   const phone = normalizePhone(rawPhone);
 
   if (!phone.startsWith("234") || phone.length < 13) {
-    alert("Enter a valid Nigerian WhatsApp number (e.g. 2348012345678)");
+    alert("Enter a valid Nigerian WhatsApp number (234XXXXXXXXXX)");
     return;
   }
 
-  localStorage.setItem(
-    "adminProfile",
-    JSON.stringify({ phone })
-  );
+  adminProfile = { phone };
+  localStorage.setItem("adminProfile", JSON.stringify(adminProfile));
 
-  alert("Admin WhatsApp number saved successfully");
+  alert("Admin WhatsApp saved successfully");
 }
-
 
 /* ============================
    LOGOUT
 ============================ */
-function logoutAdmin() {
+logoutBtn?.addEventListener("click", () => {
   localStorage.removeItem("adminToken");
   window.location.href = "/admin-1993/login.html";
-}
+});
 
-logoutBtn?.addEventListener("click", logoutAdmin);
 
 /* ============================
    BOOKINGS
