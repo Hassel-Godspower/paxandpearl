@@ -4,6 +4,19 @@
   <meta charset="UTF-8" />
   <title>Admin Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: system-ui, sans-serif; padding:16px; }
+    header { display:flex; justify-content:space-between; align-items:center; }
+    section { margin:20px 0; }
+    .card { padding:12px; border:1px solid #eee; border-radius:10px; margin-bottom:12px; }
+    select, input, button, textarea {
+      width:100%; padding:10px; margin-top:6px;
+      border-radius:8px; border:1px solid #ddd;
+    }
+    button { background:#7b5cff; color:#fff; border:none; cursor:pointer; }
+    textarea { resize:vertical; }
+    .row { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+  </style>
 </head>
 
 <body>
@@ -105,5 +118,21 @@ updateMessageButton();
 </section>
 
 <script src="/admin-1993/admin.js"></script>
+
+<script>
+/* ============================
+   AUTH GUARD
+============================ */
+if (sessionStorage.getItem("adminSession") !== "true") {
+  window.location.href = "/admin-1993/login.html";
+}
+
+/* ============================
+   LOAD DATA
+============================ */
+let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+let services = JSON.parse(localStorage.getItem("services") || "[]");
+let adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+
 </body>
 </html>
