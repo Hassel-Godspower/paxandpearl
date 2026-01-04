@@ -119,20 +119,5 @@ updateMessageButton();
 
 <script src="/admin-1993/admin.js"></script>
 
-<script>
-/* ============================
-   AUTH GUARD
-============================ */
-if (sessionStorage.getItem("adminSession") !== "true") {
-  window.location.href = "/admin-1993/login.html";
-}
-
-/* ============================
-   LOAD DATA
-============================ */
-let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-let services = JSON.parse(localStorage.getItem("services") || "[]");
-let adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-
 </body>
 </html>
