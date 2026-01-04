@@ -239,6 +239,37 @@ function updateServiceOrder() {
 
   localStorage.setItem("spaCatalog", JSON.stringify(catalog));
 }
+function renderRevenueByCategory() {
+  const container = document.getElementById("revenueByCategory");
+  if (!container) return;
+
+  const revenueMap = {};
+
+  bookings.forEach(b => {
+    if (b.status !== "approved") return;
+
+    b.items?.forEach(item => {
+      const service = catalog.services.find(s => s.name === item.name);
+      if (!service) return;
+
+      revenueMap[service.category] =
+        (revenueMap[service.category] || 0) + item.price;
+    });
+  });
+
+  container.innerHTML = "";
+
+  Object.entries(revenueMap).forEach(([cat, amount]) => {
+    const name =
+      catalog.categories.find(c => c.id === cat)?.name || cat;
+
+    container.insertAdjacentHTML(
+      "beforeend",
+      `<div class="card"><strong>${name}</strong>: ₦${amount.toLocaleString()}</div>`
+    );
+  });
+}
+renderRevenueByCategory();
 
 /* ============================
    SPA CATALOG (ADMIN)
