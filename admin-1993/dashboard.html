@@ -46,27 +46,34 @@
   <button id="saveAdminPhone">Save WhatsApp</button>
 </section>
 
-<script 
-  const adminPhoneInput = document.getElementById("adminPhone");
-  const saveBtn = document.getElementById("saveAdminPhone");
-  
-  if (saveBtn && adminPhoneInput) {
-    // Load existing number if available
-    const savedProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-    if (savedProfile.phone) adminPhoneInput.value = savedProfile.phone;
-  
-    saveBtn.addEventListener("click", () => {
-      const phone = adminPhoneInput.value.trim();
-      if (!phone) return alert("Enter WhatsApp number");
-  
-      localStorage.setItem("adminProfile", JSON.stringify({ phone }));
-      alert("Admin WhatsApp number saved");
-  
-      // Update nav button instantly
-      updateMessageButton();
-    });
-  }  
+<script>
+const adminPhoneInput = document.getElementById("adminPhone");
+const saveBtn = document.getElementById("saveAdminPhone");
+
+function updateMessageButton() {
+  // Optional: just to trigger storage event for index.html
+  localStorage.setItem("adminProfileUpdate", Date.now());
+}
+
+if (saveBtn && adminPhoneInput) {
+  const savedProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+  if (savedProfile.phone) adminPhoneInput.value = savedProfile.phone;
+
+  saveBtn.addEventListener("click", () => {
+    const phone = adminPhoneInput.value.trim();
+    if (!phone) return alert("Enter WhatsApp number");
+
+    // Optional: strip non-digits
+    const cleanedPhone = phone.replace(/\D/g, "");
+    localStorage.setItem("adminProfile", JSON.stringify({ phone: cleanedPhone }));
+    alert("Admin WhatsApp number saved");
+
+    // Trigger update in other tabs
+    updateMessageButton();
+  });
+}
 </script>
+
 
 <hr>
 
