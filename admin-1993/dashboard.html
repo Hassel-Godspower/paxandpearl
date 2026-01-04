@@ -284,17 +284,25 @@ updateMessageButton();
   </section>
   
   <section>
-    <h3>Create Service</h3>
-  
-    <input id="serviceName" placeholder="Service name">
-    <input id="servicePrice" type="number" placeholder="Price (₦)">
-    
-    <select id="serviceCategory" placeholder="Category name"></select>'
-    <input id="serviceDuration" type="number" placeholder="Duration (minutes)">
-  
-    <button class="btn btn-primary" id="addService">Add Service</button>
-  </section>
+  <h3>Create Service</h3>
+
+  <input id="serviceName" placeholder="Service name">
+
+  <textarea
+    id="serviceDescription"
+    placeholder="Service description (e.g. benefits, process, who it's for)"
+    rows="3"
+  ></textarea>
+
+  <input id="servicePrice" type="number" placeholder="Price (₦)">
+
+  <select id="serviceCategory"></select>
+
+  <input id="serviceDuration" type="number" placeholder="Duration (minutes)">
+
+  <button class="btn btn-primary" id="addService">Add Service</button>
 </section>
+
   
 <script src="/admin-1993/admin.js"></script>
 
