@@ -25,17 +25,48 @@ const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
 /* ============================
    ADMIN PROFILE
 ============================ */
+const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+
 if (adminPhoneInput && adminProfile.phone) {
   adminPhoneInput.value = adminProfile.phone;
 }
 
+
+function normalizePhone(phone) {
+  // Remove spaces, +, dashes
+  phone = phone.replace(/[^\d]/g, "");
+
+  // If starts with 0, replace with 234
+  if (phone.startsWith("0")) {
+    phone = "234" + phone.slice(1);
+  }
+
+  return phone;
+}
+
 function saveAdminProfile() {
+  const rawPhone = adminPhoneInput.value.trim();
+
+  if (!rawPhone) {
+    alert("Please enter a WhatsApp number");
+    return;
+  }
+
+  const phone = normalizePhone(rawPhone);
+
+  if (!phone.startsWith("234") || phone.length < 13) {
+    alert("Enter a valid Nigerian WhatsApp number (e.g. 2348012345678)");
+    return;
+  }
+
   localStorage.setItem(
     "adminProfile",
-    JSON.stringify({ phone: adminPhoneInput.value.trim() })
+    JSON.stringify({ phone })
   );
-  alert("Admin WhatsApp number saved");
+
+  alert("Admin WhatsApp number saved successfully");
 }
+
 
 /* ============================
    LOGOUT
