@@ -18,223 +18,177 @@
 
 <body>
 
-  <!-- =========================
-       PAGE CONTAINER
-  ========================== -->
-  <div class="container">
+<div class="container">
 
-    <!-- HEADER -->
-    <header class="header">
-      <div class="logo">Your Booking</div>
-    </header>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">Your Booking</div>
+  </header>
 
-    <!-- =========================
-         CART SUMMARY
-    ========================== -->
-    <section class="booking-summary">
-      <h2>Your Booking</h2>
+  <!-- BOOKING CART -->
+  <section class="booking-summary">
+    <h2>Your Booking</h2>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="total-row">
+      <span>Total</span>
+      <strong id="total">₦0</strong>
+    </div>
+  </section>
 
-      <!-- Cart Items Injected by JS -->
-      <div id="cartItems" class="cart-items"></div>
+  <!-- CUSTOMER DETAILS -->
+  <section class="booking-form">
+    <h3>Your Details</h3>
+    <input id="name" type="text" placeholder="Full Name" required>
+    <input id="email" type="email" placeholder="Email" required>
+    <input id="phone" type="tel" placeholder="WhatsApp Number" required>
 
-      <div class="total-row">
-        <span>Total</span>
-        <strong id="total">₦0</strong>
-      </div>
-    </section>
+    <div class="datetime-row">
+      <input id="date" type="date" required>
+      <input id="time" type="time" required>
+    </div>
 
-    <!-- =========================
-         CUSTOMER DETAILS
-    ========================== -->
-    <section class="booking-form">
-      <h3>Your Details</h3>
+    <button class="btn btn-primary" onclick="confirmBooking()">
+      Book Now
+    </button>
 
-      <input id="name" type="text" placeholder="Full Name" required>
-      <input id="email" type="email" placeholder="Email" required>
-      <input id="phone" type="tel" placeholder="WhatsApp Number" required>
+    <p class="note">*Booking time subject to admin confirmation</p>
+  </section>
 
-      <div class="datetime-row">
-        <input id="date" type="date" required>
-        <input id="time" type="time" required>
-      </div>
+</div>
 
-      <button class="btn btn-primary" onclick="confirmBooking()">
-        Book Now
-      </button>
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+  <a href="index.html"><span class="material-icons-round">home</span><small>Home</small></a>
+  <a href="booking.html" class="active"><span class="material-icons-round">event</span><small>Booking</small></a>
+  <a href="saved.html"><span class="material-icons-round">favorite</span><small>Saved</small></a>
+  <a href="#" id="messageAdmin"><span class="material-icons-round">chat</span><small>Message</small></a>
+  <a href="profile.html"><span class="material-icons-round">person</span><small>Profile</small></a>
+</nav>
 
-      <p class="note">
-        *Booking time subject to admin confirmation
-      </p>
-    </section>
+<style>
+  .container { padding-bottom: 90px; }
+  .mobile-nav a:active { transform: scale(0.96); }
+  @media (min-width: 768px) { .mobile-nav { display: none; } }
+  .cart-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
+  .cart-item button { background:none; border:none; color:#7b5cff; cursor:pointer; font-size:14px; }
+</style>
 
-  </div>
-  <script>
-  /* ============================
-     CART STORAGE KEY
-  ============================ */
-  const CART_KEY = "spaBookingCart";
-  
-  /* ============================
-     LOAD CART
-  ============================ */
-  let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-  
-  /* ============================
-     DOM ELEMENTS
-  ============================ */
-  const cartItemsEl = document.getElementById("cartItems");
-  const totalEl = document.getElementById("total");
-  
-  /* ============================
-     RENDER CART
-  ============================ */
-  function renderCart() {
-    cartItemsEl.innerHTML = "";
-  
-    if (!cart.length) {
-      cartItemsEl.innerHTML =
-        "<p class='empty'>No services selected yet.</p>";
-      totalEl.textContent = "₦0";
-      return;
-    }
-  
-    let total = 0;
-  
-    cart.forEach((item, index) => {
-      total += item.price;
-  
-      const row = document.createElement("div");
-      row.className = "cart-item";
-      row.innerHTML = `
-        <span>${item.name}</span>
-        <strong>₦${item.price.toLocaleString()}</strong>
-      `;
-      cartItemsEl.appendChild(row);
-    });
-  
-    totalEl.textContent = "₦" + total.toLocaleString();
+<script>
+/* ============================
+   CART STORAGE KEY
+============================ */
+const CART_KEY = "spaBookingCart";
+let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+/* ============================
+   DOM ELEMENTS
+============================ */
+const cartItemsEl = document.getElementById("cartItems");
+const totalEl = document.getElementById("total");
+
+/* ============================
+   RENDER CART
+============================ */
+function renderCart() {
+  cartItemsEl.innerHTML = "";
+
+  if (!cart.length) {
+    cartItemsEl.innerHTML = "<p class='empty'>No services selected yet.</p>";
+    totalEl.textContent = "₦0";
+    return;
   }
-  
-  /* ============================
-     CONFIRM BOOKING
-  ============================ */
-  function confirmBooking() {
-    if (!cart.length) {
-      alert("Please select at least one service.");
-      return;
-    }
-  
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("time").value;
-  
-    if (!name || !email || !phone || !date || !time) {
-      alert("Please fill all booking details.");
-      return;
-    }
-  
-    const booking = {
-      id: "bk_" + Date.now(),
-      customer: { name, email, phone },
-      services: cart,
-      date,
-      time,
-      status: "pending",
-      createdAt: new Date().toISOString()
-    };
-  
-    // Save bookings locally (user-safe)
-    const bookings =
-      JSON.parse(localStorage.getItem("spaBookings")) || [];
-  
-    bookings.push(booking);
-    localStorage.setItem("spaBookings", JSON.stringify(bookings));
-  
-    // Clear cart
-    localStorage.removeItem(CART_KEY);
-  
-    alert("Booking submitted successfully ✅");
-    window.location.href = "index.html";
-  }
-  
-  /* ============================
-     INIT
-  ============================ */
+
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    row.innerHTML = `
+      <span>${item.name}</span>
+      <strong>₦${item.price.toLocaleString()}</strong>
+      <button onclick="removeFromCart(${index})">Remove</button>
+    `;
+
+    cartItemsEl.appendChild(row);
+  });
+
+  totalEl.textContent = "₦" + total.toLocaleString();
+}
+
+/* ============================
+   REMOVE ITEM
+============================ */
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
   renderCart();
-  </script>
+}
 
-  <!-- =========================
-       MOBILE BOTTOM NAV
-  ========================== -->
-  <nav class="mobile-nav">
+/* ============================
+   CONFIRM BOOKING
+============================ */
+function confirmBooking() {
+  if (!cart.length) {
+    alert("Please select at least one service.");
+    return;
+  }
 
-    <a href="index.html">
-      <span class="material-icons-round">home</span>
-      <small>Home</small>
-    </a>
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
 
-    <a href="booking.html" class="active">
-      <span class="material-icons-round">event</span>
-      <small>Booking</small>
-    </a>
+  if (!name || !email || !phone || !date || !time) {
+    alert("Please fill all booking details.");
+    return;
+  }
 
-    <a href="saved.html">
-      <span class="material-icons-round">favorite</span>
-      <small>Saved</small>
-    </a>
+  const booking = {
+    id: "bk_" + Date.now(),
+    customer: { name, email, phone },
+    services: cart,
+    date, time,
+    status: "pending",
+    createdAt: new Date().toISOString()
+  };
 
-    <a href="#" id="messageAdmin">
-      <span class="material-icons-round">chat</span>
-      <small>Message</small>
-    </a>
+  const bookings = JSON.parse(localStorage.getItem("spaBookings")) || [];
+  bookings.push(booking);
+  localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
-    <a href="profile.html">
-      <span class="material-icons-round">person</span>
-      <small>Profile</small>
-    </a>
+  // Clear cart
+  localStorage.removeItem(CART_KEY);
+  cart = [];
+  renderCart();
 
-  </nav>
+  alert("Booking submitted successfully ✅");
+  window.location.href = "index.html";
+}
 
-  <!-- =========================
-       INLINE NAV STYLES
-  ========================== -->
-  <style>
-    .container {
-      padding-bottom: 90px;
-    }
+/* ============================
+   INIT
+============================ */
+renderCart();
 
-    .mobile-nav a:active {
-      transform: scale(0.96);
-    }
+/* ============================
+   ADMIN WHATSAPP
+============================ */
+const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+const msgBtn = document.getElementById("messageAdmin");
 
-    @media (min-width: 768px) {
-      .mobile-nav {
-        display: none;
-      }
-    }
-  </style>
-
-  <script>
-    const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
-    const msgBtn = document.getElementById("messageAdmin");
-  
-    if (msgBtn && adminProfile.phone) {
-      msgBtn.href = `https://wa.me/${adminProfile.phone}`;
-      msgBtn.target = "_blank";
-    } else if (msgBtn) {
-      msgBtn.addEventListener("click", () => {
-        alert("Admin contact not available yet.");
-      });
-    }
-  </script>
-
-  <!-- =========================
-       SCRIPTS
-  ========================== -->
-  <script src="js/data.js"></script>
- 
+if (msgBtn && adminProfile.phone) {
+  msgBtn.href = `https://wa.me/${adminProfile.phone}`;
+  msgBtn.target = "_blank";
+} else if (msgBtn) {
+  msgBtn.addEventListener("click", () => {
+    alert("Admin contact not available yet.");
+  });
+}
+</script>
 
 </body>
 </html>
