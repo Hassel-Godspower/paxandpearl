@@ -104,10 +104,19 @@ const servicesContainer = document.getElementById("services");
 const filterContainer = document.querySelector(".category-filter");
 const searchInput = document.getElementById("serviceSearch");
 
-const catalog = JSON.parse(localStorage.getItem("spaCatalog")) || {
-  categories: [],
-  services: []
-};
+let catalog = { categories: [], services: [] };
+
+fetch("/catalog.json")
+  .then(res => res.json())
+  .then(data => {
+    catalog = data;
+    renderCategoryFilter();
+    renderServices();
+  })
+  .catch(() => {
+    servicesContainer.innerHTML =
+      "<p>Services not available at the moment.</p>";
+  });
 
 let activeCategory = "all";
 let searchQuery = "";
