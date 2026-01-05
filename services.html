@@ -157,90 +157,66 @@ function setActiveFilter(activeBtn) {
   activeBtn.classList.add("active");
 }
 
-/* MUST MATCH booking.js */
-const CART_KEY = "bookingCart";
+/* ============================
+   SERVICES RENDER
+============================ */
+function renderServices() {
+  servicesContainer.innerHTML = "";
 
-/* =========================
-   CART HELPERS
-========================= */
-function getCart() {
-  return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-}
+  const services = catalog.services.filter(service => {
+    const matchesCategory =
+      activeCategory === "all" || service.category === activeCategory;
 
-function saveCart(cart) {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  updateCartBadge();
-}
+    const matchesSearch =
+      service.name.toLowerCase().includes(searchQuery) ||
+      service.description.toLowerCase().includes(searchQuery);
 
-function updateCartBadge() {
-  const badge = document.getElementById("bookingCount");
-  if (badge) badge.textContent = getCart().length;
-}
-
-/* =========================
-   ADD TO BOOKING
-========================= */
-function addToBooking(service) {
-  const cart = getCart();
-
-  cart.push({
-    id: service.id || Date.now(),
-    name: service.name,
-    description: service.description || "",
-    price: Number(service.price),
-    category: service.category || "",
-    duration: service.duration || 0
+    return matchesCategory && matchesSearch;
   });
 
-  saveCart(cart);
-
-  // Optional feedback
-  alert(`${service.name} added to booking`);
-}
-
-/* =========================
-   RENDER SERVICES
-   (example usage)
-========================= */
-function renderServices(services) {
-  const container = document.getElementById("services");
-  if (!container) return;
-
-  container.innerHTML = "";
+  if (!services.length) {
+    servicesContainer.innerHTML =
+      "<p class='empty'>No services found.</p>";
+    return;
+  }
 
   services.forEach(service => {
-    container.insertAdjacentHTML(
-      "beforeend",
-      `
-      <div class="service-card">
-        <h4>${service.name}</h4>
-        <p>${service.description || ""}</p>
-        <div><strong>₦${Number(service.price).toLocaleString()}</strong></div>
-        <small>Duration: ${service.duration} mins</small>
-        <br>
-        <button class="btn btn-primary"
-          onclick='addToBooking(${JSON.stringify(service)})'>
-          Add to Booking
-        </button>
-      </div>
-      `
-    );
+    const card = document.createElement("div");
+    card.className = "card service-card";
+
+    card.innerHTML = `
+      <h4>${service.name}</h4>
+      <p>${service.description}</p>
+      <p>
+        <strong>₦${service.price.toLocaleString()}</strong><br>
+        <small>${service.duration} mins</small>
+      </p>
+      <button class="btn btn-primary">Add to Booking</button>
+    `;
+
+    card.querySelector("button").onclick = () => {
+      if (typeof addToCart === "function") {
+        addToCart({
+          name: service.name,
+          price: service.price
+        });
+      }
+      alert(`${service.name} added to booking`);
+    };
+
+    servicesContainer.appendChild(card);
   });
 }
 
-/* =========================
-   INIT
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
-  updateCartBadge();
-
-  // Example: load services from storage
-  const services =
-    JSON.parse(localStorage.getItem("services") || "[]");
-
-  renderServices(services);
+/* ============================
+   SEARCH
+============================ */
+searchInput.addEventListener("input", e => {
+  searchQuery = e.target.value.toLowerCase();
+  renderServices();
 });
 </script>
+
 
 
 
