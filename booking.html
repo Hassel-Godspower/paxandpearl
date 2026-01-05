@@ -206,6 +206,30 @@
     alert("Booking submitted successfully ✅");
     window.location.href = "index.html";
   }
+  /* =========================
+     WHATSAPP NOTIFY ADMIN
+  ========================= */
+  function notifyAdmin(b) {
+    const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
+    const adminPhone = adminProfile.phone || SPA_DATA.whatsappAdmin;
+    if (!adminPhone) return;
+  
+    const message = `
+  New Booking 📅
+  Name: ${b.name}
+  Services: ${b.services}
+  Total: ₦${b.total}
+  Date: ${b.date}
+  Time: ${b.time}
+  Phone: ${b.phone}
+  `;
+  
+    window.open(
+      `https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  }
+
 
   /* ============================
      INIT
