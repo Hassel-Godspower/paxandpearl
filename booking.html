@@ -86,7 +86,10 @@ function renderCart() {
 
 /* CONFIRM BOOKING */
 function confirmBooking() {
-  if (!cart.length) { alert("Please select at least one service."); return; }
+  if (!cart.length) {
+    alert("Please select at least one service.");
+    return;
+  }
 
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
@@ -94,26 +97,67 @@ function confirmBooking() {
   const date = document.getElementById("date").value;
   const time = document.getElementById("time").value;
 
-  if(!name||!email||!phone||!date||!time){alert("Fill all booking details.");return;}
+  if (!name || !email || !phone || !date || !time) {
+    alert("Please fill all booking details.");
+    return;
+  }
+
+  const total = cart.reduce((sum, s) => sum + s.price, 0);
 
   const booking = {
-    id:"bk_"+Date.now(),
-    customer:{name,email,phone},
-    services:cart,
-    date,time,
-    status:"pending",
-    createdAt:new Date().toISOString()
+    id: "bk_" + Date.now(),
+    customer: { name, email, phone },
+    services: cart,
+    date,
+    time,
+    total,
+    status: "pending",
+    createdAt: new Date().toISOString()
   };
 
-  const bookings = JSON.parse(localStorage.getItem("spaBookings")||"[]");
+  // Save booking locally
+  const bookings = JSON.parse(localStorage.getItem("spaBookings")) || [];
   bookings.push(booking);
-  localStorage.setItem("spaBookings",JSON.stringify(bookings));
+  localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
   // Clear cart
-  cart=[]; localStorage.removeItem(CART_KEY);
+  cart = [];
+  saveCart();
+  renderCart();
+
   alert("Booking submitted successfully ✅");
-  window.location.href="index.html";
+  window.location.href = "index.html";
 }
+
+function notifyAdmin(booking) {
+    const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+    const adminPhone = adminProfile.phone;
+    if (!adminPhone) return;
+  
+    const servicesList = booking.services
+      .map(s => `• ${s.name} (₦${s.price.toLocaleString()}, ${s.duration} mins)`)
+      .join("\n");
+  
+    const message = `
+  New Booking 📅
+  Name: ${booking.customer.name}
+  Email: ${booking.customer.email}
+  Phone: ${booking.customer.phone}
+  
+  Services:
+  ${servicesList}
+  
+  Total: ₦${booking.total.toLocaleString()}
+  Date: ${booking.date}
+  Time: ${booking.time}
+    `;
+  
+    // Open WhatsApp in new tab
+    window.open(
+      `https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  }
 
 /* INIT */
 renderCart();
