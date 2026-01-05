@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Select Services | Pax & Pearl Body Works</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Select Services | Pax & Pearl Body Works</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
-  <!-- Core Styles -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
+<!-- Styles -->
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
 </head>
-
 <body>
 
 <div class="container">
@@ -36,12 +35,7 @@
   <section class="search-section">
     <div class="search-box">
       <span class="material-icons-round">search</span>
-      <input
-        type="text"
-        id="serviceSearch"
-        placeholder="Search services..."
-        autocomplete="off"
-      />
+      <input type="text" id="serviceSearch" placeholder="Search services..." autocomplete="off"/>
     </div>
   </section>
 
@@ -53,47 +47,34 @@
     <h2>Select Services</h2>
     <div id="services" class="services"></div>
   </section>
-
 </div>
 
 <!-- MOBILE NAV -->
 <nav class="mobile-nav">
-  <a href="index.html">
-    <span class="material-icons-round">home</span>
-    <small>Home</small>
-  </a>
-
-  <a href="booking.html">
-    <span class="material-icons-round">event</span>
-    <small>Booking</small>
-  </a>
-
-  <a href="saved.html">
-    <span class="material-icons-round">favorite</span>
-    <small>Saved</small>
-  </a>
-
-  <a href="#" id="messageAdmin">
-    <span class="material-icons-round">chat</span>
-    <small>Message</small>
-  </a>
-
-  <a href="profile.html">
-    <span class="material-icons-round">person</span>
-    <small>Profile</small>
-  </a>
+  <a href="index.html"><span class="material-icons-round">home</span><small>Home</small></a>
+  <a href="booking.html"><span class="material-icons-round">event</span><small>Booking</small></a>
+  <a href="saved.html"><span class="material-icons-round">favorite</span><small>Saved</small></a>
+  <a href="#" id="messageAdmin"><span class="material-icons-round">chat</span><small>Message</small></a>
+  <a href="profile.html"><span class="material-icons-round">person</span><small>Profile</small></a>
 </nav>
 
-<style>
-  .container { padding-bottom: 90px; }
-</style>
-
-<!-- CORE SCRIPTS -->
-
-<script src="js/data.js"></script>
-<script src="js/booking.js"></script>
+<style>.container{padding-bottom:90px;}</style>
 
 <script>
+/* ============================
+   CART
+============================ */
+const CART_KEY = "spaBookingCart";
+let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+const bookingCountEl = document.getElementById("bookingCount");
+
+function updateBadge() {
+  bookingCountEl.textContent = cart.length;
+}
+
+/* ============================
+   SERVICES
+============================ */
 const servicesContainer = document.getElementById("services");
 const filterContainer = document.querySelector(".category-filter");
 const searchInput = document.getElementById("serviceSearch");
@@ -102,14 +83,9 @@ let catalog = { categories: [], services: [] };
 let activeCategory = "all";
 let searchQuery = "";
 
-/* ============================
-   LOAD CATALOG (STATIC FILE)
-============================ */
+/* FETCH CATALOG */
 fetch("/catalog.json")
-  .then(res => {
-    if (!res.ok) throw new Error("Catalog missing");
-    return res.json();
-  })
+  .then(res => res.ok ? res.json() : Promise.reject("Catalog missing"))
   .then(data => {
     catalog = data;
     renderCategoryFilter();
@@ -117,90 +93,60 @@ fetch("/catalog.json")
   })
   .catch(err => {
     console.error(err);
-    servicesContainer.innerHTML =
-      "<p class='empty'>Services are currently unavailable.</p>";
+    servicesContainer.innerHTML = "<p class='empty'>Services are currently unavailable.</p>";
   });
 
-/* ============================
-   CATEGORY FILTER
-============================ */
+/* RENDER CATEGORY FILTER */
 function renderCategoryFilter() {
   filterContainer.innerHTML = "";
-
-  // All button
   const allBtn = document.createElement("button");
   allBtn.textContent = "All";
   allBtn.className = "active";
-  allBtn.onclick = () => {
-    activeCategory = "all";
-    setActiveFilter(allBtn);
-    renderServices();
-  };
+  allBtn.onclick = () => { activeCategory="all"; setActiveFilter(allBtn); renderServices(); };
   filterContainer.appendChild(allBtn);
 
   catalog.categories.forEach(cat => {
     const btn = document.createElement("button");
     btn.textContent = cat.name;
-    btn.onclick = () => {
-      activeCategory = cat.id;
-      setActiveFilter(btn);
-      renderServices();
-    };
+    btn.onclick = () => { activeCategory=cat.id; setActiveFilter(btn); renderServices(); };
     filterContainer.appendChild(btn);
   });
 }
 
 function setActiveFilter(activeBtn) {
-  filterContainer
-    .querySelectorAll("button")
-    .forEach(b => b.classList.remove("active"));
+  filterContainer.querySelectorAll("button").forEach(b => b.classList.remove("active"));
   activeBtn.classList.add("active");
 }
 
-/* ============================
-   SERVICES RENDER
-============================ */
+/* RENDER SERVICES */
 function renderServices() {
   servicesContainer.innerHTML = "";
 
   const services = catalog.services.filter(service => {
-    const matchesCategory =
-      activeCategory === "all" || service.category === activeCategory;
-
-    const matchesSearch =
-      service.name.toLowerCase().includes(searchQuery) ||
-      service.description.toLowerCase().includes(searchQuery);
-
+    const matchesCategory = activeCategory==="all" || service.category===activeCategory;
+    const matchesSearch = service.name.toLowerCase().includes(searchQuery) || service.description.toLowerCase().includes(searchQuery);
     return matchesCategory && matchesSearch;
   });
 
-  if (!services.length) {
-    servicesContainer.innerHTML =
-      "<p class='empty'>No services found.</p>";
+  if(!services.length){
+    servicesContainer.innerHTML = "<p class='empty'>No services found.</p>";
     return;
   }
 
   services.forEach(service => {
     const card = document.createElement("div");
     card.className = "card service-card";
-
     card.innerHTML = `
       <h4>${service.name}</h4>
       <p>${service.description}</p>
-      <p>
-        <strong>₦${service.price.toLocaleString()}</strong><br>
-        <small>${service.duration} mins</small>
-      </p>
+      <p><strong>₦${service.price.toLocaleString()}</strong><br><small>${service.duration} mins</small></p>
       <button class="btn btn-primary">Add to Booking</button>
     `;
 
     card.querySelector("button").onclick = () => {
-      if (typeof addToCart === "function") {
-        addToCart({
-          name: service.name,
-          price: service.price
-        });
-      }
+      cart.push({ id: service.id, name: service.name, price: service.price });
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      updateBadge();
       alert(`${service.name} added to booking`);
     };
 
@@ -208,30 +154,14 @@ function renderServices() {
   });
 }
 
-/* ============================
-   SEARCH
-============================ */
+/* SEARCH */
 searchInput.addEventListener("input", e => {
   searchQuery = e.target.value.toLowerCase();
   renderServices();
 });
+
+/* INIT */
+updateBadge();
 </script>
-
-
-
-
-<!-- ADMIN WHATSAPP -->
-<script>
-const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-const msgBtn = document.getElementById("messageAdmin");
-
-if (msgBtn && adminProfile.phone) {
-  msgBtn.href = `https://wa.me/${adminProfile.phone}`;
-  msgBtn.target = "_blank";
-} else if (msgBtn) {
-  msgBtn.onclick = () => alert("Admin contact not available yet.");
-}
-</script>
-
 </body>
 </html>
