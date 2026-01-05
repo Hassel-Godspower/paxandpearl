@@ -115,10 +115,98 @@ fetch("/catalog.json")
     renderCategoryFilter();
     renderServices();
   })
-  .catch(() => {
+  .catch(err => {
+    console.error(err);
     servicesContainer.innerHTML =
       "<p class='empty'>Services are currently unavailable.</p>";
   });
+
+/* ============================
+   CATEGORY FILTER
+============================ */
+function renderCategoryFilter() {
+  filterContainer.innerHTML = "";
+
+  // All button
+  const allBtn = document.createElement("button");
+  allBtn.textContent = "All";
+  allBtn.className = "active";
+  allBtn.onclick = () => {
+    activeCategory = "all";
+    setActiveFilter(allBtn);
+    renderServices();
+  };
+  filterContainer.appendChild(allBtn);
+
+  catalog.categories.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.textContent = cat.name;
+    btn.onclick = () => {
+      activeCategory = cat.id;
+      setActiveFilter(btn);
+      renderServices();
+    };
+    filterContainer.appendChild(btn);
+  });
+}
+
+function setActiveFilter(activeBtn) {
+  filterContainer
+    .querySelectorAll("button")
+    .forEach(b => b.classList.remove("active"));
+  activeBtn.classList.add("active");
+}
+
+/* ============================
+   SERVICES RENDER
+============================ */
+function renderServices() {
+  servicesContainer.innerHTML = "";
+
+  const services = catalog.services.filter(service => {
+    const matchesCategory =
+      activeCategory === "all" || service.category === activeCategory;
+
+    const matchesSearch =
+      service.name.toLowerCase().includes(searchQuery) ||
+      service.description.toLowerCase().includes(searchQuery);
+
+    return matchesCategory && matchesSearch;
+  });
+
+  if (!services.length) {
+    servicesContainer.innerHTML =
+      "<p class='empty'>No services found.</p>";
+    return;
+  }
+
+  services.forEach(service => {
+    const card = document.createElement("div");
+    card.className = "card service-card";
+
+    card.innerHTML = `
+      <h4>${service.name}</h4>
+      <p>${service.description}</p>
+      <p>
+        <strong>₦${service.price.toLocaleString()}</strong><br>
+        <small>${service.duration} mins</small>
+      </p>
+      <button class="btn btn-primary">Add to Booking</button>
+    `;
+
+    card.querySelector("button").onclick = () => {
+      if (typeof addToCart === "function") {
+        addToCart({
+          name: service.name,
+          price: service.price
+        });
+      }
+      alert(`${service.name} added to booking`);
+    };
+
+    servicesContainer.appendChild(card);
+  });
+}
 
 /* ============================
    SEARCH
@@ -128,6 +216,7 @@ searchInput.addEventListener("input", e => {
   renderServices();
 });
 </script>
+
 
 
 <!-- ADMIN WHATSAPP -->
