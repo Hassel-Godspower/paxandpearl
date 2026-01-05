@@ -316,11 +316,12 @@ updateMessageButton();
     <button class="btn btn-primary" id="addService">Add Service</button>
   </section>
 </section>
-
+  
+<div
 <button class="btn btn-primary" onclick="publishCatalog()">
   Publish Services
 </button>
-
+</div>
 
 <script>
 /* ============================
@@ -467,20 +468,32 @@ function refreshCategorySelect() {
   });
 }
 
-/* ============================
-   PERSISTENCE
-============================ */
 function persistCatalog() {
   localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+}
+</script> 
+  
+<script>
+function publishCatalog() {
+  const data = JSON.stringify(catalog, null, 2);
 
-  fetch("/save-catalog.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(catalog)
-  });
+  const blob = new Blob([data], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "catalog.json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  alert(
+    "catalog.json downloaded.\n\n" +
+    "Upload it to your GitHub repo root and deploy to make services public."
+  );
 }
 </script>
-
 
 </body>
 </html>
