@@ -248,9 +248,15 @@ if (saveBtn) {
   saveBtn.addEventListener("click", () => {
     const phone = adminPhoneInput.value.trim();
     if (!phone) return alert("Enter WhatsApp number");
-
+  
+    // Save to adminProfile (dashboard use)
     localStorage.setItem("adminProfile", JSON.stringify({ phone }));
-    alert("Admin WhatsApp number saved");
+  
+    // 🔥 Save into catalog.meta
+    catalog.meta.adminWhatsApp = phone;
+    localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+  
+    alert("Admin WhatsApp saved & linked to catalog ✅");
 
     // Update nav button immediately
     updateMessageButton();
@@ -330,9 +336,17 @@ updateMessageButton();
 let catalog = JSON.parse(localStorage.getItem("spaCatalog"));
 
 if (!catalog) {
-  catalog = { categories: [], services: [] };
+  catalog = {
+    meta: {
+      adminWhatsApp: "",
+      publishedAt: null
+    },
+    categories: [],
+    services: []
+  };
   localStorage.setItem("spaCatalog", JSON.stringify(catalog));
 }
+
 
 /* ============================
    DOM ELEMENTS
@@ -475,8 +489,14 @@ function persistCatalog() {
   
 <script>
 function publishCatalog() {
-  const data = JSON.stringify(catalog, null, 2);
+  if (!catalog.meta.adminWhatsApp) {
+    alert("❌ Please set Admin WhatsApp before publishing services.");
+    return;
+  }
 
+  catalog.meta.publishedAt = new Date().toISOString();
+
+  const data = JSON.stringify(catalog, null, 2);
   const blob = new Blob([data], { type: "application/json" });
   const url = URL.createObjectURL(blob);
 
@@ -489,8 +509,9 @@ function publishCatalog() {
   URL.revokeObjectURL(url);
 
   alert(
-    "catalog.json downloaded.\n\n" +
-    "Upload it to your GitHub repo root and deploy to make services public."
+    "catalog.json downloaded successfully ✅\n\n" +
+    "Admin WhatsApp is embedded.\n" +
+    "Upload this file to GitHub root."
   );
 }
 </script>
