@@ -120,16 +120,7 @@ function confirmBooking() {
   bookings.push(booking);
   localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
-  // Clear cart
-  cart = [];
-  saveCart();
-  renderCart();
-
-  alert("Booking submitted successfully ✅");
-  window.location.href = "index.html";
-}
-
-function notifyAdmin(booking) {
+  function notifyAdmin(booking) {
     const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
     const adminPhone = adminProfile.phone;
     if (!adminPhone) return;
@@ -158,6 +149,16 @@ function notifyAdmin(booking) {
       "_blank"
     );
   }
+
+
+  // Clear cart
+  cart = [];
+  saveCart();
+  renderCart();
+
+  alert("Booking submitted successfully ✅");
+  window.location.href = "index.html";
+}
 
 /* INIT */
 renderCart();
