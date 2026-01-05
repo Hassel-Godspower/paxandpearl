@@ -104,23 +104,7 @@ let catalog = { categories: [], services: [] };
 let activeCategory = "all";
 let searchQuery = "";
 
-/* ============================
-   LOAD CATALOG (SERVER)
-============================ */
-fetch("/data/spa-catalog.json")
-  .then(res => {
-    if (!res.ok) throw new Error("Catalog not found");
-    return res.json();
-  })
-  .then(data => {
-    catalog = data;
-    renderCategoryFilter();
-    renderServices();
-  })
-  .catch(() => {
-    servicesContainer.innerHTML =
-      "<p class='empty'>Services are currently unavailable.</p>";
-  });
+
 
 /* ============================
    SEARCH
