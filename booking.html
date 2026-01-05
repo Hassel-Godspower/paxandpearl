@@ -1,255 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Your Booking | Pax & Pearl Body Works</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Your Booking | Pax & Pearl Body Works</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
-  <!-- Core Styles -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
+<!-- Styles -->
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
 </head>
-
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <!-- HEADER -->
-    <header class="header">
-      <div class="logo">Your Booking</div>
-    </header>
+  <header class="header"><div class="logo">Your Booking</div></header>
 
-    <!-- CART SUMMARY -->
-    <section class="booking-summary">
-      <h2>Your Booking</h2>
-      <div id="cartItems" class="cart-items"></div>
-      <div class="total-row">
-        <span>Total</span>
-        <strong id="total">₦0</strong>
-      </div>
-    </section>
+  <!-- CART SUMMARY -->
+  <section class="booking-summary">
+    <h2>Your Booking</h2>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="total-row"><span>Total</span><strong id="total">₦0</strong></div>
+  </section>
 
-    <!-- CUSTOMER DETAILS -->
-    <section class="booking-form">
-      <h3>Your Details</h3>
-      <input id="name" type="text" placeholder="Full Name" required>
-      <input id="email" type="email" placeholder="Email" required>
-      <input id="phone" type="tel" placeholder="WhatsApp Number" required>
+  <!-- CUSTOMER DETAILS -->
+  <section class="booking-form">
+    <h3>Your Details</h3>
+    <input id="name" type="text" placeholder="Full Name" required>
+    <input id="email" type="email" placeholder="Email" required>
+    <input id="phone" type="tel" placeholder="WhatsApp Number" required>
+    <div class="datetime-row">
+      <input id="date" type="date" required>
+      <input id="time" type="time" required>
+    </div>
+    <button class="btn btn-primary" onclick="confirmBooking()">Book Now</button>
+    <p class="note">*Booking time subject to admin confirmation</p>
+  </section>
 
-      <div class="datetime-row">
-        <input id="date" type="date" required>
-        <input id="time" type="time" required>
-      </div>
+</div>
 
-      <button class="btn btn-primary" onclick="confirmBooking()">Book Now</button>
-      <p class="note">*Booking time subject to admin confirmation</p>
-    </section>
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+  <a href="index.html"><span class="material-icons-round">home</span><small>Home</small></a>
+  <a href="booking.html" class="active"><span class="material-icons-round">event</span><small>Booking</small></a>
+  <a href="saved.html"><span class="material-icons-round">favorite</span><small>Saved</small></a>
+  <a href="#" id="messageAdmin"><span class="material-icons-round">chat</span><small>Message</small></a>
+  <a href="profile.html"><span class="material-icons-round">person</span><small>Profile</small></a>
+</nav>
 
-  </div>
+<style>.container{padding-bottom:90px;}</style>
 
-  <!-- MOBILE NAV -->
-  <nav class="mobile-nav">
-    <a href="index.html">
-      <span class="material-icons-round">home</span>
-      <small>Home</small>
-    </a>
+<script>
+const CART_KEY = "spaBookingCart";
+let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
-    <a href="booking.html" class="active">
-      <span class="material-icons-round">event</span>
-      <small>Booking</small>
-    </a>
+const cartItemsEl = document.getElementById("cartItems");
+const totalEl = document.getElementById("total");
+const bookingCountEl = document.getElementById("bookingCount");
 
-    <a href="saved.html">
-      <span class="material-icons-round">favorite</span>
-      <small>Saved</small>
-    </a>
-
-    <a href="#" id="messageAdmin">
-      <span class="material-icons-round">chat</span>
-      <small>Message</small>
-    </a>
-
-    <a href="profile.html">
-      <span class="material-icons-round">person</span>
-      <small>Profile</small>
-    </a>
-  </nav>
-
-  <style>
-    .container { padding-bottom: 90px; }
-    .mobile-nav a:active { transform: scale(0.96); }
-    @media (min-width: 768px) { .mobile-nav { display: none; } }
-    .cart-item { display:flex; justify-content:space-between; margin-bottom:8px; }
-  </style>
-
-  <!-- =========================
-       BOOKING SCRIPT
-  ========================== -->
-  <script>
-  /* ============================
-     CART SYSTEM
-  ============================ */
-  const CART_KEY = "spaBookingCart";
-  let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-
-  const cartItemsEl = document.getElementById("cartItems");
-  const totalEl = document.getElementById("total");
-
-  /* ============================
-     LOAD CATALOG TO RESYNC CART
-  ============================ */
-  let catalog = { categories: [], services: [] };
-
-  fetch("/catalog.json")
-    .then(res => {
-      if (!res.ok) throw new Error("Catalog missing");
-      return res.json();
-    })
-    .then(data => {
-      catalog = data;
-
-      // Map cart items to latest catalog prices & names
-      cart = cart.map(item => {
-        const svc = catalog.services.find(s => s.id === item.id);
-        return svc ? { ...svc } : item;
-      });
-      renderCart();
-    })
-    .catch(err => {
-      console.error(err);
-      cartItemsEl.innerHTML = "<p class='empty'>Services are currently unavailable.</p>";
-    });
-
-  /* ============================
-     RENDER CART
-  ============================ */
-  function renderCart() {
-    cartItemsEl.innerHTML = "";
-    if (!cart.length) {
-      cartItemsEl.innerHTML = "<p class='empty'>No services selected yet.</p>";
-      totalEl.textContent = "₦0";
-      return;
-    }
-
-    let total = 0;
-
-    cart.forEach((item, index) => {
-      total += item.price;
-      const row = document.createElement("div");
-      row.className = "cart-item";
-      row.innerHTML = `
-        <span>${item.name}</span>
-        <strong>₦${item.price.toLocaleString()}</strong>
-        <button onclick="removeFromCart(${index})" style="margin-left:10px;">❌</button>
-      `;
-      cartItemsEl.appendChild(row);
-    });
-
-    totalEl.textContent = "₦" + total.toLocaleString();
+/* RENDER CART */
+function renderCart() {
+  cartItemsEl.innerHTML = "";
+  if (!cart.length) {
+    cartItemsEl.innerHTML = "<p class='empty'>No services selected yet.</p>";
+    totalEl.textContent = "₦0";
+    return;
   }
 
-  function removeFromCart(index) {
-    cart.splice(index, 1);
-    saveCart();
-    renderCart();
-  }
+  let total = 0;
+  cart.forEach((item, i) => {
+    total += item.price;
+    const row = document.createElement("div");
+    row.className = "cart-item";
+    row.innerHTML = `<span>${item.name}</span><strong>₦${item.price.toLocaleString()}</strong>`;
+    cartItemsEl.appendChild(row);
+  });
 
-  function saveCart() {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  }
+  totalEl.textContent = "₦" + total.toLocaleString();
+}
 
-  /* ============================
-     CONFIRM BOOKING
-  ============================ */
-  function confirmBooking() {
-    if (!cart.length) {
-      alert("Please select at least one service.");
-      return;
-    }
+/* CONFIRM BOOKING */
+function confirmBooking() {
+  if (!cart.length) { alert("Please select at least one service."); return; }
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("time").value;
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
 
-    if (!name || !email || !phone || !date || !time) {
-      alert("Please fill all booking details.");
-      return;
-    }
+  if(!name||!email||!phone||!date||!time){alert("Fill all booking details.");return;}
 
-    const booking = {
-      id: "bk_" + Date.now(),
-      customer: { name, email, phone },
-      services: cart,
-      date,
-      time,
-      status: "pending",
-      createdAt: new Date().toISOString()
-    };
+  const booking = {
+    id:"bk_"+Date.now(),
+    customer:{name,email,phone},
+    services:cart,
+    date,time,
+    status:"pending",
+    createdAt:new Date().toISOString()
+  };
 
-    const bookings = JSON.parse(localStorage.getItem("spaBookings")) || [];
-    bookings.push(booking);
-    localStorage.setItem("spaBookings", JSON.stringify(bookings));
+  const bookings = JSON.parse(localStorage.getItem("spaBookings")||"[]");
+  bookings.push(booking);
+  localStorage.setItem("spaBookings",JSON.stringify(bookings));
 
-    // Clear cart
-    cart = [];
-    saveCart();
-    renderCart();
+  // Clear cart
+  cart=[]; localStorage.removeItem(CART_KEY);
+  alert("Booking submitted successfully ✅");
+  window.location.href="index.html";
+}
 
-    alert("Booking submitted successfully ✅");
-    window.location.href = "index.html";
-  }
-  /* =========================
-     WHATSAPP NOTIFY ADMIN
-  ========================= */
-  function notifyAdmin(b) {
-    const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
-    const adminPhone = adminProfile.phone || SPA_DATA.whatsappAdmin;
-    if (!adminPhone) return;
-  
-    const message = `
-  New Booking 📅
-  Name: ${b.name}
-  Services: ${b.services}
-  Total: ₦${b.total}
-  Date: ${b.date}
-  Time: ${b.time}
-  Phone: ${b.phone}
-  `;
-  
-    window.open(
-      `https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
-  }
-
-
-  /* ============================
-     INIT
-  ============================ */
-  renderCart();
-
-  </script>
-
-  <!-- ADMIN WHATSAPP -->
-  <script>
-    const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-    const msgBtn = document.getElementById("messageAdmin");
-
-    if (msgBtn && adminProfile.phone) {
-      msgBtn.href = `https://wa.me/${adminProfile.phone}`;
-      msgBtn.target = "_blank";
-    } else if (msgBtn) {
-      msgBtn.onclick = () => alert("Admin contact not available yet.");
-    }
-  </script>
+/* INIT */
+renderCart();
+</script>
 
 </body>
 </html>
