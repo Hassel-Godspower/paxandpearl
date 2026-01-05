@@ -46,6 +46,8 @@
     </div>
   </section>
 
+  <section class="category-filter"></section>
+
   <!-- SERVICES -->
   <section class="services-section">
     <h2>Select Services</h2>
@@ -102,17 +104,18 @@ const servicesContainer = document.getElementById("services");
 const filterContainer = document.querySelector(".category-filter");
 const searchInput = document.getElementById("serviceSearch");
 
-const catalog =
-  JSON.parse(localStorage.getItem("spaCatalog")) || {
-    categories: [],
-    services: []
-  };
+const catalog = JSON.parse(localStorage.getItem("spaCatalog")) || {
+  categories: [],
+  services: []
+};
 
 let activeCategory = "all";
 let searchQuery = "";
 
-/* ---------- Render Categories ---------- */
-function renderCategories() {
+/* ============================
+   RENDER CATEGORY FILTER
+============================ */
+function renderCategoryFilter() {
   filterContainer.innerHTML = `<button data-filter="all" class="active">All</button>`;
 
   catalog.categories.forEach(cat => {
@@ -123,30 +126,47 @@ function renderCategories() {
   });
 
   filterContainer.querySelectorAll("button").forEach(btn => {
-    btn.addEventListener("click", () => {
+    btn.onclick = () => {
       filterContainer.querySelectorAll("button").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       activeCategory = btn.dataset.filter;
       renderServices();
-    });
+    };
   });
 }
 
-/* ---------- Render Services ---------- */
+/* ============================
+   RENDER SERVICES BY CATEGORY
+============================ */
 function renderServices() {
   servicesContainer.innerHTML = "";
 
-  catalog.services
-    .filter(s =>
-      (activeCategory === "all" || s.category === activeCategory) &&
-      s.name.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    .forEach(service => {
+  const filteredCategories =
+    activeCategory === "all"
+      ? catalog.categories
+      : catalog.categories.filter(c => c.id === activeCategory);
+
+  filteredCategories.forEach(category => {
+    const services = catalog.services.filter(service =>
+      service.category === category.id &&
+      service.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    if (!services.length) return;
+
+    // Category header
+    servicesContainer.insertAdjacentHTML(
+      "beforeend",
+      `<h3 class="category-title">${category.name}</h3>`
+    );
+
+    services.forEach(service => {
       const card = document.createElement("div");
       card.className = "card service-card";
 
       card.innerHTML = `
-        <h3>${service.name}</h3>
+        <h4>${service.name}</h4>
+        <p>${service.description}</p>
         <p>
           <strong>₦${service.price.toLocaleString()}</strong><br>
           <small>${service.duration} mins</small>
@@ -154,26 +174,34 @@ function renderServices() {
         <button class="btn btn-primary">Add to Booking</button>
       `;
 
-
       card.querySelector("button").onclick = () => {
-        addToCart({ name: service.name, price: service.price });
-        alert(`${service.name} added`);
+        addToCart({
+          name: service.name,
+          price: service.price
+        });
+        alert(`${service.name} added to booking`);
       };
 
       servicesContainer.appendChild(card);
     });
+  });
 }
 
-/* ---------- Search ---------- */
+/* ============================
+   SEARCH
+============================ */
 searchInput.addEventListener("input", e => {
   searchQuery = e.target.value;
   renderServices();
 });
 
-/* ---------- Init ---------- */
-renderCategories();
+/* ============================
+   INIT
+============================ */
+renderCategoryFilter();
 renderServices();
 </script>
+
 
   
 <script>
