@@ -333,6 +333,17 @@ function enableDragSort() {
   });
 }
 
+function publishCatalog() {
+  fetch("/catalog.json", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(catalog)
+  })
+  .then(() => alert("Catalog published successfully ✅"))
+  .catch(() => alert("Failed to publish catalog ❌"));
+}
+
+
 function updateServiceOrder() {
   document.querySelectorAll(".card[draggable]").forEach((card, index) => {
     const service = catalog.services.find(s => s.id === card.dataset.id);
