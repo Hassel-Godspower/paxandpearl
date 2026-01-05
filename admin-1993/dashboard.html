@@ -275,48 +275,201 @@ updateMessageButton();
 <!-- SERVICES -->
 <section>
   <h3>Services & Pricing</h3>
-  <div id="services"></div>
-  
-  <section>
-    <!-- SAVED CATEGORIES -->
-    <section>
-      <h3>Saved Categories</h3>
-      <div id="categories"></div>
-    </section>
 
+  <!-- SAVED SERVICES -->
+  <section>
+    <h3>Saved Services</h3>
+    <div id="services"></div>
+  </section>
+
+  <!-- SAVED CATEGORIES -->
+  <section>
+    <h3>Saved Categories</h3>
+    <div id="categories"></div>
+  </section>
+
+  <!-- CREATE CATEGORY -->
+  <section>
     <h3>Create Category</h3>
     <input id="categoryName" placeholder="Category name (e.g. Massage)">
     <button class="btn btn-primary" id="addCategory">Add Category</button>
   </section>
-  
+
+  <!-- CREATE SERVICE -->
   <section>
-    <!-- SAVED CATEGORIES -->
-    <section>
-      <h3>Saved Services</h3>
-      <div id="services"></div>
-    </section>
+    <h3>Create Service</h3>
 
-  <h3>Create Service</h3>
+    <input id="serviceName" placeholder="Service name">
 
-  <input id="serviceName" placeholder="Service name">
+    <textarea
+      id="serviceDescription"
+      placeholder="Service description (e.g. benefits, process, who it's for)"
+      rows="3"
+    ></textarea>
 
-  <textarea
-    id="serviceDescription"
-    placeholder="Service description (e.g. benefits, process, who it's for)"
-    rows="3"
-  ></textarea>
+    <input id="servicePrice" type="number" placeholder="Price (₦)">
 
-  <input id="servicePrice" type="number" placeholder="Price (₦)">
+    <select id="serviceCategory"></select>
 
-  <select id="serviceCategory"></select>
+    <input id="serviceDuration" type="number" placeholder="Duration (minutes)">
 
-  <input id="serviceDuration" type="number" placeholder="Duration (minutes)">
-
-  <button class="btn btn-primary" id="addService">Add Service</button>
+    <button class="btn btn-primary" id="addService">Add Service</button>
+  </section>
 </section>
 
-  
-<script src="/admin-1993/admin.js"></script>
+<script>
+/* ============================
+   SPA CATALOG (LOCALSTORAGE)
+============================ */
+let catalog = JSON.parse(localStorage.getItem("spaCatalog"));
+
+if (!catalog) {
+  catalog = { categories: [], services: [] };
+  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+}
+
+/* ============================
+   DOM ELEMENTS
+============================ */
+const categoriesContainer = document.getElementById("categories");
+const servicesContainer   = document.getElementById("services");
+
+const categoryInput = document.getElementById("categoryName");
+const addCategoryBtn = document.getElementById("addCategory");
+
+const serviceNameInput = document.getElementById("serviceName");
+const serviceDescriptionInput = document.getElementById("serviceDescription");
+const servicePriceInput = document.getElementById("servicePrice");
+const serviceDurationInput = document.getElementById("serviceDuration");
+const serviceCategorySelect = document.getElementById("serviceCategory");
+const addServiceBtn = document.getElementById("addService");
+
+/* ============================
+   INITIAL RENDER
+============================ */
+renderCategories();
+renderServices();
+refreshCategorySelect();
+
+/* ============================
+   CATEGORY LOGIC
+============================ */
+addCategoryBtn.addEventListener("click", () => {
+  const name = categoryInput.value.trim();
+  if (!name) return alert("Enter category name");
+
+  const id = name.toLowerCase().replace(/\s+/g, "-");
+
+  if (catalog.categories.some(c => c.id === id)) {
+    return alert("Category already exists");
+  }
+
+  catalog.categories.push({ id, name });
+  persistCatalog();
+
+  categoryInput.value = "";
+  renderCategories();
+  refreshCategorySelect();
+  alert("Category added ✅");
+});
+
+function renderCategories() {
+  categoriesContainer.innerHTML = "";
+
+  if (!catalog.categories.length) {
+    categoriesContainer.innerHTML = "<p>No categories yet.</p>";
+    return;
+  }
+
+  catalog.categories.forEach(cat => {
+    categoriesContainer.insertAdjacentHTML(
+      "beforeend",
+      `<div class="card"><strong>${cat.name}</strong></div>`
+    );
+  });
+}
+
+/* ============================
+   SERVICE LOGIC
+============================ */
+addServiceBtn.addEventListener("click", () => {
+  const name = serviceNameInput.value.trim();
+  const description = serviceDescriptionInput.value.trim();
+  const price = Number(servicePriceInput.value);
+  const duration = Number(serviceDurationInput.value);
+  const category = serviceCategorySelect.value;
+
+  if (!name || !description || !price || !duration || !category) {
+    return alert("Fill all service fields");
+  }
+
+  catalog.services.push({
+    id: "svc_" + Date.now(),
+    name,
+    description,
+    price,
+    duration,
+    category,
+    order: catalog.services.length
+  });
+
+  persistCatalog();
+
+  serviceNameInput.value = "";
+  serviceDescriptionInput.value = "";
+  servicePriceInput.value = "";
+  serviceDurationInput.value = "";
+
+  renderServices();
+  alert("Service added ✅");
+});
+
+function renderServices() {
+  servicesContainer.innerHTML = "";
+
+  if (!catalog.services.length) {
+    servicesContainer.innerHTML = "<p>No services yet.</p>";
+    return;
+  }
+
+  catalog.services
+    .sort((a, b) => a.order - b.order)
+    .forEach(service => {
+      servicesContainer.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="card">
+          <strong>${service.name}</strong><br>
+          <small>${service.description}</small><br>
+          ₦${service.price.toLocaleString()} • ${service.duration} mins
+        </div>
+        `
+      );
+    });
+}
+
+/* ============================
+   CATEGORY SELECT
+============================ */
+function refreshCategorySelect() {
+  serviceCategorySelect.innerHTML = "";
+
+  catalog.categories.forEach(cat => {
+    const opt = document.createElement("option");
+    opt.value = cat.id;
+    opt.textContent = cat.name;
+    serviceCategorySelect.appendChild(opt);
+  });
+}
+
+/* ============================
+   PERSISTENCE
+============================ */
+function persistCatalog() {
+  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+}
+</script>
+
 
 </body>
 </html>
