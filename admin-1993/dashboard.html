@@ -472,6 +472,12 @@ function refreshCategorySelect() {
 ============================ */
 function persistCatalog() {
   localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+
+  fetch("/save-catalog.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(catalog)
+  });
 }
 </script>
 
