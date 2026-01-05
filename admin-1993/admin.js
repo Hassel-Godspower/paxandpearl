@@ -13,31 +13,79 @@ let services = JSON.parse(localStorage.getItem("services") || "[]");
 let adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
 
 /* ============================
+   SPA CATALOG (SINGLE SOURCE)
+============================ */
+let catalog = JSON.parse(localStorage.getItem("spaCatalog"));
+
+if (!catalog) {
+  catalog = {
+    categories: [],
+    services: []
+  };
+  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+}
+
+/* ============================
    DOM READY
 ============================ */
 document.addEventListener("DOMContentLoaded", () => {
   cacheDOM();
   bindAdminWhatsApp();
+  bindCatalogActions();
+  renderServices();
+  refreshCategorySelect();
   renderStats();
   renderBookings();
-  renderServices();
   bindLogout();
 });
 
 /* ============================
    CACHE DOM
 ============================ */
-let bookingsContainer,
-    servicesContainer,
-    adminPhoneInput,
-    headerWhatsApp;
+let categoryInput,
+    addCategoryBtn,
+    serviceNameInput,
+    serviceDescriptionInput,
+    servicePriceInput,
+    serviceDurationInput,
+    serviceCategorySelect,
+    addServiceBtn;
 
 function cacheDOM() {
-  bookingsContainer = document.getElementById("bookings");
   servicesContainer = document.getElementById("services");
-  adminPhoneInput = document.getElementById("adminPhone");
-  headerWhatsApp = document.getElementById("headerWhatsApp");
+
+  categoryInput = document.getElementById("categoryName");
+  addCategoryBtn = document.getElementById("addCategory");
+
+  serviceNameInput = document.getElementById("serviceName");
+  serviceDescriptionInput = document.getElementById("serviceDescription");
+  servicePriceInput = document.getElementById("servicePrice");
+  serviceDurationInput = document.getElementById("serviceDuration");
+  serviceCategorySelect = document.getElementById("serviceCategory");
+  addServiceBtn = document.getElementById("addService");
 }
+function bindCatalogActions() {
+  addCategoryBtn?.addEventListener("click", () => {
+    const name = categoryInput.value.trim();
+    if (!name) return alert("Enter category name");
+
+    const id = name.toLowerCase().replace(/\s+/g, "-");
+
+    if (catalog.categories.some(c => c.id === id)) {
+      return alert("Category already exists");
+    }
+
+    catalog.categories.push({ id, name });
+    persistCatalog();
+
+    categoryInput.value = "";
+    refreshCategorySelect();
+    alert("Category added ✅");
+  });
+
+  addServiceBtn?.addEventListener("click", addService);
+}
+
 
 /* ============================
    ADMIN WHATSAPP
@@ -160,17 +208,19 @@ function persistBookings() {
    SERVICES MANAGEMENT
 ============================ */
 function renderServices() {
+  if (!servicesContainer) return;
   servicesContainer.innerHTML = "";
 
   catalog.services
     .sort((a, b) => a.order - b.order)
-    .forEach((service, index) => {
+    .forEach(service => {
       servicesContainer.insertAdjacentHTML(
         "beforeend",
         `
         <div class="card" draggable="true" data-id="${service.id}">
           <strong>${service.name}</strong><br>
-          ₦${service.price.toLocaleString()} • ${service.duration} mins<br>
+          <small>${service.description}</small><br>
+          ₦${service.price.toLocaleString()} • ${service.duration} mins
 
           <div class="row">
             <button class="btn btn-primary" onclick="editService('${service.id}')">Edit</button>
@@ -180,6 +230,7 @@ function renderServices() {
         `
       );
     });
+}
 
   enableDragSort();
 }
@@ -321,36 +372,54 @@ addCategoryBtn?.addEventListener("click", () => {
 /* ---------- Add Service ---------- */
 const serviceDurationInput = document.getElementById("serviceDuration");
 
-addServiceBtn?.addEventListener("click", () => {
+function addService() {
   const name = serviceNameInput.value.trim();
+  const description = serviceDescriptionInput.value.trim();
   const price = Number(servicePriceInput.value);
   const duration = Number(serviceDurationInput.value);
   const category = serviceCategorySelect.value;
 
-  if (!name || !price || !duration || !category) {
-    return alert("Fill all fields");
+  if (!name || !description || !price || !duration || !category) {
+    return alert("Fill all service fields");
   }
 
   catalog.services.push({
     id: "svc_" + Date.now(),
     name,
+    description,
     price,
     duration,
     category,
     order: catalog.services.length
   });
 
-  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+  persistCatalog();
+
   serviceNameInput.value = "";
+  serviceDescriptionInput.value = "";
   servicePriceInput.value = "";
   serviceDurationInput.value = "";
 
   alert("Service added ✅");
-});
+  renderServices();
+}
 
 /* ---------- Init ---------- */
 refreshCategorySelect();
 
+function persistCatalog() {
+  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+}
+
+function refreshCategorySelect() {
+  serviceCategorySelect.innerHTML = "";
+  catalog.categories.forEach(cat => {
+    const opt = document.createElement("option");
+    opt.value = cat.id;
+    opt.textContent = cat.name;
+    serviceCategorySelect.appendChild(opt);
+  });
+}
 
 /* ============================
    LOGOUT
