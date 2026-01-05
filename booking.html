@@ -86,10 +86,7 @@ function renderCart() {
 
 /* CONFIRM BOOKING */
 function confirmBooking() {
-  if (!cart.length) {
-    alert("Please select at least one service.");
-    return;
-  }
+  if (!cart.length) { alert("Please select at least one service."); return; }
 
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
@@ -97,36 +94,25 @@ function confirmBooking() {
   const date = document.getElementById("date").value;
   const time = document.getElementById("time").value;
 
-  if (!name || !email || !phone || !date || !time) {
-    alert("Please fill all booking details.");
-    return;
-  }
-
-  const total = cart.reduce((sum, s) => sum + s.price, 0);
+  if(!name||!email||!phone||!date||!time){alert("Fill all booking details.");return;}
 
   const booking = {
-    id: "bk_" + Date.now(),
-    customer: { name, email, phone },
-    services: cart,
-    date,
-    time,
-    total,
-    status: "pending",
-    createdAt: new Date().toISOString()
+    id:"bk_"+Date.now(),
+    customer:{name,email,phone},
+    services:cart,
+    date,time,
+    status:"pending",
+    createdAt:new Date().toISOString()
   };
 
-  // Save booking locally
-  const bookings = JSON.parse(localStorage.getItem("spaBookings")) || [];
+  const bookings = JSON.parse(localStorage.getItem("spaBookings")||"[]");
   bookings.push(booking);
-  localStorage.setItem("spaBookings", JSON.stringify(bookings));
+  localStorage.setItem("spaBookings",JSON.stringify(bookings));
 
   // Clear cart
-  cart = [];
-  saveCart();
-  renderCart();
-
+  cart=[]; localStorage.removeItem(CART_KEY);
   alert("Booking submitted successfully ✅");
-  window.location.href = "index.html";
+  window.location.href="index.html";
 }
 
 /* INIT */
