@@ -141,12 +141,30 @@ function showSendToAdminButton(booking) {
 /* =========================
    WHATSAPP NOTIFY ADMIN
 ========================= */
-function notifyAdmin(booking) {
-  const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-  const adminPhone = adminProfile.phone || ""; // fallback empty
+let PUBLIC_CATALOG = null;
 
-  if (!adminPhone) {
-    alert("Admin WhatsApp not set yet.");
+fetch("/catalog.json")
+  .then(res => res.json())
+  .then(data => {
+    PUBLIC_CATALOG = data;
+
+    const adminPhone = data?.meta?.adminWhatsApp;
+    const msgBtn = document.getElementById("messageAdmin");  
+
+    if (adminPhone && msgBtn) {
+      msgBtn.href = `https://wa.me/${adminPhone}`;
+      msgBtn.target = "_blank";
+    }
+  })
+  .catch(() => {
+    console.warn("Catalog not found");
+  }); 
+
+ function notifyAdmin(booking) {
+  const phone = PUBLIC_CATALOG?.meta?.adminWhatsApp;
+
+  if (!phone) {
+    alert("Admin WhatsApp not available.");
     return;
   }
 
@@ -160,8 +178,12 @@ Time: ${booking.time}
 Phone: ${booking.customer.phone}
 `;
 
-  window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`, "_blank");
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
 }
+
 
 /* =========================
    HELPERS
