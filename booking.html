@@ -120,37 +120,6 @@ function confirmBooking() {
   bookings.push(booking);
   localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
-  function notifyAdmin(booking) {
-    const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
-    const adminPhone = adminProfile.phone;
-    if (!adminPhone) return;
-  
-    const servicesList = booking.services
-      .map(s => `• ${s.name} (₦${s.price.toLocaleString()}, ${s.duration} mins)`)
-      .join("\n");
-  
-    const message = `
-  New Booking 📅
-  Name: ${booking.customer.name}
-  Email: ${booking.customer.email}
-  Phone: ${booking.customer.phone}
-  
-  Services:
-  ${servicesList}
-  
-  Total: ₦${booking.total.toLocaleString()}
-  Date: ${booking.date}
-  Time: ${booking.time}
-    `;
-  
-    // Open WhatsApp in new tab
-    window.open(
-      `https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
-  }
-
-
   // Clear cart
   cart = [];
   saveCart();
