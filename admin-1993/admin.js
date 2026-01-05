@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   cacheDOM();
   bindAdminWhatsApp();
   bindCatalogActions();
+  renderCategories();      
   renderServices();
   refreshCategorySelect();
   renderStats();
@@ -38,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderRevenueByCategory(); 
   bindLogout();
 });
+
 
 let servicesContainer,
     bookingsContainer,
@@ -57,10 +59,11 @@ let categoryInput,
 
 function cacheDOM() {
   servicesContainer = document.getElementById("services");
+  categoriesContainer = document.getElementById("categories");
   bookingsContainer = document.getElementById("bookings");
 
   adminPhoneInput = document.getElementById("adminPhone");
- 
+
   categoryInput = document.getElementById("categoryName");
   addCategoryBtn = document.getElementById("addCategory");
 
@@ -70,6 +73,38 @@ function cacheDOM() {
   serviceDurationInput = document.getElementById("serviceDuration");
   serviceCategorySelect = document.getElementById("serviceCategory");
   addServiceBtn = document.getElementById("addService");
+}
+
+function addService() {
+  const name = serviceNameInput.value.trim();
+  const description = serviceDescriptionInput.value.trim();
+  const price = Number(servicePriceInput.value);
+  const duration = Number(serviceDurationInput.value);
+  const category = serviceCategorySelect.value;
+
+  if (!name || !description || !price || !duration || !category) {
+    return alert("Fill all service fields");
+  }
+
+  catalog.services.push({
+    id: "svc_" + Date.now(),
+    name,
+    description,
+    price,
+    duration,
+    category,
+    order: catalog.services.length
+  });
+
+  persistCatalog();
+
+  serviceNameInput.value = "";
+  serviceDescriptionInput.value = "";
+  servicePriceInput.value = "";
+  serviceDurationInput.value = "";
+
+  renderServices(); // ✅ IMPORTANT
+  alert("Service added ✅");
 }
 
 function bindCatalogActions() {
@@ -84,11 +119,12 @@ function bindCatalogActions() {
     }
 
     catalog.categories.push({ id, name });
-    persistCatalog();
-
-    categoryInput.value = "";
-    refreshCategorySelect();
-    alert("Category added ✅");
+   persistCatalog();
+   
+   categoryInput.value = "";
+   refreshCategorySelect();
+   renderCategories(); // ✅ ADD
+   alert("Category added ✅");
   });
 
   addServiceBtn?.addEventListener("click", addService);
@@ -335,7 +371,27 @@ function renderRevenueByCategory() {
     );
   });
 }
+function renderCategories() {
+  if (!categoriesContainer) return;
 
+  categoriesContainer.innerHTML = "";
+
+  if (!catalog.categories.length) {
+    categoriesContainer.innerHTML = "<p>No categories yet.</p>";
+    return;
+  }
+
+  catalog.categories.forEach(cat => {
+    categoriesContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="card">
+        <strong>${cat.name}</strong>
+      </div>
+      `
+    );
+  });
+}
 
 function persistCatalog() {
   localStorage.setItem("spaCatalog", JSON.stringify(catalog));
