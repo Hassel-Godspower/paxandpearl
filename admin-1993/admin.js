@@ -9,7 +9,6 @@ if (sessionStorage.getItem("adminSession") !== "true") {
    GLOBAL STATE
 ============================ */
 let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-let services = JSON.parse(localStorage.getItem("services") || "[]");
 let adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
 
 /* ============================
@@ -36,8 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
   refreshCategorySelect();
   renderStats();
   renderBookings();
+  renderRevenueByCategory(); 
   bindLogout();
 });
+
+let servicesContainer,
+    bookingsContainer,
+    adminPhoneInput;
 
 /* ============================
    CACHE DOM
@@ -53,7 +57,10 @@ let categoryInput,
 
 function cacheDOM() {
   servicesContainer = document.getElementById("services");
+  bookingsContainer = document.getElementById("bookings");
 
+  adminPhoneInput = document.getElementById("adminPhone");
+ 
   categoryInput = document.getElementById("categoryName");
   addCategoryBtn = document.getElementById("addCategory");
 
@@ -64,6 +71,7 @@ function cacheDOM() {
   serviceCategorySelect = document.getElementById("serviceCategory");
   addServiceBtn = document.getElementById("addService");
 }
+
 function bindCatalogActions() {
   addCategoryBtn?.addEventListener("click", () => {
     const name = categoryInput.value.trim();
@@ -230,25 +238,32 @@ function renderServices() {
         `
       );
     });
-}
 
   enableDragSort();
 }
+
 window.editService = function (id) {
   const service = catalog.services.find(s => s.id === id);
   if (!service) return;
 
   const name = prompt("Service name", service.name);
-  const price = prompt("Price", service.price);
-  const duration = prompt("Duration (minutes)", service.duration);
+  if (!name) return;
 
-  if (!name || !price || !duration) return;
+  const description = prompt("Description", service.description);
+  if (!description) return;
+
+  const price = prompt("Price", service.price);
+  if (!price) return;
+
+  const duration = prompt("Duration (minutes)", service.duration);
+  if (!duration) return;
 
   service.name = name;
+  service.description = description;
   service.price = Number(price);
   service.duration = Number(duration);
 
-  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
+  persistCatalog();
   renderServices();
 };
 
@@ -320,92 +335,7 @@ function renderRevenueByCategory() {
     );
   });
 }
-renderRevenueByCategory();
 
-/* ============================
-   SPA CATALOG (ADMIN)
-============================ */
-const catalog =
-  JSON.parse(localStorage.getItem("spaCatalog")) || {
-    categories: [],
-    services: []
-  };
-
-const categoryInput = document.getElementById("categoryName");
-const addCategoryBtn = document.getElementById("addCategory");
-
-const serviceNameInput = document.getElementById("serviceName");
-const servicePriceInput = document.getElementById("servicePrice");
-const serviceCategorySelect = document.getElementById("serviceCategory");
-const addServiceBtn = document.getElementById("addService");
-
-/* ---------- Populate category dropdown ---------- */
-function refreshCategorySelect() {
-  serviceCategorySelect.innerHTML = "";
-  catalog.categories.forEach(cat => {
-    const option = document.createElement("option");
-    option.value = cat.id;
-    option.textContent = cat.name;
-    serviceCategorySelect.appendChild(option);
-  });
-}
-
-/* ---------- Add Category ---------- */
-addCategoryBtn?.addEventListener("click", () => {
-  const name = categoryInput.value.trim();
-  if (!name) return alert("Enter category name");
-
-  const id = name.toLowerCase().replace(/\s+/g, "-");
-
-  if (catalog.categories.some(c => c.id === id)) {
-    return alert("Category already exists");
-  }
-
-  catalog.categories.push({ id, name });
-  localStorage.setItem("spaCatalog", JSON.stringify(catalog));
-
-  categoryInput.value = "";
-  refreshCategorySelect();
-  alert("Category added ✅");
-});
-
-/* ---------- Add Service ---------- */
-const serviceDurationInput = document.getElementById("serviceDuration");
-
-function addService() {
-  const name = serviceNameInput.value.trim();
-  const description = serviceDescriptionInput.value.trim();
-  const price = Number(servicePriceInput.value);
-  const duration = Number(serviceDurationInput.value);
-  const category = serviceCategorySelect.value;
-
-  if (!name || !description || !price || !duration || !category) {
-    return alert("Fill all service fields");
-  }
-
-  catalog.services.push({
-    id: "svc_" + Date.now(),
-    name,
-    description,
-    price,
-    duration,
-    category,
-    order: catalog.services.length
-  });
-
-  persistCatalog();
-
-  serviceNameInput.value = "";
-  serviceDescriptionInput.value = "";
-  servicePriceInput.value = "";
-  serviceDurationInput.value = "";
-
-  alert("Service added ✅");
-  renderServices();
-}
-
-/* ---------- Init ---------- */
-refreshCategorySelect();
 
 function persistCatalog() {
   localStorage.setItem("spaCatalog", JSON.stringify(catalog));
