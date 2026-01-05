@@ -61,7 +61,6 @@ let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
 const cartItemsEl = document.getElementById("cartItems");
 const totalEl = document.getElementById("total");
-const bookingCountEl = document.getElementById("bookingCount");
 
 /* RENDER CART */
 function renderCart() {
@@ -73,7 +72,7 @@ function renderCart() {
   }
 
   let total = 0;
-  cart.forEach((item, i) => {
+  cart.forEach(item => {
     total += item.price;
     const row = document.createElement("div");
     row.className = "cart-item";
@@ -88,31 +87,87 @@ function renderCart() {
 function confirmBooking() {
   if (!cart.length) { alert("Please select at least one service."); return; }
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const date = document.getElementById("date").value;
-  const time = document.getElementById("time").value;
+  const name = getValue("name");
+  const email = getValue("email");
+  const phone = getValue("phone");
+  const date = getValue("date");
+  const time = getValue("time");
 
   if(!name||!email||!phone||!date||!time){alert("Fill all booking details.");return;}
 
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+
   const booking = {
-    id:"bk_"+Date.now(),
-    customer:{name,email,phone},
-    services:cart,
-    date,time,
-    status:"pending",
-    createdAt:new Date().toISOString()
+    id: "bk_" + Date.now(),
+    customer: { name, email, phone },
+    services: cart.map(s => s.name).join(", "),
+    date, time,
+    total,
+    status: "pending",
+    createdAt: new Date().toISOString()
   };
 
-  const bookings = JSON.parse(localStorage.getItem("spaBookings")||"[]");
+  const bookings = JSON.parse(localStorage.getItem("spaBookings") || "[]");
   bookings.push(booking);
-  localStorage.setItem("spaBookings",JSON.stringify(bookings));
+  localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
   // Clear cart
-  cart=[]; localStorage.removeItem(CART_KEY);
+  cart = [];
+  localStorage.removeItem(CART_KEY);
+
   alert("Booking submitted successfully ✅");
-  window.location.href="index.html";
+
+  // Show "Send to Admin" button
+  showSendToAdminButton(booking);
+}
+
+/* =========================
+   SHOW SEND TO ADMIN BUTTON
+========================= */
+function showSendToAdminButton(booking) {
+  // Remove old button if exists
+  const existingBtn = document.getElementById("sendToAdminBtn");
+  if (existingBtn) existingBtn.remove();
+
+  const btn = document.createElement("button");
+  btn.id = "sendToAdminBtn";
+  btn.className = "btn btn-primary";
+  btn.textContent = "Send Booking to Admin";
+  btn.onclick = () => notifyAdmin(booking);
+
+  document.querySelector(".booking-form").appendChild(btn);
+}
+
+/* =========================
+   WHATSAPP NOTIFY ADMIN
+========================= */
+function notifyAdmin(booking) {
+  const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+  const adminPhone = adminProfile.phone || ""; // fallback empty
+
+  if (!adminPhone) {
+    alert("Admin WhatsApp not set yet.");
+    return;
+  }
+
+  const message = `
+New Booking 📅
+Name: ${booking.customer.name}
+Services: ${booking.services}
+Total: ₦${booking.total.toLocaleString()}
+Date: ${booking.date}
+Time: ${booking.time}
+Phone: ${booking.customer.phone}
+`;
+
+  window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`, "_blank");
+}
+
+/* =========================
+   HELPERS
+========================= */
+function getValue(id) {
+  return document.getElementById(id)?.value.trim() || "";
 }
 
 /* INIT */
