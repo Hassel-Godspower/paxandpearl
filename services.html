@@ -26,12 +26,11 @@
   </header>
 
   <!-- FLOATING BOOKING CART -->
-  <a href="booking.html" class="see-booking" id="seeBooking">
+  <a href="booking.html" class="see-booking">
     <span class="material-icons-round">event</span>
     <small>Booking</small>
     <span class="badge" id="bookingCount">0</span>
   </a>
-
 
   <!-- SEARCH -->
   <section class="search-section">
@@ -46,6 +45,7 @@
     </div>
   </section>
 
+  <!-- CATEGORY FILTER -->
   <section class="category-filter"></section>
 
   <!-- SERVICES -->
@@ -56,9 +56,7 @@
 
 </div>
 
-<!-- =========================
-     MOBILE BOTTOM NAV
-========================== -->
+<!-- MOBILE NAV -->
 <nav class="mobile-nav">
   <a href="index.html">
     <span class="material-icons-round">home</span>
@@ -85,29 +83,34 @@
     <small>Profile</small>
   </a>
 </nav>
-  
-<!-- INLINE NAV STYLES -->
+
 <style>
   .container { padding-bottom: 90px; }
-  }
 </style>
 
-<!-- =========================
-     SCRIPTS (ORDER MATTERS)
-========================= -->
-
-<script src="js/data.js"></script>
+<!-- CORE SCRIPTS -->
 <script src="js/booking.js"></script>
 
 <script>
+/* ============================
+   STATE
+============================ */
 const servicesContainer = document.getElementById("services");
 const filterContainer = document.querySelector(".category-filter");
 const searchInput = document.getElementById("serviceSearch");
 
 let catalog = { categories: [], services: [] };
+let activeCategory = "all";
+let searchQuery = "";
 
-fetch("/catalog.json")
-  .then(res => res.json())
+/* ============================
+   LOAD CATALOG (SERVER)
+============================ */
+fetch("/data/spa-catalog.json")
+  .then(res => {
+    if (!res.ok) throw new Error("Catalog not found");
+    return res.json();
+  })
   .then(data => {
     catalog = data;
     renderCategoryFilter();
@@ -115,55 +118,63 @@ fetch("/catalog.json")
   })
   .catch(() => {
     servicesContainer.innerHTML =
-      "<p>Services not available at the moment.</p>";
+      "<p class='empty'>Services are currently unavailable.</p>";
   });
 
-let activeCategory = "all";
-let searchQuery = "";
-
 /* ============================
-   RENDER CATEGORY FILTER
+   CATEGORY FILTER
 ============================ */
 function renderCategoryFilter() {
-  filterContainer.innerHTML = `<button data-filter="all" class="active">All</button>`;
+  filterContainer.innerHTML = "";
+
+  const allBtn = document.createElement("button");
+  allBtn.textContent = "All";
+  allBtn.classList.add("active");
+  allBtn.onclick = () => {
+    activeCategory = "all";
+    setActiveFilter(allBtn);
+    renderServices();
+  };
+  filterContainer.appendChild(allBtn);
 
   catalog.categories.forEach(cat => {
     const btn = document.createElement("button");
-    btn.dataset.filter = cat.id;
     btn.textContent = cat.name;
-    filterContainer.appendChild(btn);
-  });
-
-  filterContainer.querySelectorAll("button").forEach(btn => {
     btn.onclick = () => {
-      filterContainer.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      activeCategory = btn.dataset.filter;
+      activeCategory = cat.id;
+      setActiveFilter(btn);
       renderServices();
     };
+    filterContainer.appendChild(btn);
   });
 }
 
+function setActiveFilter(activeBtn) {
+  filterContainer
+    .querySelectorAll("button")
+    .forEach(btn => btn.classList.remove("active"));
+  activeBtn.classList.add("active");
+}
+
 /* ============================
-   RENDER SERVICES BY CATEGORY
+   SERVICES RENDER
 ============================ */
 function renderServices() {
   servicesContainer.innerHTML = "";
 
-  const filteredCategories =
+  const categoriesToShow =
     activeCategory === "all"
       ? catalog.categories
       : catalog.categories.filter(c => c.id === activeCategory);
 
-  filteredCategories.forEach(category => {
+  categoriesToShow.forEach(category => {
     const services = catalog.services.filter(service =>
       service.category === category.id &&
-      service.name.toLowerCase().includes(searchQuery.toLowerCase())
+      service.name.toLowerCase().includes(searchQuery)
     );
 
     if (!services.length) return;
 
-    // Category header
     servicesContainer.insertAdjacentHTML(
       "beforeend",
       `<h3 class="category-title">${category.name}</h3>`
@@ -175,10 +186,10 @@ function renderServices() {
 
       card.innerHTML = `
         <h4>${service.name}</h4>
-        <p>${service.description}</p>
+        <p>${service.description || ""}</p>
         <p>
-          <strong>₦${service.price.toLocaleString()}</strong><br>
-          <small>${service.duration} mins</small>
+          <strong>₦${Number(service.price).toLocaleString()}</strong><br>
+          <small>${service.duration || 0} mins</small>
         </p>
         <button class="btn btn-primary">Add to Booking</button>
       `;
@@ -186,7 +197,8 @@ function renderServices() {
       card.querySelector("button").onclick = () => {
         addToCart({
           name: service.name,
-          price: service.price
+          price: service.price,
+          duration: service.duration
         });
         alert(`${service.name} added to booking`);
       };
@@ -200,31 +212,22 @@ function renderServices() {
    SEARCH
 ============================ */
 searchInput.addEventListener("input", e => {
-  searchQuery = e.target.value;
+  searchQuery = e.target.value.toLowerCase();
   renderServices();
 });
-
-/* ============================
-   INIT
-============================ */
-renderCategoryFilter();
-renderServices();
 </script>
 
-
-  
+<!-- ADMIN WHATSAPP -->
 <script>
-  const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
-  const msgBtn = document.getElementById("messageAdmin");
+const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || "{}");
+const msgBtn = document.getElementById("messageAdmin");
 
-  if (msgBtn && adminProfile.phone) {
-    msgBtn.href = `https://wa.me/${adminProfile.phone}`;
-    msgBtn.target = "_blank";
-  } else if (msgBtn) {
-    msgBtn.addEventListener("click", () => {
-      alert("Admin contact not available yet.");
-    });
-  }
+if (msgBtn && adminProfile.phone) {
+  msgBtn.href = `https://wa.me/${adminProfile.phone}`;
+  msgBtn.target = "_blank";
+} else if (msgBtn) {
+  msgBtn.onclick = () => alert("Admin contact not available yet.");
+}
 </script>
 
 </body>
