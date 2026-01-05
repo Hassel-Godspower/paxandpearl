@@ -99,12 +99,26 @@ const filterContainer = document.querySelector(".category-filter");
 const searchInput = document.getElementById("serviceSearch");
 
 let catalog = { categories: [], services: [] };
-
-
 let activeCategory = "all";
 let searchQuery = "";
 
-
+/* ============================
+   LOAD CATALOG (STATIC FILE)
+============================ */
+fetch("/catalog.json")
+  .then(res => {
+    if (!res.ok) throw new Error("Catalog missing");
+    return res.json();
+  })
+  .then(data => {
+    catalog = data;
+    renderCategoryFilter();
+    renderServices();
+  })
+  .catch(() => {
+    servicesContainer.innerHTML =
+      "<p class='empty'>Services are currently unavailable.</p>";
+  });
 
 /* ============================
    SEARCH
@@ -114,6 +128,7 @@ searchInput.addEventListener("input", e => {
   renderServices();
 });
 </script>
+
 
 <!-- ADMIN WHATSAPP -->
 <script>
