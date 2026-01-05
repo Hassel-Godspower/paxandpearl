@@ -68,6 +68,102 @@
     </section>
 
   </div>
+  <script>
+  /* ============================
+     CART STORAGE KEY
+  ============================ */
+  const CART_KEY = "spaBookingCart";
+  
+  /* ============================
+     LOAD CART
+  ============================ */
+  let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+  
+  /* ============================
+     DOM ELEMENTS
+  ============================ */
+  const cartItemsEl = document.getElementById("cartItems");
+  const totalEl = document.getElementById("total");
+  
+  /* ============================
+     RENDER CART
+  ============================ */
+  function renderCart() {
+    cartItemsEl.innerHTML = "";
+  
+    if (!cart.length) {
+      cartItemsEl.innerHTML =
+        "<p class='empty'>No services selected yet.</p>";
+      totalEl.textContent = "₦0";
+      return;
+    }
+  
+    let total = 0;
+  
+    cart.forEach((item, index) => {
+      total += item.price;
+  
+      const row = document.createElement("div");
+      row.className = "cart-item";
+      row.innerHTML = `
+        <span>${item.name}</span>
+        <strong>₦${item.price.toLocaleString()}</strong>
+      `;
+      cartItemsEl.appendChild(row);
+    });
+  
+    totalEl.textContent = "₦" + total.toLocaleString();
+  }
+  
+  /* ============================
+     CONFIRM BOOKING
+  ============================ */
+  function confirmBooking() {
+    if (!cart.length) {
+      alert("Please select at least one service.");
+      return;
+    }
+  
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+  
+    if (!name || !email || !phone || !date || !time) {
+      alert("Please fill all booking details.");
+      return;
+    }
+  
+    const booking = {
+      id: "bk_" + Date.now(),
+      customer: { name, email, phone },
+      services: cart,
+      date,
+      time,
+      status: "pending",
+      createdAt: new Date().toISOString()
+    };
+  
+    // Save bookings locally (user-safe)
+    const bookings =
+      JSON.parse(localStorage.getItem("spaBookings")) || [];
+  
+    bookings.push(booking);
+    localStorage.setItem("spaBookings", JSON.stringify(bookings));
+  
+    // Clear cart
+    localStorage.removeItem(CART_KEY);
+  
+    alert("Booking submitted successfully ✅");
+    window.location.href = "index.html";
+  }
+  
+  /* ============================
+     INIT
+  ============================ */
+  renderCart();
+  </script>
 
   <!-- =========================
        MOBILE BOTTOM NAV
