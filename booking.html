@@ -141,9 +141,11 @@ function renderCart() {
   totalEl.textContent = "₦" + total.toLocaleString();
 }
 
-/* CONFIRM BOOKING */
 function confirmBooking() {
-  if (!cart.length) { alert("Please select at least one service."); return; }
+  if (!cart.length) {
+    alert("Please select at least one service.");
+    return;
+  }
 
   const name = getValue("name");
   const email = getValue("email");
@@ -151,7 +153,15 @@ function confirmBooking() {
   const date = getValue("date");
   const time = getValue("time");
 
-  if(!name||!email||!phone||!date||!time){alert("Fill all booking details.");return;}
+  if (!name || !email || !phone || !date || !time) {
+    alert("Fill all booking details.");
+    return;
+  }
+
+  if (!PUBLIC_CATALOG?.admin?.whatsapp) {
+    alert("Admin WhatsApp not available. Please try again later.");
+    return;
+  }
 
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
@@ -159,12 +169,14 @@ function confirmBooking() {
     id: "bk_" + Date.now(),
     customer: { name, email, phone },
     services: cart.map(s => s.name).join(", "),
-    date, time,
+    date,
+    time,
     total,
-    status: "pending",
+    status: "submitted",
     createdAt: new Date().toISOString()
   };
 
+  // Save booking locally (admin dashboard can read this)
   const bookings = JSON.parse(localStorage.getItem("spaBookings") || "[]");
   bookings.push(booking);
   localStorage.setItem("spaBookings", JSON.stringify(bookings));
@@ -172,30 +184,14 @@ function confirmBooking() {
   // Clear cart
   cart = [];
   localStorage.removeItem(CART_KEY);
+  renderCart();
 
+  // Success feedback
   alert("Booking submitted successfully ✅");
 
-  // Show "Send to Admin" button
-  showSendToAdminButton(booking);
+  // Auto notify admin
+  notifyAdminImmediately(booking);
 }
-
-/* =========================
-   SHOW SEND TO ADMIN BUTTON
-========================= */
-function showSendToAdminButton(booking) {
-  // Remove old button if exists
-  const existingBtn = document.getElementById("sendToAdminBtn");
-  if (existingBtn) existingBtn.remove();
-
-  const btn = document.createElement("button");
-  btn.id = "sendToAdminBtn";
-  btn.className = "btn btn-primary";
-  btn.textContent = "Send Booking to Admin";
-  btn.onclick = () => notifyAdmin(booking);
-
-  document.querySelector(".booking-form").appendChild(btn);
-}
-
 
 /* =========================
    PUBLIC CATALOG
