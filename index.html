@@ -221,7 +221,7 @@
 </section>
 
 <style>
-  /* =========================
+/* =========================
    POST SLIDER STYLES
 ========================= */
 .post-slider {
@@ -233,14 +233,19 @@
   grid-auto-flow: column;
   grid-auto-columns: 100%;
   gap: 14px;
-  overflow: hidden;
+  overflow-x: auto;
   scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.post-slider-track::-webkit-scrollbar {
+  display: none;
 }
 
 .post-slide {
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
-  background: #f6f6f6;
+  background: #f5f5f5;
 }
 
 .post-slide img {
@@ -250,7 +255,7 @@
   display: block;
 }
 
-/* Slider controls */
+/* Controls */
 .post-slider-controls {
   display: flex;
   justify-content: center;
@@ -286,17 +291,25 @@
   }
 }
 </style>
+
 <script>
   const postSlider = document.getElementById("postSlider");
 
   function slidePosts(direction) {
-    const slideWidth = postSlider.querySelector(".post-slide").offsetWidth + 14;
+    const slide = postSlider.querySelector(".post-slide");
+    if (!slide) return;
+
+    const gap = 14;
+    const slideWidth = slide.offsetWidth + gap;
+
     postSlider.scrollBy({
       left: slideWidth * direction,
       behavior: "smooth"
     });
   }
 </script>
+
+
 
 <!-- =========================
      MOBILE BOTTOM NAV
