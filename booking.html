@@ -169,14 +169,10 @@ function confirmBooking() {
   bookings.push(booking);
   localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
-  // Clear cart
-  cart = [];
-  localStorage.removeItem(CART_KEY);
+  // Notify admin immediately
+  notifyAdminInstantly(booking);
 
   alert("Booking submitted successfully ✅");
-
-  // Show "Send to Admin" button
-  showSendToAdminButton(booking);
 }
 
 /* =========================
