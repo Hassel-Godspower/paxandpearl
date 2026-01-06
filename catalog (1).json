@@ -1,0 +1,435 @@
+{
+  "categories": [
+    {
+      "id": "massage",
+      "name": "MASSAGE"
+    },
+    {
+      "id": "facials",
+      "name": "Facials"
+    },
+    {
+      "id": "waxing",
+      "name": "Waxing"
+    },
+    {
+      "id": "pedicure-&-manicure",
+      "name": "Pedicure & Manicure"
+    },
+    {
+      "id": "body-scrub",
+      "name": "Body Scrub"
+    },
+    {
+      "id": "hammam-body-wash",
+      "name": "Hammam Body Wash"
+    }
+  ],
+  "services": [
+    {
+      "id": "svc_1767630440303",
+      "name": "Deep Tissue Massage",
+      "description": "Deep Tissue Massage is the use of pressure to access layers of the muscular structure of the body to relieve pain and muscle soreness.",
+      "price": 25000,
+      "duration": 60,
+      "category": "massage",
+      "order": 0
+    },
+    {
+      "id": "svc_1767630889097",
+      "name": "Relaxation/ Swedish Massage",
+      "description": "Relaxation Massage is generally used to relax the muscles using light pressure.",
+      "price": 20000,
+      "duration": 45,
+      "category": "massage",
+      "order": 1
+    },
+    {
+      "id": "svc_1767631052329",
+      "name": "Reflexology",
+      "description": "Massage of the feet only to relieve pain on every part of the body.",
+      "price": 20000,
+      "duration": 30,
+      "category": "massage",
+      "order": 2
+    },
+    {
+      "id": "svc_1767631534723",
+      "name": "Couple Relaxation Massage",
+      "description": "Couple Relaxation Massage is generally used to relax the muscles using light pressure to massage two people simultaneously.",
+      "price": 38000,
+      "duration": 60,
+      "category": "massage",
+      "order": 3
+    },
+    {
+      "id": "svc_1767631745013",
+      "name": "Couple Deep Tissue",
+      "description": "Couple Deep Tissue Massage is the use of pressure to access layers of the muscular structure of the body to relieve pain and muscle soreness for two people.",
+      "price": 47000,
+      "duration": 60,
+      "category": "massage",
+      "order": 4
+    },
+    {
+      "id": "svc_1767690107840",
+      "name": "Hot Stone Massage",
+      "description": "The use of a customized warm stone to relieve pain, stress, and muscle soreness.",
+      "price": 30000,
+      "duration": 60,
+      "category": "massage",
+      "order": 5
+    },
+    {
+      "id": "svc_1767690215985",
+      "name": "Couple Hot Stone Massage",
+      "description": "The use of a customized warm stone to relieve pain, stress and muscle soreness; for two.",
+      "price": 57000,
+      "duration": 60,
+      "category": "massage",
+      "order": 6
+    },
+    {
+      "id": "svc_1767690395634",
+      "name": "Couple Aromatherapy Massage",
+      "description": "It is the use of essential oils to massage the body to induce natural healing of the heart and mind.",
+      "price": 54000,
+      "duration": 60,
+      "category": "massage",
+      "order": 7
+    },
+    {
+      "id": "svc_1767690612218",
+      "name": "Couple Thai Massage",
+      "description": "The use of specialized Thai techniques and stretches to massage the body enhances flexibility, blood circulation, and stress relief. For two persons.",
+      "price": 57000,
+      "duration": 60,
+      "category": "massage",
+      "order": 8
+    },
+    {
+      "id": "svc_1767690710835",
+      "name": "Pregnancy Massage",
+      "description": "This helps expectant mothers manage the pains and stress associated with pregnancy. We recommend this from the second trimester.",
+      "price": 20000,
+      "duration": 45,
+      "category": "massage",
+      "order": 9
+    },
+    {
+      "id": "svc_1767690861185",
+      "name": "Head, Shoulder and Back Massage",
+      "description": "It is the massage of the head, shoulder, and back for quick relief of pain.",
+      "price": 20000,
+      "duration": 30,
+      "category": "massage",
+      "order": 10
+    },
+    {
+      "id": "svc_1767691141173",
+      "name": "Steam Therapy",
+      "description": "This treatment involves sitting in a steam machine to envelop the body in the steam\n\nPlease note: Individuals with certain medical conditions, like high blood pressure or heart issues, should consult a doctor before using the steam.",
+      "price": 10000,
+      "duration": 15000,
+      "category": "massage",
+      "order": 11
+    },
+    {
+      "id": "svc_1767691293511",
+      "name": "Classic Body Scrub",
+      "description": "This type of body scrub removes dirt from the skin and makes the skin brighter.",
+      "price": 20000,
+      "duration": 40,
+      "category": "body-scrub",
+      "order": 12
+    },
+    {
+      "id": "svc_1767691361697",
+      "name": "Classic Body Scrub and Polishing",
+      "description": "This type of body scrub remove dirt from the skin and makes the skin brighter.",
+      "price": 30000,
+      "duration": 60,
+      "category": "body-scrub",
+      "order": 13
+    },
+    {
+      "id": "svc_1767691531957",
+      "name": "Body Polishing",
+      "description": "This type of body scrub removes dirt from the skin and makes the skin brighter.",
+      "price": 15000,
+      "duration": 40,
+      "category": "body-scrub",
+      "order": 14
+    },
+    {
+      "id": "svc_1767691696297",
+      "name": "Traditional Hammam",
+      "description": "This is a deep exfoliation that removes dead skin cells from the skin, resulting in brighter and youthful skin.",
+      "price": 35000,
+      "duration": 60,
+      "category": "body-scrub",
+      "order": 15
+    },
+    {
+      "id": "svc_1767691813760",
+      "name": "Traditional Hammam",
+      "description": "This is a deep exfoliation that removes dead skin cells from the skin, resulting in brighter and youthful skin.",
+      "price": 35000,
+      "duration": 60,
+      "category": "hammam-body-wash",
+      "order": 16
+    },
+    {
+      "id": "svc_1767691887001",
+      "name": "Glow Hammam",
+      "description": "This is a deep exfoliation that removes dead skin cells from the skin, resulting in brighter and youthful skin.",
+      "price": 45000,
+      "duration": 60,
+      "category": "hammam-body-wash",
+      "order": 17
+    },
+    {
+      "id": "svc_1767692149558",
+      "name": "Full Face Wax",
+      "description": "Waxing is a hair removal technique that removes hair from the root of the skin, thereby delaying regrowth.",
+      "price": 10000,
+      "duration": 20,
+      "category": "waxing",
+      "order": 18
+    },
+    {
+      "id": "svc_1767692243249",
+      "name": "Upper Lips",
+      "description": "Waxing is a hair removal technique that removes hair from the root of the skin",
+      "price": 3000,
+      "duration": 10,
+      "category": "waxing",
+      "order": 19
+    },
+    {
+      "id": "svc_1767692810970",
+      "name": "⁠Chin Wax",
+      "description": "Waxing is a hair removal technique that removes hairs from the root of the skin",
+      "price": 7000,
+      "duration": 20,
+      "category": "waxing",
+      "order": 20
+    },
+    {
+      "id": "svc_1767692940659",
+      "name": "Chest Wax - Men",
+      "description": "Waxing is a hair removal technique that removes hair from the root of the skin",
+      "price": 15000,
+      "duration": 30,
+      "category": "waxing",
+      "order": 21
+    },
+    {
+      "id": "svc_1767692994483",
+      "name": "Chest Wax - Women",
+      "description": "Waxing is a hair removal technique that removes hair from the root of the skin",
+      "price": 10000,
+      "duration": 30,
+      "category": "waxing",
+      "order": 22
+    },
+    {
+      "id": "svc_1767693627414",
+      "name": "Underarm",
+      "description": "Waxing is a hair removal technique that removes hair from the root of the skin.",
+      "price": 7000,
+      "duration": 20,
+      "category": "waxing",
+      "order": 23
+    },
+    {
+      "id": "svc_1767693682881",
+      "name": "Full Arm",
+      "description": "Waxing is hair removal technique that removes hairs from the root of the skin",
+      "price": 15000,
+      "duration": 30,
+      "category": "waxing",
+      "order": 24
+    },
+    {
+      "id": "svc_1767693750745",
+      "name": "Half Leg Wax",
+      "description": "Waxing is a hair removal technique that removes hair from the root of the skin",
+      "price": 15000,
+      "duration": 20,
+      "category": "waxing",
+      "order": 25
+    },
+    {
+      "id": "svc_1767693792639",
+      "name": "Full Leg Wax",
+      "description": "Waxing is hair removal technique that removes hairs from the root of the skin",
+      "price": 30000,
+      "duration": 40,
+      "category": "waxing",
+      "order": 26
+    },
+    {
+      "id": "svc_1767693850036",
+      "name": "Full Back",
+      "description": "Waxing is a hair removal technique that removes hair from the root of the skin",
+      "price": 20000,
+      "duration": 40,
+      "category": "waxing",
+      "order": 27
+    },
+    {
+      "id": "svc_1767693974620",
+      "name": "Stomach Wax - Men",
+      "description": "Waxing is a hair removal technique that removes hair from the root of the skin",
+      "price": 15000,
+      "duration": 30,
+      "category": "waxing",
+      "order": 28
+    },
+    {
+      "id": "svc_1767694066439",
+      "name": "Stomach Wax - Women",
+      "description": "Waxing is a hair removal technique that removes hair from the root of the skin",
+      "price": 10000,
+      "duration": 30,
+      "category": "waxing",
+      "order": 29
+    },
+    {
+      "id": "svc_1767694386922",
+      "name": "Brazilian Wax",
+      "description": "Waxing is a hair removal technique that removes hair from the root of the skin",
+      "price": 15000,
+      "duration": 30,
+      "category": "waxing",
+      "order": 30
+    },
+    {
+      "id": "svc_1767702005026",
+      "name": "Full Body Wax (Underarm, Chin, Full leg, Full arm,Brazilian)",
+      "description": "Waxing is hair removal technique that removes hairs from the root of the skin",
+      "price": 70000,
+      "duration": 80,
+      "category": "waxing",
+      "order": 31
+    },
+    {
+      "id": "svc_1767705880587",
+      "name": "Vajacial",
+      "description": "Skin treatment (like Facials) for the female private area.",
+      "price": 12000,
+      "duration": 30,
+      "category": "facials",
+      "order": 32
+    },
+    {
+      "id": "svc_1767705982037",
+      "name": "Brazilian Wax + Vajacial",
+      "description": "Brazilian + Vajacial",
+      "price": 25000,
+      "duration": 40,
+      "category": "facials",
+      "order": 33
+    },
+    {
+      "id": "svc_1767706234621",
+      "name": "Classic Facials",
+      "description": "Classic facial treatments are a non-invasive skin care practices that provide a relaxing experience while thoroughly cleansing, exfoliating, and moisturizing the face. This requires little or no extraction.",
+      "price": 15000,
+      "duration": 40,
+      "category": "facials",
+      "order": 34
+    },
+    {
+      "id": "svc_1767706374363",
+      "name": "Deep cleansing Facial NGN 20,000(Full extraction of blackheads and whiteheads with a light therapy) 60mins",
+      "description": "Deep cleansing facial treatments are a non-invasive skin care practices that provide a relaxing experience while thoroughly cleansing, exfoliating, and moisturizing the face. Full extraction of blackheads and whiteheads with light therapy.",
+      "price": 20000,
+      "duration": 45,
+      "category": "facials",
+      "order": 35
+    },
+    {
+      "id": "svc_1767706528679",
+      "name": "Dermaplanning",
+      "description": "It involves scraping off facial hair and the extraction of comedones with LED light therapy. Not done on a rough face.",
+      "price": 25000,
+      "duration": 60,
+      "category": "facials",
+      "order": 36
+    },
+    {
+      "id": "svc_1767706657343",
+      "name": "Back Facials",
+      "description": "A facial for the Back",
+      "price": 20000,
+      "duration": 40,
+      "category": "facials",
+      "order": 37
+    },
+    {
+      "id": "svc_1767707041664",
+      "name": "Pedicure for men NGN 8000",
+      "description": "Pedicure for men",
+      "price": 8000,
+      "duration": 30,
+      "category": "pedicure-&-manicure",
+      "order": 38
+    },
+    {
+      "id": "svc_1767707292495",
+      "name": "Pedicure for women",
+      "description": "Pedicure for women",
+      "price": 7000,
+      "duration": 40,
+      "category": "pedicure-&-manicure",
+      "order": 39
+    },
+    {
+      "id": "svc_1767707375086",
+      "name": "Manicure for men",
+      "description": "Manicure for men",
+      "price": 5000,
+      "duration": 30,
+      "category": "pedicure-&-manicure",
+      "order": 40
+    },
+    {
+      "id": "svc_1767707477029",
+      "name": "Manicure for women",
+      "description": "Manicure for women",
+      "price": 4000,
+      "duration": 30,
+      "category": "pedicure-&-manicure",
+      "order": 41
+    },
+    {
+      "id": "svc_1767707567496",
+      "name": "Pedicure and manicure for men",
+      "description": "Pedicure and manicure for men",
+      "price": 12000,
+      "duration": 40,
+      "category": "pedicure-&-manicure",
+      "order": 42
+    },
+    {
+      "id": "svc_1767707678786",
+      "name": "Pedicure and manicure for women",
+      "description": "Pedicure and manicure for women",
+      "price": 10000,
+      "duration": 40,
+      "category": "pedicure-&-manicure",
+      "order": 43
+    },
+    {
+      "id": "svc_1767708021870",
+      "name": "Jelly Pedicure NGN",
+      "description": "Jelly Pedicure",
+      "price": 12000,
+      "duration": 40,
+      "category": "pedicure-&-manicure",
+      "order": 44
+    }
+  ]
+}
