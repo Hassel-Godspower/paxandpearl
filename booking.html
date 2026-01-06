@@ -114,6 +114,43 @@
 <style>.container{padding-bottom:90px;}</style>
 
 <script>
+function isSafariBrowser() {
+  const ua = navigator.userAgent;
+  return (
+    ua.includes("Safari") &&
+    !ua.includes("Chrome") &&
+    !ua.includes("Android")
+  );
+}
+</script>
+
+<script>
+function showSafariSendButton(booking) {
+  const existing = document.getElementById("safariSendWrap");
+  if (existing) existing.remove();
+
+  const wrapper = document.createElement("div");
+  wrapper.id = "safariSendWrap";
+  wrapper.style.marginTop = "16px";
+
+  const btn = document.createElement("button");
+  btn.className = "btn btn-primary";
+  btn.textContent = "Send Booking to Admin";
+  btn.onclick = () => notifyAdminImmediately(booking);
+
+  const note = document.createElement("p");
+  note.style.fontSize = "13px";
+  note.style.opacity = "0.7";
+  note.textContent = "Tap to notify admin on WhatsApp";
+
+  wrapper.appendChild(btn);
+  wrapper.appendChild(note);
+
+  document.querySelector(".booking-form").appendChild(wrapper);
+}
+</script>
+
+<script>
 const CART_KEY = "spaBookingCart";
 let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
@@ -190,7 +227,11 @@ function confirmBooking() {
   alert("Booking submitted successfully ✅");
 
   // Auto notify admin
-  notifyAdminImmediately(booking);
+  if (isSafariBrowser()) {
+    showSafariSendButton(booking);
+  } else {
+    notifyAdminImmediately(booking);
+  }
 }
 
 /* =========================
