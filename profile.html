@@ -54,7 +54,7 @@
      MOBILE BOTTOM NAV
 ========================== -->
 <nav class="mobile-nav">
-  <a href="index.html">
+  <a href="index.html" class="active">
     <span class="material-icons-round">home</span>
     <small>Home</small>
   </a>
@@ -69,16 +69,53 @@
     <small>Saved</small>
   </a>
 
-  <a href="#" id="messageAdmin">
+  <a id="messageAdmin" href="#">
     <span class="material-icons-round">chat</span>
     <small>Message</small>
   </a>
 
-  <a href="profile.html" class="active">
+  <a href="profile.html">
     <span class="material-icons-round">person</span>
     <small>Profile</small>
   </a>
 </nav>
+
+<script>
+/* ============================
+   MOBILE NAV – ADMIN WHATSAPP
+   (Public, GitHub-safe)
+============================ */
+(function bindAdminWhatsAppFromCatalog() {
+  const msgBtn = document.getElementById("messageAdmin");
+  if (!msgBtn) return;
+
+  fetch("/catalog1.json")
+    .then(res => {
+      if (!res.ok) throw new Error("Catalog not found");
+      return res.json();
+    })
+    .then(data => {
+      const phone = data?.admin?.whatsapp;
+
+      if (!phone) {
+        throw new Error("Admin WhatsApp missing");
+      }
+
+      // Ensure digits only
+      const cleanPhone = phone.replace(/\D/g, "");
+
+      msgBtn.href = `https://wa.me/${cleanPhone}`;
+      msgBtn.target = "_blank";
+    })
+    .catch(() => {
+      msgBtn.href = "#";
+      msgBtn.addEventListener("click", e => {
+        e.preventDefault();
+        alert("Admin WhatsApp not available yet.");
+      });
+    });
+})();
+</script>
 
 <script>
 
