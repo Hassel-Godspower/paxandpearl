@@ -159,7 +159,7 @@ function confirmBooking() {
   }
 
   if (!PUBLIC_CATALOG?.admin?.whatsapp) {
-    alert("Admin WhatsApp not available. Please try again later.");
+    alert("Admin WhatsApp not available.");
     return;
   }
 
@@ -176,22 +176,18 @@ function confirmBooking() {
     createdAt: new Date().toISOString()
   };
 
-  // Save booking locally (admin dashboard can read this)
-  const bookings = JSON.parse(localStorage.getItem("spaBookings") || "[]");
-  bookings.push(booking);
-  localStorage.setItem("spaBookings", JSON.stringify(bookings));
+  // 🔴 SAFARI-CRITICAL: open WhatsApp FIRST
+  const waURL = buildWhatsAppURL(booking);
+  window.open(waURL, "_blank");
 
-  // Clear cart
-  cart = [];
-  localStorage.removeItem(CART_KEY);
-  renderCart();
+  // ✅ Now safe to continue logic
+  saveBooking(booking);
+  clearCartAndUI();
 
-  // Success feedback
   alert("Booking submitted successfully ✅");
-
-  // Auto notify admin
-  notifyAdminImmediately(booking);
 }
+
+
 
 /* =========================
    PUBLIC CATALOG
@@ -218,8 +214,7 @@ fetch("/catalog1.json")
 /* =========================
    WHATSAPP NOTIFY ADMIN
 ========================= */
-
-function notifyAdminImmediately(booking) {
+function buildWhatsAppURL(booking) {
   const phone = PUBLIC_CATALOG.admin.whatsapp.replace(/\D/g, "");
 
   const message =
@@ -236,28 +231,25 @@ ${booking.services}
 ⏰ Time: ${booking.time}
 
 💰 Total: ₦${booking.total.toLocaleString()}
-
 🆔 Ref: ${booking.id}
 `;
 
-  const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-  // Small delay ensures alert finishes before redirect
-  setTimeout(() => {
-    window.open(whatsappURL, "_blank");
-  }, 500);
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
-/* =========================
-   HELPERS
-========================= */
-function getValue(id) {
-  return document.getElementById(id)?.value.trim() || "";
+function saveBooking(booking) {
+  const bookings = JSON.parse(localStorage.getItem("spaBookings") || "[]");
+  bookings.push(booking);
+  localStorage.setItem("spaBookings", JSON.stringify(bookings));
 }
 
-/* INIT */
-renderCart();
+function clearCartAndUI() {
+  cart = [];
+  localStorage.removeItem(CART_KEY);
+  renderCart();
+}
 </script>
+
 
 </body>
 </html>
