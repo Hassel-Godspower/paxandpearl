@@ -141,17 +141,23 @@ function renderCart() {
   totalEl.textContent = "₦" + total.toLocaleString();
 }
 
-/* CONFIRM BOOKING */
+<script>
 function confirmBooking() {
-  if (!cart.length) { alert("Please select at least one service."); return; }
+  if (!cart.length) {
+    alert("Please select at least one service.");
+    return;
+  }
 
-  const name = getValue("name");
+  const name  = getValue("name");
   const email = getValue("email");
   const phone = getValue("phone");
-  const date = getValue("date");
-  const time = getValue("time");
+  const date  = getValue("date");
+  const time  = getValue("time");
 
-  if(!name||!email||!phone||!date||!time){alert("Fill all booking details.");return;}
+  if (!name || !email || !phone || !date || !time) {
+    alert("Fill all booking details.");
+    return;
+  }
 
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
@@ -159,9 +165,10 @@ function confirmBooking() {
     id: "bk_" + Date.now(),
     customer: { name, email, phone },
     services: cart.map(s => s.name).join(", "),
-    date, time,
+    date,
+    time,
     total,
-    status: "pending",
+    status: "confirmed",
     createdAt: new Date().toISOString()
   };
 
@@ -181,6 +188,8 @@ function confirmBooking() {
   // User confirmation
   alert("Booking confirmed successfully ✅\nAdmin has been notified.");
 }
+
+
 
 /* =========================
    PUBLIC CATALOG
@@ -207,7 +216,8 @@ fetch("/catalog1.json")
 /* =========================
    WHATSAPP NOTIFY ADMIN
 ========================= */
-function notifyAdmin(booking) {
+<script>
+function notifyAdminInstantly(booking) {
   const phone = PUBLIC_CATALOG?.admin?.whatsapp;
 
   if (!phone) {
@@ -215,22 +225,28 @@ function notifyAdmin(booking) {
     return;
   }
 
+  const cleanPhone = phone.replace(/\D/g, "");
+
   const message = `
-New Booking 📅
-Name: ${booking.customer.name}
-Services: ${booking.services}
-Total: ₦${booking.total.toLocaleString()}
-Date: ${booking.date}
-Time: ${booking.time}
-Phone: ${booking.customer.phone}
+📌 *NEW SPA BOOKING*
+
+👤 Name: ${booking.customer.name}
+📞 Phone: ${booking.customer.phone}
+📧 Email: ${booking.customer.email}
+
+💆 Services:
+${booking.services}
+
+📅 Date: ${booking.date}
+⏰ Time: ${booking.time}
+💰 Total: ₦${booking.total.toLocaleString()}
+
+🆔 Ref: ${booking.id}
 `;
 
-  window.open(
-    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
+  window.location.href =
+    `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
 }
-
 
 /* =========================
    HELPERS
