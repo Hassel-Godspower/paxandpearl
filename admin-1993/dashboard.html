@@ -248,15 +248,9 @@ if (saveBtn) {
   saveBtn.addEventListener("click", () => {
     const phone = adminPhoneInput.value.trim();
     if (!phone) return alert("Enter WhatsApp number");
-  
-    // Save to adminProfile (dashboard use)
+
     localStorage.setItem("adminProfile", JSON.stringify({ phone }));
-  
-    // 🔥 Save into catalog.meta
-    catalog.meta.adminWhatsApp = phone;
-    localStorage.setItem("spaCatalog", JSON.stringify(catalog));
-  
-    alert("Admin WhatsApp saved & linked to catalog ✅");
+    alert("Admin WhatsApp number saved");
 
     // Update nav button immediately
     updateMessageButton();
@@ -265,7 +259,7 @@ if (saveBtn) {
 
 // Initial button update
 updateMessageButton();
-</script>
+</script> 
 
 
 <hr>
@@ -487,16 +481,11 @@ function persistCatalog() {
 }
 </script> 
   
+
 <script>
 function publishCatalog() {
-  if (!catalog.meta.adminWhatsApp) {
-    alert("❌ Please set Admin WhatsApp before publishing services.");
-    return;
-  }
-
-  catalog.meta.publishedAt = new Date().toISOString();
-
   const data = JSON.stringify(catalog, null, 2);
+
   const blob = new Blob([data], { type: "application/json" });
   const url = URL.createObjectURL(blob);
 
@@ -509,12 +498,10 @@ function publishCatalog() {
   URL.revokeObjectURL(url);
 
   alert(
-    "catalog.json downloaded successfully ✅\n\n" +
-    "Admin WhatsApp is embedded.\n" +
-    "Upload this file to GitHub root."
+    "catalog.json downloaded.\n\n" +
+    "Upload it to your GitHub repo root and deploy to make services public."
   );
 }
-</script>
 
 </body>
 </html>
