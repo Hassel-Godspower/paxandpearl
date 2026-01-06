@@ -1,3 +1,33 @@
+/* =========================
+   GLOBAL TYPOGRAPHY
+========================= */
+
+/* Body text */
+html, body {
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  color: #111;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.header-title {
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Buttons, inputs, labels */
+button,
+input,
+textarea,
+select,
+label,
+small {
+  font-family: 'Poppins', sans-serif;
+}
+
 /* =========================================================
    TOP BAR (Greeting + Notification)
 ========================================================= */
