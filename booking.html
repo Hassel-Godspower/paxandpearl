@@ -138,8 +138,9 @@ function showSendToAdminButton(booking) {
   document.querySelector(".booking-form").appendChild(btn);
 }
 
+
 /* =========================
-   WHATSAPP NOTIFY ADMIN
+   PUBLIC CATALOG
 ========================= */
 let PUBLIC_CATALOG = null;
 
@@ -148,8 +149,8 @@ fetch("/catalog1.json")
   .then(data => {
     PUBLIC_CATALOG = data;
 
-    const adminPhone = data?.meta?.adminWhatsApp;
-    const msgBtn = document.getElementById("messageAdmin");  
+    const adminPhone = data?.admin?.whatsapp;
+    const msgBtn = document.getElementById("messageAdmin");
 
     if (adminPhone && msgBtn) {
       msgBtn.href = `https://wa.me/${adminPhone}`;
@@ -157,11 +158,14 @@ fetch("/catalog1.json")
     }
   })
   .catch(() => {
-    console.warn("Catalog not found");
-  }); 
+    console.warn("catalog1.json not found");
+  });
 
- function notifyAdmin(booking) {
-  const phone = PUBLIC_CATALOG?.meta?.adminWhatsApp;
+/* =========================
+   WHATSAPP NOTIFY ADMIN
+========================= */
+function notifyAdmin(booking) {
+  const phone = PUBLIC_CATALOG?.admin?.whatsapp;
 
   if (!phone) {
     alert("Admin WhatsApp not available.");
