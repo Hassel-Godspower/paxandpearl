@@ -165,33 +165,22 @@ function confirmBooking() {
     createdAt: new Date().toISOString()
   };
 
+  // Save booking locally
   const bookings = JSON.parse(localStorage.getItem("spaBookings") || "[]");
   bookings.push(booking);
   localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
+  // Clear cart
+  cart = [];
+  localStorage.removeItem(CART_KEY);
+  renderCart();
+
   // Notify admin immediately
   notifyAdminInstantly(booking);
 
-  alert("Booking submitted successfully ✅");
+  // User confirmation
+  alert("Booking confirmed successfully ✅\nAdmin has been notified.");
 }
-
-/* =========================
-   SHOW SEND TO ADMIN BUTTON
-========================= */
-function showSendToAdminButton(booking) {
-  // Remove old button if exists
-  const existingBtn = document.getElementById("sendToAdminBtn");
-  if (existingBtn) existingBtn.remove();
-
-  const btn = document.createElement("button");
-  btn.id = "sendToAdminBtn";
-  btn.className = "btn btn-primary";
-  btn.textContent = "Send Booking to Admin";
-  btn.onclick = () => notifyAdmin(booking);
-
-  document.querySelector(".booking-form").appendChild(btn);
-}
-
 
 /* =========================
    PUBLIC CATALOG
