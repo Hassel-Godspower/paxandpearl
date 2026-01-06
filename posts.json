@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Relax & Rejuvenate",
+    "cta": "Book Now",
+    "link": "services.html",
+    "image": "assets/images/post1.jpg"
+  },
+  {
+    "title": "Facial Glow Offer",
+    "cta": "View Services",
+    "link": "services.html?category=facial",
+    "image": "assets/images/post2.jpg"
+  },
+  {
+    "title": "Massage Therapy",
+    "cta": "Reserve Slot",
+    "link": "services.html?category=massage",
+    "image": "assets/images/post3.jpg"
+  },
+  {
+    "title": "Waxing Perfection",
+    "cta": "Book Today",
+    "link": "services.html?category=waxing",
+    "image": "assets/images/post4.jpg"
+  }
+]
