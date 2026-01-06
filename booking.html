@@ -141,23 +141,17 @@ function renderCart() {
   totalEl.textContent = "₦" + total.toLocaleString();
 }
 
-<script>
+/* CONFIRM BOOKING */
 function confirmBooking() {
-  if (!cart.length) {
-    alert("Please select at least one service.");
-    return;
-  }
+  if (!cart.length) { alert("Please select at least one service."); return; }
 
-  const name  = getValue("name");
+  const name = getValue("name");
   const email = getValue("email");
   const phone = getValue("phone");
-  const date  = getValue("date");
-  const time  = getValue("time");
+  const date = getValue("date");
+  const time = getValue("time");
 
-  if (!name || !email || !phone || !date || !time) {
-    alert("Fill all booking details.");
-    return;
-  }
+  if(!name||!email||!phone||!date||!time){alert("Fill all booking details.");return;}
 
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
@@ -165,14 +159,12 @@ function confirmBooking() {
     id: "bk_" + Date.now(),
     customer: { name, email, phone },
     services: cart.map(s => s.name).join(", "),
-    date,
-    time,
+    date, time,
     total,
-    status: "confirmed",
+    status: "pending",
     createdAt: new Date().toISOString()
   };
 
-  // Save booking locally
   const bookings = JSON.parse(localStorage.getItem("spaBookings") || "[]");
   bookings.push(booking);
   localStorage.setItem("spaBookings", JSON.stringify(bookings));
@@ -180,15 +172,29 @@ function confirmBooking() {
   // Clear cart
   cart = [];
   localStorage.removeItem(CART_KEY);
-  renderCart();
 
-  // Notify admin immediately
-  notifyAdminInstantly(booking);
+  alert("Booking submitted successfully ✅");
 
-  // User confirmation
-  alert("Booking confirmed successfully ✅\nAdmin has been notified.");
+  // Show "Send to Admin" button
+  showSendToAdminButton(booking);
 }
 
+/* =========================
+   SHOW SEND TO ADMIN BUTTON
+========================= */
+function showSendToAdminButton(booking) {
+  // Remove old button if exists
+  const existingBtn = document.getElementById("sendToAdminBtn");
+  if (existingBtn) existingBtn.remove();
+
+  const btn = document.createElement("button");
+  btn.id = "sendToAdminBtn";
+  btn.className = "btn btn-primary";
+  btn.textContent = "Send Booking to Admin";
+  btn.onclick = () => notifyAdmin(booking);
+
+  document.querySelector(".booking-form").appendChild(btn);
+}
 
 
 /* =========================
@@ -216,8 +222,7 @@ fetch("/catalog1.json")
 /* =========================
    WHATSAPP NOTIFY ADMIN
 ========================= */
-<script>
-function notifyAdminInstantly(booking) {
+function notifyAdmin(booking) {
   const phone = PUBLIC_CATALOG?.admin?.whatsapp;
 
   if (!phone) {
@@ -225,28 +230,22 @@ function notifyAdminInstantly(booking) {
     return;
   }
 
-  const cleanPhone = phone.replace(/\D/g, "");
-
   const message = `
-📌 *NEW SPA BOOKING*
-
-👤 Name: ${booking.customer.name}
-📞 Phone: ${booking.customer.phone}
-📧 Email: ${booking.customer.email}
-
-💆 Services:
-${booking.services}
-
-📅 Date: ${booking.date}
-⏰ Time: ${booking.time}
-💰 Total: ₦${booking.total.toLocaleString()}
-
-🆔 Ref: ${booking.id}
+New Booking 📅
+Name: ${booking.customer.name}
+Services: ${booking.services}
+Total: ₦${booking.total.toLocaleString()}
+Date: ${booking.date}
+Time: ${booking.time}
+Phone: ${booking.customer.phone}
 `;
 
-  window.location.href =
-    `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
 }
+
 
 /* =========================
    HELPERS
