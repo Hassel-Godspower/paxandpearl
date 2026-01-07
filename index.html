@@ -588,8 +588,8 @@
 /* =========================
    SIGNUP MODAL TIMER LOGIC
 ========================= */
-(function signupNudge() {
-  const MODAL_DELAY = 60 * 1000; // 1 minute
+document.addEventListener("DOMContentLoaded", () => {
+  const MODAL_DELAY = 20 * 1000; // ⏱ 20 seconds
 
   const modal = document.getElementById("signupModal");
   const acceptBtn = document.getElementById("acceptSignup");
@@ -597,14 +597,14 @@
 
   if (!modal) return;
 
-  // If user already signed up
+  // If user already signed up → never show
   const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
   if (profile?.name) return;
 
-  // If dismissed this session
+  // If dismissed this session → never show
   if (sessionStorage.getItem("signupModalDismissed")) return;
 
-  // ⏱️ Delay popup
+  // ⏱ Delay popup
   const timer = setTimeout(() => {
     modal.classList.add("show");
   }, MODAL_DELAY);
@@ -621,11 +621,8 @@
     sessionStorage.setItem("signupModalDismissed", "yes");
     clearTimeout(timer);
   });
-})();
+});
 </script>
-
-
-
   
 <script src="js/data.js"></script>
 <script src="js/booking.js"></script>
