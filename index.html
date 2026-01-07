@@ -248,46 +248,7 @@
     }
   </style>
 
-  <!-- =========================
-     SIGN-UP MODAL
-========================== -->
-<div id="signupModal" class="modal-backdrop">
-  <div class="modal-card">
-    <h3>Get a Better Experience ✨</h3>
-    <p>
-      Sign up to manage bookings faster, save favorites,
-      and enjoy personalized spa offers.
-    </p>
-
-    <div class="modal-actions">
-      <button class="btn btn-primary" id="acceptSignup">
-        Sign Up Now
-      </button>
-      <button class="btn btn-outline" id="dismissSignup">
-        Maybe Later
-      </button>
-    </div>
-  </div>
-</div>
-<style>
-/* =========================
-   SIGNUP MODAL
-========================= */
-
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  display: none;              /* ⬅️ default hidden */
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.modal-backdrop.show {
-  display: flex;              /* ⬅️ show only when needed */
-}
-</style>
+ 
 <!-- =========================
      POST SLIDER
 ========================== -->
@@ -477,7 +438,46 @@
 </script>
 
 
+ <!-- =========================
+     SIGN-UP MODAL
+========================== -->
+<div id="signupModal" class="modal-backdrop">
+  <div class="modal-card">
+    <h3>Get a Better Experience ✨</h3>
+    <p>
+      Sign up to manage bookings faster, save favorites,
+      and enjoy personalized spa offers.
+    </p>
 
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="acceptSignup">
+        Sign Up Now
+      </button>
+      <button class="btn btn-outline" id="dismissSignup">
+        Maybe Later
+      </button>
+    </div>
+  </div>
+</div>
+<style>
+/* =========================
+   SIGNUP MODAL
+========================= */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;              /* ⬅️ default hidden */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-backdrop.show {
+  display: flex;              /* ⬅️ show only when needed */
+}
+</style>
 
 <!-- =========================
      MOBILE BOTTOM NAV
