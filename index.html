@@ -187,15 +187,13 @@
   </style>
 
  
-<!-- =========================
-     POST SLIDER
-========================== -->
 <section class="post-slider">
 
   <div class="post-slider-track" id="postSlider">
 
-    <div class="post-slide active">
-      <img src="assets/images/post1.jpg" alt="Spa Promo">
+    <!-- Slides (same as yours) -->
+    <div class="post-slide">
+      <img src="assets/images/post1.jpg">
       <div class="post-overlay">
         <h4>Relax & Recharge</h4>
         <a href="services.html" class="btn btn-primary">Book Now</a>
@@ -203,7 +201,7 @@
     </div>
 
     <div class="post-slide">
-      <img src="assets/images/post2.jpg" alt="Massage Offer">
+      <img src="assets/images/post2.jpg">
       <div class="post-overlay">
         <h4>Massage Therapy</h4>
         <a href="services.html" class="btn btn-primary">View Offer</a>
@@ -211,7 +209,7 @@
     </div>
 
     <div class="post-slide">
-      <img src="assets/images/post3.jpg" alt="Facial Promo">
+      <img src="assets/images/post3.jpg">
       <div class="post-overlay">
         <h4>Facial Treatment</h4>
         <a href="services.html" class="btn btn-primary">Book Session</a>
@@ -219,7 +217,7 @@
     </div>
 
     <div class="post-slide">
-      <img src="assets/images/post4.jpg" alt="Waxing Promo">
+      <img src="assets/images/post4.jpg">
       <div class="post-overlay">
         <h4>Smooth Waxing</h4>
         <a href="services.html" class="btn btn-primary">Get Started</a>
@@ -228,149 +226,141 @@
 
   </div>
 
-  <div class="post-slider-controls">
-    <button class="primary-btn" onclick="movePostSlide(-1)">
-      <span class="material-icons-round">chevron_left</span>
-    </button>
-    <button class="primary-btn" onclick="movePostSlide(1)">
-      <span class="material-icons-round">chevron_right</span>
-    </button>
-  </div>
+  <!-- Floating Controls -->
+  <button class="slider-btn prev" onclick="movePostSlide(-1)">
+    <span class="material-icons-round">chevron_left</span>
+  </button>
 
-</section>
+  <button class="slider-btn next" onclick="movePostSlide(1)">
+    <span class="material-icons-round">chevron_right</span>
+  </button>
 
+</section> 
 
-<style>
-/* =========================
-   POST SLIDER
-========================= */
+<style>  
 .post-slider {
-  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .post-slider-track {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 100%;
-  gap: 14px;
-  overflow: hidden;
-  scroll-behavior: smooth;
+  display: flex;
+  transition: transform 0.5s ease;
 }
 
 .post-slide {
+  min-width: 100%;
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  background: #000;
-  transform: scale(0.96);
-  opacity: 0.7;
-  transition: all 0.4s ease;
-}
-
-.post-slide.active {
-  transform: scale(1);
-  opacity: 1;
 }
 
 .post-slide img {
   width: 100%;
-  height: 190px;
+  height: 220px;
   object-fit: cover;
-  display: block;
 }
 
 /* Overlay */
 .post-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  background: linear-gradient(to top, rgba(0,0,0,.6), transparent);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 14px;
+  padding: 16px;
   color: #fff;
 }
 
-.post-overlay h4 {
-  margin: 0 0 8px;
-  font-size: 16px;
-  font-weight: 600;
+/* Floating Buttons */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 10;
 }
 
-/* Controls */
-.post-slider-controls {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 12px;
-}
+.slider-btn.prev { left: 10px; }
+.slider-btn.next { right: 10px; }
 
-.post-slider-controls .primary-btn {
-  padding: 6px 10px;
-  font-size: 14px;
+.slider-btn:hover {
+  background: rgba(0,0,0,0.75);
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (min-width: 600px) {
-  .post-slider-track {
-    grid-auto-columns: 48%;
-  }
-  .post-slide img {
-    height: 210px;
-  }
-}
-
-@media (min-width: 992px) {
-  .post-slider-track {
-    grid-auto-columns: 32%;
-  }
-  .post-slide img {
-    height: 230px;
-  }
-}
-</style>
+</style>  
 
 <script>
-  const slider = document.getElementById("postSlider");
-  const slides = slider.querySelectorAll(".post-slide");
-  let currentIndex = 0;
-  let autoSlideTimer;
+const slider = document.getElementById("postSlider");
+let slides = Array.from(slider.children);
 
-  function updateActiveSlide() {
-    slides.forEach(slide => slide.classList.remove("active"));
-    slides[currentIndex].classList.add("active");
+let index = 1;
+let slideWidth;
+let autoTimer;
+
+/* Clone first & last */
+const firstClone = slides[0].cloneNode(true);
+const lastClone = slides[slides.length - 1].cloneNode(true);
+
+slider.appendChild(firstClone);
+slider.insertBefore(lastClone, slides[0]);
+
+slides = Array.from(slider.children);
+
+function updateWidth() {
+  slideWidth = slides[0].offsetWidth;
+  slider.style.transform = `translateX(${-slideWidth * index}px)`;
+}
+
+window.addEventListener("resize", updateWidth);
+
+updateWidth();
+
+/* Move Slide */
+function movePostSlide(direction) {
+  index += direction;
+  slider.style.transition = "transform 0.5s ease";
+  slider.style.transform = `translateX(${-slideWidth * index}px)`;
+
+  resetAuto();
+}
+
+/* Loop Fix */
+slider.addEventListener("transitionend", () => {
+  if (slides[index].isSameNode(firstClone)) {
+    slider.style.transition = "none";
+    index = 1;
+    slider.style.transform = `translateX(${-slideWidth * index}px)`;
   }
 
-  function movePostSlide(direction) {
-    const slideWidth = slides[0].offsetWidth + 14;
-    currentIndex = (currentIndex + direction + slides.length) % slides.length;
-
-    slider.scrollBy({
-      left: slideWidth * direction,
-      behavior: "smooth"
-    });
-
-    updateActiveSlide();
-    resetAutoSlide();
+  if (slides[index].isSameNode(lastClone)) {
+    slider.style.transition = "none";
+    index = slides.length - 2;
+    slider.style.transform = `translateX(${-slideWidth * index}px)`;
   }
+});
 
-  function startAutoSlide() {
-    autoSlideTimer = setInterval(() => {
-      movePostSlide(1);
-    }, 5000); // ⏱ 5 seconds
-  }
+/* Auto Slide */
+function startAuto() {
+  autoTimer = setInterval(() => movePostSlide(1), 5000);
+}
 
-  function resetAutoSlide() {
-    clearInterval(autoSlideTimer);
-    startAutoSlide();
-  }
+function resetAuto() {
+  clearInterval(autoTimer);
+  startAuto();
+}
 
-  // Init
-  updateActiveSlide();
-  startAutoSlide();
+startAuto();
 </script>
+
 
 
  <!-- =========================
