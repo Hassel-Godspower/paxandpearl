@@ -450,25 +450,7 @@
     </div>
   </div>
 </div>
-<style>
-/* =========================
-   SIGNUP MODAL
-========================= */
 
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  display: none;              /* ⬅️ default hidden */
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.modal-backdrop.show {
-  display: flex !important;          /* ⬅️ show only when needed */
-}
-</style>
 
 <!-- =========================
      MOBILE BOTTOM NAV
@@ -616,7 +598,7 @@ document.addEventListener("DOMContentLoaded", () => {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.55);
-  display: flex;              /* ⬅️ default hidden */
+  display: none;              /* ⬅️ default hidden */
   align-items: center;
   justify-content: center;
   z-index: 9999;
