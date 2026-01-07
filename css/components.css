@@ -105,6 +105,7 @@ small {
 
 .category-btn {
   background: none;
+  width: 100%;
   border: none;
   text-align: center;
   font-family: 'Poppins', sans-serif;
@@ -310,12 +311,13 @@ small {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* mobile: 2 per row */
   gap: 14px;
+  width: 100%;
 }
 
 /* Perfect square card */
 .service-card1 {
   position: relative;
-  aspect-ratio: 3 / 4; 
+  aspect-ratio: 4 / 5; 
   background: #fff;
   border-radius: 18px;
   overflow: hidden;
