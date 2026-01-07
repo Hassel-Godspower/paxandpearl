@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -212,53 +212,56 @@
   
 <section class="post-slider">
   <div class="page-wrap">
-    <div class="post-slider-track" id="postSlider">
 
-    <!-- Slides (same as yours) -->
-    <div class="post-slide">
-      <img src="assets/images/post1.jpg">
-      <div class="post-overlay">
-        <h4>Relax & Recharge</h4>
-        <a href="services.html" class="btn btn-primary">Book Now</a>
+    <div class="post-slider-viewport">
+      <div class="post-slider-track" id="postSlider">
+
+        <div class="post-slide">
+          <img src="assets/images/post1.jpg">
+          <div class="post-overlay">
+            <h4>Relax & Recharge</h4>
+            <a href="services.html" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+
+        <div class="post-slide">
+          <img src="assets/images/post2.jpg">
+          <div class="post-overlay">
+            <h4>Massage Therapy</h4>
+            <a href="services.html" class="btn btn-primary">View Offer</a>
+          </div>
+        </div>
+
+        <div class="post-slide">
+          <img src="assets/images/post3.jpg">
+          <div class="post-overlay">
+            <h4>Facial Treatment</h4>
+            <a href="services.html" class="btn btn-primary">Book Session</a>
+          </div>
+        </div>
+
+        <div class="post-slide">
+          <img src="assets/images/post4.jpg">
+          <div class="post-overlay">
+            <h4>Smooth Waxing</h4>
+            <a href="services.html" class="btn btn-primary">Get Started</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <div class="post-slide">
-      <img src="assets/images/post2.jpg">
-      <div class="post-overlay">
-        <h4>Massage Therapy</h4>
-        <a href="services.html" class="btn btn-primary">View Offer</a>
-      </div>
-    </div>
-
-    <div class="post-slide">
-      <img src="assets/images/post3.jpg">
-      <div class="post-overlay">
-        <h4>Facial Treatment</h4>
-        <a href="services.html" class="btn btn-primary">Book Session</a>
-      </div>
-    </div>
-
-    <div class="post-slide">
-      <img src="assets/images/post4.jpg">
-      <div class="post-overlay">
-        <h4>Smooth Waxing</h4>
-        <a href="services.html" class="btn btn-primary">Get Started</a>
-      </div>
-    </div>
-
-  </div>
-
-  <button class="slider-btn prev" onclick="movePostSlide(-1)">
+    <button class="slider-btn prev" id="prevSlide">
       <span class="material-icons-round">chevron_left</span>
     </button>
 
-    <button class="slider-btn next" onclick="movePostSlide(1)">
+    <button class="slider-btn next" id="nextSlide">
       <span class="material-icons-round">chevron_right</span>
     </button>
+
   </div>
-</section> 
-   
+</section>
+
 <style>  
 .post-slider {
   position: relative;
