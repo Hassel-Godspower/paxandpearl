@@ -414,6 +414,33 @@ small {
   text-align:center;
 }
 
+/* =========================
+   WHY US ICON COLORS
+========================= */
+.feature {
+  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.feature span.material-icons-round {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+/* Individual colors */
+.feature-verified span {
+  color: #2ecc71; /* trust green */
+}
+
+.feature-luxury span {
+  color: #c9a24d; /* gold luxury */
+}
+
+.feature-flexible span {
+  color: #6c63ff; /* calm purple */
+}
+
 
 /* =========================================================
    PROMO CARD (Animated)
@@ -539,7 +566,7 @@ select {
   width: 100%;
   padding: 10px;
   margin-top: 6px;
-  border-radius: 10px;
+  border-radius: 10px; 
   border: 1px solid #ddd;
   font-family: 'DM Sans', sans-serif;
 }
