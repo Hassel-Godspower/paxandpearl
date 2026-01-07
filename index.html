@@ -595,27 +595,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const acceptBtn = document.getElementById("acceptSignup");
   const dismissBtn = document.getElementById("dismissSignup");
 
-  if (!modal) return;
+  if (!modal || !acceptBtn || !dismissBtn) return;
 
-  // If user already signed up → never show
-  const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
-  if (profile?.name) return;
+  // ✅ Only block if user truly signed up
+  if (localStorage.getItem("hasSignedUp") === "yes") return;
 
-  // If dismissed this session → never show
-  if (sessionStorage.getItem("signupModalDismissed")) return;
+  // ✅ Block only for this session if dismissed
+  if (sessionStorage.getItem("signupModalDismissed") === "yes") return;
 
-  // ⏱ Delay popup
   const timer = setTimeout(() => {
     modal.classList.add("show");
   }, MODAL_DELAY);
 
-  // Accept → redirect
+  // Accept → signup flow
   acceptBtn.addEventListener("click", () => {
     sessionStorage.setItem("signupModalDismissed", "yes");
     window.location.href = "profile.html";
   });
 
-  // Dismiss → hide
+  // Dismiss → hide for this session only
   dismissBtn.addEventListener("click", () => {
     modal.classList.remove("show");
     sessionStorage.setItem("signupModalDismissed", "yes");
@@ -623,7 +621,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-  
+
 <script src="js/data.js"></script>
 <script src="js/booking.js"></script>
 
