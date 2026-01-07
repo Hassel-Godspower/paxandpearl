@@ -312,7 +312,7 @@ small {
 /* Perfect square card */
 .service-card {
   position: relative;
-  aspect-ratio: 3 / 4; 
+  aspect-ratio: 1 / 1; 
   background: #fff;
   border-radius: 18px;
   overflow: hidden;
