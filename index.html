@@ -543,10 +543,11 @@
   // Run on page load
   setGreetingWAT();
 </script>
+  
 <!-- =========================
      SIGN-UP MODAL
 ========================== -->
-<div id="signupModal" class="modal-backdrop" hidden>
+<div id="signupModal" class="modal-backdrop">
   <div class="modal-card">
     <h3>Get a Better Experience ✨</h3>
     <p>
@@ -564,45 +565,67 @@
     </div>
   </div>
 </div>
+<style>
+/* =========================
+   SIGNUP MODAL
+========================= */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;              /* ⬅️ default hidden */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-backdrop.show {
+  display: flex;              /* ⬅️ show only when needed */
+}
+</style>
+
 
 <script>
 /* =========================
    SIGNUP MODAL TIMER LOGIC
 ========================= */
-
 (function signupNudge() {
   const MODAL_DELAY = 60 * 1000; // 1 minute
+
   const modal = document.getElementById("signupModal");
   const acceptBtn = document.getElementById("acceptSignup");
   const dismissBtn = document.getElementById("dismissSignup");
 
   if (!modal) return;
 
-  // If user already signed up, do nothing
+  // If user already signed up
   const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
   if (profile?.name) return;
 
-  // If already dismissed in this session, do nothing
+  // If dismissed this session
   if (sessionStorage.getItem("signupModalDismissed")) return;
 
-  // Show modal after delay
-  setTimeout(() => {
-    modal.hidden = false;
+  // ⏱️ Delay popup
+  const timer = setTimeout(() => {
+    modal.classList.add("show");
   }, MODAL_DELAY);
 
-  // Accept → redirect to profile
+  // Accept → redirect
   acceptBtn.addEventListener("click", () => {
     sessionStorage.setItem("signupModalDismissed", "yes");
     window.location.href = "profile.html";
   });
 
-  // Dismiss → hide modal (session only)
+  // Dismiss → hide
   dismissBtn.addEventListener("click", () => {
-    modal.hidden = true;
+    modal.classList.remove("show");
     sessionStorage.setItem("signupModalDismissed", "yes");
+    clearTimeout(timer);
   });
 })();
 </script>
+
 
 
   
