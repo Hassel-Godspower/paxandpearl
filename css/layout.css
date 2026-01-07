@@ -1,19 +1,4 @@
-/* =========================
-   GLOBAL CONTENT WIDTH
-========================= */
-.page-wrap {
-  width: 100%;
-  max-width: 1200px;     /* desktop alignment */
-  margin: 0 auto;
-  padding: 0 16px;       /* mobile gutter */
-}
 
-/* Wider gutters on large screens */
-@media (min-width: 992px) {
-  .page-wrap {
-    padding: 0 24px;
-  }
-}
 
 .container {
   max-width: 1100px; 
