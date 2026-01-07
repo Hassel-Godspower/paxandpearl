@@ -299,6 +299,43 @@ small {
   color: var(--primary-red);
 }
 
+.section { margin: 24px 0; }
+.soft-bg { background:#f9f9f9; padding:16px; border-radius:16px; }
+
+.section-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.horizontal-cards {
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+}
+
+.service-card, .therapist-card, .review-card {
+  min-width:160px;
+  background:#fff;
+  padding:12px;
+  border-radius:14px;
+}
+
+.features-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  text-align:center;
+}
+
+.offer-card, .membership-banner {
+  background:linear-gradient(135deg,#f3efe9,#fff);
+  padding:20px;
+  border-radius:18px;
+  text-align:center;
+}
+
 
 /* =========================================================
    PROMO CARD (Animated)
