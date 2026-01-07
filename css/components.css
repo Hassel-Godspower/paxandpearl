@@ -299,23 +299,85 @@ small {
   color: var(--primary-red);
 }
 
-.section { margin: 24px 0; }
-.soft-bg { background:#f9f9f9; padding:16px; border-radius:16px; }
+/* =========================
+   FEATURED SERVICES GRID
+========================= */
 
-.section-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* mobile: 2 per row */
+  gap: 14px;
 }
 
-.horizontal-cards {
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
+/* Perfect square card */
+.service-card {
+  position: relative;
+  aspect-ratio: 1 / 1; /* 🔥 forces square */
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.service-card, .therapist-card, .review-card {
+/* Hover / tap effect */
+.service-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+/* Image fills top */
+.service-card img {
+  width: 100%;
+  height: 55%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Content area */
+.service-info {
+  padding: 12px;
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.service-info h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.service-info p {
+  font-size: 12px;
+  color: #666;
+  margin: 4px 0 8px;
+}
+
+/* Button refinement */
+.service-info .btn-sm {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+========================= */
+@media (min-width: 600px) {
+  .service-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .service-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.therapist-card, .review-card {
   min-width:160px;
   background:#fff;
   padding:12px;
