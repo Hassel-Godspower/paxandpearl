@@ -610,33 +610,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </style> 
 
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const MODAL_DELAY = 20 * 1000;
 
-  const modal = document.getElementById("signupModal");
-  const acceptBtn = document.getElementById("acceptSignup");
-  const dismissBtn = document.getElementById("dismissSignup");
-
-  if (!modal || !acceptBtn || !dismissBtn) return;
-
-  if (sessionStorage.getItem("signupModalDismissed") === "yes") return;
-
-  setTimeout(() => {
-    modal.classList.add("show");
-  }, MODAL_DELAY);
-
-  acceptBtn.addEventListener("click", () => {
-    sessionStorage.setItem("signupModalDismissed", "yes");
-    window.location.href = "profile.html";
-  });
-
-  dismissBtn.addEventListener("click", () => {
-    modal.classList.remove("show");
-    sessionStorage.setItem("signupModalDismissed", "yes");
-  });
-});
-</script>
 
 
 <script src="js/data.js"></script>
