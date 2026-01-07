@@ -42,16 +42,21 @@
        SEARCH
   ========================== -->
   <section class="search-section">
-    <div class="search-box">
-      <span class="material-icons-round">search</span>
-      <input type="text" placeholder="Search services, stylists..." />
+    <div class="page-wrap">
+      <div class="search-box">
+        <span class="material-icons-round">search</span>
+        <input type="text" placeholder="Search services, stylists..." />
+      </div>
     </div>
   </section>
+
 
   <!-- =========================
        CATEGORIES
   ========================== -->
-  <section class="categories">
+  <section>
+  <div class="page-wrap">
+    <div class="categories">
     <a href="services.html?category=massage" class="category-btn">
       <span class="material-icons-round">self_improvement</span>
       <small>Massage</small>
@@ -75,20 +80,22 @@
   
   <section>
   <!-- SEE MORE -->
-    <div class="see-more-wrapper">
-      <a href="services.html" class="see-more-btn">
-        See more
-        <span class="material-icons-round">chevron_right</span>
-      </a>
+      <div class="see-more-wrapper">
+        <a href="services.html" class="see-more-btn">
+          See more
+          <span class="material-icons-round">chevron_right</span>
+        </a>
+      </div>
     </div>
   </section>
+   
   <style>
    /* =========================================================
       CATEGORIES (Circular Icons)
    ========================================================= */
    
    .categories-wrapper {
-     padding: 0 12px;
+     padding: 0;
      width: 100%;
    }
    
@@ -98,7 +105,7 @@
      align-items: center;
      gap: 20px;
      width: 100%;
-     padding: 10px 0;
+     padding: 0;
    }
    
    /* Category button / link */
@@ -191,8 +198,8 @@
   </style>
   
 <section class="post-slider">
-
-  <div class="post-slider-track" id="postSlider">
+  <div class="page-wrap">
+    <div class="post-slider-track" id="postSlider">
 
     <!-- Slides (same as yours) -->
     <div class="post-slide">
@@ -229,17 +236,16 @@
 
   </div>
 
-  <!-- Floating Controls -->
   <button class="slider-btn prev" onclick="movePostSlide(-1)">
-    <span class="material-icons-round">chevron_left</span>
-  </button>
+      <span class="material-icons-round">chevron_left</span>
+    </button>
 
-  <button class="slider-btn next" onclick="movePostSlide(1)">
-    <span class="material-icons-round">chevron_right</span>
-  </button>
-
+    <button class="slider-btn next" onclick="movePostSlide(1)">
+      <span class="material-icons-round">chevron_right</span>
+    </button>
+  </div>
 </section> 
-
+   
 <style>  
 .post-slider {
   position: relative;
@@ -392,12 +398,14 @@ startAuto();
 ========================== -->
 
 <section class="section">
-  <div class="section-header">
-    <h3>Popular Treatments</h3>
-    <a href="services.html">View all</a>
-  </div>
+  <div class="page-wrap">
 
-  <div class="service-grid">
+    <div class="section-header">
+      <h3>Popular Treatments</h3>
+      <a href="services.html">View all</a>
+    </div>
+
+    <div class="service-grid">
     <div class="service-card1">
       <img src="assets/images/massage.jpg" alt="">
       <div class="service-info1">
@@ -440,7 +448,9 @@ startAuto();
      TOP THERAPISTS
 ========================== -->
 <section class="section soft-bg">
-  <div class="section-header">
+  <div class="page-wrap">
+
+    <div class="section-header">
     <h3>Meet Our Specialists</h3>
   </div>
 
@@ -471,7 +481,9 @@ startAuto();
      REVIEWS
 ========================== -->
 <section class="section soft-bg">
-  <div class="section-header">
+  <div class="page-wrap">
+
+    <div class="section-header">
     <h3>What Clients Say</h3>
   </div>
 
