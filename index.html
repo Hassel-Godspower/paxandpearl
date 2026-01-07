@@ -608,6 +608,61 @@ document.addEventListener("DOMContentLoaded", () => {
     sessionStorage.setItem("signupModalDismissed", "yes");
     clearTimeout(timer);
   });
+});* =========================
+   SIGNUP MODAL
+========================= */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;              /* ⬅️ default hidden */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-backdrop.show {
+  display: flex !important;          /* ⬅️ show only when needed */
+}
+</style> 
+
+
+<script>
+/* =========================
+   SIGNUP MODAL TIMER LOGIC
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const MODAL_DELAY = 20 * 1000; // ⏱ 20 seconds
+
+  const modal = document.getElementById("signupModal");
+  const acceptBtn = document.getElementById("acceptSignup");
+  const dismissBtn = document.getElementById("dismissSignup");
+
+  if (!modal || !acceptBtn || !dismissBtn) return;
+
+  // ✅ Only block if user truly signed up
+  if (localStorage.getItem("hasSignedUp") === "yes") return;
+
+  // ✅ Block only for this session if dismissed
+  if (sessionStorage.getItem("signupModalDismissed") === "yes") return;
+
+  const timer = setTimeout(() => {
+    modal.classList.add("show");
+  }, MODAL_DELAY);
+
+  // Accept → signup flow
+  acceptBtn.addEventListener("click", () => {
+    sessionStorage.setItem("signupModalDismissed", "yes");
+    window.location.href = "profile.html";
+  });
+
+  // Dismiss → hide for this session only
+  dismissBtn.addEventListener("click", () => {
+    modal.classList.remove("show");
+    sessionStorage.setItem("signupModalDismissed", "yes");
+    clearTimeout(timer);
+  });
 });
 </script>
 
