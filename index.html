@@ -611,11 +611,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <script>
-/* =========================
-   SIGNUP MODAL TIMER LOGIC
-========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const MODAL_DELAY = 20 * 1000; // ⏱ 20 seconds
+  const MODAL_DELAY = 20 * 1000;
 
   const modal = document.getElementById("signupModal");
   const acceptBtn = document.getElementById("acceptSignup");
@@ -623,27 +620,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!modal || !acceptBtn || !dismissBtn) return;
 
-  // ✅ Only block if user truly signed up
-  if (localStorage.getItem("hasSignedUp") === "yes") return;
-
-  // ✅ Block only for this session if dismissed
   if (sessionStorage.getItem("signupModalDismissed") === "yes") return;
 
-  const timer = setTimeout(() => {
+  setTimeout(() => {
     modal.classList.add("show");
   }, MODAL_DELAY);
 
-  // Accept → signup flow
   acceptBtn.addEventListener("click", () => {
     sessionStorage.setItem("signupModalDismissed", "yes");
     window.location.href = "profile.html";
   });
 
-  // Dismiss → hide for this session only
   dismissBtn.addEventListener("click", () => {
     modal.classList.remove("show");
     sessionStorage.setItem("signupModalDismissed", "yes");
-    clearTimeout(timer);
   });
 });
 </script>
