@@ -546,7 +546,9 @@ document.addEventListener("DOMContentLoaded", () => {
       justify-content: center;
       z-index: 9999;
     }
-    
+    .modal-backdrop.show {
+      display: flex;              /* JS toggles this */
+    }
     .modal-card {
       background: #fff;
       width: 90%;
