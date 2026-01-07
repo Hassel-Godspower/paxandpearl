@@ -534,22 +534,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 <style>
-  * =========================
-   SIGNUP MODAL
-========================= */
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  display: none;              /* hidden by default */
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.modal-backdrop.show {
-  display: flex;              /* JS toggles this */
-}
+ /* ========================= 
+       SIGNUP MODAL
+    ========================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none; 
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    
+    .modal-card {
+      background: #fff;
+      width: 90%;
+      max-width: 360px;
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      animation: modalFadeIn 0.35s ease;
+    }
+    
+    .modal-card h3 {
+      margin-bottom: 10px;
+    }
+    
+    .modal-card p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 18px;
+    }
+    
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .modal-actions .btn {
+      flex: 1;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #ccc;
+      color: #333;
+    }
+    
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    } 
 </style> 
 
 
