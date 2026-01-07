@@ -567,31 +567,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!modal || !acceptBtn || !dismissBtn) return;
 
-  // ❌ Never show if user has signed up
-  if (localStorage.getItem("hasSignedUp") === "yes") return;
-
-  // ❌ Don't show again in same session
-  if (sessionStorage.getItem("signupModalDismissed") === "yes") return;
-
-  // ⏱ Show after delay
+  // ⏱ Show modal after delay
   const timer = setTimeout(() => {
     modal.classList.add("show");
   }, MODAL_DELAY);
 
-  // ✅ Accept → go to signup
+  // ✅ Sign Up → redirect
   acceptBtn.addEventListener("click", () => {
-    sessionStorage.setItem("signupModalDismissed", "yes");
     window.location.href = "profile.html";
   });
 
-  // ✅ Dismiss → hide modal
+  // ✅ Maybe Later → close modal
   dismissBtn.addEventListener("click", () => {
     modal.classList.remove("show");
-    sessionStorage.setItem("signupModalDismissed", "yes");
     clearTimeout(timer);
   });
 });
 </script>
+
   
 <style>
   * =========================
@@ -612,9 +605,6 @@ document.addEventListener("DOMContentLoaded", () => {
   display: flex !important;          /* ⬅️ show only when needed */
 }
 </style> 
-
-
-
 
 
 <script src="js/data.js"></script>
