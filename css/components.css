@@ -338,6 +338,7 @@ small {
 .service-info {
   padding: 16px; /* extra bottom space */
   height: 50%;
+  padding-bottom: 24px; 
   display: flex;
   flex-direction: column;
 }
