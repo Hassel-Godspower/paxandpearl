@@ -359,6 +359,7 @@ small {
 .service-info .btn-sm {
   margin-top: auto;
   align-self: flex-start;
+  padding-bottom: 24px; 
   padding: 8px 16px;
   font-size: 12px;
   border-radius: 10px;
