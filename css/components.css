@@ -546,6 +546,30 @@ select {
   font-size: 18px;
 }
 
+
+.office-address {
+  margin: 20px 0 70px; /* space before mobile nav */
+}
+
+.office-address .page-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: #555;
+}
+
+.office-address .material-icons-round {
+  font-size: 20px;
+  color: var(--primary-red);
+  margin-top: 2px;
+}
+
+.office-address p {
+  margin: 0;
+  line-height: 1.4;
+}
+
 /* =========================================================
    MOBILE BOTTOM NAVIGATION
 ========================================================= */
