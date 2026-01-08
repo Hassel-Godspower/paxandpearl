@@ -263,27 +263,44 @@
 </section>
 
 <style>  
+/* =========================
+   SLIDER CORE
+========================= */
 .post-slider {
   position: relative;
-  overflow: hidden;
+}
+
+.post-slider-viewport {
+  overflow: hidden; /* required */
+  width: 100%;
 }
 
 .post-slider-track {
   display: flex;
   transition: transform 0.5s ease;
+  will-change: transform;
 }
 
+/* =========================
+   SLIDES
+========================= */
 .post-slide {
-  min-width: 100%;
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
+  flex: 0 0 100%; /* MOBILE: 1 slide */
+  padding-right: 12px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .post-slide {
+    flex: 0 0 50%; /* DESKTOP: 2 slides */
+  }
 }
 
 .post-slide img {
   width: 100%;
   height: 220px;
   object-fit: cover;
+  border-radius: 16px;
 }
 
 /* Overlay */
@@ -296,9 +313,12 @@
   justify-content: flex-end;
   padding: 16px;
   color: #fff;
+  border-radius: 16px;
 }
 
-/* Floating Buttons */
+/* =========================
+   CONTROLS
+========================= */
 .slider-btn {
   position: absolute;
   top: 50%;
@@ -315,8 +335,8 @@
   z-index: 10;
 }
 
-.slider-btn.prev { left: 10px; }
-.slider-btn.next { right: 10px; }
+.slider-btn.prev { left: 6px; }
+.slider-btn.next { right: 6px; }
 
 .slider-btn:hover {
   background: rgba(0,0,0,0.75);
@@ -324,66 +344,44 @@
 </style>  
 
 <script>
-const slider = document.getElementById("postSlider");
-let slides = Array.from(slider.children);
+(() => {
+  const track = document.getElementById("postSlider");
+  const slides = Array.from(track.children);
+  const prev = document.getElementById("prevSlide");
+  const next = document.getElementById("nextSlide");
 
-let index = 1;
-let slideWidth;
-let autoTimer;
+  let index = 0;
 
-/* Clone first & last */
-const firstClone = slides[0].cloneNode(true);
-const lastClone = slides[slides.length - 1].cloneNode(true);
-
-slider.appendChild(firstClone);
-slider.insertBefore(lastClone, slides[0]);
-
-slides = Array.from(slider.children);
-
-function updateWidth() {
-  slideWidth = slides[0].offsetWidth;
-  slider.style.transform = `translateX(${-slideWidth * index}px)`;
-}
-
-window.addEventListener("resize", updateWidth);
-
-updateWidth();
-
-/* Move Slide */
-function movePostSlide(direction) {
-  index += direction;
-  slider.style.transition = "transform 0.5s ease";
-  slider.style.transform = `translateX(${-slideWidth * index}px)`;
-
-  resetAuto();
-}
-
-/* Loop Fix */
-slider.addEventListener("transitionend", () => {
-  if (slides[index].isSameNode(firstClone)) {
-    slider.style.transition = "none";
-    index = 1;
-    slider.style.transform = `translateX(${-slideWidth * index}px)`;
+  function slidesPerView() {
+    return window.innerWidth >= 768 ? 2 : 1;
   }
 
-  if (slides[index].isSameNode(lastClone)) {
-    slider.style.transition = "none";
-    index = slides.length - 2;
-    slider.style.transform = `translateX(${-slideWidth * index}px)`;
+  function maxIndex() {
+    return Math.max(0, slides.length - slidesPerView());
   }
-});
 
-/* Auto Slide */
-function startAuto() {
-  autoTimer = setInterval(() => movePostSlide(1), 5000);
-}
+  function updateSlider() {
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    track.style.transform = `translateX(-${index * slideWidth}px)`;
+  }
 
-function resetAuto() {
-  clearInterval(autoTimer);
-  startAuto();
-}
+  next.addEventListener("click", () => {
+    index = Math.min(index + 1, maxIndex());
+    updateSlider();
+  });
 
-startAuto();
+  prev.addEventListener("click", () => {
+    index = Math.max(index - 1, 0);
+    updateSlider();
+  });
+
+  window.addEventListener("resize", () => {
+    index = Math.min(index, maxIndex());
+    updateSlider();
+  });
+
+  updateSlider();
+})();
 </script>
 
 
