@@ -279,16 +279,12 @@ function confirmBooking() {
     createdAt: new Date().toISOString()
   };
 
-  /* =========================
-     SAVE LOCALLY
-  ========================= */
+  /* SAVE LOCALLY */
   const bookings = JSON.parse(localStorage.getItem("spaBookings") || "[]");
   bookings.push(booking);
   localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
-  /* =========================
-     SEND TO GOOGLE SHEETS
-  ========================= */
+  /* SEND TO GOOGLE SHEETS */
   fetch(GOOGLE_SHEETS_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -301,21 +297,24 @@ function confirmBooking() {
       time,
       total
     })
-  }).catch(err => console.error("Sheets error:", err));
+  })
+  .then(res => res.json())
+  .then(res => {
+    if (!res.success) console.error("Sheets error:", res.error);
+  })
+  .catch(err => console.error("Sheets error:", err));
 
-  /* =========================
-     CLEAR CART
-  ========================= */
+  /* CLEAR CART */
   cart = [];
   localStorage.removeItem(CART_KEY);
   renderCart();
 
   alert("Booking submitted successfully ✅");
 
-  /* =========================
-     WHATSAPP ADMIN
-  ========================= */
-  notifyAdmin(booking);
+  /* WHATSAPP ADMIN */
+  if (PUBLIC_CATALOG.admin.whatsapp) {
+    notifyAdmin(booking);
+  }
 }
 
 /* =========================
