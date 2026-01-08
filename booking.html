@@ -178,8 +178,10 @@ function renderCart() {
   totalEl.textContent = "₦" + total.toLocaleString();
 }
   
+
 const GOOGLE_SHEETS_URL =
   "https://script.google.com/macros/s/AKfycbyBX9WrLG8qjSCDX38nuJQQ9maq837hW86GwJtXXelzUQIgca5qRxpefnws4FaNhyUV/exec";
+
 function confirmBooking() {
   if (!cart.length) {
     alert("Please select at least one service.");
@@ -197,18 +199,11 @@ function confirmBooking() {
     return;
   }
 
-  if (!PUBLIC_CATALOG?.admin?.whatsapp) {
-    alert("Admin WhatsApp not available. Please try again later.");
-    return;
-  }
-
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   const booking = {
     id: "bk_" + Date.now(),
-    name,
-    email,
-    phone,
+    customer: { name, email, phone },
     services: cart.map(s => s.name).join(", "),
     date,
     time,
@@ -217,45 +212,49 @@ function confirmBooking() {
     createdAt: new Date().toISOString()
   };
 
-  /* ==========================
-     1️⃣ Save locally (Dashboard)
-  ========================== */
+  /* =========================
+     SAVE LOCALLY (BACKUP)
+  ========================= */
   const bookings = JSON.parse(localStorage.getItem("spaBookings") || "[]");
   bookings.push(booking);
   localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
-  /* ==========================
-     2️⃣ Send to Google Sheets
-  ========================== */
-  try {
-    await fetch(GOOGLE_SHEETS_URL, {
-      method: "POST",
-      mode: "no-cors", // REQUIRED for Apps Script
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(booking)
-    });
-  } catch (err) {
-    console.warn("Google Sheets sync failed:", err);
-    // Do NOT block booking if Sheets fails
-  }
+  /* =========================
+     SEND TO GOOGLE SHEETS
+  ========================= */
+  fetch(GOOGLE_SHEETS_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name,
+      phone,
+      email,
+      services: booking.services,
+      date,
+      time,
+      total
+    })
+  })
+  .then(res => res.json())
+  .then(() => {
+    console.log("Booking saved to Google Sheets");
+  })
+  .catch(err => {
+    console.error("Google Sheets error:", err);
+  });
 
-  /* ==========================
-     3️⃣ Clear cart
-  ========================== */
+  /* =========================
+     CLEAR CART
+  ========================= */
   cart = [];
   localStorage.removeItem(CART_KEY);
   renderCart();
 
-  /* ==========================
-     4️⃣ Success Feedback
-  ========================== */
   alert("Booking submitted successfully ✅");
 
-  /* ==========================
-     5️⃣ Notify Admin
-  ========================== */
+  /* =========================
+     NOTIFY ADMIN (WHATSAPP)
+  ========================= */
   if (isSafariBrowser()) {
     showSafariSendButton(booking);
   } else {
@@ -274,6 +273,6 @@ function getValue(id) {
 /* INIT */
 renderCart();
 </script>
-
+  
 </body>
 </html>
