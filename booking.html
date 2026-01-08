@@ -180,7 +180,7 @@ function renderCart() {
   totalEl.textContent = "₦" + total.toLocaleString();
 }
 
-async function confirmBooking() {
+function confirmBooking() {
   if (!cart.length) {
     alert("Please select at least one service.");
     return;
