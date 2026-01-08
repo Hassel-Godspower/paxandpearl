@@ -180,9 +180,7 @@ function renderCart() {
   totalEl.textContent = "₦" + total.toLocaleString();
 }
 
-
-
-function confirmBooking() {
+async function confirmBooking() {
   if (!cart.length) {
     alert("Please select at least one service.");
     return;
@@ -199,11 +197,18 @@ function confirmBooking() {
     return;
   }
 
+  if (!PUBLIC_CATALOG?.admin?.whatsapp) {
+    alert("Admin WhatsApp not available. Please try again later.");
+    return;
+  }
+
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   const booking = {
     id: "bk_" + Date.now(),
-    customer: { name, email, phone },
+    name,
+    email,
+    phone,
     services: cart.map(s => s.name).join(", "),
     date,
     time,
@@ -212,48 +217,45 @@ function confirmBooking() {
     createdAt: new Date().toISOString()
   };
 
-  /* =========================
-     SAVE LOCALLY (BACKUP)
-  ========================= */
+  /* ==========================
+     1️⃣ Save locally (Dashboard)
+  ========================== */
   const bookings = JSON.parse(localStorage.getItem("spaBookings") || "[]");
   bookings.push(booking);
   localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
-  /* =========================
-     SEND TO GOOGLE SHEETS
-  ========================= */
-  fetch(GOOGLE_SHEETS_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name,
-      phone,
-      services: booking.services,
-      date,
-      time,
-      total
-    })
-  })
-  .then(res => res.json())
-  .then(() => {
-    console.log("Booking saved to Google Sheets");
-  })
-  .catch(err => {
-    console.error("Google Sheets error:", err);
-  });
+  /* ==========================
+     2️⃣ Send to Google Sheets
+  ========================== */
+  try {
+    await fetch(GOOGLE_SHEETS_URL, {
+      method: "POST",
+      mode: "no-cors", // REQUIRED for Apps Script
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(booking)
+    });
+  } catch (err) {
+    console.warn("Google Sheets sync failed:", err);
+    // Do NOT block booking if Sheets fails
+  }
 
-  /* =========================
-     CLEAR CART
-  ========================= */
+  /* ==========================
+     3️⃣ Clear cart
+  ========================== */
   cart = [];
   localStorage.removeItem(CART_KEY);
   renderCart();
 
+  /* ==========================
+     4️⃣ Success Feedback
+  ========================== */
   alert("Booking submitted successfully ✅");
 
-  /* =========================
-     NOTIFY ADMIN (WHATSAPP)
-  ========================= */
+  /* ==========================
+     5️⃣ Notify Admin
+  ========================== */
   if (isSafariBrowser()) {
     showSafariSendButton(booking);
   } else {
@@ -261,60 +263,6 @@ function confirmBooking() {
   }
 }
 
-/* =========================
-   PUBLIC CATALOG
-========================= */
-let PUBLIC_CATALOG = null;
-
-fetch("/catalog1.json")
-  .then(res => res.json())
-  .then(data => {
-    PUBLIC_CATALOG = data;
-
-    const adminPhone = data?.admin?.whatsapp;
-    const msgBtn = document.getElementById("messageAdmin");
-
-    if (adminPhone && msgBtn) {
-      msgBtn.href = `https://wa.me/${adminPhone}`;
-      msgBtn.target = "_blank";
-    }
-  })
-  .catch(() => {
-    console.warn("catalog1.json not found");
-  });
-
-/* =========================
-   WHATSAPP NOTIFY ADMIN
-========================= */
-
-function notifyAdminImmediately(booking) {
-  const phone = PUBLIC_CATALOG.admin.whatsapp.replace(/\D/g, "");
-
-  const message =
-`📌 *NEW SPA BOOKING*
-
-👤 Name: ${booking.customer.name}
-📞 Phone: ${booking.customer.phone}
-📧 Email: ${booking.customer.email}
-
-💆 Services:
-${booking.services}
-
-📅 Date: ${booking.date}
-⏰ Time: ${booking.time}
-
-💰 Total: ₦${booking.total.toLocaleString()}
-
-🆔 Ref: ${booking.id}
-`;
-
-  const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-  // Small delay ensures alert finishes before redirect
-  setTimeout(() => {
-    window.open(whatsappURL, "_blank");
-  }, 500);
-}
 
 /* =========================
    HELPERS
