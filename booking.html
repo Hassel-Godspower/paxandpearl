@@ -178,6 +178,9 @@ function renderCart() {
   totalEl.textContent = "₦" + total.toLocaleString();
 }
 
+const GOOGLE_SHEETS_URL =
+  "https://script.google.com/macros/s/AKfycbyBX9WrLG8qjSCDX38nuJQQ9maq837hW86GwJtXXelzUQIgca5qRxpefnws4FaNhyUV/exec";
+
 function confirmBooking() {
   if (!cart.length) {
     alert("Please select at least one service.");
@@ -195,11 +198,6 @@ function confirmBooking() {
     return;
   }
 
-  if (!PUBLIC_CATALOG?.admin?.whatsapp) {
-    alert("Admin WhatsApp not available. Please try again later.");
-    return;
-  }
-
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   const booking = {
@@ -213,20 +211,48 @@ function confirmBooking() {
     createdAt: new Date().toISOString()
   };
 
-  // Save booking locally (admin dashboard can read this)
+  /* =========================
+     SAVE LOCALLY (BACKUP)
+  ========================= */
   const bookings = JSON.parse(localStorage.getItem("spaBookings") || "[]");
   bookings.push(booking);
   localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
-  // Clear cart
+  /* =========================
+     SEND TO GOOGLE SHEETS
+  ========================= */
+  fetch(GOOGLE_SHEETS_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name,
+      phone,
+      services: booking.services,
+      date,
+      time,
+      total
+    })
+  })
+  .then(res => res.json())
+  .then(() => {
+    console.log("Booking saved to Google Sheets");
+  })
+  .catch(err => {
+    console.error("Google Sheets error:", err);
+  });
+
+  /* =========================
+     CLEAR CART
+  ========================= */
   cart = [];
   localStorage.removeItem(CART_KEY);
   renderCart();
 
-  // Success feedback
   alert("Booking submitted successfully ✅");
 
-  // Auto notify admin
+  /* =========================
+     NOTIFY ADMIN (WHATSAPP)
+  ========================= */
   if (isSafariBrowser()) {
     showSafariSendButton(booking);
   } else {
