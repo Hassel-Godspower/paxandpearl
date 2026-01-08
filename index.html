@@ -304,6 +304,10 @@
     flex: 0 0 50%; /* DESKTOP: 2 slides */
   }
 }
+.post-slide {
+  position: relative;
+  z-index: 1;
+}
 
 .post-slide img {
   width: 100%;
@@ -332,6 +336,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 50;              /* 👈 critical */
   background: rgba(0,0,0,0.55);
   color: #fff;
   border: none;
@@ -341,11 +346,12 @@
   display: grid;
   place-items: center;
   cursor: pointer;
-  z-index: 10;
 }
 
+/* Extreme edges */
 .slider-btn.prev { left: 6px; }
 .slider-btn.next { right: 6px; }
+
 
 .slider-btn:hover {
   background: rgba(0,0,0,0.75);
