@@ -262,6 +262,28 @@ function confirmBooking() {
   }
 }
 /* =========================
+   PUBLIC CATALOG
+========================= */
+let PUBLIC_CATALOG = null;
+
+fetch("/catalog1.json")
+  .then(res => res.json())
+  .then(data => {
+    PUBLIC_CATALOG = data;
+
+    const adminPhone = data?.admin?.whatsapp;
+    const msgBtn = document.getElementById("messageAdmin");
+
+    if (adminPhone && msgBtn) {
+      msgBtn.href = `https://wa.me/${adminPhone}`;
+      msgBtn.target = "_blank";
+    }
+  })
+  .catch(() => {
+    console.warn("catalog1.json not found");
+  });
+
+/* =========================
    WHATSAPP NOTIFY ADMIN
 ========================= */
 function notifyAdmin(booking) {
@@ -287,6 +309,7 @@ Phone: ${booking.customer.phone}
     "_blank"
   );
 }
+
 
 /* =========================
    HELPERS
