@@ -151,8 +151,6 @@ function showSafariSendButton(booking) {
 </script>
 
 <script>
-const GOOGLE_SHEETS_URL =
-  "https://script.google.com/macros/s/AKfycbyBX9WrLG8qjSCDX38nuJQQ9maq837hW86GwJtXXelzUQIgca5qRxpefnws4FaNhyUV/exec";
 const CART_KEY = "spaBookingCart";
 let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
@@ -179,7 +177,9 @@ function renderCart() {
 
   totalEl.textContent = "₦" + total.toLocaleString();
 }
-
+  
+const GOOGLE_SHEETS_URL =
+  "https://script.google.com/macros/s/AKfycbyBX9WrLG8qjSCDX38nuJQQ9maq837hW86GwJtXXelzUQIgca5qRxpefnws4FaNhyUV/exec";
 function confirmBooking() {
   if (!cart.length) {
     alert("Please select at least one service.");
