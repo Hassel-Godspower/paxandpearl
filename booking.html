@@ -182,6 +182,74 @@ function renderCart() {
 const GOOGLE_SHEETS_URL =
   "https://script.google.com/macros/s/AKfycbyBX9WrLG8qjSCDX38nuJQQ9maq837hW86GwJtXXelzUQIgca5qRxpefnws4FaNhyUV/exec";
 
+<script>
+/* =========================
+   GLOBAL ADMIN CATALOG
+========================= */
+let PUBLIC_CATALOG = {
+  admin: {
+    whatsapp: null
+  }
+};
+
+/* =========================
+   LOAD ADMIN WHATSAPP
+========================= */
+fetch("/catalog1.json")
+  .then(res => res.json())
+  .then(data => {
+    if (data?.admin?.whatsapp) {
+      // sanitize phone (digits only)
+      PUBLIC_CATALOG.admin.whatsapp = data.admin.whatsapp.replace(/\D/g, "");
+
+      // bind bottom nav button
+      const msgBtn = document.getElementById("messageAdmin");
+      if (msgBtn) {
+        msgBtn.href = `https://wa.me/${PUBLIC_CATALOG.admin.whatsapp}`;
+        msgBtn.target = "_blank";
+      }
+    }
+  })
+  .catch(() => {
+    console.warn("catalog1.json not found or invalid");
+  });
+
+/* =========================
+   WHATSAPP NOTIFY ADMIN
+========================= */
+function notifyAdmin(booking) {
+  const phone = PUBLIC_CATALOG.admin.whatsapp;
+
+  if (!phone) {
+    alert("Admin WhatsApp not available yet. Please try again.");
+    return;
+  }
+
+  const message = `
+📅 NEW BOOKING ALERT
+
+👤 Name: ${booking.customer.name}
+📞 Phone: ${booking.customer.phone}
+📧 Email: ${booking.customer.email}
+
+🧖 Services:
+${booking.services}
+
+🗓 Date: ${booking.date}
+⏰ Time: ${booking.time}
+
+💰 Total: ₦${booking.total.toLocaleString()}
+`;
+
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+}
+
+/* =========================
+   CONFIRM BOOKING
+========================= */
 function confirmBooking() {
   if (!cart.length) {
     alert("Please select at least one service.");
@@ -213,7 +281,7 @@ function confirmBooking() {
   };
 
   /* =========================
-     SAVE LOCALLY (BACKUP)
+     SAVE LOCALLY
   ========================= */
   const bookings = JSON.parse(localStorage.getItem("spaBookings") || "[]");
   bookings.push(booking);
@@ -227,21 +295,14 @@ function confirmBooking() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       name,
-      phone,
       email,
+      phone,
       services: booking.services,
       date,
       time,
       total
     })
-  })
-  .then(res => res.json())
-  .then(() => {
-    console.log("Booking saved to Google Sheets");
-  })
-  .catch(err => {
-    console.error("Google Sheets error:", err);
-  });
+  }).catch(err => console.error("Sheets error:", err));
 
   /* =========================
      CLEAR CART
@@ -253,63 +314,10 @@ function confirmBooking() {
   alert("Booking submitted successfully ✅");
 
   /* =========================
-     NOTIFY ADMIN (WHATSAPP)
+     WHATSAPP ADMIN
   ========================= */
-  if (isSafariBrowser()) {
-    showSafariSendButton(booking);
-  } else {
-    notifyAdminImmediately(booking);
-  }
+  notifyAdmin(booking);
 }
-/* =========================
-   PUBLIC CATALOG
-========================= */
-let PUBLIC_CATALOG = null;
-
-fetch("/catalog1.json")
-  .then(res => res.json())
-  .then(data => {
-    PUBLIC_CATALOG = data;
-
-    const adminPhone = data?.admin?.whatsapp;
-    const msgBtn = document.getElementById("messageAdmin");
-
-    if (adminPhone && msgBtn) {
-      msgBtn.href = `https://wa.me/${adminPhone}`;
-      msgBtn.target = "_blank";
-    }
-  })
-  .catch(() => {
-    console.warn("catalog1.json not found");
-  });
-
-/* =========================
-   WHATSAPP NOTIFY ADMIN
-========================= */
-function notifyAdmin(booking) {
-  const phone = PUBLIC_CATALOG?.admin?.whatsapp;
-
-  if (!phone) {
-    alert("Admin WhatsApp not available.");
-    return;
-  }
-
-  const message = `
-New Booking 📅
-Name: ${booking.customer.name}
-Services: ${booking.services}
-Total: ₦${booking.total.toLocaleString()}
-Date: ${booking.date}
-Time: ${booking.time}
-Phone: ${booking.customer.phone}
-`;
-
-  window.open(
-    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
-}
-
 
 /* =========================
    HELPERS
@@ -321,6 +329,7 @@ function getValue(id) {
 /* INIT */
 renderCart();
 </script>
+
   
 </body>
 </html>
