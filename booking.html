@@ -261,7 +261,32 @@ function confirmBooking() {
     notifyAdminImmediately(booking);
   }
 }
+/* =========================
+   WHATSAPP NOTIFY ADMIN
+========================= */
+function notifyAdmin(booking) {
+  const phone = PUBLIC_CATALOG?.admin?.whatsapp;
 
+  if (!phone) {
+    alert("Admin WhatsApp not available.");
+    return;
+  }
+
+  const message = `
+New Booking 📅
+Name: ${booking.customer.name}
+Services: ${booking.services}
+Total: ₦${booking.total.toLocaleString()}
+Date: ${booking.date}
+Time: ${booking.time}
+Phone: ${booking.customer.phone}
+`;
+
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+}
 
 /* =========================
    HELPERS
