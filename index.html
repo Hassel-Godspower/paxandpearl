@@ -360,7 +360,11 @@
   const next = document.getElementById("nextSlide");
 
   let index = 0;
+  let autoTimer = null;
 
+  /* --------------------
+     RESPONSIVE LOGIC
+  -------------------- */
   function slidesPerView() {
     return window.innerWidth >= 768 ? 2 : 1;
   }
@@ -369,30 +373,103 @@
     return Math.max(0, slides.length - slidesPerView());
   }
 
-  function updateSlider() {
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    track.style.transform = `translateX(-${index * slideWidth}px)`;
+  function slideWidth() {
+    return slides[0].getBoundingClientRect().width;
   }
 
+  function updateSlider(animate = true) {
+    track.style.transition = animate ? "transform 0.45s ease" : "none";
+    track.style.transform = `translateX(-${index * slideWidth()}px)`;
+  }
+
+  /* --------------------
+     BUTTON NAV
+  -------------------- */
   next.addEventListener("click", () => {
     index = Math.min(index + 1, maxIndex());
     updateSlider();
+    resetAuto();
   });
 
   prev.addEventListener("click", () => {
     index = Math.max(index - 1, 0);
     updateSlider();
+    resetAuto();
   });
 
+  /* --------------------
+     AUTO SLIDE
+  -------------------- */
+  function startAuto() {
+    stopAuto();
+    autoTimer = setInterval(() => {
+      index = index >= maxIndex() ? 0 : index + 1;
+      updateSlider();
+    }, 5000);
+  }
+
+  function stopAuto() {
+    if (autoTimer) clearInterval(autoTimer);
+  }
+
+  function resetAuto() {
+    stopAuto();
+    startAuto();
+  }
+
+  /* Pause on hover / touch */
+  track.addEventListener("mouseenter", stopAuto);
+  track.addEventListener("mouseleave", startAuto);
+  track.addEventListener("touchstart", stopAuto, { passive: true });
+  track.addEventListener("touchend", startAuto);
+
+  /* --------------------
+     MOMENTUM SWIPE
+  -------------------- */
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+
+  track.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    track.style.transition = "none";
+  }, { passive: true });
+
+  track.addEventListener("touchmove", e => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+    const diff = startX - currentX;
+    track.style.transform = `translateX(-${index * slideWidth() + diff}px)`;
+  }, { passive: true });
+
+  track.addEventListener("touchend", () => {
+    if (!isDragging) return;
+    isDragging = false;
+
+    const diff = startX - currentX;
+    const threshold = slideWidth() * 0.25;
+
+    if (diff > threshold) index = Math.min(index + 1, maxIndex());
+    if (diff < -threshold) index = Math.max(index - 1, 0);
+
+    updateSlider();
+    resetAuto();
+  });
+
+  /* --------------------
+     RESIZE FIX
+  -------------------- */
   window.addEventListener("resize", () => {
     index = Math.min(index, maxIndex());
-    updateSlider();
+    updateSlider(false);
   });
 
-  updateSlider();
+  /* INIT */
+  updateSlider(false);
+  startAuto();
 })();
 </script>
-
 
 
  <!-- =========================
@@ -626,6 +703,41 @@
   }
 }
 </style>
+
+<section class="office-address">
+  <div class="page-wrap">
+    <span class="material-icons-round">location_on</span>
+    <p>
+      Pax & Pearl Body Works<br>
+      Suite 8, Okaka Plaza, 1st Avenue, FESTAC Town, Lagos
+    </p>
+  </div>
+</section>
+
+<section)
+.office-address {
+  margin: 20px 0 70px; /* space before mobile nav */
+}
+
+.office-address .page-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: #555;
+}
+
+.office-address .material-icons-round {
+  font-size: 20px;
+  color: var(--primary-red);
+  margin-top: 2px;
+}
+
+.office-address p {
+  margin: 0;
+  line-height: 1.4;
+}
+</script>
 
 <!-- =========================
       MOBILE BOTTOM NAV
