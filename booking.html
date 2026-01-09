@@ -179,9 +179,6 @@ function renderCart() {
 }
   
 
-const GOOGLE_SHEETS_URL =
-  "https://script.google.com/macros/s/AKfycbzFPP1YZhXqaiGIUhMyrzfjpnAC4ngLvv4zG7hr562EOFCLnlJeqHWScnM4ksvGbT_AvA/exec";
-
 /* =========================
    GLOBAL ADMIN CATALOG
 ========================= */
@@ -249,6 +246,9 @@ ${booking.services}
 /* =========================
    CONFIRM BOOKING
 ========================= */
+const FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSe6deSJ1KcJgDcRWqhuF8ZmUtgJNdB1vXapQtkmHlqUdEydow/formResponse";
+
 function confirmBooking() {
   if (!cart.length) {
     alert("Please select at least one service.");
@@ -284,25 +284,23 @@ function confirmBooking() {
   bookings.push(booking);
   localStorage.setItem("spaBookings", JSON.stringify(bookings));
 
-  /* SEND TO GOOGLE SHEETS */
-  fetch(GOOGLE_SHEETS_URL, {
+  /* =========================
+     SEND TO GOOGLE FORM
+  ========================= */
+  const formData = new URLSearchParams();
+  formData.append("entry.1782671902", name);
+  formData.append("entry.429038329", email);
+  formData.append("entry.85535944", phone);
+  formData.append("entry.1834985643", booking.services);
+  formData.append("entry.58735690", date);
+  formData.append("entry.436380386", time);
+  formData.append("entry.2083144677", total);
+  
+  fetch(FORM_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name,
-      email,
-      phone,
-      services: booking.services,
-      date,
-      time,
-      total
-    })
-  })
-  .then(res => res.json())
-  .then(res => {
-    if (!res.success) console.error("Sheets error:", res.error);
-  })
-  .catch(err => console.error("Sheets error:", err));
+    mode: "no-cors",
+    body: formData
+  });
 
   /* CLEAR CART */
   cart = [];
