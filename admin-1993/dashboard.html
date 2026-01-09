@@ -481,6 +481,138 @@ function persistCatalog() {
 }
 </script> 
   
+<script>
+function renderBookings() {
+  const container = document.getElementById("bookings");
+  container.innerHTML = "";
+
+  if (!bookings.length) {
+    container.innerHTML = "<p>No bookings yet.</p>";
+    return;
+  }
+
+  bookings.forEach(b => {
+    container.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="card">
+        <strong>${b.name}</strong><br>
+        <small>${b.services}</small><br>
+        📅 ${b.date} • ⏰ ${b.time}<br>
+        💰 ₦${b.total.toLocaleString()}<br><br>
+
+        <select onchange="updateStatus('${b.id}', this.value)">
+          <option ${b.status === "Pending" ? "selected" : ""}>Pending</option>
+          <option ${b.status === "Approved" ? "selected" : ""}>Approved</option>
+          <option ${b.status === "Cancelled" ? "selected" : ""}>Cancelled</option>
+        </select>
+
+        <button class="btn btn-primary"
+          onclick="approveBooking('${b.id}')">
+          WhatsApp Customer
+        </button>
+      </div>
+      `
+    );
+  });
+}
+</script>
+<script>
+function updateStatus(id, status) {
+  bookingStatus[id] = status;
+  localStorage.setItem("bookingStatus", JSON.stringify(bookingStatus));
+  updateStats();
+}
+
+function approveBooking(id) {
+  const booking = bookings.find(b => b.id === id);
+  if (!booking) return;
+
+  updateStatus(id, "Approved");
+
+  const phone = booking.phone.replace(/\D/g, "");
+
+  const msg = `
+✅ BOOKING APPROVED
+
+Hello ${booking.name},
+
+Your booking for:
+${booking.services}
+
+📅 ${booking.date}
+⏰ ${booking.time}
+
+has been CONFIRMED.
+
+We look forward to seeing you 💆🏽‍♀️✨
+`;
+
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,
+    "_blank"
+  );
+}
+</script>
+
+<script>
+/* =========================
+   GOOGLE SHEETS CSV
+========================= */
+const SHEET_CSV_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSVGEisgmXeGP4Z9IjEwloNdAdTfgpFy-0cNF8VWhONeImOzO-OMVrR4d26cqgK6Ml8njsM4dm4IYur/pub?output=csv ";
+
+let bookings = [];
+let bookingStatus = JSON.parse(localStorage.getItem("bookingStatus") || "{}");
+
+/* =========================
+   LOAD BOOKINGS
+========================= */
+fetch(SHEET_CSV_URL)
+  .then(res => res.text())
+  .then(csv => {
+    const rows = csv.split("\n").slice(1);
+    bookings = rows
+      .map(row => {
+        const cols = row.split(",");
+        if (!cols[1]) return null;
+
+        const id = "bk_" + cols[0].replace(/\D/g, "");
+
+        return {
+          id,
+          timestamp: cols[0],
+          name: cols[1],
+          email: cols[2],
+          phone: cols[3],
+          services: cols[4],
+          date: cols[5],
+          time: cols[6],
+          total: Number(cols[7]) || 0,
+          status: bookingStatus[id] || "Pending"
+        };
+      })
+      .filter(Boolean);
+
+    renderBookings();
+    updateStats();
+  });
+</script>  
+<script>
+function updateStats() {
+  document.getElementById("totalBookings").textContent = bookings.length;
+
+  const revenue = bookings.reduce((sum, b) => sum + b.total, 0);
+  document.getElementById("totalRevenue").textContent =
+    revenue.toLocaleString();
+
+  document.getElementById("pendingCount").textContent =
+    bookings.filter(b => b.status === "Pending").length;
+
+  document.getElementById("approvedCount").textContent =
+    bookings.filter(b => b.status === "Approved").length;
+}
+</script>
 
 <script>
 function publishCatalog() {
