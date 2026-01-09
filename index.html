@@ -760,6 +760,33 @@
   z-index: 2;
 }
 
+/* =========================
+   RESPONSIVE
+========================== */
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .rating-card {
+    max-width: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .reviews-section {
+    padding: 64px 24px;
+  }
+
+  .rating-card {
+    max-width: 360px;
+  }
+}
 </style>
 
 <script>
