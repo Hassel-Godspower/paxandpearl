@@ -616,25 +616,38 @@
   </div>
 </section>
 <section class="google-rating">
-  <a href="https://g.page/paxpearlspa" target="_blank" rel="noopener">
-    <div class="rating-card">
-      <div class="rating-score">4.7</div>
+  <button class="rating-card" onclick="openReviewsModal()">
+    <div class="rating-score">4.7</div>
 
-      <div class="rating-stars" aria-label="4.7 out of 5 stars">
-        ★★★★<span class="half">★</span>
-      </div>
-
-      <div class="rating-count">
-        Based on <strong>303 Google reviews</strong>
-      </div>
-
-      <div class="rating-source">
-        <img src="assets/images/google-logo.png" alt="Google">
-        <span>Verified Reviews</span>
-      </div>
+    <div class="rating-stars">
+      ★★★★<span class="half">★</span>
     </div>
-  </a>
+
+    <div class="rating-count">
+      Based on <strong>303 Google reviews</strong>
+    </div>
+
+    <div class="rating-source">
+      <img src="assets/images/google-logo.svg" alt="Google">
+      <span>Verified Reviews</span>
+    </div>
+  </button>
 </section>
+    
+<div class="reviews-modal" id="reviewsModal">
+  <div class="reviews-backdrop" onclick="closeReviewsModal()"></div>
+
+  <div class="reviews-modal-box">
+    <button class="modal-close" onclick="closeReviewsModal()">✕</button>
+
+    <iframe
+      src="https://www.google.com/maps?q=Pax+%26+Pearl+Body+Works+(Spa+in+Lagos)&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</div>
+
     
 <style> 
 .google-rating {
@@ -697,7 +710,72 @@
   width: 16px;
   height: 16px;
 }
+
+/* Modal wrapper */
+.reviews-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+/* Dark overlay */
+.reviews-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+/* Modal box */
+.reviews-modal-box {
+  position: relative;
+  width: 92%;
+  max-width: 420px;
+  height: 70vh;
+  margin: 8vh auto;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* iframe */
+.reviews-modal-box iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
 </style>
+
+<script>
+function openReviewsModal() {
+  document.getElementById("reviewsModal").style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
+function closeReviewsModal() {
+  document.getElementById("reviewsModal").style.display = "none";
+  document.body.style.overflow = "";
+}
+</script>
+
     
 <script type="application/ld+json">
 {
