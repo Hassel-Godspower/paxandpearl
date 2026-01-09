@@ -586,54 +586,58 @@
 <!-- =========================
      REVIEWS
 ========================== -->
-<section class="section soft-bg">
+<section class="section soft-bg reviews-section">
   <div class="page-wrap">
 
     <div class="section-header">
-    <h3>What Clients Say</h3>
-  </div>
-
-  <div class="card-grid">
-    <div class="review-card">
-      <p>“Serene atmosphere. Professional service. Felt like a newborn baby afterwards. Would definitely make this place my regular staple..”</p>
-       <small>— Idowu J.</small>
+      <h3>What Clients Say</h3>
     </div>
 
-    <div class="review-card">
-      <p>“Very kind people, gentle and calm. They will pamper you and you will not want to leave. I actually want to go back there soon..”</p>
-      <small>— Joshua K.</small>
+    <div class="card-grid">
+      <div class="review-card">
+        <p>“Serene atmosphere. Professional service. Felt like a newborn baby afterwards. Would definitely make this place my regular staple..”</p>
+        <small>— Idowu J.</small>
+      </div>
+
+      <div class="review-card">
+        <p>“Very kind people, gentle and calm. They will pamper you and you will not want to leave. I actually want to go back there soon..”</p>
+        <small>— Joshua K.</small>
+      </div>
+
+      <div class="review-card">
+        <p>“I loved every bit of the service I got. The deep tissue massage was amazing, I have not slept so well for a long time but after the massage now I sleep like a baby. The customer service was super amazing, my wax session was so good. I love it.”</p>
+        <small>— Riz C.</small>
+      </div>
+
+      <div class="review-card">
+        <p>“I took a little time out to pamper myself and it was a beautiful experience. I felt so much relief after the deep tissue body massage. The pedicure and manicure, facials was superb. I will scheduling time for these going forward.”</p>
+        <small>— Florence U.</small>
+      </div>
     </div>
 
-    <div class="review-card">
-      <p>“I loved every bit of the service I got. The deep tissue massage was amazing, I have not slept so well for a long time but after the massage now I sleep like a baby. The customer service was super amazing, my wax session was so good. I love it.”</p>
-      <small>— Riz C.</small>
+    <div class="google-rating-wrapper">
+      <button class="rating-card" onclick="openReviewsModal()">
+        <div class="rating-score">4.7</div>
+
+        <div class="rating-stars">
+          ★★★★<span class="half">★</span>
+        </div>
+
+        <div class="rating-count">
+          Based on <strong>303 Google reviews</strong>
+        </div>
+
+        <div class="rating-source">
+          <img src="assets/images/google-logo.png" alt="Google">
+          <span>Verified Reviews</span>
+        </div>
+      </button>
     </div>
 
-    <div class="review-card">
-      <p>“I took a little time out to pamper myself and it was a beautiful experience. I felt so much relief after the deep tissue body massage. The pedicure and manicure, facials was superb. I will scheduling time for these going forward.”</p>
-      <small>— Florence U.</small>
-    </div>
   </div>
 </section>
-<section class="google-rating">
-  <button class="rating-card" onclick="openReviewsModal()">
-    <div class="rating-score">4.7</div>
 
-    <div class="rating-stars">
-      ★★★★<span class="half">★</span>
-    </div>
-
-    <div class="rating-count">
-      Based on <strong>303 Google reviews</strong>
-    </div>
-
-    <div class="rating-source">
-      <img src="assets/images/google-logo.png" alt="Google">
-      <span>Verified Reviews</span>
-    </div>
-  </button>
-</section>
-    
+<!-- Modal -->
 <div class="reviews-modal" id="reviewsModal">
   <div class="reviews-backdrop" onclick="closeReviewsModal()"></div>
 
@@ -648,15 +652,60 @@
   </div>
 </div>
 
-    
-<style> 
-.google-rating {
-  padding: 16px;
+<style>
+/* =========================
+   SECTION STYLING
+========================== */
+.reviews-section {
+  padding: 48px 16px;
+  text-align: center;
 }
 
-.google-rating a {
-  text-decoration: none;
-  color: inherit;
+.section-header h3 {
+  font-size: 28px;
+  margin-bottom: 32px;
+  font-family: 'Poppins', sans-serif;
+  color: #1f2937;
+}
+
+/* =========================
+   CARD GRID
+========================== */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+}
+
+.review-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #374151;
+}
+
+.review-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.review-card small {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* =========================
+   GOOGLE RATING CARD
+========================== */
+.google-rating-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .rating-card {
@@ -665,8 +714,7 @@
   padding: 18px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   text-align: center;
-  max-width: 260px;
-  margin: auto;
+  max-width: 280px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -683,7 +731,7 @@
 
 .rating-stars {
   font-size: 22px;
-  color: #fbbc04; /* Google gold */
+  color: #fbbc04;
   margin: 6px 0;
 }
 
@@ -711,7 +759,9 @@
   height: 16px;
 }
 
-/* Modal wrapper */
+/* =========================
+   MODAL
+========================== */
 .reviews-modal {
   position: fixed;
   inset: 0;
@@ -719,14 +769,12 @@
   display: none;
 }
 
-/* Dark overlay */
 .reviews-backdrop {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.6);
 }
 
-/* Modal box */
 .reviews-modal-box {
   position: relative;
   width: 92%;
@@ -739,14 +787,12 @@
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
-/* iframe */
 .reviews-modal-box iframe {
   width: 100%;
   height: 100%;
   border: 0;
 }
 
-/* Close button */
 .modal-close {
   position: absolute;
   top: 10px;
@@ -762,6 +808,33 @@
   z-index: 2;
 }
 
+/* =========================
+   RESPONSIVE
+========================== */
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .rating-card {
+    max-width: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .reviews-section {
+    padding: 64px 24px;
+  }
+
+  .rating-card {
+    max-width: 360px;
+  }
+}
 </style>
 
 <script>
@@ -775,6 +848,7 @@ function closeReviewsModal() {
   document.body.style.overflow = "";
 }
 </script>
+
 
     
 <script type="application/ld+json">
