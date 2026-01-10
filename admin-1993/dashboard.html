@@ -19,6 +19,73 @@
 </head>
 
 <style>
+
+.admin-layout {
+  display:flex;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width:260px;
+  background:#0f172a;
+  color:#fff;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+}
+
+.sidebar .logo {
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:24px;
+}
+
+.sidebar nav {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.nav-btn {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 14px;
+  background:none;
+  border:none;
+  color:#cbd5f5;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background:#1e293b;
+  color:#fff;
+}
+
+.nav-btn .material-icons-round {
+  font-size:20px;
+}
+
+/* MAIN */
+.main-content {
+  flex:1;
+  padding:20px;
+  overflow-y:auto;
+}
+
+/* PAGE SWITCH */
+.page {
+  display:none;
+}
+
+.page.active {
+  display:block;
+}
+
 /* =============================
    BASE
 ============================= */
@@ -160,6 +227,49 @@ a {
 
 <body>
 
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">SPA ADMIN</div>
+
+    <nav>
+      <button class="nav-btn active" data-page="dashboard">
+        <span class="material-icons-round">dashboard</span>
+        Dashboard
+      </button>
+
+      <button class="nav-btn" data-page="bookings">
+        <span class="material-icons-round">event</span>
+        Bookings
+      </button>
+
+      <button class="nav-btn" data-page="calendar">
+        <span class="material-icons-round">calendar_month</span>
+        Calendar
+      </button>
+
+      <button class="nav-btn" data-page="services">
+        <span class="material-icons-round">spa</span>
+        Services
+      </button>
+
+      <button class="nav-btn" data-page="revenue">
+        <span class="material-icons-round">bar_chart</span>
+        Revenue
+      </button>
+
+      <button class="nav-btn" data-page="settings">
+        <span class="material-icons-round">settings</span>
+        Settings
+      </button>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+<main class="main-content">
+
+<div class="page active" data-page="dashboard">
 <!-- =============================
      HEADER
 ============================= -->
@@ -198,16 +308,20 @@ a {
     <span id="approvedCount">0</span>
   </div>
 </div>
-  
+</div>
+
+<div class="page" data-page="revenue">
 </section>
   <section>
   <h3>Revenue by Category</h3>
   <div id="revenueByCategory"></div>
 </section>
-
+</div>
+  
 <hr>
 
 <!-- ADMIN WHATSAPP -->
+<div class="page" data-page="settings">
 <section>
   <h3>Admin WhatsApp</h3>
 
@@ -219,7 +333,8 @@ a {
     </button>
   </div>
 </section>
-
+</div> 
+  
 <script>
 const adminPhoneInput = document.getElementById("adminPhone");
 const saveBtn = document.getElementById("saveAdminPhone");
@@ -265,14 +380,17 @@ updateMessageButton();
 <hr>
 
 <!-- BOOKINGS -->
+<div class="page" data-page="bookings">
 <section>
   <h3>Bookings</h3>
   <div id="bookings"></div>
 </section>
+</div>
 
 <hr>
 
 <!-- SERVICES -->
+<div class="page" data-page="services">
 <section>
   <h3>Services & Pricing</h3>
 
@@ -316,13 +434,22 @@ updateMessageButton();
     <button class="btn btn-primary" id="addService">Add Service</button>
   </section>
 </section>
-  
+
 <div
 <button class="btn btn-primary" onclick="publishCatalog()">
   Publish Services
 </button>
 </div>
+</div>
 
+<div class="page" data-page="calendar">
+  <section>
+    <h3>Calendar View</h3>
+    <p>Bookings calendar coming next</p>
+  </section>
+</div>
+
+  
 <script>
 /* ============================
    SPA CATALOG (LOCALSTORAGE)
@@ -635,6 +762,22 @@ function publishCatalog() {
   );
 }
 </script>
+
+<script>
+document.querySelectorAll(".nav-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+
+    btn.classList.add("active");
+    document.querySelector(`.page[data-page="${btn.dataset.page}"]`).classList.add("active");
+  });
+});
+</script>
+
+
+  </main>
+</div>
 
 </body>
 </html>
