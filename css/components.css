@@ -53,13 +53,13 @@ small {
 }
 
 .greeting h2 {
-  font-size: 9.5px;      /* smaller base */
+  font-size:12px;      /* smaller base */
   line-height: 1.05;
   margin: 0;
 }
 
 #user-name {
-  font-size: 11px;       /* slightly bigger than sub text */
+  font-size: 14px;       /* slightly bigger than sub text */
   font-weight: 500;
   display: block;
 }
