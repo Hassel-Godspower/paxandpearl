@@ -457,6 +457,7 @@ updateMessageButton();
   <section id="calendarContainer"></section>
 
 </div>
+  
 <style> 
 .calendar-header {
   display:flex;
@@ -764,50 +765,78 @@ function renderCalendar() {
     renderWeekView(container);
   }
 }
+function getWeekDates(base = new Date()) {
+  const start = new Date(base);
+  start.setDate(base.getDate() - ((base.getDay() + 6) % 7)); // Monday
+
+  return Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(start);
+    d.setDate(start.getDate() + i);
+    return d;
+  });
+}
+
+function parseTimeToHour(timeStr) {
+  // Handles "10:00", "10am", "10:30"
+  if (!timeStr) return null;
+  const match = timeStr.match(/(\d+)(?::(\d+))?/);
+  return match ? parseInt(match[1]) : null;
+}
 
 /* ==========================
    WEEK VIEW (IMAGE-LIKE)
 ========================== */
+
 function renderWeekView(container) {
+  const weekDates = getWeekDates(); // Mon → Sun
   const grid = document.createElement("div");
   grid.className = "calendar-grid";
 
   // Header row
   grid.appendChild(document.createElement("div"));
-  ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach(d => {
+  weekDates.forEach(d => {
     const h = document.createElement("div");
     h.className = "calendar-time";
-    h.innerHTML = `<strong>${d}</strong>`;
+    h.innerHTML = `<strong>${d.toLocaleDateString("en-GB", {
+      weekday: "short",
+      day: "numeric"
+    })}</strong>`;
     grid.appendChild(h);
   });
 
-  // Time slots
+  // Time rows
   for (let hour = 9; hour <= 18; hour++) {
     const time = document.createElement("div");
     time.className = "calendar-time";
     time.textContent = `${hour}:00`;
     grid.appendChild(time);
 
-    for (let d = 0; d < 7; d++) {
+    weekDates.forEach(dayDate => {
       const cell = document.createElement("div");
       cell.className = "calendar-cell";
 
-      bookings
-        .filter(b => parseInt(b.time) === hour)
-        .forEach(b => {
+      bookings.forEach(b => {
+        const bookingDate = new Date(b.date);
+        const bookingHour = parseTimeToHour(b.time);
+
+        if (
+          bookingHour === hour &&
+          bookingDate.toDateString() === dayDate.toDateString()
+        ) {
           const block = document.createElement("div");
-          block.className =
-            `booking-block ${b.status.toLowerCase()}`;
+          block.className = `booking-block ${b.status.toLowerCase()}`;
           block.innerHTML = `
             <strong>${b.name}</strong><br>
-            ${b.services}
+            ${b.services}<br>
+            <small>${b.time} • ${b.duration || 60} mins</small>
           `;
           block.onclick = () => showBookingPopup(b);
           cell.appendChild(block);
-        });
+        }
+      });
 
       grid.appendChild(cell);
-    }
+    });
   }
 
   container.appendChild(grid);
