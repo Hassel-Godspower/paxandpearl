@@ -37,13 +37,20 @@ small {
   justify-content: space-between;
   padding: 10px 6px 6px; /* reduced bottom padding */
 }
-
+/* Greeting (tighter width) */
+.greeting {
+  max-width: 55%;          /* limits how much space it can occupy */
+  padding-right: 6px;      /* small breathing room */
+  overflow: hidden;
+}
+ 
 .greeting h2 {
   font-size: 12px;
-  line-height: 1.1;
+  line-height: 1.05;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  color: var(--text-main);
+  white-space: nowrap;     /* prevents multi-line stretching */
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 /* Logo */
