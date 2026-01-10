@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5, h6,
 .section-title,
 .header-title {
   font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.02em;
 }
 
@@ -39,7 +39,7 @@ small {
 }
 /* Greeting (tighter width) */
 .greeting {
-  max-width: 40%;          /* limits how much space it can occupy */
+  max-width: 50%;          /* limits how much space it can occupy */
   padding-right: 4px;      /* small breathing room */
   overflow: hidden;
 }
