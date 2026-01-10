@@ -38,6 +38,14 @@ small {
   padding: 10px 6px 6px; /* reduced bottom padding */
 }
 
+/* Right side (logo + notification MUST stay inline) */
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0; /* prevents wrapping */
+}
+
 /* Greeting (tighter width) */
 .greeting {
   max-width: 50%;          /* limits how much space it can occupy */
