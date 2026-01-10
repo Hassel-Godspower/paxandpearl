@@ -39,7 +39,7 @@ small {
 }
 /* Greeting (tighter width) */
 .greeting {
-  max-width: 55%;          /* limits how much space it can occupy */
+  max-width: 40%;          /* limits how much space it can occupy */
   padding-right: 4px;      /* small breathing room */
   overflow: hidden;
 }
