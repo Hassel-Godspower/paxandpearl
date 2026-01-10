@@ -443,11 +443,70 @@ updateMessageButton();
 </div>
 
 <div class="page" data-page="calendar">
-  <section>
-    <h3>Calendar View</h3>
-    <p>Bookings calendar coming next</p>
+
+  <section class="calendar-header">
+    <h3>Calendar</h3>
+
+    <div class="calendar-controls">
+      <button class="btn" onclick="changeView('day')">Day</button>
+      <button class="btn" onclick="changeView('week')">Week</button>
+      <button class="btn" onclick="changeView('list')">List</button>
+    </div>
   </section>
+
+  <section id="calendarContainer"></section>
+
 </div>
+<style> 
+.calendar-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.calendar-controls {
+  display:flex;
+  gap:8px;
+}
+
+.calendar-grid {
+  display:grid;
+  grid-template-columns:80px repeat(7, 1fr);
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.calendar-time {
+  padding:8px;
+  font-size:12px;
+  color:#6b7280;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.calendar-cell {
+  border-left:1px solid #e5e7eb;
+  border-bottom:1px solid #e5e7eb;
+  padding:6px;
+  min-height:60px;
+}
+
+.booking-block {
+  background:#7b5cff;
+  color:#fff;
+  padding:6px 8px;
+  border-radius:8px;
+  font-size:12px;
+  margin-bottom:6px;
+  cursor:pointer;
+}
+
+.booking-block.pending { background:#f59e0b; }
+.booking-block.approved { background:#10b981; }
+.booking-block.cancelled { background:#ef4444; }
+
+</style>
 
   
 <script>
@@ -683,6 +742,115 @@ We look forward to seeing you 💆🏽‍♀️✨
 </script>
 
 <script>
+let currentView = "week";
+
+function changeView(view) {
+  currentView = view;
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const container = document.getElementById("calendarContainer");
+  container.innerHTML = "";
+
+  if (!bookings.length) {
+    container.innerHTML = "<p>No bookings yet.</p>";
+    return;
+  }
+
+  if (currentView === "list") {
+    renderListView(container);
+  } else {
+    renderWeekView(container);
+  }
+}
+
+/* ==========================
+   WEEK VIEW (IMAGE-LIKE)
+========================== */
+function renderWeekView(container) {
+  const grid = document.createElement("div");
+  grid.className = "calendar-grid";
+
+  // Header row
+  grid.appendChild(document.createElement("div"));
+  ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach(d => {
+    const h = document.createElement("div");
+    h.className = "calendar-time";
+    h.innerHTML = `<strong>${d}</strong>`;
+    grid.appendChild(h);
+  });
+
+  // Time slots
+  for (let hour = 9; hour <= 18; hour++) {
+    const time = document.createElement("div");
+    time.className = "calendar-time";
+    time.textContent = `${hour}:00`;
+    grid.appendChild(time);
+
+    for (let d = 0; d < 7; d++) {
+      const cell = document.createElement("div");
+      cell.className = "calendar-cell";
+
+      bookings
+        .filter(b => parseInt(b.time) === hour)
+        .forEach(b => {
+          const block = document.createElement("div");
+          block.className =
+            `booking-block ${b.status.toLowerCase()}`;
+          block.innerHTML = `
+            <strong>${b.name}</strong><br>
+            ${b.services}
+          `;
+          block.onclick = () => showBookingPopup(b);
+          cell.appendChild(block);
+        });
+
+      grid.appendChild(cell);
+    }
+  }
+
+  container.appendChild(grid);
+}
+
+/* ==========================
+   LIST VIEW
+========================== */
+function renderListView(container) {
+  bookings.forEach(b => {
+    container.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="card">
+        <strong>${b.name}</strong><br>
+        ${b.services}<br>
+        📅 ${b.date} • ⏰ ${b.time}<br>
+        <span class="booking-block ${b.status.toLowerCase()}">
+          ${b.status}
+        </span>
+      </div>
+      `
+    );
+  });
+}
+
+/* ==========================
+   POPUP
+========================== */
+function showBookingPopup(b) {
+  alert(
+    `BOOKING DETAILS\n\n` +
+    `${b.name}\n` +
+    `${b.services}\n` +
+    `${b.date} ${b.time}\n` +
+    `₦${b.total.toLocaleString()}\n` +
+    `Status: ${b.status}`
+  );
+}
+</script>
+
+  
+<script>
 /* =========================
    GOOGLE SHEETS CSV
 ========================= */
@@ -723,6 +891,7 @@ fetch(SHEET_CSV_URL)
 
     renderBookings();
     updateStats();
+    renderCalendar();
   });
 </script>  
 <script>
