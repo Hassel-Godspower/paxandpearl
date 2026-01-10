@@ -32,10 +32,11 @@ small {
    TOP BAR
 ========================= */
 .top-bar {
+  padding: 8px 10px 4px; /* tighter bottom */
+  margin-bottom: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 6px 6px; /* reduced bottom padding */
 }
 
 /* Right side (logo + notification MUST stay inline) */
@@ -46,20 +47,26 @@ small {
   flex-shrink: 0; /* prevents wrapping */
 }
 
-/* Greeting (tighter width) */
 .greeting {
-  max-width: 50%;          /* limits how much space it can occupy */
-  padding-right: 4px;      /* small breathing room */
-  overflow: hidden;
+  max-width: 55%;
+  padding-right: 6px;
 }
- 
+
 .greeting h2 {
-  font-size: 10px;
+  font-size: 9.5px;      /* smaller base */
   line-height: 1.05;
   margin: 0;
-  white-space: nowrap;     /* prevents multi-line stretching */
-  text-overflow: ellipsis;
-  overflow: hidden;
+}
+
+#user-name {
+  font-size: 11px;       /* slightly bigger than sub text */
+  font-weight: 500;
+  display: block;
+}
+
+#time-greeting {
+  font-size: 9px;
+  opacity: 0.85;
 }
 
 /* Logo */
