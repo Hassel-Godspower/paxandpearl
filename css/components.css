@@ -55,7 +55,7 @@ small {
 .greeting h2 {
   font-size:20px;      /* smaller base */
   font-weight: 600;
-  line-height: 0.5px;
+  line-height: 1px;
   margin: 0;
 }
 
