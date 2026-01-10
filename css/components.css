@@ -37,6 +37,7 @@ small {
   justify-content: space-between;
   padding: 10px 6px 6px; /* reduced bottom padding */
 }
+
 /* Greeting (tighter width) */
 .greeting {
   max-width: 50%;          /* limits how much space it can occupy */
@@ -55,7 +56,7 @@ small {
 
 /* Logo */
 .brand-logo img {
-  height: 30px; /* slightly tighter for mobile */
+  height: 40px; /* slightly tighter for mobile */
   width: auto;
   object-fit: contain;
 }
