@@ -38,11 +38,6 @@ small {
   padding: 10px 6px 6px; /* reduced bottom padding */
 }
 
-/* Greeting (EXTREME LEFT) */
-.greeting {
-  flex-shrink: 0;
-}
-
 .greeting h2 {
   font-size: 12px;
   line-height: 1.1;
