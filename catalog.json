@@ -23,6 +23,14 @@
     {
       "id": "hammam-body-wash",
       "name": "Hammam Body Wash"
+    },
+    {
+      "id": "chemical-peel",
+      "name": "Chemical Peel"
+    },
+    {
+      "id": "skin-tag-removal",
+      "name": "Skin Tag Removal"
     }
   ],
   "services": [
@@ -343,7 +351,7 @@
     },
     {
       "id": "svc_1767706374363",
-      "name": "Deep cleansing Facial NGN 20,000(Full extraction of blackheads and whiteheads with a light therapy) 60mins",
+      "name": "Deep cleansing Facials",
       "description": "Deep cleansing facial treatments are a non-invasive skin care practices that provide a relaxing experience while thoroughly cleansing, exfoliating, and moisturizing the face. Full extraction of blackheads and whiteheads with light therapy.",
       "price": 20000,
       "duration": 45,
@@ -430,6 +438,96 @@
       "duration": 40,
       "category": "pedicure-&-manicure",
       "order": 44
+    },
+    {
+      "id": "svc_1768467434362",
+      "name": "Wood Therapy Massage",
+      "description": "wood Therapy is designed to stimulate specific points on the body, to activate the lymphatic systems, reduce fat retention, and tone the skin.",
+      "price": 30000,
+      "duration": 60,
+      "category": "massage",
+      "order": 45
+    },
+    {
+      "id": "svc_1768550802623",
+      "name": "Wood Therapy Massage",
+      "description": "WTM is effective for the removal of cellulite, promotes lymphatic drainage, improves circulation,and enhances skin tone and texture.",
+      "price": 30000,
+      "duration": 60,
+      "category": "massage",
+      "order": 46
+    },
+    {
+      "id": "svc_1768550925290",
+      "name": "Skin Tag Removal",
+      "description": "Removing Skin Tags. The fee is based on the number of tags and the size.",
+      "price": 10000,
+      "duration": 30,
+      "category": "skin-tag-removal",
+      "order": 47
+    },
+    {
+      "id": "svc_1768551310568",
+      "name": "Chemical peel face",
+      "description": "A treatment that uses a solution to remove the outer layers of the skin, revealing smoother and less wrinkled skin.",
+      "price": 40000,
+      "duration": 60,
+      "category": "chemical-peel",
+      "order": 48
+    },
+    {
+      "id": "svc_1768551351982",
+      "name": "Chemical peel Elbow",
+      "description": "A treatment that uses a solution to remove the outer layers of the skin, revealing smoother and less wrinkled skin.",
+      "price": 20000,
+      "duration": 15,
+      "category": "chemical-peel",
+      "order": 49
+    },
+    {
+      "id": "svc_1768551392544",
+      "name": "Chemical peel Knee",
+      "description": "A treatment that uses a solution to remove the outer layers of the skin, revealing smoother and less wrinkled skin.",
+      "price": 20000,
+      "duration": 15,
+      "category": "chemical-peel",
+      "order": 50
+    },
+    {
+      "id": "svc_1768551434983",
+      "name": "Chemical peel Buttocks",
+      "description": "A treatment that uses a solution to remove the outer layers of the skin, revealing smoother and less wrinkled skin.",
+      "price": 30000,
+      "duration": 30,
+      "category": "chemical-peel",
+      "order": 51
+    },
+    {
+      "id": "svc_1768551591199",
+      "name": "Chemical peel Hands",
+      "description": "A treatment that uses a solution to remove the outer layers of the skin, revealing smoother and less wrinkled skin.",
+      "price": 10000,
+      "duration": 10,
+      "category": "chemical-peel",
+      "order": 52
+    },
+    {
+      "id": "svc_1768551689838",
+      "name": "Chemical peel Leg knuckles",
+      "description": "A treatment that uses a solution to remove the outer layers of the skin, revealing smoother and less wrinkled skin.",
+      "price": 20000,
+      "duration": 20,
+      "category": "chemical-peel",
+      "order": 53
+    },
+    {
+      "id": "svc_1768551770014",
+      "name": "Chemical peel Full Body",
+      "description": "A treatment that uses a solution to remove the outer layers of the skin, revealing smoother and less wrinkled skin.",
+      "price": 150000,
+      "duration": 90,
+      "category": "chemical-peel",
+      "order": 54
     }
   ]
 }
