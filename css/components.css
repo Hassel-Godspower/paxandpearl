@@ -471,6 +471,33 @@ small {
   cursor: pointer;
 }
 
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #b91c1c;
+  padding: 4px;
+}
+
+.remove-btn .material-icons-round {
+  font-size: 18px;
+}
+
 /* =========================================================
    SECTION HEADER
 ========================================================= */
