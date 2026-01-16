@@ -302,9 +302,6 @@ function confirmBooking() {
     body: formData
   });
 
-  /* CLEAR CART */
-  cart = [];
-  localStorage.removeItem(CART_KEY);
   renderCart();
 
   alert("Booking submitted successfully ✅");
