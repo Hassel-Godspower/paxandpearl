@@ -291,6 +291,33 @@ small {
   color: var(--primary-red);
 }
 
+
+.add-more-wrap {
+  margin: 12px 0 6px;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  border: 1px dashed var(--primary);
+  color: var(--primary);
+  background: transparent;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-outline .material-icons-round {
+  font-size: 18px;
+}
+
+.btn-outline:active {
+  transform: scale(0.97);
+}
+
 /* =========================
    FEATURED SERVICES GRID
 ========================= */
