@@ -160,6 +160,7 @@ const totalEl = document.getElementById("total");
 /* RENDER CART */
 function renderCart() {
   cartItemsEl.innerHTML = "";
+
   if (!cart.length) {
     cartItemsEl.innerHTML = "<p class='empty'>No services selected yet.</p>";
     totalEl.textContent = "₦0";
@@ -167,17 +168,29 @@ function renderCart() {
   }
 
   let total = 0;
-  cart.forEach(item => {
+
+  cart.forEach((item, index) => {
     total += item.price;
+
     const row = document.createElement("div");
     row.className = "cart-item";
-    row.innerHTML = `<span>${item.name}</span><strong>₦${item.price.toLocaleString()}</strong>`;
+    row.innerHTML = `
+      <div class="cart-left">
+        <span>${item.name}</span>
+      </div>
+      <div class="cart-right">
+        <strong>₦${item.price.toLocaleString()}</strong>
+        <button class="remove-btn" onclick="removeFromCart(${index})">
+          <span class="material-icons-round">close</span>
+        </button>
+      </div>
+    `;
+
     cartItemsEl.appendChild(row);
   });
 
   totalEl.textContent = "₦" + total.toLocaleString();
 }
-  
 
 /* =========================
    GLOBAL ADMIN CATALOG
@@ -323,6 +336,13 @@ function getValue(id) {
 renderCart();
 </script>
 
+<script>
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  renderCart();
+}
+</script>
   
 </body>
 </html>
