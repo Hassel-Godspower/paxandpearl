@@ -161,9 +161,42 @@ function showSafariSendButton(booking) {
 </script>
 
 <script>
+const SERVICES_API =
+  "https://script.google.com/macros/s/AKfycbyruovbZRwQr2Smn-zfKQyMjHAKYS18wpU9Nk8rN0Mdvtblz5yuY9LGgk3a3IwREq59/exec?type=services";
+
 const CART_KEY = "spaBookingCart";
 let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+let SERVICES = [];
+</script>
 
+<script>
+async function loadServicesAndSyncCart() {
+  try {
+    const res = await fetch(SERVICES_API);
+    SERVICES = await res.json();
+
+    // Remove services that no longer exist or are inactive
+    cart = cart.filter(item =>
+      SERVICES.some(s => s.id === item.id)
+    );
+
+    // Update prices from sheet
+    cart = cart.map(item => {
+      const live = SERVICES.find(s => s.id === item.id);
+      return { ...item, price: live.price };
+    });
+
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    renderCart();
+  } catch (err) {
+    console.error("Failed to sync services", err);
+    renderCart(); // fallback
+  }
+}
+</script>
+
+
+<script>
 const cartItemsEl = document.getElementById("cartItems");
 const totalEl = document.getElementById("total");
 
