@@ -123,7 +123,7 @@
    CONFIG
 ============================ */
 const SERVICES_API =
-  "https://script.google.com/macros/s/AKfycbyRDOwtJWa7NPSO4NvVX4wpmHyJPfBpLKadqAEvr0nvg9ZCv168KQ07TPTTb32eBrX5/exec";
+  "https://script.google.com/macros/s/AKfycbx1ESSPs1EfhIGKm1q1FwirHHr1rgPYPrBxGqIPUnQQXXW6b96dWBsq1uer4i61k4Xd/exec";
 
 /* ============================
    CART
@@ -218,7 +218,7 @@ function renderServices() {
 
   const filtered = services.filter(s => {
     const matchCat =
-      activeCategory === "all" || s.category_name === activeCategory;
+      activeCategory === "all" || s.category === activeCategory;
     const matchSearch =
       s.name.toLowerCase().includes(searchQuery) ||
       s.description.toLowerCase().includes(searchQuery);
