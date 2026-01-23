@@ -123,7 +123,7 @@
    CONFIG
 ============================ */
 const SERVICES_API =
-  "https://script.google.com/macros/s/AKfycbyruovbZRwQr2Smn-zfKQyMjHAKYS18wpU9Nk8rN0Mdvtblz5yuY9LGgk3a3IwREq59/exec";
+  "https://script.google.com/macros/s/AKfycbxdNY0jogO_07Lb40DZ2FOQeq8-Mb-ufQzM9ZNodAApF3DW7Tq3g9Hr188PXVkNglBs/exec";
 
 /* ============================
    CART
@@ -155,9 +155,12 @@ fetch(SERVICES_API)
   .then(res => res.json())
   .then(data => {
     services = data.map(s => ({
-      ...s,
+      id: s.id,
+      name: s.name,
+      description: s.description,
       price: Number(s.price),
-      duration: Number(s.duration)
+      duration: Number(s.duration),
+      category: s.category
     }));
 
     buildCategories();
@@ -175,7 +178,7 @@ fetch(SERVICES_API)
 function buildCategories() {
   categories = {};
   services.forEach(s => {
-    categories[s.category] = s.category_name;
+    categories[s.category] = s.category.replace("-", " ");
   });
 }
 
