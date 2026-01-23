@@ -120,6 +120,12 @@
 
 <script>
 /* ============================
+   CONFIG
+============================ */
+const SERVICES_API =
+  "https://script.google.com/macros/s/AKfycbyruovbZRwQr2Smn-zfKQyMjHAKYS18wpU9Nk8rN0Mdvtblz5yuY9LGgk3a3IwREq59/exec";
+
+/* ============================
    CART
 ============================ */
 const CART_KEY = "spaBookingCart";
@@ -131,78 +137,117 @@ function updateBadge() {
 }
 
 /* ============================
-   SERVICES
+   SERVICES STATE
 ============================ */
 const servicesContainer = document.getElementById("services");
 const filterContainer = document.querySelector(".category-filter");
 const searchInput = document.getElementById("serviceSearch");
 
-let catalog = { categories: [], services: [] };
+let services = [];
+let categories = {};
 let activeCategory = "all";
 let searchQuery = "";
 
-/* FETCH CATALOG */
-fetch("/catalog.json")
-  .then(res => res.ok ? res.json() : Promise.reject("Catalog missing"))
+/* ============================
+   FETCH SERVICES FROM SHEET
+============================ */
+fetch(SERVICES_API)
+  .then(res => res.json())
   .then(data => {
-    catalog = data;
+    services = data.map(s => ({
+      ...s,
+      price: Number(s.price),
+      duration: Number(s.duration)
+    }));
+
+    buildCategories();
     renderCategoryFilter();
     renderServices();
   })
-  .catch(err => {
-    console.error(err);
-    servicesContainer.innerHTML = "<p class='empty'>Services are currently unavailable.</p>";
+  .catch(() => {
+    servicesContainer.innerHTML =
+      "<p class='empty'>Services unavailable at the moment.</p>";
   });
 
-/* RENDER CATEGORY FILTER */
+/* ============================
+   BUILD CATEGORIES
+============================ */
+function buildCategories() {
+  categories = {};
+  services.forEach(s => {
+    categories[s.category] = s.category_name;
+  });
+}
+
+/* ============================
+   CATEGORY FILTER
+============================ */
 function renderCategoryFilter() {
   filterContainer.innerHTML = "";
+
   const allBtn = document.createElement("button");
   allBtn.textContent = "All";
   allBtn.className = "active";
-  allBtn.onclick = () => { activeCategory="all"; setActiveFilter(allBtn); renderServices(); };
+  allBtn.onclick = () => setCategory("all", allBtn);
   filterContainer.appendChild(allBtn);
 
-  catalog.categories.forEach(cat => {
+  Object.keys(categories).forEach(cat => {
     const btn = document.createElement("button");
-    btn.textContent = cat.name;
-    btn.onclick = () => { activeCategory=cat.id; setActiveFilter(btn); renderServices(); };
+    btn.textContent = categories[cat];
+    btn.onclick = () => setCategory(cat, btn);
     filterContainer.appendChild(btn);
   });
 }
 
-function setActiveFilter(activeBtn) {
-  filterContainer.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-  activeBtn.classList.add("active");
+function setCategory(cat, btn) {
+  activeCategory = cat;
+  filterContainer.querySelectorAll("button")
+    .forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderServices();
 }
 
-/* RENDER SERVICES */
+/* ============================
+   RENDER SERVICES
+============================ */
 function renderServices() {
   servicesContainer.innerHTML = "";
 
-  const services = catalog.services.filter(service => {
-    const matchesCategory = activeCategory==="all" || service.category===activeCategory;
-    const matchesSearch = service.name.toLowerCase().includes(searchQuery) || service.description.toLowerCase().includes(searchQuery);
-    return matchesCategory && matchesSearch;
+  const filtered = services.filter(s => {
+    const matchCat =
+      activeCategory === "all" || s.category === activeCategory;
+    const matchSearch =
+      s.name.toLowerCase().includes(searchQuery) ||
+      s.description.toLowerCase().includes(searchQuery);
+    return matchCat && matchSearch;
   });
 
-  if(!services.length){
-    servicesContainer.innerHTML = "<p class='empty'>No services found.</p>";
+  if (!filtered.length) {
+    servicesContainer.innerHTML =
+      "<p class='empty'>No services found.</p>";
     return;
   }
 
-  services.forEach(service => {
+  filtered.forEach(service => {
     const card = document.createElement("div");
     card.className = "card service-card";
+
     card.innerHTML = `
       <h4>${service.name}</h4>
       <p>${service.description}</p>
-      <p><strong>₦${service.price.toLocaleString()}</strong><br><small>${service.duration} mins</small></p>
+      <p>
+        <strong>₦${service.price.toLocaleString()}</strong><br>
+        <small>${service.duration} mins</small>
+      </p>
       <button class="btn btn-primary">Add to Booking</button>
     `;
 
     card.querySelector("button").onclick = () => {
-      cart.push({ id: service.id, name: service.name, price: service.price });
+      cart.push({
+        id: service.id,
+        name: service.name,
+        price: service.price
+      });
       localStorage.setItem(CART_KEY, JSON.stringify(cart));
       updateBadge();
       alert(`${service.name} added to booking`);
@@ -212,7 +257,9 @@ function renderServices() {
   });
 }
 
-/* SEARCH */
+/* ============================
+   SEARCH
+============================ */
 searchInput.addEventListener("input", e => {
   searchQuery = e.target.value.toLowerCase();
   renderServices();
