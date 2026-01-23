@@ -218,7 +218,7 @@ function renderServices() {
 
   const filtered = services.filter(s => {
     const matchCat =
-      activeCategory === "all" || s.category === activeCategory;
+      activeCategory === "all" || s.category_name === activeCategory;
     const matchSearch =
       s.name.toLowerCase().includes(searchQuery) ||
       s.description.toLowerCase().includes(searchQuery);
