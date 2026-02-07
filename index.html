@@ -365,15 +365,17 @@
   }
 }
 .post-slide {
-  position: relative;
-  z-index: 1;
+  padding: 16px; /* top, bottom, sides */
+  box-sizing: border-box;
 }
 
 .post-slide img {
   width: 100%;
-  height: 280px;  
-  object-fit: cover;
+  height: 280px;
+  object-fit: contain;       /* ✅ shows full image */
+  background: #f3f4f6;       /* neutral fill for empty space */
   border-radius: 16px;
+  display: block;
 }
 
 /* Overlay */
