@@ -16,6 +16,23 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
+<script>
+async function initAI() {
+  try {
+    await fetch("/api/init", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        url: window.location.origin
+      })
+    });
+  } catch (e) {
+    console.error("AI init failed");
+  }
+}
+
+initAI();
+</script>
 
   <style>
     body {
