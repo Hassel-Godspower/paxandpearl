@@ -290,11 +290,20 @@
   position: relative;
 }
 
+/* Tablet */
 @media (min-width: 768px) {
   .post-slide {
-    flex: 0 0 50%; /* Desktop: 2 slides */
+    flex: 0 0 50%; /* 2 slides */
   }
 }
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .post-slide {
+    flex: 0 0 33.3333%; /* 3 slides */
+  }
+}
+
 
 .post-slide img {
   width: 350px;
