@@ -4,35 +4,9 @@
   <meta charset="UTF-8" />
   <title>Website AI Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Google Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-
-  <!-- Core Styles -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-</head>
-<script>
-async function initAI() {
-  try {
-    await fetch("/api/init", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        url: window.location.origin
-      })
-    });
-  } catch (e) {
-    console.error("AI init failed");
-  }
-}
-
-initAI();
-</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -49,9 +23,9 @@ initAI();
       width: 100%;
       max-width: 420px;
       height: 600px;
-      background: #ffffff;
+      background: #fff;
       border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -77,10 +51,7 @@ initAI();
       line-height: 1.4;
     }
 
-    .user {
-      text-align: right;
-    }
-
+    .user { text-align: right; }
     .user span {
       background: #2563eb;
       color: white;
@@ -120,67 +91,73 @@ initAI();
       cursor: pointer;
       font-weight: 600;
     }
-
-    .chat-input button:hover {
-      background: #1d4ed8;
-    }
   </style>
 </head>
 
 <body>
 
 <div class="chat-container">
-  <div class="chat-header">Ask this Website</div>
-
+  <div class="chat-header">Ask This Website</div>
   <div id="chatbox" class="chatbox"></div>
 
   <div class="chat-input">
-    <input id="msg" placeholder="Ask something..." />
+    <input id="msg" placeholder="Ask about this website..." />
     <button onclick="send()">Send</button>
   </div>
 </div>
 
 <script>
+const SITE_URL = window.location.origin;
+
+// Initialize site indexing once
+(async function init() {
+  try {
+    await fetch("/api/index", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url: SITE_URL })
+    });
+  } catch (e) {
+    console.warn("Indexing skipped or already done");
+  }
+})();
+
 async function send() {
   const input = document.getElementById("msg");
   const chatbox = document.getElementById("chatbox");
-  const msg = input.value.trim();
-  if (!msg) return;
+  const question = input.value.trim();
+  if (!question) return;
 
   chatbox.innerHTML += `
-    <div class="message user">
-      <span>${msg}</span>
-    </div>
+    <div class="message user"><span>${question}</span></div>
   `;
-
   input.value = "";
   chatbox.scrollTop = chatbox.scrollHeight;
 
   try {
-    const res = await fetch("/init", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url: window.location.origin })
-  });
-
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        url: SITE_URL,
+        question
+      })
+    });
 
     const data = await res.json();
 
     chatbox.innerHTML += `
       <div class="message ai">
-        <span>${data.answer || "No response yet."}</span>
+        <span>${data.answer || "I couldn't find that on this website."}</span>
       </div>
     `;
-
-    chatbox.scrollTop = chatbox.scrollHeight;
-
-  } catch (err) {
+  } catch {
     chatbox.innerHTML += `
-      <div class="message ai">
-        <span>Error connecting to AI.</span>
-      </div>
+      <div class="message ai"><span>Server error.</span></div>
     `;
   }
+
+  chatbox.scrollTop = chatbox.scrollHeight;
 }
 </script>
 
