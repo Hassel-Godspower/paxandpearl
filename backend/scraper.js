@@ -1,30 +1,14 @@
-import axios from "axios";
-import cheerio from "cheerio";
+import fetch from "node-fetch";
+import { JSDOM } from "jsdom";
 
-export async function scrapeWebsite(url) {
-  const { data } = await axios.get(url, {
-    timeout: 15000,
-    headers: { "User-Agent": "AI-Web-Reader" }
-  });
+export async function scrapeSite(url) {
+  const res = await fetch(url);
+  const html = await res.text();
 
-  const $ = cheerio.load(data);
+  const dom = new JSDOM(html);
+  const document = dom.window.document;
 
-  $("script, style, nav, footer, iframe, noscript").remove();
+  document.querySelectorAll("script,style,nav,footer").forEach(e => e.remove());
 
-  const title = $("title").text();
-
-  const content = [];
-
-  $("h1, h2, h3, p, li").each((_, el) => {
-    const text = $(el).text().trim();
-    if (text.length > 40) {
-      content.push(text);
-    }
-  });
-
-  return {
-    title,
-    url,
-    text: content.join("\n")
-  };
+  return document.body.textContent.replace(/\s+/g, " ").trim();
 }
