@@ -1,6 +1,6 @@
-import { scrapeWebsite } from "./scraper.js";
-import { chunkText } from "./chunker.js";
-import { storeVectors } from "./vectorStore.js";
+import { scrapeWebsite } from "/backend/scraper.js";
+import { chunkText } from "/backend/chunker.js";
+import { storeVectors } from "/backend/vectorStore.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
