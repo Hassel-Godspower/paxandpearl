@@ -1,4 +1,4 @@
-import { answerQuestion } from "./qa.js";
+import { answerQuestion } from "/backend/qa.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
