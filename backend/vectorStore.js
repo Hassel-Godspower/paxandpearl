@@ -1,12 +1,9 @@
-import { Chroma } from "langchain/vectorstores/chroma";
-import { OpenAIEmbeddings } from "@langchain/openai";
+export function similarity(a, b) {
+  const A = new Set(a.toLowerCase().split(" "));
+  const B = new Set(b.toLowerCase().split(" "));
 
-export async function storeVectors(chunks, metadata) {
-  return await Chroma.fromTexts(
-    chunks,
-    chunks.map(() => metadata),
-    new OpenAIEmbeddings({
-      model: "text-embedding-3-large"
-    })
-  );
+  let match = 0;
+  A.forEach(w => B.has(w) && match++);
+
+  return match / Math.max(A.size, 1);
 }
