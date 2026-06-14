@@ -38,7 +38,7 @@
       "id": "svc_1767630440303",
       "name": "Deep Tissue Massage",
       "description": "Deep Tissue Massage is the use of pressure to access layers of the muscular structure of the body to relieve pain and muscle soreness.",
-      "price": 25000,
+      "price": 35000,
       "duration": 60,
       "category": "massage",
       "order": 0
@@ -47,7 +47,7 @@
       "id": "svc_1767630889097",
       "name": "Relaxation/ Swedish Massage",
       "description": "Relaxation Massage is generally used to relax the muscles using light pressure.",
-      "price": 20000,
+      "price": 26000,
       "duration": 45,
       "category": "massage",
       "order": 1
@@ -65,7 +65,7 @@
       "id": "svc_1767631534723",
       "name": "Couple Relaxation Massage",
       "description": "Couple Relaxation Massage is generally used to relax the muscles using light pressure to massage two people simultaneously.",
-      "price": 38000,
+      "price": 50000,
       "duration": 60,
       "category": "massage",
       "order": 3
@@ -74,7 +74,7 @@
       "id": "svc_1767631745013",
       "name": "Couple Deep Tissue",
       "description": "Couple Deep Tissue Massage is the use of pressure to access layers of the muscular structure of the body to relieve pain and muscle soreness for two people.",
-      "price": 47000,
+      "price": 66000,
       "duration": 60,
       "category": "massage",
       "order": 4
@@ -83,7 +83,7 @@
       "id": "svc_1767690107840",
       "name": "Hot Stone Massage",
       "description": "The use of a customized warm stone to relieve pain, stress, and muscle soreness.",
-      "price": 30000,
+      "price": 37000,
       "duration": 60,
       "category": "massage",
       "order": 5
@@ -92,7 +92,7 @@
       "id": "svc_1767690215985",
       "name": "Couple Hot Stone Massage",
       "description": "The use of a customized warm stone to relieve pain, stress and muscle soreness; for two.",
-      "price": 57000,
+      "price": 70000,
       "duration": 60,
       "category": "massage",
       "order": 6
@@ -101,7 +101,7 @@
       "id": "svc_1767690395634",
       "name": "Couple Aromatherapy Massage",
       "description": "It is the use of essential oils to massage the body to induce natural healing of the heart and mind.",
-      "price": 54000,
+      "price": 66000,
       "duration": 60,
       "category": "massage",
       "order": 7
@@ -110,7 +110,7 @@
       "id": "svc_1767690612218",
       "name": "Couple Thai Massage",
       "description": "The use of specialized Thai techniques and stretches to massage the body enhances flexibility, blood circulation, and stress relief. For two persons.",
-      "price": 57000,
+      "price": 70000,
       "duration": 60,
       "category": "massage",
       "order": 8
@@ -119,7 +119,7 @@
       "id": "svc_1767690710835",
       "name": "Pregnancy Massage",
       "description": "This helps expectant mothers manage the pains and stress associated with pregnancy. We recommend this from the second trimester.",
-      "price": 20000,
+      "price": 25000,
       "duration": 45,
       "category": "massage",
       "order": 9
@@ -146,7 +146,7 @@
       "id": "svc_1767691293511",
       "name": "Classic Body Scrub",
       "description": "This type of body scrub removes dirt from the skin and makes the skin brighter.",
-      "price": 20000,
+      "price": 30000,
       "duration": 40,
       "category": "body-scrub",
       "order": 12
@@ -155,7 +155,7 @@
       "id": "svc_1767691361697",
       "name": "Classic Body Scrub and Polishing",
       "description": "This type of body scrub remove dirt from the skin and makes the skin brighter.",
-      "price": 30000,
+      "price": 42000,
       "duration": 60,
       "category": "body-scrub",
       "order": 13
@@ -245,7 +245,7 @@
       "id": "svc_1767693627414",
       "name": "Underarm",
       "description": "Waxing is a hair removal technique that removes hair from the root of the skin.",
-      "price": 7000,
+      "price": 10000,
       "duration": 20,
       "category": "waxing",
       "order": 23
@@ -254,7 +254,7 @@
       "id": "svc_1767693682881",
       "name": "Full Arm",
       "description": "Waxing is hair removal technique that removes hairs from the root of the skin",
-      "price": 15000,
+      "price": 20000,
       "duration": 30,
       "category": "waxing",
       "order": 24
@@ -263,7 +263,7 @@
       "id": "svc_1767693750745",
       "name": "Half Leg Wax",
       "description": "Waxing is a hair removal technique that removes hair from the root of the skin",
-      "price": 15000,
+      "price": 17500,
       "duration": 20,
       "category": "waxing",
       "order": 25
@@ -272,7 +272,7 @@
       "id": "svc_1767693792639",
       "name": "Full Leg Wax",
       "description": "Waxing is hair removal technique that removes hairs from the root of the skin",
-      "price": 30000,
+      "price": 35000,
       "duration": 40,
       "category": "waxing",
       "order": 26
@@ -317,7 +317,7 @@
       "id": "svc_1767702005026",
       "name": "Full Body Wax (Underarm, Chin, Full leg, Full arm,Brazilian)",
       "description": "Waxing is hair removal technique that removes hairs from the root of the skin",
-      "price": 70000,
+      "price": 85000,
       "duration": 80,
       "category": "waxing",
       "order": 31
@@ -380,7 +380,7 @@
       "id": "svc_1767707041664",
       "name": "Pedicure for men NGN 8000",
       "description": "Pedicure for men",
-      "price": 8000,
+      "price": 10000,
       "duration": 30,
       "category": "pedicure-&-manicure",
       "order": 38
@@ -389,7 +389,7 @@
       "id": "svc_1767707292495",
       "name": "Pedicure for women",
       "description": "Pedicure for women",
-      "price": 7000,
+      "price": 10000,
       "duration": 40,
       "category": "pedicure-&-manicure",
       "order": 39
@@ -416,7 +416,7 @@
       "id": "svc_1767707567496",
       "name": "Pedicure and manicure for men",
       "description": "Pedicure and manicure for men",
-      "price": 12000,
+      "price": 14000,
       "duration": 40,
       "category": "pedicure-&-manicure",
       "order": 42
@@ -425,7 +425,7 @@
       "id": "svc_1767707678786",
       "name": "Pedicure and manicure for women",
       "description": "Pedicure and manicure for women",
-      "price": 10000,
+      "price": 13000,
       "duration": 40,
       "category": "pedicure-&-manicure",
       "order": 43
@@ -441,10 +441,10 @@
     },
     {
       "id": "svc_1768467434362",
-      "name": "Wood Therapy Massage",
-      "description": "wood Therapy is designed to stimulate specific points on the body, to activate the lymphatic systems, reduce fat retention, and tone the skin.",
+      "name": "Lymphatic Drainage Massage",
+      "description": "This Therapy is designed to stimulate specific points on the body, to activate the lymphatic systems, reduce fat retention, and tone the skin.",
       "price": 30000,
-      "duration": 60,
+      "duration": 45,
       "category": "massage",
       "order": 45
     },
@@ -452,7 +452,7 @@
       "id": "svc_1768550802623",
       "name": "Wood Therapy Massage",
       "description": "WTM is effective for the removal of cellulite, promotes lymphatic drainage, improves circulation,and enhances skin tone and texture.",
-      "price": 30000,
+      "price": 35000,
       "duration": 60,
       "category": "massage",
       "order": 46
@@ -461,7 +461,7 @@
       "id": "svc_1768550925290",
       "name": "Skin Tag Removal",
       "description": "Removing Skin Tags. The fee is based on the number of tags and the size.",
-      "price": 10000,
+      "price": 15000,
       "duration": 30,
       "category": "skin-tag-removal",
       "order": 47
@@ -470,7 +470,7 @@
       "id": "svc_1768551310568",
       "name": "Chemical peel face",
       "description": "A treatment that uses a solution to remove the outer layers of the skin, revealing smoother and less wrinkled skin.",
-      "price": 40000,
+      "price": 50000,
       "duration": 60,
       "category": "chemical-peel",
       "order": 48
