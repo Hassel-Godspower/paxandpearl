@@ -17,8 +17,33 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
+  <script>
+  window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader");
+  
+    setTimeout(() => {
+      preloader.classList.add("hide");
+  
+      setTimeout(() => {
+        preloader.remove();
+      }, 500);
+  
+    }, 1200); // minimum display time
+  });
+  </script>
 
 <body>
+
+  <!-- =========================
+       BRAND PRELOADER
+  ========================= -->
+  <div id="preloader">
+    <div class="preloader-content">
+      <img src="assets/images/logo.png" alt="Pax & Pearl Body Works Logo">
+      <div class="loader-ring"></div>
+    </div>
+  </div>
+  
   <div class="container">
     <!-- =========================
          TOP BAR (GREETING | LOGO | NOTIFICATION)
@@ -98,6 +123,63 @@
   </section>
    
   <style>
+
+    /* =========================
+       BRAND PRELOADER
+    ========================= */
+    #preloader{
+      position:fixed;
+      inset:0;
+      background:#ffffff;
+      z-index:999999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:opacity .5s ease, visibility .5s ease;
+    }
+    
+    #preloader.hide{
+      opacity:0;
+      visibility:hidden;
+    }
+    
+    .preloader-content{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+    
+    .preloader-content img{
+      width:120px;
+      height:auto;
+      margin-bottom:20px;
+      animation:logoPulse 2s infinite ease-in-out;
+    }
+    
+    .loader-ring{
+      width:42px;
+      height:42px;
+      border:3px solid rgba(0,0,0,0.08);
+      border-top:3px solid #b71c1c; /* brand red */
+      border-radius:50%;
+      animation:spin .8s linear infinite;
+    }
+    
+    @keyframes spin{
+      to{
+        transform:rotate(360deg);
+      }
+    }
+    
+    @keyframes logoPulse{
+      0%,100%{
+        transform:scale(1);
+      }
+      50%{
+        transform:scale(1.08);
+      }
+    }
    /* =========================
       GLOBAL CONTENT WIDTH
    ========================= */
