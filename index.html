@@ -17,21 +17,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
-  <script>
-  window.addEventListener("load", () => {
-    const preloader = document.getElementById("preloader");
   
-    setTimeout(() => {
-      preloader.classList.add("hide");
-  
-      setTimeout(() => {
-        preloader.remove();
-      }, 500);
-  
-    }, 1200); // minimum display time
-  });
-  </script>
-
 <body>
 
   <!-- =========================
@@ -1288,12 +1274,45 @@ document.addEventListener("DOMContentLoaded", () => {
         opacity: 1;
         transform: translateY(0) scale(1);
       }
-    } 
+    }
+    #preloader{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      z-index:99999999;
+      transition:opacity .5s ease;
+  }
+  
 </style> 
 
 
 <script src="js/data.js"></script>
 <script src="js/booking.js"></script>
+    
+<script>
+window.onload = function () {
+
+    const preloader = document.getElementById('preloader');
+
+    if (!preloader) return;
+
+    setTimeout(function(){
+
+        preloader.style.opacity = "0";
+
+        setTimeout(function(){
+            preloader.style.display = "none";
+        }, 500);
+
+    }, 2000); // show loader for 2 seconds
+};
+</script>
 
 </body>
 </html>
