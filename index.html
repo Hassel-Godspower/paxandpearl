@@ -1112,6 +1112,32 @@ Install App
 
 </div>
 
+<div id="iosInstallModal" class="install-modal" style="display:none;">
+    <div class="install-modal-content">
+
+        <img src="assets/images/logo.png" alt="Pax & Pearl" width="80">
+
+        <h2>Install Pax & Pearl</h2>
+
+        <p>
+            Add Pax & Pearl to your Home Screen for faster booking and a better experience.
+        </p>
+
+        <div class="install-steps">
+            <p><strong>1.</strong> Tap the <strong>Share</strong> button <strong>⬆️</strong></p>
+
+            <p><strong>2.</strong> Tap <strong>Add to Home Screen</strong></p>
+
+            <p><strong>3.</strong> Tap <strong>Add</strong></p>
+        </div>
+
+        <button id="closeIOSInstall">
+            Maybe Later
+        </button>
+
+    </div>
+</div>
+
     
 <!-- =========================
       MOBILE BOTTOM NAV
@@ -1246,6 +1272,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 <style>
+  /*install modal for iOS*/
+  .install-modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999999;
+padding:20px;
+}
+
+.install-modal-content{
+background:#fff;
+border-radius:22px;
+padding:28px;
+max-width:360px;
+text-align:center;
+box-shadow:0 25px 60px rgba(0,0,0,.25);
+}
+
+.install-modal img{
+margin-bottom:15px;
+}
+
+.install-modal h2{
+margin-bottom:10px;
+}
+
+.install-steps{
+text-align:left;
+margin:20px 0;
+}
+
+#closeIOSInstall{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#9C1C1C;
+color:#fff;
+font-size:16px;
+cursor:pointer;
+}
+  
  /* ========================= 
        SIGNUP MODAL
     ========================= */
@@ -1367,26 +1438,60 @@ if ("serviceWorker" in navigator) {
 <script>
 let deferredPrompt;
 
-window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
+const isIOS =
+    /iphone|ipad|ipod/i.test(window.navigator.userAgent);
 
-    document.getElementById("installBanner").style.display = "block";
-});
+const isStandalone =
+    window.navigator.standalone ||
+    window.matchMedia("(display-mode: standalone)").matches;
 
-document.getElementById("installApp").addEventListener("click", async () => {
+// iPhone
+window.addEventListener("load",()=>{
 
-    if (!deferredPrompt) return;
+    if(isIOS && !isStandalone){
 
-    deferredPrompt.prompt();
+        document.getElementById("iosInstallModal").style.display="flex";
 
-    await deferredPrompt.userChoice;
-
-    deferredPrompt = null;
-
-    document.getElementById("installBanner").style.display = "none";
+    }
 
 });
+
+// Close button
+document.getElementById("closeIOSInstall").addEventListener("click",()=>{
+
+document.getElementById("iosInstallModal").style.display="none";
+
+});
+
+// Android
+window.addEventListener("beforeinstallprompt",(e)=>{
+
+e.preventDefault();
+
+deferredPrompt=e;
+
+const banner=document.getElementById("installBanner");
+
+if(banner) banner.style.display="block";
+
+});
+
+// Android install button
+const installBtn=document.getElementById("installApp");
+
+if(installBtn){
+
+installBtn.addEventListener("click",async()=>{
+
+if(!deferredPrompt) return;
+
+deferredPrompt.prompt();
+
+await deferredPrompt.userChoice;
+
+});
+
+}
 </script>
 
 </body>
