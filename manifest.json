@@ -1,0 +1,33 @@
+{
+    "name": "Pax & Pearl Body Works",
+    "short_name": "Pax & Pearl",
+    "description": "Luxury Spa & Wellness",
+
+    "start_url": "/",
+
+    "scope": "/",
+
+    "display": "standalone",
+
+    "orientation": "portrait",
+
+    "background_color": "#ffffff",
+
+    "theme_color": "#9C1C1C",
+
+    "icons": [
+
+        {
+            "src": "assets/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+
+        {
+            "src": "assets/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+
+    ]
+}
