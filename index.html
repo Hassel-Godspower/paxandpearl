@@ -1277,7 +1277,7 @@ document.addEventListener("DOMContentLoaded", () => {
 position:fixed;
 inset:0;
 background:rgba(0,0,0,.65);
-display:flex;
+display:none;
 justify-content:center;
 align-items:center;
 z-index:999999;
@@ -1438,21 +1438,38 @@ if ("serviceWorker" in navigator) {
 <script>
 let deferredPrompt;
 
-const isIOS =
-    /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+const ua = window.navigator.userAgent.toLowerCase();
 
+const isIOS = /iphone|ipad|ipod/.test(ua);
+
+const isSafari =
+    isIOS &&
+    ua.includes("safari") &&
+    !ua.includes("crios") &&
+    !ua.includes("fxios");
+
+const isStandalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+if (isSafari && !isStandalone) {
+    document.getElementById("iosInstallModal").style.display = "flex";
+  }
 const isStandalone =
     window.navigator.standalone ||
     window.matchMedia("(display-mode: standalone)").matches;
 
 // iPhone
-window.addEventListener("load",()=>{
+window.addEventListener("load", () => {
 
-    if(isIOS && !isStandalone){
+    setTimeout(() => {
 
-        document.getElementById("iosInstallModal").style.display="flex";
+        if (isIOS && !isStandalone) {
 
-    }
+            document.getElementById("iosInstallModal").style.display = "flex";
+
+        }
+
+    }, 2600);
 
 });
 
