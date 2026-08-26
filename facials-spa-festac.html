@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123b2a">
+
+<title>Facial Spa in Festac, Lagos | Pax & Pearl BodyWorks</title>
+
+<meta name="description" content="Looking for a facial spa in Festac, Lagos? Pax & Pearl BodyWorks offers relaxing, professional facial spa treatments designed to cleanse, refresh and rejuvenate your skin.">
+<meta name="robots" content="index,follow">
+
+<link rel="canonical" href="https://paxandpearl.vercel.app/facial-spa-festac/">
+
+<style>
+:root{
+    --green:#123b2a;
+    --green-dark:#0b2a1e;
+    --green-soft:#eaf1ec;
+    --cream:#f8f5ee;
+    --white:#fff;
+    --gold:#b8945b;
+    --gold-light:#d9bd8a;
+    --text:#26312b;
+    --muted:#68736c;
+    --border:#e3e0d7;
+    --shadow:0 20px 60px rgba(18,59,42,.10);
+    --radius:22px;
+    --container:1180px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:var(--text);
+    background:var(--cream);
+    line-height:1.75;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(92%,var(--container));
+    margin:auto;
+}
+
+.hero{
+    background:
+        linear-gradient(90deg,rgba(11,42,30,.94),rgba(18,59,42,.76)),
+        linear-gradient(135deg,#123b2a,#0b2a1e);
+    color:var(--white);
+    padding:95px 0 85px;
+}
+
+.hero-inner{
+    max-width:850px;
+}
+
+.eyebrow{
+    display:inline-block;
+    color:var(--gold-light);
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin-bottom:20px;
+}
+
+h1,h2,h3{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:400;
+    line-height:1.15;
+}
+
+h1{
+    font-size:clamp(2.6rem,6vw,5rem);
+    margin-bottom:25px;
+}
+
+h2{
+    font-size:clamp(2rem,4vw,3.2rem);
+    color:var(--green);
+    margin-bottom:18px;
+}
+
+h3{
+    font-size:1.45rem;
+    color:var(--green);
+    margin-bottom:10px;
+}
+
+.hero p{
+    max-width:720px;
+    color:rgba(255,255,255,.84);
+    font-size:1.08rem;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:52px;
+    padding:13px 24px;
+    border-radius:999px;
+    font-weight:700;
+    transition:.2s ease;
+}
+
+.btn-primary{
+    background:var(--gold);
+    color:var(--white);
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,.35);
+    color:var(--white);
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.trust{
+    background:var(--white);
+    border-bottom:1px solid var(--border);
+}
+
+.trust-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    padding:24px 0;
+}
+
+.trust-item{
+    text-align:center;
+    font-size:.92rem;
+    color:var(--muted);
+}
+
+.trust-item strong{
+    display:block;
+    color:var(--green);
+}
+
+section{
+    padding:85px 0;
+}
+
+.section-intro{
+    max-width:760px;
+    margin-bottom:42px;
+}
+
+.section-intro p{
+    color:var(--muted);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:30px;
+    box-shadow:var(--shadow);
+}
+
+.card p{
+    color:var(--muted);
+}
+
+.number{
+    color:var(--gold);
+    font-size:.8rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    margin-bottom:16px;
+}
+
+.soft{
+    background:var(--green-soft);
+}
+
+.two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.list{
+    list-style:none;
+    display:grid;
+    gap:14px;
+}
+
+.list li{
+    position:relative;
+    padding-left:28px;
+}
+
+.list li:before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    color:var(--gold);
+    font-weight:700;
+}
+
+.faq{
+    display:grid;
+    gap:14px;
+    max-width:900px;
+}
+
+.faq-item{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:24px;
+}
+
+.faq-item h3{
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:1rem;
+    font-weight:700;
+}
+
+.faq-item p{
+    margin-top:8px;
+    color:var(--muted);
+}
+
+.cta{
+    background:var(--green-dark);
+    color:var(--white);
+    text-align:center;
+}
+
+.cta h2{
+    color:var(--white);
+}
+
+.cta p{
+    max-width:700px;
+    margin:0 auto;
+    color:rgba(255,255,255,.78);
+}
+
+.related{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.related a{
+    background:var(--white);
+    border:1px solid var(--border);
+    padding:20px;
+    border-radius:16px;
+    color:var(--green);
+    font-weight:700;
+}
+
+footer{
+    background:#071d15;
+    color:rgba(255,255,255,.65);
+    padding:35px 0;
+    text-align:center;
+    font-size:.9rem;
+}
+
+@media(max-width:800px){
+    .hero{padding:70px 0}
+    section{padding:65px 0}
+    .trust-grid,
+    .grid,
+    .two-col,
+    .related{
+        grid-template-columns:1fr;
+    }
+    .two-col{gap:35px}
+    h1{font-size:2.7rem}
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+<section class="hero">
+<div class="container">
+<div class="hero-inner">
+
+<span class="eyebrow">Facial Spa in Festac, Lagos</span>
+
+<h1>Refresh your skin. Restore your glow.</h1>
+
+<p>
+Looking for a facial spa in Festac where skincare and relaxation come together?
+Pax & Pearl BodyWorks provides a calm, professional spa environment for facial
+treatments designed to help your skin feel clean, refreshed and cared for.
+</p>
+
+<div class="buttons">
+<a class="btn btn-primary" href="#book">Book a Facial</a>
+<a class="btn btn-secondary" href="#services">Explore Treatments</a>
+</div>
+
+</div>
+</div>
+</section>
+
+<div class="trust">
+<div class="container trust-grid">
+<div class="trust-item">
+<strong>Festac, Lagos</strong>
+Conveniently located for clients in and around Festac
+</div>
+<div class="trust-item">
+<strong>Relaxation + Skincare</strong>
+A spa experience focused on your comfort
+</div>
+<div class="trust-item">
+<strong>Pax & Pearl BodyWorks</strong>
+Professional beauty and wellness experience
+</div>
+</div>
+</div>
+
+<section id="services">
+<div class="container">
+
+<div class="section-intro">
+<span class="eyebrow">Our Facial Experience</span>
+<h2>A facial experience designed around your skin.</h2>
+<p>
+Your face deserves more than a quick skincare routine. A professional facial
+can provide a deeper cleansing and relaxing experience while giving you time
+to step away from the demands of everyday life.
+</p>
+</div>
+
+<div class="grid">
+
+<article class="card">
+<div class="number">01</div>
+<h3>Deep Cleansing</h3>
+<p>
+A facial treatment can help cleanse the skin more thoroughly than your regular
+daily routine, leaving the face feeling fresher and renewed.
+</p>
+</article>
+
+<article class="card">
+<div class="number">02</div>
+<h3>Skin Refresh</h3>
+<p>
+Enjoy a refreshing treatment that helps your skin feel smoother, cleaner and
+more revitalised.
+</p>
+</article>
+
+<article class="card">
+<div class="number">03</div>
+<h3>Relaxation</h3>
+<p>
+A facial is also an opportunity to slow down, relax and enjoy dedicated
+self-care in a calm spa environment.
+</p>
+</article>
+
+</div>
+</div>
+</section>
+
+<section class="soft">
+<div class="container two-col">
+
+<div>
+<span class="eyebrow">Why Choose a Facial?</span>
+<h2>More than skincare. It is self-care.</h2>
+<p>
+Between work, family, social commitments and everyday life, your skin can
+benefit from intentional care. A facial spa visit gives you dedicated time to
+focus on your face while enjoying a relaxing wellness experience.
+</p>
+</div>
+
+<ul class="list">
+<li>Professional facial spa environment</li>
+<li>Relaxing treatment experience</li>
+<li>Ideal for routine skincare maintenance</li>
+<li>Convenient option for Festac residents</li>
+<li>Suitable for a dedicated self-care day</li>
+<li>Can be combined with other spa treatments</li>
+</ul>
+
+</div>
+</section>
+
+<section>
+<div class="container">
+
+<div class="section-intro">
+<span class="eyebrow">Before Your Appointment</span>
+<h2>Make your facial experience even better.</h2>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>Arrive with a clean face</h3>
+<p>
+Where possible, arrive without heavy makeup so your treatment can begin
+comfortably.
+</p>
+</div>
+
+<div class="card">
+<h3>Tell us about your skin</h3>
+<p>
+Let your therapist know about relevant skincare concerns or sensitivities
+before treatment.
+</p>
+</div>
+
+<div class="card">
+<h3>Give yourself time</h3>
+<p>
+Avoid rushing immediately before your appointment. Your spa experience should
+feel like time set aside for you.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+
+<div class="section-intro">
+<span class="eyebrow">Frequently Asked Questions</span>
+<h2>Facial spa in Festac: FAQs</h2>
+</div>
+
+<div class="faq">
+
+<div class="faq-item">
+<h3>Where can I get a facial spa in Festac?</h3>
+<p>
+Pax & Pearl BodyWorks provides facial spa services for clients in Festac,
+Lagos and surrounding areas.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>How often should I get a facial?</h3>
+<p>
+The ideal frequency depends on your skin, lifestyle and skincare goals.
+A qualified spa professional can help you determine an appropriate routine.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>Can I combine a facial with another spa treatment?</h3>
+<p>
+Yes. Facial treatments can be part of a broader spa and self-care experience.
+Ask about available spa packages and complementary treatments.
+</p>
+</div>
+
+<div class="faq-item">
+<h3>Is a facial only for special occasions?</h3>
+<p>
+No. Many people incorporate professional facials into their regular
+self-care and skincare routines.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="soft">
+<div class="container">
+
+<div class="section-intro">
+<span class="eyebrow">Explore More</span>
+<h2>More ways to relax at Pax & Pearl</h2>
+</div>
+
+<div class="related">
+<a href="/massage-spa-festac/">Massage Spa</a>
+<a href="/body-scrub-festac/">Body Scrub</a>
+<a href="/spa-packages-festac/">Spa Packages</a>
+<a href="/couples-massage-festac/">Couples Massage</a>
+</div>
+
+</div>
+</section>
+
+<section class="cta" id="book">
+<div class="container">
+
+<span class="eyebrow">Pax & Pearl BodyWorks</span>
+<h2>Give your skin—and yourself—some attention.</h2>
+
+<p>
+Ready for a relaxing facial spa experience in Festac, Lagos?
+Contact Pax & Pearl BodyWorks to schedule your appointment.
+</p>
+
+<div class="buttons" style="justify-content:center;">
+<a class="btn btn-primary" href="/contact/">Book Your Facial</a>
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+© Pax & Pearl BodyWorks. Facial Spa in Festac, Lagos.
+</div>
+</footer>
+
+</body>
+</html>
