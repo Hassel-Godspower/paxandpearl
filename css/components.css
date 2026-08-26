@@ -1,656 +1,387 @@
-/* =========================
-   GLOBAL TYPOGRAPHY
-========================= */
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
 
-/* Body text */
-html, body {
-  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 500;
-  color: #111;
-}
-
-/* Headings */
-h1, h2, h3, h4, h5, h6,
 .section-title,
 .header-title {
-  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    'Montserrat',
+    system-ui,
+    sans-serif;
+
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
-/* Buttons, inputs, labels */
-button,
-input,
-textarea,
-select,
-label,
-small {
-  font-family: 'Poppins', sans-serif;
-}
 
-/* ========================= 
-   TOP BAR
-========================= */
-.top-bar {
-  padding: 8px 10px 4px; /* tighter bottom */
-  margin-bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+/* =========================================================
+   NOTIFICATION
+========================================================= */
 
-/* Right side (logo + notification MUST stay inline) */
-.top-bar-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0; /* prevents wrapping */
-}
-
-.greeting {
-  max-width: 55%;
-  padding-right: 6px;
-}
-
-.greeting h2 {
-  font-size:20px;      /* smaller base */
-  font-weight: 600;
-  line-height: 7px;
-  margin: 0;
-}
-
-#user-name {
-  font-size: 16px;       /* slightly bigger than sub text */
-  font-weight: 600;
-  display: block;
-  margin: 0;
-}
-
-#time-greeting {
-  font-size: 9px;
-  opacity: 0.85;
-}
-
-/* Logo */
-.brand-logo img {
-  height: 40px; /* slightly tighter for mobile */
-  width: auto;
-  object-fit: contain;
-}
-
-/* Notification */
 .notification-btn {
   width: 34px;
   height: 34px;
-  border-radius: 50%;
-  border: none;
-  background: var(--card);
-  ուսումն-shadow: var(--shadow-card);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: var(--card);
+
+  box-shadow: var(--shadow-card);
+
+  color: var(--text-main);
 }
 
 .notification-btn .material-icons-round {
   font-size: 22px;
-  color: var(--text-main);
-}
-
-.notification-btn:active {
-  transform: scale(0.95);
-}
-
-/* =========================
-   DESKTOP
-========================= */
-@media (min-width: 768px) {
-  .top-bar {
-    padding: 16px 24px 12px;
-  }
-
-  .greeting h2 {
-    font-size: 16px;
-  }
-
-  .brand-logo img {
-    height: 50px;
-  }
-
-  .notification-btn {
-    width: 38px;
-    height: 38px;
-  }
 }
 
 
 /* =========================================================
-   SEARCH
+   CATEGORY BUTTON
 ========================================================= */
-.search-section {
-  padding: 0 2px 8px; /* tighter spacing */
-}
 
-.search-box {
+.category-btn {
+  width: 60px;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
-  width: 90%;
-  gap: 8px;
-  padding: 10px 12px;
-  background: var(--card);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
-}
+  justify-content: center;
 
-.search-box input {
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  font-family: 'DM Sans', sans-serif;
-}
-
-
-
-.category-filter {
-  display: flex;
-  gap: 8px;
-  padding: 8px 16px 12px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.category-filter::-webkit-scrollbar {
-  display: none;
-}
-
-.category-filter button {
-  flex-shrink: 0;
-  border: none;
-  background: var(--card);
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-main);
-  box-shadow: var(--shadow-soft);
-  cursor: pointer;
-}
-
-.category-filter button.active {
-  background: linear-gradient(
-    135deg,
-    var(--primary-red),
-    var(--primary-gold)
-  );
-  color: #fff;
-}
-/* Sticky category filter */
-.category-filter {
-  position: sticky;
-  top: 64px; /* below header */
-  z-index: 20;
-  background: var(--bg);
-  padding: 8px 16px 12px;
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.category-filter::-webkit-scrollbar {
-  display: none;
-}
-/* Service card animation */
-.service-card {
-  animation: serviceFadeIn 0.35s ease both;
-}
-
-@keyframes serviceFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.search-section {
-  padding: 8px 16px 12px;
-  width: 100%;
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--card);
-  padding: 12px 14px;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
-}
-
-.search-box input {
-  border: none;
-  outline: none;
-  font-size: 14px;
-  width: 100%;
-  font-family: 'DM Sans', sans-serif;
-}
-
-.see-booking {
-  position: fixed;
-  bottom: 90px;
-  right: 16px;
-  background: linear-gradient(
-    135deg,
-    var(--primary-red),
-    var(--primary-gold)
-  );
-  color: #fff;
-  padding: 12px 14px;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
   gap: 6px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  font-size: 13px;
-  z-index: 9999;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--text-main);
+
+  text-decoration: none;
+
+  font-family: 'Poppins', sans-serif;
+}
+
+.category-btn span {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--card);
+
+  box-shadow: var(--shadow-card);
+
+  color: var(--primary-red);
+
+  font-size: 22px;
+}
+
+.category-btn small {
+  font-size: 11px;
+  text-align: center;
+}
+
+
+/* =========================================================
+   SEE MORE
+========================================================= */
+
+.see-more-wrapper {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 8px;
+}
+
+.see-more-btn {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 2px;
+
+  color: var(--primary-red);
+
+  font-size: 12px;
+
   text-decoration: none;
 }
 
-.see-booking .material-icons-round {
-  font-size: 20px;
+.see-more-btn .material-icons-round {
+  font-size: 16px;
 }
 
-.see-booking .badge {
-  background: #fff;
-  color: var(--primary-red);
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 10px;
-  margin-left: 4px;
+
+/* =========================================================
+   SERVICE GRID
+========================================================= */
+
+.service-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+
+  width: 100%;
 }
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
+
+
+/* =========================================================
+   SERVICE CARD
+========================================================= */
+
+.service-card1 {
+  position: relative;
+
+  overflow: hidden;
+
   background: var(--card);
-  border-radius: 12px;
-  margin-bottom: 10px;
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-card);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
 }
 
-.cart-item button {
-  background: none;
-  border: none;
-  font-size: 18px;
+.service-card1:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-large);
+}
+
+.service-card1 img {
+  display: block;
+
+  width: 100%;
+  height: 180px;
+
+  object-fit: cover;
+}
+
+.service-info1 {
+  padding: 16px;
+}
+
+.service-info1 h4 {
+  margin: 0 0 4px;
+
+  font-size: 14px;
+}
+
+.service-info1 p {
+  margin: 0 0 14px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  padding: 12px 16px;
+
+  border: 0;
+  border-radius: var(--radius-md);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-red),
+      var(--primary-gold)
+    );
+
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-decoration: none;
+
   cursor: pointer;
-  color: var(--primary-red);
+
+  transition:
+    transform .2s ease,
+    opacity .2s ease;
+}
+
+.btn:hover {
+  opacity: .94;
+}
+
+.btn:active {
+  transform: scale(.97);
+}
+
+.btn-sm {
+  width: auto;
+
+  padding: 9px 14px;
+
+  border-radius: var(--radius-pill);
+
+  font-size: 12px;
 }
 
 
-.add-more-wrap {
-  margin: 12px 0 6px;
-}
+/* =========================================================
+   OUTLINE BUTTON
+========================================================= */
 
 .btn-outline {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+
   gap: 6px;
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-size: 13px;
-  border: 1px dashed var(--primary);
-  color: var(--primary);
+
+  padding: 9px 14px;
+
+  border: 1px solid var(--primary-red);
+  border-radius: var(--radius-md);
+
   background: transparent;
+
+  color: var(--primary-red);
+
+  font-size: 13px;
+
   text-decoration: none;
-  font-weight: 500;
 }
 
-.btn-outline .material-icons-round {
-  font-size: 18px;
-}
 
-.btn-outline:active {
-  transform: scale(0.97);
-}
+/* =========================================================
+   CARD
+========================================================= */
 
-/* =========================
-   FEATURED SERVICES GRID
-========================= */
-
-.service-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* mobile: 2 per row */
-  gap: 14px;
-  width: 100%;
-}
-
-/* Perfect square card */
-.service-card1 {
-  position: relative;
-  aspect-ratio: 1 / 2; 
-  background: #fff;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-/* Hover / tap effect */
-.service-card1:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-}
-
-/* Image fills top */
-.service-card1 img {
-  width: 100%;
-  height: 48%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Content area */
-.service-info1 {
+.card {
   padding: 16px;
-  padding-bottom: 64px; /* ⬅️ space for floating button */
-  height: 52%;
-  display: flex;
-  flex-direction: column;
-}
 
-.service-info1 h4 {
-  font-size: 14px;
-  font-weight: 600;
-  margin: 0;
-}
+  background: var(--card);
 
-.service-info1 p {
-  font-size: 12px;
-  color: #666;
-  margin: 4px 0 8px;
-}
+  border-radius: var(--radius-md);
 
-/* Button refinement */
-.service-info1 .btn-sm {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-
-  padding: 10px 12px;
-  font-size: 12px;
-  border-radius: 999px; /* pill look */
-  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+  box-shadow: var(--shadow-card);
 }
 
 
-.section {
-  padding: 32px 16px;
-} 
-
-@media (min-width: 992px) {
-  .section {
-    padding: 48px 24px;
-  }
-}
- 
-/* =========================
-   RESPONSIVE BREAKPOINTS
-========================= */
-@media (min-width: 600px) {
-  .service-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 992px) {
-  .service-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.therapist-card, .review-card {
-  min-width:160px;
-  background:#fff;
-  padding:12px;
-  border-radius:14px;
-}
+/* =========================================================
+   FEATURES
+========================================================= */
 
 .features-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  text-align:center;
-}
-
-.offer-card, .membership-banner {
-  background:linear-gradient(135deg,#f3efe9,#fff);
-  padding:20px;
-  border-radius:18px;
-  text-align:center;
-}
-
-/* =========================
-   WHY US ICON COLORS
-========================= */
-.feature {
-  background: #fff;
-  padding: 16px;
-  border-radius: 16px;
-}
-
-.feature span.material-icons-round {
-  font-size: 28px;
-  margin-bottom: 6px;
-}
-
-/* Individual colors */
-.feature-verified span {
-  color: #2ecc71; /* trust green */
-}
-
-.feature-luxury span {
-  color: #c9a24d; /* gold luxury */
-}
-
-.feature-flexible span {
-  color: #6c63ff; /* calm purple */
-}
-
-
-/* =========================================================
-   PROMO CARD (Animated)
-========================================================= */
-.promo-card {
-  margin: 8px 12px;
-  padding: 14px;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--primary-red), var(--primary-gold));
-  color: #fff;
-  text-align: center;
-  box-shadow: var(--shadow-soft);
-  animation: promoEnter 0.8s ease-out both;
-}
-
-@keyframes promoEnter {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.promo-btn {
-  margin-top: 10px;
-  background: #fff;
-  color: var(--primary-red);
-  border: none;
-  padding: 8px 16px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.cart-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.remove-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #b91c1c;
-  padding: 4px;
-}
-
-.remove-btn .material-icons-round {
-  font-size: 18px;
-}
-
-/* =========================================================
-   SECTION HEADER
-========================================================= */
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 12px 4px;
-  width: 100%;
-}
-
-.section-header h3 {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.section-header a {
-  font-size: 12px;
-  color: var(--primary-red);
-  text-decoration: none;
-}
-
-/* =========================================================
-   GREETING CARD
-========================================================= */
-.greeting {
-  margin: 8px 12px;
-  padding: 12px;
-  background: var(--card);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
-  width: 100%;
-}
-
-.greeting h2 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 2px;
-}
-
-.greeting p {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--primary-red);
-}
-
-/* =========================================================
-   QUICK SERVICES
-========================================================= */
-.quick-services {
-  margin: 8px 12px;
-}
-
-.quick-services .grid {
-  display: flex;
-  gap: 8px;
-}
-
-.quick-services button {
-  flex: 1;
-  background: var(--card);
-  border: 1px solid #eee;
-  border-radius: var(--radius-md);
-  padding: 10px 0;
-  font-weight: 500;
-  box-shadow: var(--shadow-soft);
-  font-size: 14px;
-}
-
-/* =========================================================
-   CARDS & FORMS
-========================================================= */
-.card {
-  background: var(--card);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
-  padding: 12px;
-}
-
-.services {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
   gap: 12px;
 }
 
-input,
-select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  border-radius: 10px; 
-  border: 1px solid #ddd;
-  font-family: 'DM Sans', sans-serif;
+.feature {
+  padding: 16px;
+
+  background: var(--card);
+
+  border-radius: var(--radius-lg);
+
+  text-align: center;
 }
 
-.btn {
-  background: linear-gradient(135deg, var(--primary-red), var(--primary-gold));
-  color: #fff;
-  padding: 12px;
-  border-radius: 12px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  font-size: 15px;
+.feature span.material-icons-round {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 28px;
 }
-/* =========================
-   VERIFIED BADGE
-========================= */
+
+
+/* =========================================================
+   THERAPIST CARD
+========================================================= */
+
 .therapist-card {
   position: relative;
+
+  padding: 14px;
+
+  background: var(--card);
+
+  border-radius: var(--radius-lg);
+
+  text-align: center;
+
+  box-shadow: var(--shadow-card);
 }
+
+.therapist-card img {
+  width: 100%;
+  height: 200px;
+
+  object-fit: cover;
+
+  border-radius: var(--radius-md);
+
+  margin-bottom: 10px;
+}
+
+.therapist-card h4 {
+  margin: 0;
+
+  font-size: 14px;
+}
+
+.therapist-card small {
+  color: var(--text-muted);
+}
+
+
+/* =========================================================
+   VERIFIED BADGE
+========================================================= */
 
 .verified-badge {
   position: absolute;
+
   top: 10px;
   right: 10px;
-  background: #2ecc71; /* luxury green */
-  color: #fff;
+
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
+  border-radius: 50%;
+
+  background: #2ecc71;
+
+  color: #fff;
+
+  box-shadow: var(--shadow-card);
 }
 
 .verified-badge .material-icons-round {
@@ -658,57 +389,105 @@ select {
 }
 
 
-.office-address {
-  margin: 20px 0 70px; /* space before mobile nav */
+/* =========================================================
+   REVIEWS
+========================================================= */
+
+.card-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
 }
 
-.office-address .page-wrap {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+.review-card {
+  padding: 16px;
+
+  background: var(--card);
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-card);
+}
+
+.review-card p {
+  margin-bottom: 8px;
+
   font-size: 13px;
-  color: #555;
+  line-height: 1.5;
 }
 
-.office-address .material-icons-round {
-  font-size: 20px;
-  color: var(--primary-red);
-  margin-top: 2px;
+.review-card small {
+  color: var(--text-muted);
 }
 
-.office-address p {
-  margin: 0;
-  line-height: 1.4;
-}
 
 /* =========================================================
-   MOBILE BOTTOM NAVIGATION
+   PROMO
 ========================================================= */
+
+.promo-card {
+  padding: 20px;
+
+  border-radius: var(--radius-lg);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-red),
+      var(--primary-gold)
+    );
+
+  color: #fff;
+
+  text-align: center;
+
+  box-shadow: var(--shadow-soft);
+}
+
+
+/* =========================================================
+   MOBILE BOTTOM NAV
+========================================================= */
+
 .mobile-nav {
   position: fixed;
-  bottom: 0;
+
   left: 0;
+  bottom: 0;
+
   width: 100%;
-  height: 60px; /* slightly smaller */
-  background: var(--card);
+  height: var(--mobile-nav-height);
+
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  border-top: 1px solid #eee;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.06);
+  justify-content: space-around;
+
+  background: var(--card);
+
+  border-top: 1px solid var(--border);
+
+  box-shadow:
+    0 -4px 12px rgba(0,0,0,.06);
+
   z-index: 9999;
-  font-family: 'Poppins', sans-serif;
 }
 
 .mobile-nav a {
   flex: 1;
-  text-align: center;
-  color: #999;
-  font-size: 10px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
   gap: 2px;
+
+  color: #999;
+
+  font-size: 10px;
+
   text-decoration: none;
 }
 
@@ -720,9 +499,44 @@ select {
   font-size: 20px;
 }
 
-/* Hide on tablet/desktop */
 @media (min-width: 768px) {
+
   .mobile-nav {
     display: none;
   }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE GRIDS
+========================================================= */
+
+@media (min-width: 600px) {
+
+  .service-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .card-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (min-width: 992px) {
+
+  .service-grid {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+
+  .card-grid {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+
 }
