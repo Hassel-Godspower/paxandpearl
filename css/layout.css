@@ -241,3 +241,21 @@
   }
 
 }
+.location-cta {
+    background: #9C1C1C;
+    color: #fff;
+    margin-top: 8px;
+}
+
+.install-banner {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    z-index: 99999;
+}
