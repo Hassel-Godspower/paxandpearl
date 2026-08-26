@@ -11,9 +11,9 @@
     },
 
     {
-      "source": "/home",
-      "destination": "/index.html"
-    },
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
 
     {
       "source": "/services",
