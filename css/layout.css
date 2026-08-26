@@ -1,107 +1,147 @@
 /* =========================================================
-   GLOBAL CONTAINER
+   PAX & PEARL — GLOBAL LAYOUT SYSTEM
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL BOX MODEL
+========================================================= */
+
+html {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   UNIVERSAL PAGE SHELL
+========================================================= */
+
+.page-shell {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   UNIVERSAL CONTENT WIDTH
 ========================================================= */
 
 .container,
 .page-wrap {
-  width: min(
-    calc(100% - 32px),
-    var(--content-width)
-  );
+    width: min(
+        calc(100% - 32px),
+        var(--content-width, 1180px)
+    );
 
-  margin-inline: auto;
+    max-width: var(--content-width, 1180px);
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
 /* =========================================================
-   PAGE SHELL
+   FULL-WIDTH SECTION
 ========================================================= */
 
-.page-shell {
-  width: 100%;
-  overflow-x: hidden;
+.section,
+.pp-section {
+    width: 100%;
+    position: relative;
 }
 
 
 /* =========================================================
-   SECTIONS
+   STANDARD SECTION SPACING
 ========================================================= */
 
 .section {
-  width: 100%;
-  padding: var(--space-2xl) 0;
+    padding-top: var(--space-2xl, 48px);
+    padding-bottom: var(--space-2xl, 48px);
 }
 
-.section-soft {
-  background: var(--bg-soft);
-}
-
-.section-white {
-  background: var(--card);
+.pp-section {
+    padding-top: clamp(48px, 7vw, 88px);
+    padding-bottom: clamp(48px, 7vw, 88px);
 }
 
 
 /* =========================================================
    SECTION CONTENT
+   All section content must use the same page-wrap.
 ========================================================= */
 
+.section > .page-wrap,
 .section > .container,
-.section > .page-wrap {
-  width: min(
-    calc(100% - 32px),
-    var(--content-width)
-  );
+.pp-section > .page-wrap,
+.pp-section > .container {
+    width: min(
+        calc(100% - 32px),
+        var(--content-width, 1180px)
+    );
 
-  margin-inline: auto;
+    max-width: var(--content-width, 1180px);
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
 /* =========================================================
-   SECTION HEADER
+   SOFT / BACKGROUND SECTIONS
 ========================================================= */
 
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 16px;
-
-  margin-bottom: 20px;
+.section.soft-bg,
+.section-soft,
+.pp-section.soft {
+    background: var(--bg-soft, #f8f5f3);
 }
 
-.section-header h2,
-.section-header h3 {
-  margin: 0;
-}
-
-.section-header a {
-  color: var(--primary-red);
-  font-size: 12px;
-  text-decoration: none;
+.pp-section.red-soft {
+    background: rgba(156, 28, 28, 0.045);
 }
 
 
 /* =========================================================
-   HEADER
+   TOP HEADER
 ========================================================= */
 
 .top-bar {
-  width: 100%;
+    width: 100%;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    min-height: 64px;
 
-  padding: 12px 16px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 12px 0 8px;
 }
 
-.top-bar-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
 
-  flex-shrink: 0;
+/* =========================================================
+   HEADER RIGHT SIDE
+========================================================= */
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
 }
 
 
@@ -110,122 +150,1021 @@
 ========================================================= */
 
 .greeting {
-  min-width: 0;
-  max-width: 60%;
+    min-width: 0;
+    max-width: 65%;
+
+    flex: 1;
 }
 
 .greeting h2 {
-  margin: 0;
+    margin: 0;
 
-  font-size: 18px;
-  line-height: 1.1;
+    font-size: 18px;
+    line-height: 1.15;
+
+    overflow-wrap: break-word;
 }
 
 #user-name {
-  display: block;
+    display: block;
 
-  font-size: 16px;
-  font-weight: 600;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 #time-greeting {
-  display: block;
+    display: block;
 
-  margin-top: 4px;
+    margin-top: 4px;
 
-  font-size: 10px;
-  color: var(--text-sub);
+    font-size: 10px;
+    line-height: 1.3;
+
+    color: var(--text-sub, #777);
 }
 
 
 /* =========================================================
-   BRAND
+   BRAND LOGO
 ========================================================= */
 
+.brand-logo {
+    flex-shrink: 0;
+}
+
 .brand-logo img {
-  display: block;
+    display: block;
 
-  width: auto;
-  height: 40px;
+    width: auto;
+    height: 40px;
+    max-width: 150px;
 
-  object-fit: contain;
+    object-fit: contain;
 }
 
 
 /* =========================================================
-   SEARCH
+   SEARCH SECTION
 ========================================================= */
 
 .search-section {
-  width: 100%;
-  padding: 8px 0 12px;
+    width: 100%;
+
+    padding: 8px 0 14px;
 }
 
-.search-box {
-  width: 100%;
+.search-section > .page-wrap {
+    width: min(
+        calc(100% - 32px),
+        var(--content-width, 1180px)
+    );
 
-  display: flex;
-  align-items: center;
+    max-width: var(--content-width, 1180px);
 
-  gap: 10px;
-
-  padding: 12px 14px;
-
-  background: var(--card);
-
-  border-radius: var(--radius-lg);
-
-  box-shadow: var(--shadow-soft);
-}
-
-.search-box input {
-  width: 100%;
-
-  border: 0;
-  outline: 0;
-
-  background: transparent;
-
-  font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
 /* =========================================================
-   CATEGORIES
+   SEARCH BOX
+========================================================= */
+
+.search-box {
+    width: 100%;
+
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 14px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HERO — FULL BLEED
+========================================================= */
+
+.pp-hero {
+    width: 100%;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: clamp(480px, 62vw, 680px);
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.pp-hero-content {
+    width: min(
+        calc(100% - 32px),
+        var(--content-width, 1180px)
+    );
+
+    max-width: var(--content-width, 1180px);
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   TRUST STRIP
+========================================================= */
+
+.pp-trust-strip {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    border-bottom: 1px solid var(--border, #eee);
+    border-top: 1px solid var(--border, #eee);
+}
+
+
+/* =========================================================
+   TRUST ITEM
+========================================================= */
+
+.pp-trust-item {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px 12px;
+
+    text-align: center;
+}
+
+.pp-trust-item + .pp-trust-item {
+    border-left: 1px solid var(--border, #eee);
+}
+
+
+/* =========================================================
+   CATEGORY AREA
+========================================================= */
+
+#explore-services {
+    width: 100%;
+
+    padding-top: 28px;
+    padding-bottom: 24px;
+}
+
+#explore-services > .page-wrap {
+    width: min(
+        calc(100% - 32px),
+        var(--content-width, 1180px)
+    );
+
+    max-width: var(--content-width, 1180px);
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   CATEGORY ROW
 ========================================================= */
 
 .categories {
-  width: 100%;
+    width: 100%;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: grid;
 
-  gap: 12px;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 14px;
+
+    align-items: start;
 }
 
 
 /* =========================================================
-   DESKTOP
+   SECTION HEADING
 ========================================================= */
 
-@media (min-width: 768px) {
+.pp-section-heading {
+    width: 100%;
 
-  .top-bar {
-    padding: 16px 24px 12px;
-  }
+    max-width: 760px;
 
-  .brand-logo img {
-    height: 50px;
-  }
+    margin-bottom: 30px;
+}
 
-  .greeting h2 {
-    font-size: 16px;
-  }
+.pp-section-heading h2 {
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
 
-  .section {
-    padding: var(--space-3xl) 0;
-  }
+.pp-section-heading p {
+    margin: 0;
+
+    max-width: 680px;
+}
+
+
+/* =========================================================
+   SERVICE DISCOVERY
+========================================================= */
+
+.pp-service-discovery {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   POST SLIDER
+========================================================= */
+
+.post-slider {
+    width: 100%;
+
+    position: relative;
+
+    padding: 10px 0 40px;
+
+    overflow: hidden;
+}
+
+.post-slider > .page-wrap {
+    position: relative;
+}
+
+
+/* =========================================================
+   LOCATION COPY
+========================================================= */
+
+.pp-location-copy {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.25fr)
+        minmax(280px, .75fr);
+
+    gap: clamp(30px, 6vw, 80px);
+
+    align-items: center;
+}
+
+.pp-location-copy-text {
+    min-width: 0;
+}
+
+.pp-location-points {
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   FEATURED MASSAGE
+========================================================= */
+
+.pp-featured-massage {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 0;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   FEATURED MASSAGE IMAGE
+========================================================= */
+
+.pp-featured-massage-image {
+    min-height: 420px;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+/* =========================================================
+   FEATURED MASSAGE CONTENT
+========================================================= */
+
+.pp-featured-massage-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   FEATURED META
+========================================================= */
+
+.pp-treatment-meta {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px 18px;
+}
+
+
+/* =========================================================
+   SERVICE GRID
+========================================================= */
+
+.service-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   WHY GRID
+========================================================= */
+
+.pp-why-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   THERAPIST GRID
+========================================================= */
+
+.card-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   PACKAGES
+========================================================= */
+
+.pp-packages {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   REVIEWS HEADING
+========================================================= */
+
+.pp-reviews-heading {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    margin-bottom: 24px;
+}
+
+.pp-google-summary {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   GUIDES
+========================================================= */
+
+.pp-guides-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.pp-faq {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   OFFICE INFORMATION
+========================================================= */
+
+.office-info {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        minmax(260px, .7fr);
+
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 40px max(16px, calc((100vw - var(--content-width, 1180px)) / 2));
+
+    box-sizing: border-box;
+
+    background: var(--card, #fff);
+
+    border-top: 1px solid var(--border, #eee);
+}
+
+
+/* =========================================================
+   OFFICE ADDRESS
+========================================================= */
+
+.office-address {
+    min-width: 0;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+}
+
+.office-address p {
+    margin: 0;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   VERTICAL DIVIDER
+========================================================= */
+
+.vertical-divider {
+    width: 1px;
+    height: 100px;
+
+    background: var(--border, #ddd);
+}
+
+
+/* =========================================================
+   GOOGLE RATING
+========================================================= */
+
+.google-rating {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   FINAL CTA WRAPPER
+========================================================= */
+
+.page-wrap > .pp-final-cta {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+
+/* =========================================================
+   MODALS — PAGE LEVEL
+========================================================= */
+
+.modal-backdrop,
+.install-modal,
+.reviews-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+}
+
+
+/* =========================================================
+   MOBILE BOTTOM NAV
+========================================================= */
+
+.mobile-nav {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: var(--mobile-nav-height, 64px);
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   INSTALL BANNER
+========================================================= */
+
+.install-banner {
+    display: none;
+
+    position: fixed;
+
+    left: 16px;
+    right: 16px;
+    bottom: 84px;
+
+    box-sizing: border-box;
+
+    z-index: 99999;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+
+    .pp-service-discovery {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .service-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .pp-why-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .card-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .pp-packages {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .pp-guides-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .pp-location-copy {
+        grid-template-columns:
+            1fr;
+    }
+
+    .pp-location-points {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .pp-featured-massage {
+        grid-template-columns:
+            1fr;
+    }
+
+    .pp-featured-massage-image {
+        min-height: 360px;
+    }
+
+    .office-info {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .office-address {
+        grid-column: 1 / -1;
+    }
+
+    .vertical-divider {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .container,
+    .page-wrap,
+    .section > .page-wrap,
+    .section > .container,
+    .pp-section > .page-wrap,
+    .pp-section > .container {
+        width: calc(100% - 32px);
+
+        max-width: none;
+    }
+
+
+    /* ---------------------------------------------
+       HEADER
+    --------------------------------------------- */
+
+    .top-bar {
+        min-height: 58px;
+
+        padding-top: 10px;
+        padding-bottom: 8px;
+
+        gap: 12px;
+    }
+
+    .greeting {
+        max-width: 58%;
+    }
+
+    .greeting h2 {
+        font-size: 16px;
+    }
+
+    #user-name {
+        font-size: 15px;
+    }
+
+    .brand-logo img {
+        height: 36px;
+        max-width: 120px;
+    }
+
+
+    /* ---------------------------------------------
+       SEARCH
+    --------------------------------------------- */
+
+    .search-section {
+        padding-top: 6px;
+        padding-bottom: 12px;
+    }
+
+
+    /* ---------------------------------------------
+       HERO
+    --------------------------------------------- */
+
+    .pp-hero {
+        min-height: 520px;
+    }
+
+    .pp-hero-content {
+        width: calc(100% - 32px);
+
+        max-width: none;
+
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+
+    /* ---------------------------------------------
+       TRUST STRIP
+    --------------------------------------------- */
+
+    .pp-trust-item {
+        padding: 14px 8px;
+    }
+
+    .pp-trust-item strong {
+        font-size: 13px;
+    }
+
+    .pp-trust-item span {
+        font-size: 9px;
+    }
+
+
+    /* ---------------------------------------------
+       CATEGORIES
+    --------------------------------------------- */
+
+    #explore-services {
+        padding-top: 22px;
+        padding-bottom: 20px;
+    }
+
+    .categories {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        gap: 6px;
+    }
+
+
+    /* ---------------------------------------------
+       SECTIONS
+    --------------------------------------------- */
+
+    .section {
+        padding-top: 42px;
+        padding-bottom: 42px;
+    }
+
+    .pp-section {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+
+    /* ---------------------------------------------
+       SECTION HEADINGS
+    --------------------------------------------- */
+
+    .pp-section-heading {
+        margin-bottom: 24px;
+    }
+
+    .pp-section-heading h2 {
+        font-size: 24px;
+        line-height: 1.2;
+    }
+
+
+    /* ---------------------------------------------
+       SERVICE DISCOVERY
+    --------------------------------------------- */
+
+    .pp-service-discovery {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+
+    /* ---------------------------------------------
+       SLIDER
+    --------------------------------------------- */
+
+    .post-slider {
+        padding-top: 4px;
+        padding-bottom: 28px;
+    }
+
+
+    /* ---------------------------------------------
+       LOCATION
+    --------------------------------------------- */
+
+    .pp-location-copy {
+        gap: 30px;
+    }
+
+    .pp-location-points {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    /* ---------------------------------------------
+       FEATURED MASSAGE
+    --------------------------------------------- */
+
+    .pp-featured-massage-image {
+        min-height: 280px;
+    }
+
+
+    /* ---------------------------------------------
+       POPULAR SERVICES
+    --------------------------------------------- */
+
+    .service-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+
+    /* ---------------------------------------------
+       WHY
+    --------------------------------------------- */
+
+    .pp-why-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+
+    /* ---------------------------------------------
+       THERAPISTS
+    --------------------------------------------- */
+
+    .card-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+
+    /* ---------------------------------------------
+       PACKAGES
+    --------------------------------------------- */
+
+    .pp-packages {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    /* ---------------------------------------------
+       REVIEWS
+    --------------------------------------------- */
+
+    .pp-reviews-heading {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 16px;
+    }
+
+    .pp-google-summary {
+        width: 100%;
+    }
+
+
+    /* ---------------------------------------------
+       GUIDES
+    --------------------------------------------- */
+
+    .pp-guides-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    /* ---------------------------------------------
+       OFFICE
+    --------------------------------------------- */
+
+    .office-info {
+        grid-template-columns:
+            1fr;
+
+        gap: 24px;
+
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+
+    /* ---------------------------------------------
+       FINAL CTA
+    --------------------------------------------- */
+
+    .page-wrap > .pp-final-cta {
+        margin-top: 28px;
+        margin-bottom: 28px;
+    }
+
+
+    /* ---------------------------------------------
+       BOTTOM NAV SPACE
+    --------------------------------------------- */
+
+    body {
+        padding-bottom: var(--mobile-nav-height, 64px);
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .container,
+    .page-wrap,
+    .section > .page-wrap,
+    .section > .container,
+    .pp-section > .page-wrap,
+    .pp-section > .container {
+        width: calc(100% - 24px);
+    }
+
+    .pp-hero-content {
+        width: calc(100% - 24px);
+    }
+
+    .categories {
+        gap: 2px;
+    }
+
+    .pp-service-discovery {
+        gap: 10px;
+    }
+
+    .service-grid,
+    .pp-why-grid,
+    .card-grid {
+        gap: 10px;
+    }
 
 }
 
@@ -236,26 +1175,13 @@
 
 @media (min-width: 1200px) {
 
-  .top-bar {
-    padding-inline: 0;
-  }
+    .top-bar {
+        padding-top: 16px;
+        padding-bottom: 12px;
+    }
 
-}
-.location-cta {
-    background: #9C1C1C;
-    color: #fff;
-    margin-top: 8px;
-}
+    .brand-logo img {
+        height: 50px;
+    }
 
-.install-banner {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 18px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.15);
-    z-index: 99999;
 }
