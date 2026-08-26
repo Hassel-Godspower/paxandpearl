@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Massage Spa in Festac, Lagos | Pax & Pearl Body Works</title>
+
+    <meta
+        name="description"
+        content="Looking for a massage spa in Festac? Discover massage, facial, body-care, waxing and nail treatments at Pax & Pearl Body Works in Festac Town, Lagos."
+    >
+
+    <meta
+        name="keywords"
+        content="massage spa Festac, massage spa in Festac, massage Festac Town, spa Festac Lagos, massage Lagos Mainland, spa Amuwo Odofin, best massage spa Festac"
+    >
+
+    <style>
+        :root {
+            --green:#123b2a;
+            --green-dark:#0b2a1e;
+            --green-soft:#eaf1ec;
+            --cream:#f8f5ee;
+            --white:#fff;
+            --gold:#b8945b;
+            --gold-light:#d9bd8a;
+            --text:#26312b;
+            --muted:#68736c;
+            --border:#e3e0d7;
+            --shadow:0 20px 60px rgba(18,59,42,.10);
+            --radius:22px;
+        }
+
+        * { box-sizing:border-box; }
+
+        body {
+            margin:0;
+            font-family:Arial,Helvetica,sans-serif;
+            color:var(--text);
+            background:var(--cream);
+            line-height:1.75;
+        }
+
+        a { color:inherit;text-decoration:none; }
+
+        .pp-page { overflow:hidden; }
+
+        .pp-container {
+            width:min(1120px,calc(100% - 40px));
+            margin:auto;
+        }
+
+        .pp-eyebrow {
+            display:inline-block;
+            margin-bottom:18px;
+            color:var(--gold);
+            font-size:12px;
+            font-weight:700;
+            letter-spacing:2.5px;
+            text-transform:uppercase;
+        }
+
+        .pp-hero {
+            padding:110px 0 100px;
+            background:linear-gradient(135deg,#0b2a1e,#123b2a);
+            color:#fff;
+        }
+
+        .pp-hero-grid {
+            display:grid;
+            grid-template-columns:1.15fr .85fr;
+            gap:70px;
+            align-items:center;
+        }
+
+        .pp-hero h1 {
+            margin:0 0 24px;
+            font-family:Georgia,"Times New Roman",serif;
+            font-size:clamp(44px,6vw,76px);
+            line-height:1.02;
+            font-weight:400;
+            letter-spacing:-2px;
+        }
+
+        .pp-hero h1 em {
+            color:var(--gold-light);
+            font-style:italic;
+        }
+
+        .pp-hero p {
+            max-width:700px;
+            margin:0 0 32px;
+            color:rgba(255,255,255,.82);
+            font-size:18px;
+        }
+
+        .pp-buttons {
+            display:flex;
+            flex-wrap:wrap;
+            gap:14px;
+        }
+
+        .pp-button {
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            min-height:52px;
+            padding:0 25px;
+            border-radius:999px;
+            background:var(--gold);
+            color:#fff;
+            font-weight:700;
+        }
+
+        .pp-button-outline {
+            background:transparent;
+            border:1px solid rgba(255,255,255,.35);
+        }
+
+        .pp-hero-card {
+            padding:38px;
+            border:1px solid rgba(255,255,255,.16);
+            border-radius:var(--radius);
+            background:rgba(255,255,255,.07);
+        }
+
+        .pp-hero-card h2 {
+            margin:0 0 18px;
+            font-family:Georgia,"Times New Roman",serif;
+            font-size:36px;
+            font-weight:400;
+        }
+
+        .pp-hero-card p {
+            margin:0;
+            font-size:15px;
+        }
+
+        .pp-section {
+            padding:90px 0;
+        }
+
+        .pp-white { background:#fff; }
+
+        .pp-heading {
+            max-width:760px;
+            margin-bottom:45px;
+        }
+
+        .pp-heading h2 {
+            margin:0 0 18px;
+            color:var(--green);
+            font-family:Georgia,"Times New Roman",serif;
+            font-size:clamp(34px,4vw,52px);
+            line-height:1.12;
+            font-weight:400;
+        }
+
+        .pp-heading p {
+            margin:0;
+            color:var(--muted);
+            font-size:17px;
+        }
+
+        .pp-grid {
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:22px;
+        }
+
+        .pp-card {
+            padding:34px;
+            background:#fff;
+            border:1px solid var(--border);
+            border-radius:var(--radius);
+            box-shadow:var(--shadow);
+        }
+
+        .pp-card-number {
+            color:var(--gold);
+            font-size:12px;
+            font-weight:700;
+            letter-spacing:2px;
+            margin-bottom:20px;
+        }
+
+        .pp-card h3 {
+            margin:0 0 12px;
+            color:var(--green);
+            font-family:Georgia,"Times New Roman",serif;
+            font-size:28px;
+            font-weight:400;
+        }
+
+        .pp-card p {
+            margin:0;
+            color:var(--muted);
+            font-size:15px;
+        }
+
+        .pp-two {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:60px;
+        }
+
+        .pp-two h2 {
+            margin:0 0 20px;
+            color:var(--green);
+            font-family:Georgia,"Times New Roman",serif;
+            font-size:42px;
+            font-weight:400;
+            line-height:1.15;
+        }
+
+        .pp-two p {
+            color:var(--text);
+        }
+
+        .pp-list {
+            padding:0;
+            margin:25px 0 0;
+            list-style:none;
+        }
+
+        .pp-list li {
+            position:relative;
+            padding-left:27px;
+            margin-bottom:14px;
+        }
+
+        .pp-list li:before {
+            content:"•";
+            position:absolute;
+            left:0;
+            color:var(--gold);
+            font-size:22px;
+        }
+
+        .pp-feature {
+            padding:38px;
+            background:var(--green-soft);
+            border-radius:var(--radius);
+        }
+
+        .pp-feature h3 {
+            margin:0 0 15px;
+            color:var(--green);
+            font-family:Georgia,"Times New Roman",serif;
+            font-size:30px;
+            font-weight:400;
+        }
+
+        .pp-feature p {
+            margin:0;
+            color:var(--muted);
+        }
+
+        .pp-faq details {
+            padding:23px 0;
+            border-bottom:1px solid var(--border);
+        }
+
+        .pp-faq summary {
+            cursor:pointer;
+            color:var(--green);
+            font-weight:700;
+            font-size:17px;
+        }
+
+        .pp-faq p {
+            max-width:800px;
+            margin:14px 0 0;
+            color:var(--muted);
+        }
+
+        .pp-location {
+            padding:45px;
+            border-radius:var(--radius);
+            background:var(--green);
+            color:#fff;
+        }
+
+        .pp-location h3 {
+            margin:0 0 15px;
+            font-family:Georgia,"Times New Roman",serif;
+            font-size:34px;
+            font-weight:400;
+        }
+
+        .pp-location p {
+            margin:0;
+            color:rgba(255,255,255,.75);
+        }
+
+        .pp-related {
+            padding:70px 0;
+            background:#fff;
+        }
+
+        .pp-links {
+            display:flex;
+            flex-wrap:wrap;
+            gap:12px;
+        }
+
+        .pp-links a {
+            padding:12px 17px;
+            border:1px solid var(--border);
+            border-radius:999px;
+            color:var(--green);
+            font-size:14px;
+            font-weight:700;
+        }
+
+        .pp-cta {
+            padding:90px 0;
+            text-align:center;
+            background:var(--green-dark);
+            color:#fff;
+        }
+
+        .pp-cta h2 {
+            max-width:760px;
+            margin:0 auto 20px;
+            font-family:Georgia,"Times New Roman",serif;
+            font-size:clamp(38px,5vw,60px);
+            line-height:1.1;
+            font-weight:400;
+        }
+
+        .pp-cta p {
+            max-width:650px;
+            margin:0 auto 30px;
+            color:rgba(255,255,255,.75);
+        }
+
+        @media(max-width:850px) {
+            .pp-hero { padding:75px 0; }
+            .pp-hero-grid,
+            .pp-two { grid-template-columns:1fr; }
+            .pp-grid { grid-template-columns:1fr; }
+            .pp-section { padding:65px 0; }
+        }
+
+        @media(max-width:520px) {
+            .pp-container { width:calc(100% - 28px); }
+            .pp-buttons { flex-direction:column; }
+            .pp-button { width:100%; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="pp-page">
+
+    <section class="pp-hero">
+        <div class="pp-container">
+            <div class="pp-hero-grid">
+
+                <div>
+                    <span class="pp-eyebrow">
+                        Pax & Pearl Body Works · Festac Town
+                    </span>
+
+                    <h1>
+                        Your Massage Spa
+                        <em>in Festac.</em>
+                    </h1>
+
+                    <p>
+                        Step away from the pace of Lagos and make time for
+                        yourself. Discover massage, facial, body-care and
+                        personal wellness treatments at Pax & Pearl Body Works.
+                    </p>
+
+                    <div class="pp-buttons">
+                        <a href="/booking/" class="pp-button">
+                            Book an Appointment
+                        </a>
+
+                        <a href="/spa-packages-festac/" class="pp-button pp-button-outline">
+                            Explore Spa Experiences
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pp-hero-card">
+                    <span class="pp-eyebrow">A Complete Self-Care Destination</span>
+
+                    <h2>
+                        Massage. Beauty. Body Care. Time for You.
+                    </h2>
+
+                    <p>
+                        Located at Okaka Plaza, 1st Avenue, Festac Town,
+                        Lagos Mainland.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pp-section pp-white">
+        <div class="pp-container">
+
+            <div class="pp-heading">
+                <span class="pp-eyebrow">Massage & Wellness</span>
+
+                <h2>
+                    A place to pause in the middle of Lagos.
+                </h2>
+
+                <p>
+                    Pax & Pearl Body Works is a spa and wellness destination
+                    in Festac Town for clients who want professional personal
+                    care in a calm and welcoming environment.
+                </p>
+            </div>
+
+            <div class="pp-grid">
+
+                <article class="pp-card">
+                    <div class="pp-card-number">01 · MASSAGE</div>
+                    <h3>Deep Tissue Massage</h3>
+                    <p>
+                        A focused massage experience using firmer pressure
+                        for clients who prefer intensive bodywork.
+                    </p>
+                </article>
+
+                <article class="pp-card">
+                    <div class="pp-card-number">02 · FACIAL</div>
+                    <h3>Facial Care</h3>
+                    <p>
+                        Dedicated facial treatments designed to make skincare
+                        part of your wider self-care routine.
+                    </p>
+                </article>
+
+                <article class="pp-card">
+                    <div class="pp-card-number">03 · BODY CARE</div>
+                    <h3>Body Treatments</h3>
+                    <p>
+                        Body-care experiences including body treatments,
+                        waxing and other personal-care services.
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pp-section">
+        <div class="pp-container">
+
+            <div class="pp-two">
+
+                <div>
+                    <span class="pp-eyebrow">Why Visit Pax & Pearl?</span>
+
+                    <h2>
+                        More than a treatment. A moment for yourself.
+                    </h2>
+
+                    <p>
+                        Life in Lagos can be demanding. Your spa appointment
+                        should give you permission to slow down.
+                    </p>
+
+                    <p>
+                        At Pax & Pearl, massage, skincare, body care and beauty
+                        treatments come together in one destination in Festac.
+                    </p>
+                </div>
+
+                <div class="pp-feature">
+                    <h3>Designed around your self-care.</h3>
+
+                    <p>
+                        Whether you need a focused massage after a demanding
+                        week, a facial before an event, professional waxing,
+                        a pedicure or a longer spa experience, our treatment
+                        categories give you different ways to take care of
+                        yourself.
+                    </p>
+
+                    <ul class="pp-list">
+                        <li>Professional massage experiences</li>
+                        <li>Facial and skincare treatments</li>
+                        <li>Body-care services</li>
+                        <li>Waxing services</li>
+                        <li>Pedicure and nail care</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pp-section pp-white">
+        <div class="pp-container">
+
+            <div class="pp-heading">
+                <span class="pp-eyebrow">Featured Treatments</span>
+
+                <h2>
+                    Choose the experience that fits your day.
+                </h2>
+            </div>
+
+            <div class="pp-grid">
+
+                <article class="pp-card">
+                    <div class="pp-card-number">MASSAGE</div>
+                    <h3>Deep Tissue Massage</h3>
+                    <p>
+                        Our current website listing shows a 60-minute
+                        Deep Tissue Massage at ₦35,000.
+                    </p>
+                    <div style="margin-top:20px;color:var(--gold);font-weight:700;">
+                        60 minutes · ₦35,000
+                    </div>
+                </article>
+
+                <article class="pp-card">
+                    <div class="pp-card-number">FACIAL</div>
+                    <h3>Deep Cleansing Facial</h3>
+                    <p>
+                        A dedicated facial-care experience for clients
+                        looking to incorporate professional skincare into
+                        their routine.
+                    </p>
+                    <div style="margin-top:20px;color:var(--gold);font-weight:700;">
+                        40 minutes · ₦20,000
+                    </div>
+                </article>
+
+                <article class="pp-card">
+                    <div class="pp-card-number">NAIL CARE</div>
+                    <h3>Spa Pedicure</h3>
+                    <p>
+                        Give your feet and nails dedicated attention while
+                        enjoying the relaxing atmosphere of the spa.
+                    </p>
+                    <div style="margin-top:20px;color:var(--gold);font-weight:700;">
+                        40 minutes · ₦10,000
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pp-section">
+        <div class="pp-container">
+
+            <div class="pp-two">
+
+                <div class="pp-location">
+                    <h3>Visit Us in Festac</h3>
+
+                    <p>
+                        Pax & Pearl Body Works<br>
+                        Suite 8, Okaka Plaza<br>
+                        1st Avenue<br>
+                        Festac Town, Lagos, Nigeria
+                    </p>
+
+                    <div style="height:25px;"></div>
+
+                    <p>
+                        Convenient for clients in Festac, Amuwo-Odofin and
+                        surrounding areas of Lagos Mainland.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="pp-eyebrow">A Local Spa Experience</span>
+
+                    <h2>
+                        You don't always have to cross Lagos for self-care.
+                    </h2>
+
+                    <p>
+                        If you live or work around Festac and the wider
+                        Amuwo-Odofin area, Pax & Pearl provides a local option
+                        for massage, beauty and body-care treatments.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pp-section pp-white">
+        <div class="pp-container">
+
+            <div class="pp-heading">
+                <span class="pp-eyebrow">Frequently Asked Questions</span>
+
+                <h2>
+                    Massage spa in Festac: FAQs.
+                </h2>
+            </div>
+
+            <div class="pp-faq">
+
+                <details>
+                    <summary>What services does Pax & Pearl offer?</summary>
+                    <p>
+                        Pax & Pearl Body Works offers massage, facial,
+                        body-care, waxing and nail-care services.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Where is Pax & Pearl Body Works?</summary>
+                    <p>
+                        The spa is located at Suite 8, Okaka Plaza,
+                        1st Avenue, Festac Town, Lagos.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>How much is a deep tissue massage?</summary>
+                    <p>
+                        The current listed Deep Tissue Massage is ₦35,000
+                        for 60 minutes. Confirm current pricing when booking.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Can I combine different treatments?</summary>
+                    <p>
+                        Treatment combinations may be possible depending
+                        on availability. Contact the spa when booking.
+                    </p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pp-related">
+        <div class="pp-container">
+
+            <span class="pp-eyebrow">Explore Pax & Pearl</span>
+
+            <div class="pp-links">
+                <a href="/deep-tissue-massage-festac/">Deep Tissue Massage</a>
+                <a href="/facial-spa-festac/">Facial Spa</a>
+                <a href="/body-scrub-festac/">Body Scrub</a>
+                <a href="/waxing-festac/">Waxing</a>
+                <a href="/pedicure-festac/">Pedicure</a>
+                <a href="/spa-packages-festac/">Spa Packages</a>
+                <a href="/couples-massage-festac/">Couples Massage</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="pp-cta">
+        <div class="pp-container">
+
+            <h2>
+                Make time for yourself.
+            </h2>
+
+            <p>
+                Discover Pax & Pearl Body Works — your local spa destination
+                in Festac Town, Lagos.
+            </p>
+
+            <a href="/booking/" class="pp-button">
+                Book Your Spa Experience
+            </a>
+
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>
