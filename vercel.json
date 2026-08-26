@@ -6,11 +6,6 @@
 
   "rewrites": [
     {
-      "source": "/home",
-      "destination": "/"
-    },
-
-    {
       "source": "/index.html",
       "destination": "/",
       "permanent": true
