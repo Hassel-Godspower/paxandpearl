@@ -118,3 +118,15 @@ ol {
 section {
   width: 100%;
 }
+
+/* =========================================================
+   MOBILE APP NAVIGATION CLEARANCE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    body {
+        padding-bottom: 100px;
+    }
+
+}
