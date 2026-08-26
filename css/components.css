@@ -2173,3 +2173,75 @@
 
     object-fit: contain;
 }
+/* =========================================================
+   OFFICE INFORMATION — MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .office-info {
+        width: calc(100% - 32px);
+
+        margin-top: 42px;
+        margin-bottom: 115px;
+
+        flex-direction: column;
+
+        gap: 34px;
+
+        text-align: center;
+    }
+
+
+    .office-address {
+        width: 100%;
+
+        align-items: flex-start;
+        justify-content: center;
+
+        gap: 14px;
+    }
+
+
+    .office-address > .material-icons-round {
+        margin-top: 5px;
+
+        font-size: 28px;
+    }
+
+
+    .office-address p {
+        max-width: 340px;
+
+        font-size: 14px;
+
+        line-height: 1.8;
+    }
+
+
+    .office-address strong {
+        font-size: 16px;
+    }
+
+
+    .vertical-divider {
+        width: 80%;
+        height: 1px;
+    }
+
+
+    .google-rating {
+        width: 100%;
+    }
+
+
+    .rating-card {
+        width: min(
+            100%,
+            380px
+        );
+
+        min-height: 210px;
+    }
+
+}
