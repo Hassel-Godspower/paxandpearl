@@ -228,7 +228,7 @@
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.7",
-            "reviewCount": "349"
+            "reviewCount": "325"
         },
         "openingHoursSpecification": [
             {
@@ -323,1396 +323,6 @@
         ]
     }
     </script>
-
-
-    <!-- =========================================================
-         HOMEPAGE ARCHITECTURE STYLES
-    ========================================================== -->
-
-    <style>
-
-        /* =====================================================
-           GLOBAL HOMEPAGE SYSTEM
-        ====================================================== */
-
-        :root {
-            --pp-red: #9C1C1C;
-            --pp-dark-red: #781414;
-            --pp-soft-red: #fff5f5;
-            --pp-cream: #fffaf7;
-            --pp-dark: #171717;
-            --pp-muted: #6b7280;
-            --pp-border: #eeeeee;
-            --pp-white: #ffffff;
-            --pp-gold: #b88a44;
-            --pp-shadow: 0 14px 35px rgba(0,0,0,.08);
-            --pp-radius: 22px;
-        }
-
-
-        /* =====================================================
-           PRELOADER
-        ====================================================== */
-
-        #preloader {
-            position: fixed;
-            inset: 0;
-            background: #ffffff;
-            z-index: 99999999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition:
-                opacity .5s ease,
-                visibility .5s ease;
-        }
-
-        #preloader.hide {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .preloader-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .preloader-content img {
-            width: 120px;
-            height: auto;
-            margin-bottom: 20px;
-            animation: logoPulse 2s infinite ease-in-out;
-        }
-
-        .loader-ring {
-            width: 42px;
-            height: 42px;
-            border: 3px solid rgba(0,0,0,.08);
-            border-top: 3px solid var(--pp-red);
-            border-radius: 50%;
-            animation: spin .8s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes logoPulse {
-            0%,100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.08);
-            }
-        }
-
-
-        /* =====================================================
-           CONTENT WIDTH
-        ====================================================== */
-
-        .page-wrap {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 16px;
-            box-sizing: border-box;
-        }
-
-        @media (min-width: 992px) {
-
-            .page-wrap {
-                padding: 0 24px;
-            }
-
-        }
-
-
-        /* =====================================================
-           HERO
-        ====================================================== */
-
-        .pp-hero {
-            position: relative;
-            overflow: hidden;
-            margin-top: 10px;
-            margin-left: 16px;
-            margin-right: 16px;
-            border-radius: 26px;
-            min-height: 520px;
-            display: flex;
-            align-items: flex-end;
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(0,0,0,.05) 0%,
-                    rgba(0,0,0,.20) 35%,
-                    rgba(0,0,0,.78) 100%
-                ),
-                url("assets/images/post1.jpg")
-                center / cover no-repeat;
-        }
-
-        .pp-hero-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            padding: 38px 24px;
-            color: #fff;
-        }
-
-        .pp-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 7px 12px;
-            border-radius: 100px;
-            background: rgba(255,255,255,.15);
-            backdrop-filter: blur(10px);
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-        }
-
-        .pp-hero h1 {
-            margin: 18px 0 12px;
-            max-width: 760px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(34px, 8vw, 68px);
-            line-height: 1.02;
-            font-weight: 700;
-            letter-spacing: -.035em;
-        }
-
-        .pp-hero h1 em {
-            font-style: normal;
-            color: #ffdede;
-        }
-
-        .pp-hero p {
-            max-width: 650px;
-            margin: 0 0 24px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            line-height: 1.7;
-            color: rgba(255,255,255,.92);
-        }
-
-        .pp-hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .pp-hero-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-            min-height: 48px;
-            padding: 0 20px;
-            border-radius: 12px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: .2s ease;
-        }
-
-        .pp-hero-btn.primary {
-            background: #fff;
-            color: var(--pp-red);
-        }
-
-        .pp-hero-btn.secondary {
-            background: rgba(255,255,255,.12);
-            border: 1px solid rgba(255,255,255,.45);
-            color: #fff;
-            backdrop-filter: blur(10px);
-        }
-
-        .pp-hero-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        @media (min-width: 768px) {
-
-            .pp-hero {
-                margin-left: auto;
-                margin-right: auto;
-                min-height: 600px;
-                max-width: 1200px;
-            }
-
-            .pp-hero-content {
-                padding: 60px;
-            }
-
-        }
-
-
-        /* =====================================================
-           TRUST STRIP
-        ====================================================== */
-
-        .pp-trust-strip {
-            margin: -28px auto 0;
-            position: relative;
-            z-index: 5;
-            width: calc(100% - 48px);
-            max-width: 920px;
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: var(--pp-shadow);
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            overflow: hidden;
-        }
-
-        .pp-trust-item {
-            padding: 17px 10px;
-            text-align: center;
-            border-right: 1px solid var(--pp-border);
-        }
-
-        .pp-trust-item:last-child {
-            border-right: 0;
-        }
-
-        .pp-trust-item strong {
-            display: block;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
-            color: var(--pp-dark);
-        }
-
-        .pp-trust-item span {
-            display: block;
-            margin-top: 3px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 10px;
-            color: var(--pp-muted);
-        }
-
-        @media (max-width: 480px) {
-
-            .pp-trust-item strong {
-                font-size: 15px;
-            }
-
-            .pp-trust-item span {
-                font-size: 9px;
-            }
-
-        }
-
-
-        /* =====================================================
-           SECTION INTRO
-        ====================================================== */
-
-        .pp-section {
-            padding: 58px 0;
-        }
-
-        .pp-section.soft {
-            background: var(--pp-cream);
-        }
-
-        .pp-section.red-soft {
-            background: var(--pp-soft-red);
-        }
-
-        .pp-section-heading {
-            max-width: 760px;
-            margin-bottom: 28px;
-        }
-
-        .pp-section-heading .eyebrow {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--pp-red);
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-        }
-
-        .pp-section-heading h2 {
-            margin: 0 0 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(26px, 5vw, 40px);
-            line-height: 1.15;
-            color: var(--pp-dark);
-        }
-
-        .pp-section-heading p {
-            margin: 0;
-            color: var(--pp-muted);
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-
-        /* =====================================================
-           SERVICE DISCOVERY
-        ====================================================== */
-
-        .pp-service-discovery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .pp-service-discovery-card {
-            min-height: 150px;
-            padding: 20px;
-            border-radius: 18px;
-            background: #fff;
-            border: 1px solid var(--pp-border);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            transition: .2s ease;
-            box-shadow: 0 6px 18px rgba(0,0,0,.04);
-        }
-
-        .pp-service-discovery-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--pp-shadow);
-        }
-
-        .pp-service-icon {
-            width: 44px;
-            height: 44px;
-            display: grid;
-            place-items: center;
-            border-radius: 50%;
-            background: var(--pp-soft-red);
-            color: var(--pp-red);
-            margin-bottom: auto;
-        }
-
-        .pp-service-discovery-card h3 {
-            margin: 18px 0 4px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            color: var(--pp-dark);
-        }
-
-        .pp-service-discovery-card p {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            line-height: 1.5;
-            color: var(--pp-muted);
-        }
-
-        @media (min-width: 768px) {
-
-            .pp-service-discovery {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-        }
-
-        @media (min-width: 1024px) {
-
-            .pp-service-discovery {
-                grid-template-columns: repeat(6, 1fr);
-            }
-
-            .pp-service-discovery-card {
-                min-height: 190px;
-            }
-
-        }
-
-
-        /* =====================================================
-           SEO LOCATION SECTION
-        ====================================================== */
-
-        .pp-location-copy {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .pp-location-copy-text h2 {
-            margin: 0 0 15px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(27px, 5vw, 42px);
-            line-height: 1.15;
-        }
-
-        .pp-location-copy-text p {
-            margin: 0 0 14px;
-            color: var(--pp-muted);
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            line-height: 1.9;
-        }
-
-        .pp-location-points {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-
-        .pp-location-point {
-            padding: 15px;
-            background: #fff;
-            border: 1px solid var(--pp-border);
-            border-radius: 14px;
-        }
-
-        .pp-location-point strong {
-            display: block;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
-            margin-bottom: 4px;
-        }
-
-        .pp-location-point span {
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            color: var(--pp-muted);
-        }
-
-        @media (min-width: 900px) {
-
-            .pp-location-copy {
-                grid-template-columns: 1.1fr .9fr;
-            }
-
-        }
-
-
-        /* =====================================================
-           FEATURED MASSAGE
-        ====================================================== */
-
-        .pp-featured-massage {
-            display: grid;
-            grid-template-columns: 1fr;
-            background: #fff;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: var(--pp-shadow);
-        }
-
-        .pp-featured-massage-image {
-            min-height: 280px;
-            background:
-                url("assets/images/massage.jpg")
-                center / cover no-repeat;
-        }
-
-        .pp-featured-massage-content {
-            padding: 30px;
-        }
-
-        .pp-featured-label {
-            color: var(--pp-red);
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .08em;
-        }
-
-        .pp-featured-massage h2 {
-            margin: 8px 0 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 28px;
-        }
-
-        .pp-featured-massage p {
-            color: var(--pp-muted);
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        .pp-treatment-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 18px 0;
-        }
-
-        .pp-treatment-meta span {
-            padding: 7px 10px;
-            background: #f7f7f7;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-        }
-
-        @media (min-width: 768px) {
-
-            .pp-featured-massage {
-                grid-template-columns: 1fr 1fr;
-            }
-
-        }
-
-
-        /* =====================================================
-           WHY US
-        ====================================================== */
-
-        .pp-why-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        .pp-why-card {
-            padding: 24px;
-            border-radius: 18px;
-            background: #fff;
-            border: 1px solid var(--pp-border);
-        }
-
-        .pp-why-card .material-icons-round {
-            color: var(--pp-red);
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .pp-why-card h3 {
-            margin: 0 0 7px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-        }
-
-        .pp-why-card p {
-            margin: 0;
-            color: var(--pp-muted);
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            line-height: 1.7;
-        }
-
-        @media (min-width: 600px) {
-
-            .pp-why-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
-        @media (min-width: 1000px) {
-
-            .pp-why-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-        }
-
-
-        /* =====================================================
-           PACKAGE CARDS
-        ====================================================== */
-
-        .pp-packages {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-
-        .pp-package-card {
-            position: relative;
-            padding: 26px;
-            border-radius: 20px;
-            background: #fff;
-            border: 1px solid var(--pp-border);
-            overflow: hidden;
-        }
-
-        .pp-package-card.featured {
-            border: 2px solid var(--pp-red);
-        }
-
-        .pp-package-badge {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            padding: 5px 8px;
-            border-radius: 100px;
-            background: var(--pp-red);
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 9px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .pp-package-card h3 {
-            margin: 0 0 7px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-        }
-
-        .pp-package-card p {
-            margin: 0 0 18px;
-            color: var(--pp-muted);
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            line-height: 1.7;
-        }
-
-        .pp-package-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--pp-red);
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        @media (min-width: 768px) {
-
-            .pp-packages {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-        }
-
-
-        /* =====================================================
-           REVIEWS TRUST SECTION
-        ====================================================== */
-
-        .pp-reviews-heading {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: end;
-            justify-content: space-between;
-            gap: 15px;
-        }
-
-        .pp-google-summary {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            background: #fff;
-            border-radius: 14px;
-            box-shadow: 0 5px 18px rgba(0,0,0,.05);
-        }
-
-        .pp-google-score {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-        }
-
-        .pp-google-stars {
-            color: #fbbc04;
-            font-size: 16px;
-        }
-
-        .pp-google-summary small {
-            display: block;
-            color: var(--pp-muted);
-            font-family: 'Poppins', sans-serif;
-            font-size: 10px;
-        }
-
-
-        /* =====================================================
-           WELLNESS GUIDES
-        ====================================================== */
-
-        .pp-guides-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        .pp-guide-card {
-            padding: 20px;
-            background: #fff;
-            border-radius: 18px;
-            border: 1px solid var(--pp-border);
-            text-decoration: none;
-            transition: .2s ease;
-        }
-
-        .pp-guide-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--pp-shadow);
-        }
-
-        .pp-guide-card .material-icons-round {
-            color: var(--pp-red);
-            margin-bottom: 12px;
-        }
-
-        .pp-guide-card h3 {
-            margin: 0 0 8px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
-            line-height: 1.4;
-            color: var(--pp-dark);
-        }
-
-        .pp-guide-card p {
-            margin: 0;
-            color: var(--pp-muted);
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            line-height: 1.6;
-        }
-
-        @media (min-width: 700px) {
-
-            .pp-guides-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
-        @media (min-width: 1024px) {
-
-            .pp-guides-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-        }
-
-
-        /* =====================================================
-           FAQ
-        ====================================================== */
-
-        .pp-faq {
-            max-width: 900px;
-            margin: auto;
-        }
-
-        .pp-faq details {
-            background: #fff;
-            border: 1px solid var(--pp-border);
-            border-radius: 14px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
-        .pp-faq summary {
-            cursor: pointer;
-            padding: 18px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            list-style: none;
-        }
-
-        .pp-faq summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .pp-faq summary::after {
-            content: "+";
-            float: right;
-            color: var(--pp-red);
-            font-size: 20px;
-        }
-
-        .pp-faq details[open] summary::after {
-            content: "−";
-        }
-
-        .pp-faq-answer {
-            padding: 0 18px 18px;
-            color: var(--pp-muted);
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            line-height: 1.8;
-        }
-
-
-        /* =====================================================
-           FINAL CTA
-        ====================================================== */
-
-        .pp-final-cta {
-            margin: 20px 0 60px;
-            padding: 42px 24px;
-            border-radius: 24px;
-            background:
-                linear-gradient(
-                    135deg,
-                    #9C1C1C,
-                    #681111
-                );
-            color: #fff;
-            text-align: center;
-        }
-
-        .pp-final-cta h2 {
-            margin: 0 0 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(27px, 5vw, 42px);
-        }
-
-        .pp-final-cta p {
-            max-width: 600px;
-            margin: 0 auto 22px;
-            color: rgba(255,255,255,.88);
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        .pp-final-cta .pp-hero-btn {
-            background: #fff;
-            color: var(--pp-red);
-        }
-
-
-        /* =====================================================
-           EXISTING CATEGORY SYSTEM
-        ====================================================== */
-
-        .categories-wrapper {
-            padding: 0;
-            width: 100%;
-        }
-
-        .categories {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            width: 100%;
-            padding: 0;
-        }
-
-        .category-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            width: 60px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-main);
-            text-decoration: none;
-        }
-
-        .category-btn:hover,
-        .category-btn:focus,
-        .category-btn:active {
-            text-decoration: none;
-            outline: none;
-        }
-
-        .category-btn span {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--card);
-            box-shadow: var(--shadow-card);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            color: var(--primary-red);
-        }
-
-        .category-btn small {
-            font-size: 11px;
-            line-height: 1.2;
-            text-align: center;
-        }
-
-        .category-btn:active {
-            transform: scale(.96);
-        }
-
-        .see-more-wrapper {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 6px;
-        }
-
-        .see-more-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 2px;
-            font-size: 12px;
-            font-weight: 500;
-            font-family: 'Poppins', sans-serif;
-            color: var(--primary-red);
-            padding: 4px 6px;
-            border-radius: 6px;
-            text-decoration: none;
-        }
-
-        .see-more-btn:hover,
-        .see-more-btn:focus {
-            text-decoration: none;
-        }
-
-        .see-more-btn .material-icons-round {
-            font-size: 16px;
-        }
-
-
-        /* =====================================================
-           POST SLIDER
-        ====================================================== */
-
-        .post-slider {
-            position: relative;
-        }
-
-        .post-slider-viewport {
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .post-slider-track {
-            display: flex;
-            transition: transform .5s ease;
-            will-change: transform;
-            cursor: grab;
-        }
-
-        .post-slider-track:active {
-            cursor: grabbing;
-        }
-
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 50;
-            background: rgba(0,0,0,.55);
-            color: #fff;
-            border: none;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-        }
-
-        .slider-btn.prev {
-            left: 6px;
-        }
-
-        .slider-btn.next {
-            right: 6px;
-        }
-
-        .slider-btn:hover {
-            background: rgba(0,0,0,.75);
-        }
-
-        .post-slide {
-            flex: 0 0 100%;
-            padding-right: 12px;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        .post-slide img {
-            width: 350px;
-            height: 200px;
-            object-fit: contain;
-            background: #f3f4f6;
-            border-radius: 16px;
-            display: block;
-        }
-
-        @media (min-width: 768px) {
-
-            .post-slide {
-                flex: 0 0 50%;
-            }
-
-        }
-
-        @media (min-width: 1024px) {
-
-            .post-slide {
-                flex: 0 0 33.3333%;
-            }
-
-        }
-
-
-        /* =====================================================
-           EXISTING CARD SYSTEM
-        ====================================================== */
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-
-        .therapist-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 14px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,.06);
-        }
-
-        .therapist-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 10px;
-        }
-
-        .therapist-card h4 {
-            font-size: 14px;
-            margin: 0;
-        }
-
-        .therapist-card small {
-            color: #777;
-            font-size: 12px;
-        }
-
-        .review-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 16px;
-            box-shadow: 0 8px 20px rgba(0,0,0,.06);
-        }
-
-        .review-card p {
-            font-size: 13px;
-            line-height: 1.5;
-            margin-bottom: 8px;
-        }
-
-        .review-card small {
-            font-size: 12px;
-            color: #666;
-        }
-
-
-        /* =====================================================
-           OFFICE INFORMATION
-        ====================================================== */
-
-        .office-info {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            padding: 40px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .office-address {
-            display: flex;
-            gap: 12px;
-            max-width: 420px;
-            color: #1f2937;
-        }
-
-        .office-address .material-icons-round {
-            color: #dc2626;
-            font-size: 26px;
-            margin-top: 4px;
-        }
-
-        .office-address p {
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        .vertical-divider {
-            width: 1px;
-            height: 140px;
-            background: #e5e7eb;
-        }
-
-        .google-rating {
-            display: flex;
-            align-items: center;
-        }
-
-        .rating-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 18px;
-            box-shadow: 0 10px 25px rgba(0,0,0,.08);
-            text-align: center;
-            border: 0;
-            cursor: pointer;
-            max-width: 280px;
-        }
-
-        .rating-score {
-            font-size: 42px;
-            font-weight: 700;
-            color: #1f2937;
-        }
-
-        .rating-stars {
-            font-size: 22px;
-            color: #fbbc04;
-            margin: 6px 0;
-        }
-
-        .rating-count {
-            font-size: 13px;
-            color: #4b5563;
-        }
-
-        .rating-source {
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .rating-source img {
-            width: 16px;
-            height: 16px;
-        }
-
-        @media (max-width: 768px) {
-
-            .office-info {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .office-address {
-                justify-content: center;
-            }
-
-            .vertical-divider {
-                width: 100%;
-                height: 1px;
-            }
-
-        }
-
-
-        /* =====================================================
-           REVIEWS MODAL
-        ====================================================== */
-
-        .reviews-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            display: none;
-        }
-
-        .reviews-backdrop {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,.6);
-        }
-
-        .reviews-modal-box {
-            position: relative;
-            width: 92%;
-            max-width: 420px;
-            height: 70vh;
-            margin: 8vh auto;
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,.25);
-        }
-
-        .reviews-modal-box iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #fff;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,.2);
-            z-index: 2;
-        }
-
-
-        /* =====================================================
-           SIGNUP MODAL
-        ====================================================== */
-
-        .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,.55);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-
-        .modal-backdrop.show {
-            display: flex;
-        }
-
-        .modal-card {
-            background: #fff;
-            width: 90%;
-            max-width: 360px;
-            border-radius: 18px;
-            padding: 22px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,.25);
-            animation: modalFadeIn .35s ease;
-        }
-
-        .modal-card h3 {
-            margin-bottom: 10px;
-        }
-
-        .modal-card p {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 18px;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .modal-actions .btn {
-            flex: 1;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #ccc;
-            color: #333;
-        }
-
-        @keyframes modalFadeIn {
-
-            from {
-                opacity: 0;
-                transform: translateY(10px) scale(.96);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-
-        }
-
-
-        /* =====================================================
-           INSTALL MODAL
-        ====================================================== */
-
-        .install-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,.65);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 999999;
-            padding: 20px;
-        }
-
-        .install-modal-content {
-            background: #fff;
-            border-radius: 22px;
-            padding: 28px;
-            max-width: 360px;
-            text-align: center;
-            box-shadow: 0 25px 60px rgba(0,0,0,.25);
-        }
-
-        .install-modal img {
-            margin-bottom: 15px;
-        }
-
-        .install-modal h2 {
-            margin-bottom: 10px;
-        }
-
-        .install-steps {
-            text-align: left;
-            margin: 20px 0;
-        }
-
-        #closeIOSInstall {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
-            background: #9C1C1C;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-
-        /* =====================================================
-           RESPONSIVE EXISTING GRID
-        ====================================================== */
-
-        @media (min-width: 600px) {
-
-            .card-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-        }
-
-        @media (min-width: 992px) {
-
-            .card-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-        }
-
-    </style>
 
 </head>
 
@@ -1823,7 +433,7 @@
 
 
     <!-- =========================================================
-         NEW HERO
+         HERO
     ========================================================== -->
 
     <section
@@ -1919,7 +529,7 @@
         <div class="pp-trust-item">
 
             <strong>
-                349+
+                325+
             </strong>
 
             <span>
@@ -2043,7 +653,7 @@
 
 
     <!-- =========================================================
-         NEW SERVICE DISCOVERY
+         SERVICE DISCOVERY
     ========================================================== -->
 
     <section class="pp-section">
@@ -2225,7 +835,7 @@
 
 
     <!-- =========================================================
-         EXISTING POST SLIDER
+         POST SLIDER
     ========================================================== -->
 
     <section class="post-slider">
@@ -2314,7 +924,7 @@
 
 
     <!-- =========================================================
-         NEW SEO / LOCAL POSITIONING SECTION
+         SEO / LOCAL POSITIONING
     ========================================================== -->
 
     <section class="pp-section soft">
@@ -2353,23 +963,11 @@
                     <p>
 
                         If you're searching for a
-
-                        <strong>
-                            massage in Festac
-                        </strong>,
-
+                        <strong>massage in Festac</strong>,
                         a
-
-                        <strong>
-                            spa in Festac
-                        </strong>,
-
+                        <strong>spa in Festac</strong>,
                         a
-
-                        <strong>
-                            deep tissue massage
-                        </strong>,
-
+                        <strong>deep tissue massage</strong>,
                         facial treatment, body scrub, waxing, pedicure,
                         couples massage or a spa package in Lagos,
                         Pax & Pearl Body Works gives you a convenient
@@ -2380,8 +978,7 @@
 
                     <a
                         href="spa-in-lagos/"
-                        class="pp-hero-btn"
-                        style="background:#9C1C1C;color:#fff;margin-top:8px;"
+                        class="pp-hero-btn location-cta"
                     >
 
                         Explore Spa in Lagos
@@ -2538,9 +1135,7 @@
                         href="deep-tissue-massage-festac/"
                         class="btn btn-primary"
                     >
-
                         Explore Deep Tissue Massage
-
                     </a>
 
                 </div>
@@ -2553,7 +1148,7 @@
 
 
     <!-- =========================================================
-         EXISTING FEATURED SERVICES
+         FEATURED SERVICES
     ========================================================== -->
 
     <section class="section">
@@ -3040,7 +1635,7 @@
 
                         <small>
                             <strong>
-                                349+ Google reviews
+                                325 Google reviews
                             </strong>
                         </small>
 
@@ -3057,11 +1652,9 @@
                 <div class="review-card">
 
                     <p>
-
                         “Serene atmosphere. Professional service.
                         Felt like a newborn baby afterwards.
                         Would definitely make this place my regular staple.”
-
                     </p>
 
                     <small>
@@ -3074,11 +1667,9 @@
                 <div class="review-card">
 
                     <p>
-
                         “Very kind people, gentle and calm.
                         They will pamper you and you will not want
                         to leave. I actually want to go back there soon.”
-
                     </p>
 
                     <small>
@@ -3091,12 +1682,10 @@
                 <div class="review-card">
 
                     <p>
-
                         “I loved every bit of the service I got.
                         The deep tissue massage was amazing, I have
                         not slept so well for a long time but after
                         the massage now I sleep like a baby.”
-
                     </p>
 
                     <small>
@@ -3109,11 +1698,9 @@
                 <div class="review-card">
 
                     <p>
-
                         “I took a little time out to pamper myself
                         and it was a beautiful experience. I felt
                         so much relief after the deep tissue body massage.”
-
                     </p>
 
                     <small>
@@ -3125,7 +1712,9 @@
             </div>
 
 
-            <!-- GOOGLE REVIEWS MODAL -->
+            <!-- =====================================================
+                 GOOGLE REVIEWS MODAL
+            ====================================================== -->
 
             <div
                 class="reviews-modal"
@@ -3134,7 +1723,7 @@
 
                 <div
                     class="reviews-backdrop"
-                    onclick="closeReviewsModal()"
+                    data-close-reviews
                 ></div>
 
 
@@ -3142,7 +1731,7 @@
 
                     <button
                         class="modal-close"
-                        onclick="closeReviewsModal()"
+                        data-close-reviews
                         aria-label="Close reviews"
                     >
                         ✕
@@ -3196,7 +1785,7 @@
 
 
                 <a
-                    href="what-is-deep-tissue-massage.html"
+                    href="blog/what-is-deep-tissue-massage.html"
                     class="pp-guide-card"
                 >
 
@@ -3217,7 +1806,7 @@
 
 
                 <a
-                    href="how-often-should-you-get-a-massage.html"
+                    href="blog/how-often-should-you-get-a-massage.html"
                     class="pp-guide-card"
                 >
 
@@ -3238,7 +1827,7 @@
 
 
                 <a
-                    href="what-to-do-before-a-massage.html"
+                    href="blog/what-to-do-before-a-massage.html"
                     class="pp-guide-card"
                 >
 
@@ -3259,7 +1848,7 @@
 
 
                 <a
-                    href="deep-tissue-vs-relaxation-massage.html"
+                    href="blog/deep-tissue-vs-relaxation-massage.html"
                     class="pp-guide-card"
                 >
 
@@ -3280,7 +1869,7 @@
 
 
                 <a
-                    href="how-much-does-massage-cost-in-lagos.html"
+                    href="blog/how-much-does-massage-cost-in-lagos.html"
                     class="pp-guide-card"
                 >
 
@@ -3301,7 +1890,7 @@
 
 
                 <a
-                    href="massage-in-festac.html"
+                    href="blog/massage-in-festac.html"
                     class="pp-guide-card"
                 >
 
@@ -3506,7 +2095,7 @@
 
 
     <!-- =========================================================
-         EXISTING OFFICE INFORMATION
+         OFFICE INFORMATION
     ========================================================== -->
 
     <section class="office-info">
@@ -3557,7 +2146,7 @@
 
             <button
                 class="rating-card"
-                onclick="openReviewsModal()"
+                id="openReviews"
                 aria-label="View Pax & Pearl Google reviews"
             >
 
@@ -3573,7 +2162,7 @@
 
                     Based on
                     <strong>
-                        349+ Google reviews
+                        325 Google reviews
                     </strong>
 
                 </div>
@@ -3690,18 +2279,7 @@
 
     <div
         id="installBanner"
-        style="
-            display:none;
-            position:fixed;
-            bottom:20px;
-            left:20px;
-            right:20px;
-            background:#ffffff;
-            border-radius:16px;
-            padding:18px;
-            box-shadow:0 10px 30px rgba(0,0,0,.15);
-            z-index:99999;
-        "
+        class="install-banner"
     >
 
         <h3>
@@ -3862,838 +2440,14 @@
 
 
     <!-- =========================================================
-         POST SLIDER JAVASCRIPT
-    ========================================================== -->
-
-    <script>
-
-    (() => {
-
-        const track =
-            document.getElementById("postSlider");
-
-        if (!track) return;
-
-        const slides =
-            Array.from(track.children);
-
-        const prev =
-            document.getElementById("prevSlide");
-
-        const next =
-            document.getElementById("nextSlide");
-
-        let index = 0;
-
-        let autoTimer = null;
-
-
-        function slidesPerView() {
-
-            return window.innerWidth >= 768
-                ? 2
-                : 1;
-
-        }
-
-
-        function maxIndex() {
-
-            return Math.max(
-                0,
-                slides.length - slidesPerView()
-            );
-
-        }
-
-
-        function slideWidth() {
-
-            return slides[0]
-                .getBoundingClientRect()
-                .width;
-
-        }
-
-
-        function updateSlider(animate = true) {
-
-            track.style.transition =
-                animate
-                    ? "transform .45s ease"
-                    : "none";
-
-            track.style.transform =
-                `translateX(-${index * slideWidth()}px)`;
-
-        }
-
-
-        next?.addEventListener("click", () => {
-
-            index =
-                Math.min(
-                    index + 1,
-                    maxIndex()
-                );
-
-            updateSlider();
-
-            resetAuto();
-
-        });
-
-
-        prev?.addEventListener("click", () => {
-
-            index =
-                Math.max(
-                    index - 1,
-                    0
-                );
-
-            updateSlider();
-
-            resetAuto();
-
-        });
-
-
-        function startAuto() {
-
-            stopAuto();
-
-            autoTimer =
-                setInterval(() => {
-
-                    index =
-                        index >= maxIndex()
-                            ? 0
-                            : index + 1;
-
-                    updateSlider();
-
-                }, 5000);
-
-        }
-
-
-        function stopAuto() {
-
-            if (autoTimer) {
-
-                clearInterval(autoTimer);
-
-            }
-
-        }
-
-
-        function resetAuto() {
-
-            stopAuto();
-
-            startAuto();
-
-        }
-
-
-        track.addEventListener(
-            "mouseenter",
-            stopAuto
-        );
-
-
-        track.addEventListener(
-            "mouseleave",
-            startAuto
-        );
-
-
-        let startX = 0;
-
-        let currentX = 0;
-
-        let isDragging = false;
-
-
-        track.addEventListener(
-            "touchstart",
-            e => {
-
-                startX =
-                    e.touches[0].clientX;
-
-                currentX = startX;
-
-                isDragging = true;
-
-                stopAuto();
-
-                track.style.transition =
-                    "none";
-
-            },
-            { passive: true }
-        );
-
-
-        track.addEventListener(
-            "touchmove",
-            e => {
-
-                if (!isDragging) return;
-
-                currentX =
-                    e.touches[0].clientX;
-
-                const diff =
-                    startX - currentX;
-
-                track.style.transform =
-                    `translateX(-${index * slideWidth() + diff}px)`;
-
-            },
-            { passive: true }
-        );
-
-
-        track.addEventListener(
-            "touchend",
-            () => {
-
-                if (!isDragging) return;
-
-                isDragging = false;
-
-                const diff =
-                    startX - currentX;
-
-                const threshold =
-                    slideWidth() * .25;
-
-
-                if (diff > threshold) {
-
-                    index =
-                        Math.min(
-                            index + 1,
-                            maxIndex()
-                        );
-
-                }
-
-
-                if (diff < -threshold) {
-
-                    index =
-                        Math.max(
-                            index - 1,
-                            0
-                        );
-
-                }
-
-
-                updateSlider();
-
-                startAuto();
-
-            }
-        );
-
-
-        window.addEventListener(
-            "resize",
-            () => {
-
-                index =
-                    Math.min(
-                        index,
-                        maxIndex()
-                    );
-
-                updateSlider(false);
-
-            }
-        );
-
-
-        updateSlider(false);
-
-        startAuto();
-
-    })();
-
-    </script>
-
-
-    <!-- =========================================================
-         GOOGLE REVIEWS MODAL
-    ========================================================== -->
-
-    <script>
-
-    function openReviewsModal() {
-
-        const modal =
-            document.getElementById("reviewsModal");
-
-        if (!modal) return;
-
-        modal.style.display = "block";
-
-        document.body.style.overflow =
-            "hidden";
-
-    }
-
-
-    function closeReviewsModal() {
-
-        const modal =
-            document.getElementById("reviewsModal");
-
-        if (!modal) return;
-
-        modal.style.display = "none";
-
-        document.body.style.overflow =
-            "";
-
-    }
-
-    </script>
-
-
-    <!-- =========================================================
-         ADMIN WHATSAPP
-    ========================================================== -->
-
-    <script>
-
-    (function bindAdminWhatsAppFromCatalog() {
-
-        const msgBtn =
-            document.getElementById("messageAdmin");
-
-        if (!msgBtn) return;
-
-
-        fetch("/catalog1.json")
-
-            .then(res => {
-
-                if (!res.ok) {
-
-                    throw new Error(
-                        "Catalog not found"
-                    );
-
-                }
-
-                return res.json();
-
-            })
-
-            .then(data => {
-
-                const phone =
-                    data?.admin?.whatsapp;
-
-                if (!phone) {
-
-                    throw new Error(
-                        "Admin WhatsApp missing"
-                    );
-
-                }
-
-
-                const cleanPhone =
-                    phone.replace(/\D/g, "");
-
-
-                msgBtn.href =
-                    `https://wa.me/${cleanPhone}`;
-
-                msgBtn.target =
-                    "_blank";
-
-            })
-
-            .catch(() => {
-
-                msgBtn.href = "#";
-
-
-                msgBtn.addEventListener(
-                    "click",
-                    e => {
-
-                        e.preventDefault();
-
-                        alert(
-                            "Admin WhatsApp not available yet."
-                        );
-
-                    }
-                );
-
-            });
-
-    })();
-
-    </script>
-
-
-    <!-- =========================================================
-         PERSONAL GREETING
-    ========================================================== -->
-
-    <script>
-
-    (() => {
-
-        const profile =
-            JSON.parse(
-                localStorage.getItem(
-                    "userProfile"
-                ) || "{}"
-            );
-
-
-        const userName =
-            document.getElementById(
-                "user-name"
-            );
-
-
-        if (profile.name) {
-
-            userName.textContent =
-                `Hello ${profile.name} 👋`;
-
-        } else {
-
-            userName.textContent =
-                "Hello 👋";
-
-        }
-
-
-        function setGreetingWAT() {
-
-            const timeGreetingEl =
-                document.getElementById(
-                    "time-greeting"
-                );
-
-
-            const now =
-                new Date();
-
-
-            const options = {
-
-                hour: "numeric",
-
-                hour12: false,
-
-                timeZone: "Africa/Lagos"
-
-            };
-
-
-            const hour =
-                parseInt(
-                    new Intl.DateTimeFormat(
-                        "en-US",
-                        options
-                    ).format(now),
-                    10
-                );
-
-
-            let greetingText = "";
-
-
-            if (
-                hour >= 0 &&
-                hour < 12
-            ) {
-
-                greetingText =
-                    "Good Morning ☀️";
-
-            }
-
-            else if (
-                hour >= 12 &&
-                hour <= 15
-            ) {
-
-                greetingText =
-                    "Good Afternoon ☀️";
-
-            }
-
-            else {
-
-                greetingText =
-                    "Good Evening 🌙";
-
-            }
-
-
-            timeGreetingEl.textContent =
-                greetingText;
-
-        }
-
-
-        setGreetingWAT();
-
-    })();
-
-    </script>
-
-
-    <!-- =========================================================
-         SIGNUP MODAL
-    ========================================================== -->
-
-    <script>
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        () => {
-
-            const MODAL_DELAY =
-                20 * 1000;
-
-
-            const modal =
-                document.getElementById(
-                    "signupModal"
-                );
-
-
-            const acceptBtn =
-                document.getElementById(
-                    "acceptSignup"
-                );
-
-
-            const dismissBtn =
-                document.getElementById(
-                    "dismissSignup"
-                );
-
-
-            if (
-                !modal ||
-                !acceptBtn ||
-                !dismissBtn
-            ) return;
-
-
-            const timer =
-                setTimeout(() => {
-
-                    modal.classList.add(
-                        "show"
-                    );
-
-                }, MODAL_DELAY);
-
-
-            acceptBtn.addEventListener(
-                "click",
-                () => {
-
-                    window.location.href =
-                        "profile.html";
-
-                }
-            );
-
-
-            dismissBtn.addEventListener(
-                "click",
-                () => {
-
-                    modal.classList.remove(
-                        "show"
-                    );
-
-                    clearTimeout(timer);
-
-                }
-            );
-
-        }
-    );
-
-    </script>
-
-
-    <!-- =========================================================
-         PWA / APPLICATION SCRIPTS
+         APPLICATION SCRIPTS
     ========================================================== -->
 
     <script src="js/data.js"></script>
 
     <script src="js/booking.js"></script>
 
-
-    <!-- =========================================================
-         PRELOADER
-    ========================================================== -->
-
-    <script>
-
-    window.addEventListener(
-        "load",
-        function () {
-
-            const preloader =
-                document.getElementById(
-                    "preloader"
-                );
-
-
-            if (!preloader) return;
-
-
-            setTimeout(
-                function () {
-
-                    preloader.style.opacity =
-                        "0";
-
-
-                    setTimeout(
-                        function () {
-
-                            preloader.style.display =
-                                "none";
-
-                        },
-                        500
-                    );
-
-                },
-                1200
-            );
-
-        }
-    );
-
-    </script>
-
-
-    <!-- =========================================================
-         SERVICE WORKER
-    ========================================================== -->
-
-    <script>
-
-    if (
-        "serviceWorker"
-        in navigator
-    ) {
-
-        window.addEventListener(
-            "load",
-            () => {
-
-                navigator.serviceWorker
-                    .register(
-                        "service-worker.js"
-                    )
-                    .then(reg => {
-
-                        console.log(
-                            "Service Worker Registered",
-                            reg
-                        );
-
-                    })
-                    .catch(err => {
-
-                        console.log(err);
-
-                    });
-
-            }
-        );
-
-    }
-
-    </script>
-
-
-    <!-- =========================================================
-         PWA INSTALL LOGIC
-    ========================================================== -->
-
-    <script>
-
-    let deferredPrompt = null;
-
-
-    const ua =
-        window.navigator.userAgent
-            .toLowerCase();
-
-
-    const isIOS =
-        /iphone|ipad|ipod/.test(ua);
-
-
-    const isSafari =
-        isIOS &&
-        ua.includes("safari") &&
-        !ua.includes("crios") &&
-        !ua.includes("fxios");
-
-
-    const isStandalone =
-        window.matchMedia(
-            "(display-mode: standalone)"
-        ).matches ||
-        window.navigator.standalone === true;
-
-
-    const iosModal =
-        document.getElementById(
-            "iosInstallModal"
-        );
-
-
-    const closeIOS =
-        document.getElementById(
-            "closeIOSInstall"
-        );
-
-
-    if (
-        isSafari &&
-        !isStandalone &&
-        iosModal
-    ) {
-
-        setTimeout(
-            () => {
-
-                iosModal.style.display =
-                    "flex";
-
-            },
-            2600
-        );
-
-    }
-
-
-    window.addEventListener(
-        "load",
-        () => {
-
-            setTimeout(
-                () => {
-
-                    if (
-                        isIOS &&
-                        !isStandalone &&
-                        iosModal
-                    ) {
-
-                        iosModal.style.display =
-                            "flex";
-
-                    }
-
-                },
-                2600
-            );
-
-        }
-    );
-
-
-    closeIOS?.addEventListener(
-        "click",
-        () => {
-
-            if (iosModal) {
-
-                iosModal.style.display =
-                    "none";
-
-            }
-
-        }
-    );
-
-
-    window.addEventListener(
-        "beforeinstallprompt",
-        e => {
-
-            e.preventDefault();
-
-            deferredPrompt = e;
-
-
-            const banner =
-                document.getElementById(
-                    "installBanner"
-                );
-
-
-            if (banner) {
-
-                banner.style.display =
-                    "block";
-
-            }
-
-        }
-    );
-
-
-    const installBtn =
-        document.getElementById(
-            "installApp"
-        );
-
-
-    if (installBtn) {
-
-        installBtn.addEventListener(
-            "click",
-            async () => {
-
-                if (!deferredPrompt)
-                    return;
-
-
-                deferredPrompt.prompt();
-
-
-                await deferredPrompt.userChoice;
-
-
-                deferredPrompt = null;
-
-            }
-        );
-
-    }
-
-    </script>
+    <script src="js/home.js"></script>
 
 
 </body>
