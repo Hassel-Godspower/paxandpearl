@@ -1984,3 +1984,192 @@
     }
 
 }
+
+/* =========================================================
+   OFFICE INFORMATION
+========================================================= */
+
+.office-info {
+    width: min(
+        calc(100% - 32px),
+        var(--content-width)
+    );
+
+    margin: 48px auto 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 40px;
+
+    box-sizing: border-box;
+}
+
+
+.office-address {
+    flex: 1;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 18px;
+
+    min-width: 0;
+}
+
+
+.office-address > .material-icons-round {
+    flex-shrink: 0;
+
+    margin-top: 4px;
+
+    font-size: 30px;
+
+    color: var(--primary-red);
+}
+
+
+.office-address p {
+    margin: 0;
+
+    color: var(--text-main);
+
+    font-family:
+        'Poppins',
+        system-ui,
+        sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+.office-address strong {
+    font-family:
+        'Montserrat',
+        system-ui,
+        sans-serif;
+
+    font-size: 16px;
+}
+
+
+.vertical-divider {
+    width: 1px;
+    height: 110px;
+
+    flex-shrink: 0;
+
+    background: var(--border);
+}
+
+
+.google-rating {
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+
+.rating-card {
+    width: 300px;
+    min-height: 220px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.08);
+
+    cursor: pointer;
+
+    font-family:
+        'Poppins',
+        system-ui,
+        sans-serif;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.rating-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 16px 35px rgba(0, 0, 0, 0.12);
+}
+
+
+.rating-score {
+    font-family:
+        'Montserrat',
+        system-ui,
+        sans-serif;
+
+    font-size: 54px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    color: var(--text-main);
+}
+
+
+.rating-stars {
+    margin-top: 16px;
+
+    font-size: 25px;
+
+    letter-spacing: 2px;
+
+    color: #f4c430;
+}
+
+
+.rating-count {
+    margin-top: 14px;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+    text-align: center;
+}
+
+
+.rating-source {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 16px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+.rating-source img {
+    width: 20px;
+    height: 20px;
+
+    object-fit: contain;
+}
