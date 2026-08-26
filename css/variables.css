@@ -1,28 +1,92 @@
 :root {
-  /* Brand */
-  --primary-red: #7a0c0c;
-  --primary-gold: #c9a24d;
 
-  /* Neutrals */
+  /* =========================
+     BRAND
+  ========================= */
+
+  --primary-red: #7a0c0c;
+  --primary-red-dark: #5f0808;
+  --primary-gold: #c9a24d;
+  --primary-gold-light: #dfc47b;
+
+  --gradient:
+    linear-gradient(
+      135deg,
+      var(--primary-red),
+      var(--primary-gold)
+    );
+
+
+  /* =========================
+     BACKGROUNDS
+  ========================= */
+
   --bg: #f6f6f8;
+  --bg-soft: #faf8f5;
   --card: #ffffff;
+  --surface-dark: #171313;
+
+
+  /* =========================
+     TEXT
+  ========================= */
+
   --text-main: #1c1c1e;
   --text-sub: #8e8e93;
-  --border: #e5e5ea;
+  --text-muted: #6b6b70;
+  --text-light: #ffffff;
 
-  /* Radius */
+
+  /* =========================
+     BORDERS
+  ========================= */
+
+  --border: #e5e5ea;
+  --border-light: #eeeeee;
+
+
+  /* =========================
+     RADIUS
+  ========================= */
+
   --radius-sm: 10px;
   --radius-md: 14px;
   --radius-lg: 18px;
   --radius-xl: 24px;
+  --radius-pill: 999px;
 
-  /* Shadow */
-  --shadow-soft: 0 8px 20px rgba(0,0,0,0.08);
-  --shadow-card: 0 4px 12px rgba(0,0,0,0.06);
 
-  /* Spacing (iOS-style) */
+  /* =========================
+     SHADOWS
+  ========================= */
+
+  --shadow-soft:
+    0 8px 20px rgba(0,0,0,0.08);
+
+  --shadow-card:
+    0 4px 12px rgba(0,0,0,0.06);
+
+  --shadow-large:
+    0 18px 40px rgba(0,0,0,0.12);
+
+
+  /* =========================
+     SPACING
+  ========================= */
+
   --space-xs: 6px;
   --space-sm: 10px;
   --space-md: 16px;
   --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+
+  /* =========================
+     LAYOUT
+  ========================= */
+
+  --content-width: 1200px;
+  --mobile-nav-height: 60px;
 }
