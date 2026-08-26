@@ -1,0 +1,2255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#123b2a"
+>
+
+<title>
+Spa in Festac, Lagos | Massage, Facials, Body Scrubs & More | Pax & Pearl BodyWorks
+</title>
+
+<meta
+    name="description"
+    content="Looking for a spa in Festac, Lagos? Discover massage, facials, body scrubs, waxing, pedicures, couples massage and spa packages at Pax & Pearl BodyWorks."
+>
+
+<meta
+    name="robots"
+    content="index,follow"
+>
+
+<link
+    rel="canonical"
+    href="https://paxandpearl.vercel.app/festac-spa/"
+>
+
+
+<!-- =========================================================
+     LOCAL BUSINESS / SERVICE CONTEXT
+========================================================== -->
+
+<script type="application/ld+json">
+
+{
+    "@context": "https://schema.org",
+    "@type": "DaySpa",
+    "name": "Pax & Pearl BodyWorks",
+    "url": "https://paxandpearl.vercel.app/festac-spa/",
+    "description": "Spa and beauty services in Festac, Lagos, including massage, facials, body scrubs, waxing, pedicures, couples massage and spa packages.",
+    "areaServed": {
+        "@type": "Place",
+        "name": "Festac, Lagos, Nigeria"
+    },
+    "serviceType": [
+        "Massage",
+        "Deep Tissue Massage",
+        "Facial Spa",
+        "Body Scrub",
+        "Waxing",
+        "Pedicure",
+        "Couples Massage",
+        "Spa Packages"
+    ]
+}
+
+</script>
+
+
+<style>
+
+/* =========================================================
+   DESIGN SYSTEM
+========================================================== */
+
+:root{
+
+    --green:#123b2a;
+
+    --green-dark:#0b2a1e;
+
+    --green-soft:#eaf1ec;
+
+    --cream:#f8f5ee;
+
+    --white:#ffffff;
+
+    --gold:#b8945b;
+
+    --gold-light:#d9bd8a;
+
+    --text:#26312b;
+
+    --muted:#68736c;
+
+    --border:#e3e0d7;
+
+    --shadow:
+        0 20px 60px
+        rgba(18,59,42,.10);
+
+    --radius:22px;
+
+    --container:1180px;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================== */
+
+*{
+
+    box-sizing:border-box;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+body{
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:var(--text);
+
+    background:var(--cream);
+
+    line-height:1.75;
+
+}
+
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================== */
+
+.container{
+
+    width:
+        min(
+            92%,
+            var(--container)
+        );
+
+    margin:auto;
+
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================== */
+
+h1,
+h2,
+h3{
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight:400;
+
+    line-height:1.15;
+
+}
+
+
+h1{
+
+    font-size:
+        clamp(
+            2.6rem,
+            6vw,
+            5rem
+        );
+
+    margin-bottom:25px;
+
+}
+
+
+h2{
+
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            3.2rem
+        );
+
+    color:var(--green);
+
+    margin-bottom:18px;
+
+}
+
+
+h3{
+
+    font-size:1.45rem;
+
+    color:var(--green);
+
+    margin-bottom:10px;
+
+}
+
+
+.eyebrow{
+
+    display:inline-block;
+
+    color:var(--gold);
+
+    font-size:.78rem;
+
+    font-weight:700;
+
+    letter-spacing:.16em;
+
+    text-transform:uppercase;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================== */
+
+.hero{
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(11,42,30,.97),
+            rgba(18,59,42,.80)
+        );
+
+    color:var(--white);
+
+    padding:
+        100px
+        0
+        90px;
+
+}
+
+
+.hero-inner{
+
+    max-width:900px;
+
+}
+
+
+.hero .eyebrow{
+
+    color:var(--gold-light);
+
+}
+
+
+.hero p{
+
+    max-width:760px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            .84
+        );
+
+    font-size:1.08rem;
+
+}
+
+
+.buttons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:14px;
+
+    margin-top:30px;
+
+}
+
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-height:52px;
+
+    padding:
+        13px
+        24px;
+
+    border-radius:999px;
+
+    font-weight:700;
+
+}
+
+
+.btn-primary{
+
+    background:var(--gold);
+
+    color:var(--white);
+
+}
+
+
+.btn-secondary{
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .35
+        );
+
+    color:var(--white);
+
+}
+
+
+/* =========================================================
+   TRUST BAR
+========================================================== */
+
+.trust{
+
+    background:var(--white);
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+}
+
+
+.trust-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:20px;
+
+    padding:24px 0;
+
+}
+
+
+.trust-item{
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:.92rem;
+
+}
+
+
+.trust-item strong{
+
+    display:block;
+
+    color:var(--green);
+
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================== */
+
+section{
+
+    padding:
+        85px
+        0;
+
+}
+
+
+.section-intro{
+
+    max-width:800px;
+
+    margin-bottom:42px;
+
+}
+
+
+.section-intro p{
+
+    color:var(--muted);
+
+}
+
+
+/* =========================================================
+   GRIDS
+========================================================== */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:22px;
+
+}
+
+
+.card{
+
+    background:var(--white);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:var(--radius);
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.card p{
+
+    color:var(--muted);
+
+}
+
+
+.number{
+
+    color:var(--gold);
+
+    font-size:.8rem;
+
+    font-weight:700;
+
+    letter-spacing:.12em;
+
+    margin-bottom:16px;
+
+}
+
+
+/* =========================================================
+   SERVICE CARDS
+========================================================== */
+
+.service-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:270px;
+
+}
+
+
+.service-card .service-link{
+
+    margin-top:auto;
+
+    padding-top:24px;
+
+    color:var(--green);
+
+    font-weight:700;
+
+}
+
+
+.service-card .service-link span{
+
+    color:var(--gold);
+
+}
+
+
+/* =========================================================
+   SOFT SECTION
+========================================================== */
+
+.soft{
+
+    background:var(--green-soft);
+
+}
+
+
+/* =========================================================
+   TWO COLUMN
+========================================================== */
+
+.two-col{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:60px;
+
+    align-items:center;
+
+}
+
+
+.list{
+
+    list-style:none;
+
+    display:grid;
+
+    gap:14px;
+
+}
+
+
+.list li{
+
+    position:relative;
+
+    padding-left:28px;
+
+}
+
+
+.list li:before{
+
+    content:"✓";
+
+    position:absolute;
+
+    left:0;
+
+    color:var(--gold);
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+   FEATURE PANEL
+========================================================== */
+
+.feature-panel{
+
+    background:var(--white);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:var(--radius);
+
+    padding:38px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.feature-panel p{
+
+    color:var(--muted);
+
+}
+
+
+.feature-panel + .feature-panel{
+
+    margin-top:18px;
+
+}
+
+
+/* =========================================================
+   AUDIENCE CARDS
+========================================================== */
+
+.audience-card{
+
+    text-align:center;
+
+}
+
+
+.audience-number{
+
+    width:50px;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:
+        0
+        auto
+        18px;
+
+    border-radius:50%;
+
+    background:var(--green-soft);
+
+    color:var(--gold);
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+   FAQ
+========================================================== */
+
+.faq{
+
+    display:grid;
+
+    gap:14px;
+
+    max-width:900px;
+
+}
+
+
+.faq-item{
+
+    background:var(--white);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:16px;
+
+    padding:24px;
+
+}
+
+
+.faq-item h3{
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+}
+
+
+.faq-item p{
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+}
+
+
+/* =========================================================
+   INTERNAL LINKS
+========================================================== */
+
+.related{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    gap:16px;
+
+}
+
+
+.related a{
+
+    background:var(--white);
+
+    border:
+        1px solid
+        var(--border);
+
+    padding:20px;
+
+    border-radius:16px;
+
+    color:var(--green);
+
+    font-weight:700;
+
+}
+
+
+.related a:hover{
+
+    border-color:var(--gold);
+
+}
+
+
+/* =========================================================
+   CTA
+========================================================== */
+
+.cta{
+
+    background:var(--green-dark);
+
+    color:var(--white);
+
+    text-align:center;
+
+}
+
+
+.cta h2{
+
+    color:var(--white);
+
+}
+
+
+.cta .eyebrow{
+
+    color:var(--gold-light);
+
+}
+
+
+.cta p{
+
+    max-width:720px;
+
+    margin:
+        0
+        auto;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            .78
+        );
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================== */
+
+footer{
+
+    background:#071d15;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            .65
+        );
+
+    padding:35px 0;
+
+    text-align:center;
+
+    font-size:.9rem;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:800px){
+
+    .hero{
+
+        padding:
+            70px
+            0;
+
+    }
+
+
+    section{
+
+        padding:
+            65px
+            0;
+
+    }
+
+
+    .trust-grid,
+    .grid,
+    .two-col,
+    .related{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .two-col{
+
+        gap:35px;
+
+    }
+
+
+    h1{
+
+        font-size:2.7rem;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<main>
+
+
+<!-- =========================================================
+     HERO
+========================================================== -->
+
+<section class="hero">
+
+<div class="container">
+
+<div class="hero-inner">
+
+<span class="eyebrow">
+Spa in Festac, Lagos
+</span>
+
+
+<h1>
+Your space to relax, restore and take care of yourself.
+</h1>
+
+
+<p>
+Looking for a spa in Festac, Lagos? Pax & Pearl BodyWorks provides a
+collection of massage, beauty, body-care and wellness treatments designed
+to help you make time for yourself. From relaxing massages and facials to
+body scrubs, waxing, pedicures and couples experiences, discover a more
+complete approach to self-care in Festac.
+</p>
+
+
+<div class="buttons">
+
+<a
+    class="btn btn-primary"
+    href="#services"
+>
+    Explore Our Services
+</a>
+
+
+<a
+    class="btn btn-secondary"
+    href="#book"
+>
+    Book an Appointment
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     TRUST BAR
+========================================================== -->
+
+<div class="trust">
+
+<div class="container trust-grid">
+
+
+<div class="trust-item">
+
+<strong>
+Festac, Lagos
+</strong>
+
+Spa and beauty services for clients around Festac
+
+</div>
+
+
+<div class="trust-item">
+
+<strong>
+Massage & Body Care
+</strong>
+
+Relaxation, body-care and wellness treatments
+
+</div>
+
+
+<div class="trust-item">
+
+<strong>
+Beauty & Self-Care
+</strong>
+
+Facials, waxing, pedicures and more
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     INTRODUCTION
+========================================================== -->
+
+<section>
+
+<div class="container">
+
+
+<div class="section-intro">
+
+<span class="eyebrow">
+Pax & Pearl BodyWorks
+</span>
+
+
+<h2>
+A spa experience built around you.
+</h2>
+
+
+<p>
+Pax & Pearl BodyWorks is a destination for clients looking for massage,
+beauty and body-care experiences in Festac, Lagos. Whether you are looking
+for a deep tissue massage after a demanding week, a facial before an event,
+a body scrub for a refreshed feeling, a pedicure, or simply time away from
+your normal routine, our service collection gives you different ways to
+approach self-care.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<article class="card">
+
+<div class="number">
+01
+</div>
+
+<h3>
+Relaxation
+</h3>
+
+<p>
+Create space to slow down with massage and other treatments designed around
+relaxation and personal care.
+</p>
+
+</article>
+
+
+<article class="card">
+
+<div class="number">
+02
+</div>
+
+<h3>
+Beauty
+</h3>
+
+<p>
+Look after your skin, nails and personal grooming with a selection of
+beauty-focused treatments.
+</p>
+
+</article>
+
+
+<article class="card">
+
+<div class="number">
+03
+</div>
+
+<h3>
+Body Care
+</h3>
+
+<p>
+Give your body attention with treatments such as body scrubs and other
+spa services designed around a complete self-care routine.
+</p>
+
+</article>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVICES
+========================================================== -->
+
+<section
+    class="soft"
+    id="services"
+>
+
+<div class="container">
+
+
+<div class="section-intro">
+
+<span class="eyebrow">
+Our Festac Spa Services
+</span>
+
+
+<h2>
+Find the treatment that fits your needs.
+</h2>
+
+
+<p>
+Different days call for different forms of self-care. Explore individual
+treatments or combine services into a broader spa experience.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<!-- 01 -->
+
+<article class="card service-card">
+
+<div class="number">
+01
+</div>
+
+<h3>
+Deep Tissue Massage
+</h3>
+
+<p>
+A massage option for clients looking for a more focused and intensive
+massage experience, particularly around areas of muscular tension.
+</p>
+
+
+<a
+    class="service-link"
+    href="/deep-tissue-massage-festac/"
+>
+    Explore Deep Tissue Massage
+    <span>→</span>
+</a>
+
+</article>
+
+
+<!-- 02 -->
+
+<article class="card service-card">
+
+<div class="number">
+02
+</div>
+
+<h3>
+Massage Spa
+</h3>
+
+<p>
+Explore massage treatments in a relaxing spa environment and choose an
+experience suited to your personal relaxation needs.
+</p>
+
+
+<a
+    class="service-link"
+    href="/massage-spa-festac/"
+>
+    Explore Massage Spa
+    <span>→</span>
+</a>
+
+</article>
+
+
+<!-- 03 -->
+
+<article class="card service-card">
+
+<div class="number">
+03
+</div>
+
+<h3>
+Facial Spa
+</h3>
+
+<p>
+Give your skin dedicated attention with facial treatments that form part
+of a wider beauty and self-care routine.
+</p>
+
+
+<a
+    class="service-link"
+    href="/facial-spa-festac/"
+>
+    Explore Facial Spa
+    <span>→</span>
+</a>
+
+</article>
+
+
+<!-- 04 -->
+
+<article class="card service-card">
+
+<div class="number">
+04
+</div>
+
+<h3>
+Body Scrub
+</h3>
+
+<p>
+Refresh your body-care routine with a body scrub experience designed to
+leave your skin feeling cared for and refreshed.
+</p>
+
+
+<a
+    class="service-link"
+    href="/body-scrub-festac/"
+>
+    Explore Body Scrub
+    <span>→</span>
+</a>
+
+</article>
+
+
+<!-- 05 -->
+
+<article class="card service-card">
+
+<div class="number">
+05
+</div>
+
+<h3>
+Waxing
+</h3>
+
+<p>
+Explore professional waxing as part of your personal grooming and
+self-care routine.
+</p>
+
+
+<a
+    class="service-link"
+    href="/waxing-festac/"
+>
+    Explore Waxing
+    <span>→</span>
+</a>
+
+</article>
+
+
+<!-- 06 -->
+
+<article class="card service-card">
+
+<div class="number">
+06
+</div>
+
+<h3>
+Pedicure
+</h3>
+
+<p>
+Take care of your feet and nails with a pedicure experience that adds a
+beauty and grooming element to your spa visit.
+</p>
+
+
+<a
+    class="service-link"
+    href="/pedicure-festac/"
+>
+    Explore Pedicure
+    <span>→</span>
+</a>
+
+</article>
+
+
+<!-- 07 -->
+
+<article class="card service-card">
+
+<div class="number">
+07
+</div>
+
+<h3>
+Spa Packages
+</h3>
+
+<p>
+Combine treatments and create a more complete spa experience around your
+available time, preferences and occasion.
+</p>
+
+
+<a
+    class="service-link"
+    href="/spa-packages-festac/"
+>
+    Explore Spa Packages
+    <span>→</span>
+</a>
+
+</article>
+
+
+<!-- 08 -->
+
+<article class="card service-card">
+
+<div class="number">
+08
+</div>
+
+<h3>
+Couples Massage
+</h3>
+
+<p>
+Share a relaxing experience with someone special through a couples massage
+or coordinated spa visit.
+</p>
+
+
+<a
+    class="service-link"
+    href="/couples-massage-festac/"
+>
+    Explore Couples Massage
+    <span>→</span>
+</a>
+
+</article>
+
+
+<!-- 09 -->
+
+<article class="card service-card">
+
+<div class="number">
+09
+</div>
+
+<h3>
+Personalised Spa Experience
+</h3>
+
+<p>
+Not sure which treatment combination is right for you? Contact
+Pax & Pearl BodyWorks and discuss your preferred experience before booking.
+</p>
+
+
+<a
+    class="service-link"
+    href="/contact/"
+>
+    Speak With Pax & Pearl
+    <span>→</span>
+</a>
+
+</article>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     WHY PAX & PEARL
+========================================================== -->
+
+<section>
+
+<div class="container two-col">
+
+
+<div>
+
+<span class="eyebrow">
+Why Pax & Pearl BodyWorks
+</span>
+
+
+<h2>
+Self-care should feel intentional.
+</h2>
+
+
+<p>
+A good spa visit is not simply about selecting a treatment from a menu.
+It is about creating time to step away from your normal routine and give
+yourself attention.
+</p>
+
+
+<p style="margin-top:18px; color:var(--muted);">
+At Pax & Pearl BodyWorks, the service range allows clients to approach that
+experience in different ways — from a focused massage to a broader
+combination of beauty and body-care treatments.
+</p>
+
+</div>
+
+
+<ul class="list">
+
+<li>
+Multiple massage options
+</li>
+
+<li>
+Facial and skincare-focused experiences
+</li>
+
+<li>
+Body-care treatments
+</li>
+
+<li>
+Waxing and personal grooming
+</li>
+
+<li>
+Pedicure and nail care
+</li>
+
+<li>
+Couples massage experiences
+</li>
+
+<li>
+Spa packages and treatment combinations
+</li>
+
+<li>
+Convenient location for clients around Festac
+</li>
+
+</ul>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     TYPES OF CLIENTS
+========================================================== -->
+
+<section class="soft">
+
+<div class="container">
+
+
+<div class="section-intro">
+
+<span class="eyebrow">
+For Every Kind of Spa Day
+</span>
+
+
+<h2>
+What brings you to the spa?
+</h2>
+
+
+<p>
+Your reason for visiting may change from one appointment to another.
+Pax & Pearl BodyWorks offers services for different self-care moments.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card audience-card">
+
+<div class="audience-number">
+01
+</div>
+
+<h3>
+After a Long Week
+</h3>
+
+<p>
+Choose a massage or relaxing spa experience when you simply need time to
+slow down and reset.
+</p>
+
+</div>
+
+
+<div class="card audience-card">
+
+<div class="audience-number">
+02
+</div>
+
+<h3>
+Before an Event
+</h3>
+
+<p>
+Prepare for birthdays, weddings, celebrations, photoshoots or important
+events with suitable beauty and body-care treatments.
+</p>
+
+</div>
+
+
+<div class="card audience-card">
+
+<div class="audience-number">
+03
+</div>
+
+<h3>
+A Personal Treat
+</h3>
+
+<p>
+You do not need a special reason to book a spa treatment. Sometimes taking
+care of yourself is reason enough.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     SPA EXPERIENCE
+========================================================== -->
+
+<section>
+
+<div class="container two-col">
+
+
+<div class="feature-panel">
+
+<span class="eyebrow">
+Massage & Wellness
+</span>
+
+
+<h3>
+Need to relax?
+</h3>
+
+
+<p>
+Massage can be an important part of a personal relaxation routine. Explore
+our massage options and choose the experience that best matches what you
+are looking for.
+</p>
+
+
+<div class="buttons">
+
+<a
+    class="btn"
+    style="
+        background:var(--green);
+        color:var(--white);
+    "
+    href="/massage-spa-festac/"
+>
+    Explore Massage
+</a>
+
+</div>
+
+</div>
+
+
+<div class="feature-panel">
+
+<span class="eyebrow">
+Beauty & Body Care
+</span>
+
+
+<h3>
+Want a complete self-care visit?
+</h3>
+
+
+<p>
+Combine treatments such as facial, body scrub, pedicure and other available
+services to create a broader beauty and body-care experience.
+</p>
+
+
+<div class="buttons">
+
+<a
+    class="btn"
+    style="
+        background:var(--green);
+        color:var(--white);
+    "
+    href="/spa-packages-festac/"
+>
+    Explore Spa Packages
+</a>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LOCAL SEARCH SECTION
+========================================================== -->
+
+<section class="soft">
+
+<div class="container">
+
+
+<div class="section-intro">
+
+<span class="eyebrow">
+Your Local Spa in Festac
+</span>
+
+
+<h2>
+Looking for a spa around Festac, Lagos?
+</h2>
+
+
+<p>
+If you live, work or spend time around Festac and are searching for a
+nearby spa, massage centre or beauty spa, Pax & Pearl BodyWorks provides
+multiple services from one destination.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>
+Spa in Festac
+</h3>
+
+<p>
+Explore a range of massage, beauty and body-care services without having
+to search for a different provider for every treatment.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Massage in Festac
+</h3>
+
+<p>
+From general massage experiences to more focused options such as deep
+tissue massage, explore treatments according to your needs.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Beauty Spa in Festac
+</h3>
+
+<p>
+Facials, waxing, pedicures and body-care treatments can form part of your
+regular beauty and self-care routine.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     SPA PACKAGES
+========================================================== -->
+
+<section>
+
+<div class="container">
+
+
+<div class="section-intro">
+
+<span class="eyebrow">
+Complete Spa Experiences
+</span>
+
+
+<h2>
+Why choose one treatment when you can create a spa day?
+</h2>
+
+
+<p>
+For clients who want more than a single treatment, spa packages can bring
+multiple services together into one more complete experience.
+</p>
+
+</div>
+
+
+<div class="feature-panel">
+
+
+<h3>
+Create your ideal spa visit.
+</h3>
+
+
+<p>
+Depending on the current service menu and availability, your spa experience
+may combine massage, facial, body-care, pedicure or other treatments.
+Contact Pax & Pearl BodyWorks to discuss the available options, treatment
+durations and current pricing.
+</p>
+
+
+<div class="buttons">
+
+<a
+    class="btn"
+    style="
+        background:var(--green);
+        color:var(--white);
+    "
+    href="/spa-packages-festac/"
+>
+    View Spa Packages
+</a>
+
+
+<a
+    class="btn"
+    style="
+        border:1px solid var(--green);
+        color:var(--green);
+    "
+    href="/contact/"
+>
+    Ask About Packages
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     COUPLES
+========================================================== -->
+
+<section class="soft">
+
+<div class="container two-col">
+
+
+<div>
+
+<span class="eyebrow">
+For Two
+</span>
+
+
+<h2>
+Make time for each other.
+</h2>
+
+
+<p>
+A spa visit does not always have to be a solo experience. Couples massage
+offers an opportunity for two people to share time away from their normal
+routine.
+</p>
+
+
+<div class="buttons">
+
+<a
+    class="btn"
+    style="
+        background:var(--green);
+        color:var(--white);
+    "
+    href="/couples-massage-festac/"
+>
+    Explore Couples Massage
+</a>
+
+</div>
+
+</div>
+
+
+<div class="feature-panel">
+
+<h3>
+Perfect for:
+</h3>
+
+
+<ul class="list">
+
+<li>
+Date days
+</li>
+
+<li>
+Birthdays
+</li>
+
+<li>
+Anniversaries
+</li>
+
+<li>
+Valentine's celebrations
+</li>
+
+<li>
+Quality time together
+</li>
+
+<li>
+Special occasions
+</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     FAQ
+========================================================== -->
+
+<section>
+
+<div class="container">
+
+
+<div class="section-intro">
+
+<span class="eyebrow">
+Frequently Asked Questions
+</span>
+
+
+<h2>
+Spa in Festac, Lagos: FAQs
+</h2>
+
+</div>
+
+
+<div class="faq">
+
+
+<div class="faq-item">
+
+<h3>
+Where can I find a spa in Festac, Lagos?
+</h3>
+
+<p>
+Pax & Pearl BodyWorks provides spa, massage, beauty and body-care services
+for clients in Festac, Lagos. Contact the spa to confirm the current
+location details, available services and appointment arrangements.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+What services does Pax & Pearl BodyWorks offer?
+</h3>
+
+<p>
+The Festac service collection includes massage, deep tissue massage,
+facials, body scrubs, waxing, pedicures, spa packages and couples massage,
+subject to current availability.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Can I book a massage and facial together?
+</h3>
+
+<p>
+Depending on appointment availability, multiple treatments can be combined
+into a broader spa experience. Contact Pax & Pearl to discuss the best
+combination for your visit.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Does Pax & Pearl offer couples massage in Festac?
+</h3>
+
+<p>
+Yes. Pax & Pearl BodyWorks has a couples massage service page specifically
+for clients looking for a shared spa experience in Festac.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Does the spa offer body scrubs?
+</h3>
+
+<p>
+Yes. Body scrub is part of the Festac service collection. Visit the body
+scrub service page for more information about the treatment.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Can I get a facial in Festac?
+</h3>
+
+<p>
+Yes. Pax & Pearl BodyWorks offers facial spa services for clients looking
+for skincare-focused treatments in Festac.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Can I book a spa package?
+</h3>
+
+<p>
+Yes. Spa packages are available as part of the service collection.
+Available combinations, treatment durations and pricing should be confirmed
+directly with Pax & Pearl BodyWorks.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Should I book my spa appointment in advance?
+</h3>
+
+<p>
+Advance booking is recommended, particularly when you want multiple
+treatments, a couples appointment or a specific date and time.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+Is Pax & Pearl BodyWorks suitable for a personal self-care day?
+</h3>
+
+<p>
+Yes. The combination of massage, facial, body-care, nail and grooming
+services makes it possible to create a broader personal self-care
+experience around the treatments currently available.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     INTERNAL SERVICE DIRECTORY
+========================================================== -->
+
+<section class="soft">
+
+<div class="container">
+
+
+<div class="section-intro">
+
+<span class="eyebrow">
+Explore Pax & Pearl
+</span>
+
+
+<h2>
+Explore individual treatments.
+</h2>
+
+
+<p>
+Choose the service that matches what you are looking for.
+</p>
+
+</div>
+
+
+<div class="related">
+
+
+<a href="/deep-tissue-massage-festac/">
+Deep Tissue Massage
+</a>
+
+
+<a href="/massage-spa-festac/">
+Massage Spa
+</a>
+
+
+<a href="/facial-spa-festac/">
+Facial Spa
+</a>
+
+
+<a href="/body-scrub-festac/">
+Body Scrub
+</a>
+
+
+<a href="/waxing-festac/">
+Waxing
+</a>
+
+
+<a href="/pedicure-festac/">
+Pedicure
+</a>
+
+
+<a href="/spa-packages-festac/">
+Spa Packages
+</a>
+
+
+<a href="/couples-massage-festac/">
+Couples Massage
+</a>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================== -->
+
+<section
+    class="cta"
+    id="book"
+>
+
+<div class="container">
+
+
+<span class="eyebrow">
+Pax & Pearl BodyWorks
+</span>
+
+
+<h2>
+Your next spa day starts here.
+</h2>
+
+
+<p>
+Whether you are looking for a massage, facial, body scrub, pedicure,
+waxing, couples massage or a complete spa package in Festac, Lagos,
+explore the available treatments and contact Pax & Pearl BodyWorks to
+arrange your appointment.
+</p>
+
+
+<div
+    class="buttons"
+    style="
+        justify-content:center;
+    "
+>
+
+
+<a
+    class="btn btn-primary"
+    href="/contact/"
+>
+    Book an Appointment
+</a>
+
+
+<a
+    class="btn btn-secondary"
+    href="/spa-packages-festac/"
+>
+    Explore Spa Packages
+</a>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================== -->
+
+<footer>
+
+<div class="container">
+
+© Pax & Pearl BodyWorks.
+Spa in Festac, Lagos.
+
+</div>
+
+</footer>
+
+
+</body>
+
+</html>
