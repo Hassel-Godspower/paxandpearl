@@ -1,1515 +1,4701 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Pax & Pearl Body Works</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- =========================================================
+         BASIC DOCUMENT
+    ========================================================== -->
 
-  <!-- Google Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <meta charset="UTF-8">
 
-  <!-- Core Styles -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-<!-- =========================
-     PWA SUPPORT
-========================= -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<link rel="manifest" href="manifest.json">
+    <title>
+        Massage & Spa in Festac Town, Lagos | Pax & Pearl Body Works
+    </title>
 
-<meta name="theme-color" content="#9C1C1C">
+    <meta
+        name="description"
+        content="Pax & Pearl Body Works is a massage and spa destination in Festac Town, Lagos. Explore deep tissue massage, facials, body scrubs, waxing, pedicures, couples massage and spa packages."
+    >
 
-<meta name="mobile-web-app-capable" content="yes">
+    <meta
+        name="keywords"
+        content="spa in Festac, massage in Festac, massage spa Festac, spa in Lagos, massage in Lagos, deep tissue massage Festac, couples massage Festac, facial spa Festac, body scrub Festac, waxing Festac, pedicure Festac, spa packages Festac"
+    >
 
-<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta
+        name="author"
+        content="Pax & Pearl Body Works"
+    >
 
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    >
 
-<meta name="apple-mobile-web-app-title" content="Pax & Pearl">
-
-<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-</head>
-  
-<body>
-
-  <!-- =========================
-       BRAND PRELOADER
-  ========================= -->
-  <div id="preloader">
-    <div class="preloader-content">
-      <img src="assets/images/logo.png" alt="Pax & Pearl Body Works Logo">
-      <div class="loader-ring"></div>
-    </div>
-  </div>
-  
-  <div class="container">
-    <!-- =========================
-         TOP BAR (GREETING | LOGO | NOTIFICATION)
-    ========================== -->
-    <header class="top-bar">
-
-      <!-- Greeting -->
-      <section class="greeting">
-        <h2 id="greeting">
-          <span id="user-name">Hello 👋</span><br>
-          <span id="time-greeting"></span>
-        </h2>
-      </section>
-    
-      <!-- Right side -->
-      <div class="top-bar-right">
-        <div class="brand-logo">
-          <img src="assets/images/logo.png" alt="Pax & Pearl Body Works">
-        </div>
-    
-        <button class="notification-btn" aria-label="Notifications">
-          <span class="material-icons-round">notifications_none</span>
-        </button>
-      </div>
-    </header>
-  </div>
-  
-  <!-- =========================
-       SEARCH
-  ========================== -->
-  <section class="search-section">
-    <div class="page-wrap">
-      <div class="search-box">
-        <span class="material-icons-round">search</span>
-        <input type="text" placeholder="Search services, stylists..." />
-      </div>
-    </div>
-  </section>
+    <meta
+        name="theme-color"
+        content="#9C1C1C"
+    >
 
 
-  <!-- =========================
-       CATEGORIES
-  ========================== -->
-  <section>
-  <div class="page-wrap">
-    <div class="categories">
-    <a href="services.html?category=massage" class="category-btn">
-      <span class="material-icons-round">self_improvement</span>
-      <small>Massage</small>
-    </a>
-  
-    <a href="services.html?category=facial" class="category-btn">
-      <span class="material-icons-round">face</span>
-      <small>Facial</small>
-    </a>
+    <!-- =========================================================
+         CANONICAL
+    ========================================================== -->
 
-    <a href="services.html?category=waxing" class="category-btn">
-      <span class="material-icons-round">content_cut</span>
-      <small>Waxing</small>
-    </a>
-  
-    <a href="services.html?category=pedicure" class="category-btn">
-      <span class="material-icons-round">spa</span>
-      <small>Pedicure</small>
-    </a>
-  </section>
-  
-  <section>
-  <!-- SEE MORE -->
-      <div class="see-more-wrapper">
-        <a href="services.html" class="see-more-btn">
-          See more
-          <span class="material-icons-round">chevron_right</span>
-        </a>
-      </div>
-    </div>
-  </section>
-   
-  <style>
+    <link
+        rel="canonical"
+        href="https://paxandpearl.vercel.app/"
+    >
 
-    /* =========================
-       BRAND PRELOADER
-    ========================= */
-    #preloader{
-      position:fixed;
-      inset:0;
-      background:#ffffff;
-      z-index:999999;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:opacity .5s ease, visibility .5s ease;
+
+    <!-- =========================================================
+         OPEN GRAPH
+    ========================================================== -->
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:title"
+        content="Massage & Spa in Festac Town, Lagos | Pax & Pearl Body Works"
+    >
+
+    <meta
+        property="og:description"
+        content="Relax, reset and take care of yourself at Pax & Pearl Body Works in Festac Town, Lagos. Discover massage, facials, body treatments, waxing, pedicures and spa packages."
+    >
+
+    <meta
+        property="og:url"
+        content="https://paxandpearl.vercel.app/"
+    >
+
+    <meta
+        property="og:site_name"
+        content="Pax & Pearl Body Works"
+    >
+
+    <meta
+        property="og:image"
+        content="https://paxandpearl.vercel.app/assets/images/logo.png"
+    >
+
+
+    <!-- =========================================================
+         TWITTER / SOCIAL
+    ========================================================== -->
+
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Massage & Spa in Festac Town, Lagos | Pax & Pearl Body Works"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Massage, spa and beauty treatments in Festac Town, Lagos."
+    >
+
+    <meta
+        name="twitter:image"
+        content="https://paxandpearl.vercel.app/assets/images/logo.png"
+    >
+
+
+    <!-- =========================================================
+         FONTS
+    ========================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================================
+         GOOGLE MATERIAL ICONS
+    ========================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================================
+         CORE STYLES
+    ========================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/base.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/layout.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/components.css"
+    >
+
+
+    <!-- =========================================================
+         PWA SUPPORT
+    ========================================================== -->
+
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+    <meta
+        name="mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="Pax & Pearl"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="assets/icons/apple-touch-icon.png"
+    >
+
+
+    <!-- =========================================================
+         LOCAL BUSINESS / SPA STRUCTURED DATA
+    ========================================================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "DaySpa",
+        "@id": "https://paxandpearl.vercel.app/#business",
+        "name": "Pax & Pearl Body Works",
+        "url": "https://paxandpearl.vercel.app/",
+        "image": "https://paxandpearl.vercel.app/assets/images/logo.png",
+        "description": "Pax & Pearl Body Works is a massage and spa destination in Festac Town, Lagos, offering massage, facial, body, waxing, pedicure and wellness treatments.",
+        "telephone": [
+            "+2347064302016",
+            "+2348122270495"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Suite 8, Okaka Plaza, 1st Avenue",
+            "addressLocality": "Festac Town",
+            "addressRegion": "Lagos",
+            "addressCountry": "NG"
+        },
+        "areaServed": [
+            "Festac Town",
+            "Amuwo Odofin",
+            "Lagos",
+            "Nigeria"
+        ],
+        "priceRange": "₦₦",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "reviewCount": "349"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                ],
+                "opens": "09:00",
+                "closes": "19:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "15:00",
+                "closes": "19:00"
+            }
+        ]
     }
-    
-    #preloader.hide{
-      opacity:0;
-      visibility:hidden;
+    </script>
+
+
+    <!-- =========================================================
+         FAQ STRUCTURED DATA
+    ========================================================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Where is Pax & Pearl Body Works located?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Pax & Pearl Body Works is located at Suite 8, Okaka Plaza, 1st Avenue, Festac Town, Lagos."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does Pax & Pearl Body Works offer massage in Festac?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Pax & Pearl Body Works offers massage treatments in Festac Town, including deep tissue massage and other massage experiences."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does Pax & Pearl offer facials?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Pax & Pearl Body Works offers facial treatments including deep cleansing facial treatments."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does Pax & Pearl offer waxing?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Waxing services are available at Pax & Pearl Body Works."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does Pax & Pearl offer pedicures?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Pax & Pearl Body Works offers pedicure services including spa pedicure treatments."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does Pax & Pearl offer couples massage?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Couples massage is one of the spa experiences available through Pax & Pearl Body Works."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I book a treatment at Pax & Pearl?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can explore available services and book a treatment through the Pax & Pearl Body Works services and booking page."
+                }
+            }
+        ]
     }
-    
-    .preloader-content{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-    }
-    
-    .preloader-content img{
-      width:120px;
-      height:auto;
-      margin-bottom:20px;
-      animation:logoPulse 2s infinite ease-in-out;
-    }
-    
-    .loader-ring{
-      width:42px;
-      height:42px;
-      border:3px solid rgba(0,0,0,0.08);
-      border-top:3px solid #b71c1c; /* brand red */
-      border-radius:50%;
-      animation:spin .8s linear infinite;
-    }
-    
-    @keyframes spin{
-      to{
-        transform:rotate(360deg);
-      }
-    }
-    
-    @keyframes logoPulse{
-      0%,100%{
-        transform:scale(1);
-      }
-      50%{
-        transform:scale(1.08);
-      }
-    }
-   /* =========================
-      GLOBAL CONTENT WIDTH
-   ========================= */
-   .page-wrap {
-     width: 100%;
-     max-width: 1200px;     /* desktop alignment */
-     margin: 0 auto;
-     padding: 0 16px;       /* mobile gutter */
-   }
-   
-   /* Wider gutters on large screens */
-   @media (min-width: 992px) {
-     .page-wrap {
-       padding: 0 24px;
-     }
-   }
-   
-   .categories-wrapper {
-     padding: 0;
-     width: 100%;
-   }
-   
-   .categories {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     gap: 20px;
-     width: 100%;
-     padding: 0;
-   }
-   
-   /* Category button / link */
-   .category-btn {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     gap: 6px;
-     width: 60px;
-     background: none;
-     border: none;
-     cursor: pointer;
-     font-family: 'Poppins', sans-serif;
-     color: var(--text-main);
-     text-decoration: none;
-   }
-   
-   /* Remove underline everywhere */
-   .category-btn,
-   .category-btn:hover,
-   .category-btn:focus,
-   .category-btn:active {
-     text-decoration: none;
-     outline: none;
-   }
-   
-   /* Icon circle */
-   .category-btn span {
-     width: 50px;
-     height: 50px;
-     border-radius: 50%;
-     background: var(--card);
-     box-shadow: var(--shadow-card);
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     font-size: 22px;
-     color: var(--primary-red);
-   }
-   
-   /* Label */
-   .category-btn small {
-     font-size: 11px;
-     line-height: 1.2;
-     text-align: center;
-   }
-   
-   /* Subtle tap feedback */
-   .category-btn:active {
-     transform: scale(0.96);
-   }
-   
-   /* =========================================================
-      SEE MORE (Categories)
-   ========================================================= */
-   
-   .see-more-wrapper {
-     display: flex;
-     justify-content: flex-end;
-     margin-top: 6px;
-   }
-   
-   .see-more-btn {
-     display: inline-flex;
-     align-items: center;
-     gap: 2px;
-     font-size: 12px;
-     font-weight: 500;
-     font-family: 'Poppins', sans-serif;
-     color: var(--primary-red);
-     padding: 4px 6px;
-     border-radius: 6px;
-     text-decoration: none;
-   }
-   
-   .see-more-btn,
-   .see-more-btn:hover,
-   .see-more-btn:focus {
-     text-decoration: none;
-   }
-   
-   .see-more-btn .material-icons-round {
-     font-size: 16px;
-   }
-   
-   .see-more-btn:active {
-     opacity: 0.7;
-   }
-  </style>
-  
-<section class="post-slider">
-  <div class="page-wrap">
+    </script>
+
+
+    <!-- =========================================================
+         HOMEPAGE ARCHITECTURE STYLES
+    ========================================================== -->
+
+    <style>
+
+        /* =====================================================
+           GLOBAL HOMEPAGE SYSTEM
+        ====================================================== */
+
+        :root {
+            --pp-red: #9C1C1C;
+            --pp-dark-red: #781414;
+            --pp-soft-red: #fff5f5;
+            --pp-cream: #fffaf7;
+            --pp-dark: #171717;
+            --pp-muted: #6b7280;
+            --pp-border: #eeeeee;
+            --pp-white: #ffffff;
+            --pp-gold: #b88a44;
+            --pp-shadow: 0 14px 35px rgba(0,0,0,.08);
+            --pp-radius: 22px;
+        }
+
+
+        /* =====================================================
+           PRELOADER
+        ====================================================== */
+
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            z-index: 99999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition:
+                opacity .5s ease,
+                visibility .5s ease;
+        }
+
+        #preloader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preloader-content img {
+            width: 120px;
+            height: auto;
+            margin-bottom: 20px;
+            animation: logoPulse 2s infinite ease-in-out;
+        }
+
+        .loader-ring {
+            width: 42px;
+            height: 42px;
+            border: 3px solid rgba(0,0,0,.08);
+            border-top: 3px solid var(--pp-red);
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes logoPulse {
+            0%,100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+
+        /* =====================================================
+           CONTENT WIDTH
+        ====================================================== */
+
+        .page-wrap {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
 
-    <div class="post-slider-viewport">
-      <div class="post-slider-track" id="postSlider">
+        @media (min-width: 992px) {
 
-        <div class="post-slide">
-          <img src="assets/images/post1.jpg" alt="Spa Experience">
-        </div>
-
-        <div class="post-slide">
-          <img src="assets/images/post2.jpg" alt="Massage Therapy">
-        </div>
-
-        <div class="post-slide">
-          <img src="assets/images/post3.jpg" alt="Facial Treatment">
-        </div>
-
-        <div class="post-slide">
-          <img src="assets/images/post4.jpg" alt="Waxing Service">
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Controls -->
-    <button class="slider-btn prev" id="prevSlide" aria-label="Previous slide">
-      <span class="material-icons-round">chevron_left</span>
-    </button>
-
-    <button class="slider-btn next" id="nextSlide" aria-label="Next slide">
-      <span class="material-icons-round">chevron_right</span>
-    </button>
-
-  </div>
-</section>
-
-
-<style>  
-/* =========================
-   SLIDER CORE
-========================= */
-.post-slider {
-  position: relative;
-}
-
-.post-slider-viewport {
-  overflow: hidden;
-  width: 100%;
-}
-
-.post-slider-track {
-  display: flex;
-  transition: transform 0.5s ease;
-  will-change: transform;
-  cursor: grab;
-}
-
-.post-slider-track:active {
-  cursor: grabbing;
-}
-
-
-/* =========================
-   OPTIONAL OVERLAY (if needed later)
-========================= */
-.post-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.6), transparent);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 16px;
-  color: #fff;
-  border-radius: 16px;
-}
-
-/* =========================
-   CONTROLS
-========================= */
-.slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 50;
-  background: rgba(0,0,0,0.55);
-  color: #fff;
-  border: none;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-
-.slider-btn.prev {
-  left: 6px;
-}
-
-.slider-btn.next {
-  right: 6px;
-}
-
-.slider-btn:hover {
-  background: rgba(0,0,0,0.75);
-}
-
-/* =========================
-   SLIDES
-========================= */
-.post-slide {
-  flex: 0 0 100%; /* Mobile: 1 slide */
-  padding-right: 12px;
-  box-sizing: border-box;
-  position: relative;
-}
-
-/* Tablet */
-@media (min-width: 768px) {
-  .post-slide {
-    flex: 0 0 50%; /* 2 slides */
-  }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-  .post-slide {
-    flex: 0 0 33.3333%; /* 3 slides */
-  }
-}
-
-
-
-.post-slide img {
-  width: 350px;
-  height: 200px;
-  object-fit: contain;       /* ✅ shows full image */
-  background: #f3f4f6;       /* neutral fill for empty space */
-  border-radius: 16px;
-  display: block;
-}
-
-/* Overlay */
-post-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.6), transparent);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 16px;
-  color: #fff;
-  border-radius: 16px;
-}
-
-/* =========================
-   CONTROLS
-========================= */
-.slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 50;              /* 👈 critical */
-  background: rgba(0,0,0,0.55);
-  color: #fff;
-  border: none;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-
-/* Extreme edges */
-.slider-btn.prev { left: 6px; }
-.slider-btn.next { right: 6px; }
-
-
-.slider-btn:hover {
-  background: rgba(0,0,0,0.75);
-}
-</style>  
-
-<script>
-(() => {
-  const track = document.getElementById("postSlider");
-  const slides = Array.from(track.children);
-  const prev = document.getElementById("prevSlide");
-  const next = document.getElementById("nextSlide");
-
-  let index = 0;
-  let autoTimer = null;
-
-  /* --------------------
-     RESPONSIVE LOGIC
-  -------------------- */
-  function slidesPerView() {
-    return window.innerWidth >= 768 ? 2 : 1;
-  }
-
-  function maxIndex() {
-    return Math.max(0, slides.length - slidesPerView());
-  }
-
-  function slideWidth() {
-    return slides[0].getBoundingClientRect().width;
-  }
-
-  function updateSlider(animate = true) {
-    track.style.transition = animate ? "transform 0.45s ease" : "none";
-    track.style.transform = `translateX(-${index * slideWidth()}px)`;
-  }
-
-  /* --------------------
-     BUTTON NAV
-  -------------------- */
-  next.addEventListener("click", () => {
-    index = Math.min(index + 1, maxIndex());
-    updateSlider();
-    resetAuto();
-  });
-
-  prev.addEventListener("click", () => {
-    index = Math.max(index - 1, 0);
-    updateSlider();
-    resetAuto();
-  });
-
-  /* --------------------
-     AUTO SLIDE
-  -------------------- */
-  function startAuto() {
-    stopAuto();
-    autoTimer = setInterval(() => {
-      index = index >= maxIndex() ? 0 : index + 1;
-      updateSlider();
-    }, 5000);
-  }
-
-  function stopAuto() {
-    if (autoTimer) clearInterval(autoTimer);
-  }
-
-  function resetAuto() {
-    stopAuto();
-    startAuto();
-  }
-
-  /* Pause on hover / touch */
-  track.addEventListener("mouseenter", stopAuto);
-  track.addEventListener("mouseleave", startAuto);
-  track.addEventListener("touchstart", stopAuto, { passive: true });
-  track.addEventListener("touchend", startAuto);
-
-  /* --------------------
-     MOMENTUM SWIPE
-  -------------------- */
-  let startX = 0;
-  let currentX = 0;
-  let isDragging = false;
-
-  track.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-    track.style.transition = "none";
-  }, { passive: true });
-
-  track.addEventListener("touchmove", e => {
-    if (!isDragging) return;
-    currentX = e.touches[0].clientX;
-    const diff = startX - currentX;
-    track.style.transform = `translateX(-${index * slideWidth() + diff}px)`;
-  }, { passive: true });
-
-  track.addEventListener("touchend", () => {
-    if (!isDragging) return;
-    isDragging = false;
-
-    const diff = startX - currentX;
-    const threshold = slideWidth() * 0.25;
-
-    if (diff > threshold) index = Math.min(index + 1, maxIndex());
-    if (diff < -threshold) index = Math.max(index - 1, 0);
-
-    updateSlider();
-    resetAuto();
-  });
-
-  /* --------------------
-     RESIZE FIX
-  -------------------- */
-  window.addEventListener("resize", () => {
-    index = Math.min(index, maxIndex());
-    updateSlider(false);
-  });
-
-  /* INIT */
-  updateSlider(false);
-  startAuto();
-})();
-</script>
-
-
- <!-- =========================
-     SIGN-UP MODAL
-========================== -->
-<div id="signupModal" class="modal-backdrop">
-  <div class="modal-card">
-    <h3>Get a Better Experience ✨</h3>
-    <p>
-      Sign up to manage bookings faster, save favorites,
-      and enjoy personalized spa offers.
-    </p>
-
-    <div class="modal-actions">
-      <button class="btn btn-primary" id="acceptSignup">
-        Sign Up Now
-      </button>
-      <button class="btn btn-outline" id="dismissSignup">
-        Maybe Later
-      </button>
-    </div>
-  </div>
-</div>
-<!-- =========================
-     FEATURED SERVICES
-========================== -->
-
-<section class="section">
-  <div class="page-wrap">
-
-    <div class="section-header">
-      <h3>Popular Treatments</h3>
-      <a href="services.html">View all</a>
-    </div>
-
-    <div class="service-grid">
-    <div class="service-card1">
-      <img src="assets/images/massage.jpg" alt="">
-      <div class="service-info1">
-        <h4>Deep Tissue Massage</h4>
-        <p>60 mins · ₦35,000</p>
-        <a href="services.html" class="btn btn-primary btn-sm">Book</a>
-      </div>
-    </div>
-
-    <div class="service-card1">
-      <img src="assets/images/facial.jpg" alt="">
-      <div class="service-info1">
-        <h4>Deep Cleansing Facial</h4>
-        <p>40 mins · ₦20,000</p>
-        <a href="services.html" class="btn btn-primary btn-sm">Book</a>
-      </div>
-    </div>
-
-    <div class="service-card1">
-      <img src="assets/images/waxing.jpg" alt="">
-      <div class="service-info1">
-        <h4>Full Leg Wax</h4>
-        <p>40 mins · ₦30,000</p>
-        <a href="services.html" class="btn btn-primary btn-sm">Book</a>
-      </div>
-    </div>
-
-    <div class="service-card1">
-      <img src="assets/images/pedicure.jpg" alt="">
-      <div class="service-info1">
-        <h4>Spa Pedicure</h4>
-        <p>40 mins · ₦10,000</p>
-        <a href="services.html" class="btn btn-primary btn-sm">Book</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================
-     TOP THERAPISTS
-========================== -->
-<section class="section soft-bg">
-  <div class="page-wrap">
-
-    <div class="section-header">
-    <h3>Meet Our Specialists</h3>
-  </div>
-
-  <div class="card-grid">
-  
-    <div class="therapist-card">
-       <span class="verified-badge">
-        <span class="material-icons-round">verified</span>
-      </span>
-     
-      <img src="assets/images/therapist2.jpg" alt="">
-      <h4>Gift H.</h4>
-      <small>Lead, Spa Therapist</small>
-    </div>
-  </div>
-</section>
-
-<!-- =========================
-     REVIEWS
-========================== -->
-<section class="section soft-bg">
-  <div class="page-wrap">
-
-    <div class="section-header">
-    <h3>What Clients Say</h3>
-  </div>
-
-  <div class="card-grid">
-    <div class="review-card">
-      <p>“Serene atmosphere. Professional service. Felt like a newborn baby afterwards. Would definitely make this place my regular staple..”</p>
-       <small>— Idowu J.</small>
-    </div>
-
-    <div class="review-card">
-      <p>“Very kind people, gentle and calm. They will pamper you and you will not want to leave. I actually want to go back there soon..”</p>
-      <small>— Joshua K.</small>
-    </div>
-
-    <div class="review-card">
-      <p>“I loved every bit of the service I got. The deep tissue massage was amazing, I have not slept so well for a long time but after the massage now I sleep like a baby. The customer service was super amazing, my wax session was so good. I love it.”</p>
-      <small>— Riz C.</small>
-    </div>
-
-    <div class="review-card">
-      <p>“I took a little time out to pamper myself and it was a beautiful experience. I felt so much relief after the deep tissue body massage. The pedicure and manicure, facials was superb. I will scheduling time for these going forward.”</p>
-      <small>— Florence U.</small>
-    </div>
-  </div>
-
-    
-<div class="reviews-modal" id="reviewsModal">
-  <div class="reviews-backdrop" onclick="closeReviewsModal()"></div>
-
-  <div class="reviews-modal-box">
-    <button class="modal-close" onclick="closeReviewsModal()">✕</button>
-
-    <iframe
-      src="https://www.google.com/maps?q=Pax+%26+Pearl+Body+Works+(Spa+in+Lagos)&output=embed"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </div>
-</div>
-
-    
-<style> 
-/* =========================
-   GOOGLE RATING CARD
-========================== */
-.google-rating-wrapper {
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 40px;
-}
-
-.rating-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  text-align: center;
-  margin-left: 40px;
-  max-width: 280px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.rating-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
-}
-
-.rating-score {
-  font-size: 42px;
-  font-weight: 700;
-  color: #1f2937;
-}
-
-.rating-stars {
-  font-size: 22px;
-  color: #fbbc04;
-  margin: 6px 0;
-}
-
-.rating-stars .half {
-  opacity: 0.6;
-}
-
-.rating-count {
-  font-size: 13px;
-  color: #4b5563;
-}
-
-.rating-source {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 12px;
-  color: #6b7280;
-}
-
-.rating-source img {
-  width: 16px;
-  height: 16px;
-}
-
-/* Modal wrapper */
-.reviews-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: none;
-}
-
-/* Dark overlay */
-.reviews-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-}
-
-/* Modal box */
-.reviews-modal-box {
-  position: relative;
-  width: 92%;
-  max-width: 420px;
-  height: 70vh;
-  margin: 8vh auto;
-  background: #fff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-}
-
-/* iframe */
-.reviews-modal-box iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* Close button */
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #fff;
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  z-index: 2;
-}
-
-/* =========================
-   RESPONSIVE
-========================== */
-@media (min-width: 768px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  .rating-card {
-    max-width: 320px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .reviews-section {
-    padding: 64px 24px;
-  }
-
-  .rating-card {
-    max-width: 360px;
-  }
-}
-</style>
-
-<script>
-function openReviewsModal() {
-  document.getElementById("reviewsModal").style.display = "block";
-  document.body.style.overflow = "hidden";
-}
-
-function closeReviewsModal() {
-  document.getElementById("reviewsModal").style.display = "none";
-  document.body.style.overflow = "";
-}
-</script>
-
-    
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Pax & Pearl Body Works",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Lagos",
-    "addressCountry": "NG"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.7",
-    "reviewCount": "325"
-  }
-}
-</script>
-
-  
-<style> 
-/* =========================
-   SHARED 2-COLUMN GRID
-========================= */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
-
-/* =========================
-   THERAPIST CARD
-========================= */
-.therapist-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 14px;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-}
-
-.therapist-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 10px;
-}
-
-.therapist-card h4 {
-  font-size: 14px;
-  margin: 0;
-}
-
-.therapist-card small {
-  color: #777;
-  font-size: 12px;
-}
-
-/* =========================
-   REVIEW CARD
-========================= */
-.review-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-}
-
-.review-card p {
-  font-size: 13px;
-  line-height: 1.4;
-  margin-bottom: 8px;
-}
-
-.review-card small {
-  font-size: 12px;
-  color: #666;
-}
-
-.office-info {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  padding: 40px 20px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* Address block */
-.office-address {
-  display: flex;
-  gap: 12px;
-  max-width: 420px;
-  color: #1f2937;
-}
-
-.office-address .material-icons-round {
-  color: #dc2626;
-  font-size: 26px;
-  margin-top: 4px;
-}
-
-.office-address p {
-  margin: 0;
-  line-height: 1.6;
-}
-
-/* Vertical divider */
-.vertical-divider {
-  width: 1px;
-  height: 140px;
-  background: #e5e7eb;
-}
-
-/* Rating alignment */
-.google-rating {
-  display: flex;
-  align-items: center;
-}
-
-
-/* =========================
-   RESPONSIVE UPGRADES
-========================= */
-@media (max-width: 768px) {
-  .office-info {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .office-address {
-    justify-content: center;
-  }
-
-  .vertical-divider {
-    width: 100%;
-    height: 1px;
-  }
-}
-
-@media (min-width: 600px) {
-  .card-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 992px) {
-  .card-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-</style>
-
-<section class="office-info">
-  <!-- Address -->
-  <div class="office-address">
-    <span class="material-icons-round">location_on</span>
-    <p>
-      Pax & Pearl Body Works<br>
-      Suite 8, Okaka Plaza, 1st Avenue, FESTAC Town, Lagos<br>
-      Monday - Saturday: 9AM - 7PM;<br> 
-      Sunday: 3PM - 7PM (only by booking)<br>
-      +2347064302016, +2348122270495
-    </p>
-  </div>
-
-  <!-- Divider -->
-  <div class="vertical-divider"></div>
-
-  <!-- Google Rating -->
-  <div class="google-rating">
-    <button class="rating-card" onclick="openReviewsModal()">
-      <div class="rating-score">4.7</div>
-
-      <div class="rating-stars">
-        ★★★★<span class="half">★</span>
-      </div>
-
-      <div class="rating-count">
-        Based on <strong>325 Google reviews</strong>
-      </div>
-
-      <div class="rating-source">
-        <img src="assets/images/google-logo.png" alt="Google">
-        <span>Verified Reviews</span>
-      </div>
-    </button>
-  </div>
-</section>
-
-<div id="installBanner" style="display:none;position:fixed;bottom:20px;left:20px;right:20px;background:#ffffff;border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.15);z-index:99999;">
-
-<h3>Install Pax & Pearl App</h3>
-
-<p>Get faster booking, exclusive offers and one-tap access from your Home Screen.</p>
-
-<button id="installApp">
-
-Install App
-
-</button>
-
-</div>
-
-<div id="iosInstallModal" class="install-modal" style="display:none;">
-    <div class="install-modal-content">
-
-        <img src="assets/images/logo.png" alt="Pax & Pearl" width="80">
-
-        <h2>Install Pax & Pearl</h2>
-
-        <p>
-            Add Pax & Pearl to your Home Screen for faster booking and a better experience.
-        </p>
-
-        <div class="install-steps">
-            <p><strong>1.</strong> Tap the <strong>Share</strong> button <strong>⬆️</strong></p>
-
-            <p><strong>2.</strong> Tap <strong>Add to Home Screen</strong></p>
-
-            <p><strong>3.</strong> Tap <strong>Add</strong></p>
-        </div>
-
-        <button id="closeIOSInstall">
-            Maybe Later
-        </button>
-
-    </div>
-</div>
-
-    
-<!-- =========================
-      MOBILE BOTTOM NAV
-========================== -->
-<nav class="mobile-nav">
-  <a href="index.html" class="active">
-    <span class="material-icons-round">home</span>
-    <small>Home</small>
-  </a>
-
-  <a href="booking.html">
-    <span class="material-icons-round">event</span>
-    <small>Booking</small>
-  </a>
-
-  <a href="saved.html">
-    <span class="material-icons-round">favorite</span>
-    <small>Saved</small>
-  </a>
-
-  <a id="messageAdmin" href="#">
-    <span class="material-icons-round">chat</span>
-    <small>Message</small>
-  </a>
-
-  <a href="profile.html">
-    <span class="material-icons-round">person</span>
-    <small>Profile</small>
-  </a>
-</nav>
-
-<script>
-/* ============================
-   MOBILE NAV – ADMIN WHATSAPP
-   (Public, GitHub-safe)
-============================ */
-(function bindAdminWhatsAppFromCatalog() {
-  const msgBtn = document.getElementById("messageAdmin");
-  if (!msgBtn) return;
-
-  fetch("/catalog1.json")
-    .then(res => {
-      if (!res.ok) throw new Error("Catalog not found");
-      return res.json();
-    })
-    .then(data => {
-      const phone = data?.admin?.whatsapp;
-
-      if (!phone) {
-        throw new Error("Admin WhatsApp missing");
-      }
-
-      // Ensure digits only
-      const cleanPhone = phone.replace(/\D/g, "");
-
-      msgBtn.href = `https://wa.me/${cleanPhone}`;
-      msgBtn.target = "_blank";
-    })
-    .catch(() => {
-      msgBtn.href = "#";
-      msgBtn.addEventListener("click", e => {
-        e.preventDefault();
-        alert("Admin WhatsApp not available yet.");
-      });
-    });
-})();
-</script>
-
-<script>
-  // Example: get username dynamically (replace this with your actual logic)
-   const profile = JSON.parse(localStorage.getItem("userProfile") || "{}");
-
-  if (profile.name) {
-    document.getElementById("user-name").textContent = `Hello ${profile.name} 👋`;
-  } else {
-    document.getElementById("user-name").textContent = "Hello 👋";
-  }
-
-  // Function to set greeting based on WAT time
-  function setGreetingWAT() {
-    const timeGreetingEl = document.getElementById('time-greeting');
-
-    const now = new Date();
-    const options = { hour: 'numeric', hour12: false, timeZone: 'Africa/Lagos' };
-    const hour = parseInt(new Intl.DateTimeFormat('en-US', options).format(now), 10);
-
-    let greetingText = '';
-
-    if (hour >= 0 && hour < 12) {
-      greetingText = 'Good Morning ☀️';
-    } else if (hour >= 12 && hour <= 15) {
-      greetingText = 'Good Afternoon ☀️';
-    } else if (hour >= 16 && hour <= 23) {
-      greetingText = 'Good Evening 🌙';
-    }
-
-    timeGreetingEl.textContent = greetingText;
-  }
-
-  // Run on page load
-  setGreetingWAT();
-</script>
-  
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const MODAL_DELAY = 20 * 1000; // ⏱ 20 seconds
-
-  const modal = document.getElementById("signupModal");
-  const acceptBtn = document.getElementById("acceptSignup");
-  const dismissBtn = document.getElementById("dismissSignup");
-
-  if (!modal || !acceptBtn || !dismissBtn) return;
-
-  // ⏱ Show modal after delay
-  const timer = setTimeout(() => {
-    modal.classList.add("show");
-  }, MODAL_DELAY);
-
-  // ✅ Sign Up → redirect
-  acceptBtn.addEventListener("click", () => {
-    window.location.href = "profile.html";
-  });
-
-  // ✅ Maybe Later → close modal
-  dismissBtn.addEventListener("click", () => {
-    modal.classList.remove("show");
-    clearTimeout(timer);
-  });
-});
-</script>
-
-  
-<style>
-  /*install modal for iOS*/
-  .install-modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.65);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999999;
-padding:20px;
-}
-
-.install-modal-content{
-background:#fff;
-border-radius:22px;
-padding:28px;
-max-width:360px;
-text-align:center;
-box-shadow:0 25px 60px rgba(0,0,0,.25);
-}
-
-.install-modal img{
-margin-bottom:15px;
-}
-
-.install-modal h2{
-margin-bottom:10px;
-}
-
-.install-steps{
-text-align:left;
-margin:20px 0;
-}
-
-#closeIOSInstall{
-width:100%;
-padding:14px;
-border:none;
-border-radius:12px;
-background:#9C1C1C;
-color:#fff;
-font-size:16px;
-cursor:pointer;
-}
-  
- /* ========================= 
-       SIGNUP MODAL
-    ========================= */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      display: none; 
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-    .modal-backdrop.show {
-      display: flex;              /* JS toggles this */
-    }
-    .modal-card {
-      background: #fff;
-      width: 90%;
-      max-width: 360px;
-      border-radius: 18px;
-      padding: 22px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-      animation: modalFadeIn 0.35s ease;
-    }
-    
-    .modal-card h3 {
-      margin-bottom: 10px;
-    }
-    
-    .modal-card p {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 18px;
-    }
-    
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-    }
-    
-    .modal-actions .btn {
-      flex: 1;
-    }
-    
-    .btn-outline {
-      background: transparent;
-      border: 1px solid #ccc;
-      color: #333;
-    }
-    
-    @keyframes modalFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px) scale(0.96);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-    #preloader{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:#fff;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      z-index:99999999;
-      transition:opacity .5s ease;
-  }
-  
-</style> 
-
-
-<script src="js/data.js"></script>
-<script src="js/booking.js"></script>
-    
-<script>
-window.onload = function () {
-
-    const preloader = document.getElementById('preloader');
-
-    if (!preloader) return;
-
-    setTimeout(function(){
-
-        preloader.style.opacity = "0";
-
-        setTimeout(function(){
-            preloader.style.display = "none";
-        }, 500);
-
-    }, 2000); // show loader for 2 seconds
-};
-</script>
-<script>
-if ("serviceWorker" in navigator) {
-
-    window.addEventListener("load", () => {
-
-        navigator.serviceWorker
-            .register("service-worker.js")
-            .then(reg => {
-                console.log("Service Worker Registered", reg);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-
-    });
-
-}
-</script> 
-
-<script>
-let deferredPrompt;
-
-const ua = window.navigator.userAgent.toLowerCase();
-
-const isIOS = /iphone|ipad|ipod/.test(ua);
-
-const isSafari =
-    isIOS &&
-    ua.includes("safari") &&
-    !ua.includes("crios") &&
-    !ua.includes("fxios");
-
-const isStandalone =
-    window.matchMedia("(display-mode: standalone)").matches ||
-    window.navigator.standalone === true;
-if (isSafari && !isStandalone) {
-    document.getElementById("iosInstallModal").style.display = "flex";
-  }
-const isStandalone =
-    window.navigator.standalone ||
-    window.matchMedia("(display-mode: standalone)").matches;
-
-// iPhone
-window.addEventListener("load", () => {
-
-    setTimeout(() => {
-
-        if (isIOS && !isStandalone) {
-
-            document.getElementById("iosInstallModal").style.display = "flex";
+            .page-wrap {
+                padding: 0 24px;
+            }
 
         }
 
-    }, 2600);
 
-});
+        /* =====================================================
+           HERO
+        ====================================================== */
 
-// Close button
-document.getElementById("closeIOSInstall").addEventListener("click",()=>{
+        .pp-hero {
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+            margin-left: 16px;
+            margin-right: 16px;
+            border-radius: 26px;
+            min-height: 520px;
+            display: flex;
+            align-items: flex-end;
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(0,0,0,.05) 0%,
+                    rgba(0,0,0,.20) 35%,
+                    rgba(0,0,0,.78) 100%
+                ),
+                url("assets/images/post1.jpg")
+                center / cover no-repeat;
+        }
 
-document.getElementById("iosInstallModal").style.display="none";
+        .pp-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 38px 24px;
+            color: #fff;
+        }
 
-});
+        .pp-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border-radius: 100px;
+            background: rgba(255,255,255,.15);
+            backdrop-filter: blur(10px);
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
 
-// Android
-window.addEventListener("beforeinstallprompt",(e)=>{
+        .pp-hero h1 {
+            margin: 18px 0 12px;
+            max-width: 760px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(34px, 8vw, 68px);
+            line-height: 1.02;
+            font-weight: 700;
+            letter-spacing: -.035em;
+        }
 
-e.preventDefault();
+        .pp-hero h1 em {
+            font-style: normal;
+            color: #ffdede;
+        }
 
-deferredPrompt=e;
+        .pp-hero p {
+            max-width: 650px;
+            margin: 0 0 24px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255,255,255,.92);
+        }
 
-const banner=document.getElementById("installBanner");
+        .pp-hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
-if(banner) banner.style.display="block";
+        .pp-hero-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            min-height: 48px;
+            padding: 0 20px;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: .2s ease;
+        }
 
-});
+        .pp-hero-btn.primary {
+            background: #fff;
+            color: var(--pp-red);
+        }
 
-// Android install button
-const installBtn=document.getElementById("installApp");
+        .pp-hero-btn.secondary {
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.45);
+            color: #fff;
+            backdrop-filter: blur(10px);
+        }
 
-if(installBtn){
+        .pp-hero-btn:hover {
+            transform: translateY(-2px);
+        }
 
-installBtn.addEventListener("click",async()=>{
+        @media (min-width: 768px) {
 
-if(!deferredPrompt) return;
+            .pp-hero {
+                margin-left: auto;
+                margin-right: auto;
+                min-height: 600px;
+                max-width: 1200px;
+            }
 
-deferredPrompt.prompt();
+            .pp-hero-content {
+                padding: 60px;
+            }
 
-await deferredPrompt.userChoice;
+        }
 
-});
 
-}
-</script>
+        /* =====================================================
+           TRUST STRIP
+        ====================================================== */
+
+        .pp-trust-strip {
+            margin: -28px auto 0;
+            position: relative;
+            z-index: 5;
+            width: calc(100% - 48px);
+            max-width: 920px;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: var(--pp-shadow);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            overflow: hidden;
+        }
+
+        .pp-trust-item {
+            padding: 17px 10px;
+            text-align: center;
+            border-right: 1px solid var(--pp-border);
+        }
+
+        .pp-trust-item:last-child {
+            border-right: 0;
+        }
+
+        .pp-trust-item strong {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: var(--pp-dark);
+        }
+
+        .pp-trust-item span {
+            display: block;
+            margin-top: 3px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 10px;
+            color: var(--pp-muted);
+        }
+
+        @media (max-width: 480px) {
+
+            .pp-trust-item strong {
+                font-size: 15px;
+            }
+
+            .pp-trust-item span {
+                font-size: 9px;
+            }
+
+        }
+
+
+        /* =====================================================
+           SECTION INTRO
+        ====================================================== */
+
+        .pp-section {
+            padding: 58px 0;
+        }
+
+        .pp-section.soft {
+            background: var(--pp-cream);
+        }
+
+        .pp-section.red-soft {
+            background: var(--pp-soft-red);
+        }
+
+        .pp-section-heading {
+            max-width: 760px;
+            margin-bottom: 28px;
+        }
+
+        .pp-section-heading .eyebrow {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--pp-red);
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .pp-section-heading h2 {
+            margin: 0 0 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(26px, 5vw, 40px);
+            line-height: 1.15;
+            color: var(--pp-dark);
+        }
+
+        .pp-section-heading p {
+            margin: 0;
+            color: var(--pp-muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           SERVICE DISCOVERY
+        ====================================================== */
+
+        .pp-service-discovery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .pp-service-discovery-card {
+            min-height: 150px;
+            padding: 20px;
+            border-radius: 18px;
+            background: #fff;
+            border: 1px solid var(--pp-border);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: .2s ease;
+            box-shadow: 0 6px 18px rgba(0,0,0,.04);
+        }
+
+        .pp-service-discovery-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--pp-shadow);
+        }
+
+        .pp-service-icon {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--pp-soft-red);
+            color: var(--pp-red);
+            margin-bottom: auto;
+        }
+
+        .pp-service-discovery-card h3 {
+            margin: 18px 0 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            color: var(--pp-dark);
+        }
+
+        .pp-service-discovery-card p {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--pp-muted);
+        }
+
+        @media (min-width: 768px) {
+
+            .pp-service-discovery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        @media (min-width: 1024px) {
+
+            .pp-service-discovery {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .pp-service-discovery-card {
+                min-height: 190px;
+            }
+
+        }
+
+
+        /* =====================================================
+           SEO LOCATION SECTION
+        ====================================================== */
+
+        .pp-location-copy {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .pp-location-copy-text h2 {
+            margin: 0 0 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(27px, 5vw, 42px);
+            line-height: 1.15;
+        }
+
+        .pp-location-copy-text p {
+            margin: 0 0 14px;
+            color: var(--pp-muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .pp-location-points {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .pp-location-point {
+            padding: 15px;
+            background: #fff;
+            border: 1px solid var(--pp-border);
+            border-radius: 14px;
+        }
+
+        .pp-location-point strong {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .pp-location-point span {
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            color: var(--pp-muted);
+        }
+
+        @media (min-width: 900px) {
+
+            .pp-location-copy {
+                grid-template-columns: 1.1fr .9fr;
+            }
+
+        }
+
+
+        /* =====================================================
+           FEATURED MASSAGE
+        ====================================================== */
+
+        .pp-featured-massage {
+            display: grid;
+            grid-template-columns: 1fr;
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--pp-shadow);
+        }
+
+        .pp-featured-massage-image {
+            min-height: 280px;
+            background:
+                url("assets/images/massage.jpg")
+                center / cover no-repeat;
+        }
+
+        .pp-featured-massage-content {
+            padding: 30px;
+        }
+
+        .pp-featured-label {
+            color: var(--pp-red);
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .pp-featured-massage h2 {
+            margin: 8px 0 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+        }
+
+        .pp-featured-massage p {
+            color: var(--pp-muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .pp-treatment-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 18px 0;
+        }
+
+        .pp-treatment-meta span {
+            padding: 7px 10px;
+            background: #f7f7f7;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+        }
+
+        @media (min-width: 768px) {
+
+            .pp-featured-massage {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        /* =====================================================
+           WHY US
+        ====================================================== */
+
+        .pp-why-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .pp-why-card {
+            padding: 24px;
+            border-radius: 18px;
+            background: #fff;
+            border: 1px solid var(--pp-border);
+        }
+
+        .pp-why-card .material-icons-round {
+            color: var(--pp-red);
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .pp-why-card h3 {
+            margin: 0 0 7px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+        }
+
+        .pp-why-card p {
+            margin: 0;
+            color: var(--pp-muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        @media (min-width: 600px) {
+
+            .pp-why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (min-width: 1000px) {
+
+            .pp-why-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+        }
+
+
+        /* =====================================================
+           PACKAGE CARDS
+        ====================================================== */
+
+        .pp-packages {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .pp-package-card {
+            position: relative;
+            padding: 26px;
+            border-radius: 20px;
+            background: #fff;
+            border: 1px solid var(--pp-border);
+            overflow: hidden;
+        }
+
+        .pp-package-card.featured {
+            border: 2px solid var(--pp-red);
+        }
+
+        .pp-package-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 5px 8px;
+            border-radius: 100px;
+            background: var(--pp-red);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .pp-package-card h3 {
+            margin: 0 0 7px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+        }
+
+        .pp-package-card p {
+            margin: 0 0 18px;
+            color: var(--pp-muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .pp-package-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--pp-red);
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        @media (min-width: 768px) {
+
+            .pp-packages {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+
+        /* =====================================================
+           REVIEWS TRUST SECTION
+        ====================================================== */
+
+        .pp-reviews-heading {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: end;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .pp-google-summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0,0,0,.05);
+        }
+
+        .pp-google-score {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .pp-google-stars {
+            color: #fbbc04;
+            font-size: 16px;
+        }
+
+        .pp-google-summary small {
+            display: block;
+            color: var(--pp-muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           WELLNESS GUIDES
+        ====================================================== */
+
+        .pp-guides-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .pp-guide-card {
+            padding: 20px;
+            background: #fff;
+            border-radius: 18px;
+            border: 1px solid var(--pp-border);
+            text-decoration: none;
+            transition: .2s ease;
+        }
+
+        .pp-guide-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--pp-shadow);
+        }
+
+        .pp-guide-card .material-icons-round {
+            color: var(--pp-red);
+            margin-bottom: 12px;
+        }
+
+        .pp-guide-card h3 {
+            margin: 0 0 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            line-height: 1.4;
+            color: var(--pp-dark);
+        }
+
+        .pp-guide-card p {
+            margin: 0;
+            color: var(--pp-muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 700px) {
+
+            .pp-guides-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (min-width: 1024px) {
+
+            .pp-guides-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+
+        /* =====================================================
+           FAQ
+        ====================================================== */
+
+        .pp-faq {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .pp-faq details {
+            background: #fff;
+            border: 1px solid var(--pp-border);
+            border-radius: 14px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .pp-faq summary {
+            cursor: pointer;
+            padding: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            list-style: none;
+        }
+
+        .pp-faq summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .pp-faq summary::after {
+            content: "+";
+            float: right;
+            color: var(--pp-red);
+            font-size: 20px;
+        }
+
+        .pp-faq details[open] summary::after {
+            content: "−";
+        }
+
+        .pp-faq-answer {
+            padding: 0 18px 18px;
+            color: var(--pp-muted);
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           FINAL CTA
+        ====================================================== */
+
+        .pp-final-cta {
+            margin: 20px 0 60px;
+            padding: 42px 24px;
+            border-radius: 24px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #9C1C1C,
+                    #681111
+                );
+            color: #fff;
+            text-align: center;
+        }
+
+        .pp-final-cta h2 {
+            margin: 0 0 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(27px, 5vw, 42px);
+        }
+
+        .pp-final-cta p {
+            max-width: 600px;
+            margin: 0 auto 22px;
+            color: rgba(255,255,255,.88);
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .pp-final-cta .pp-hero-btn {
+            background: #fff;
+            color: var(--pp-red);
+        }
+
+
+        /* =====================================================
+           EXISTING CATEGORY SYSTEM
+        ====================================================== */
+
+        .categories-wrapper {
+            padding: 0;
+            width: 100%;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            padding: 0;
+        }
+
+        .category-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 60px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .category-btn:hover,
+        .category-btn:focus,
+        .category-btn:active {
+            text-decoration: none;
+            outline: none;
+        }
+
+        .category-btn span {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card);
+            box-shadow: var(--shadow-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--primary-red);
+        }
+
+        .category-btn small {
+            font-size: 11px;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .category-btn:active {
+            transform: scale(.96);
+        }
+
+        .see-more-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 6px;
+        }
+
+        .see-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            font-size: 12px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-red);
+            padding: 4px 6px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .see-more-btn:hover,
+        .see-more-btn:focus {
+            text-decoration: none;
+        }
+
+        .see-more-btn .material-icons-round {
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           POST SLIDER
+        ====================================================== */
+
+        .post-slider {
+            position: relative;
+        }
+
+        .post-slider-viewport {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .post-slider-track {
+            display: flex;
+            transition: transform .5s ease;
+            will-change: transform;
+            cursor: grab;
+        }
+
+        .post-slider-track:active {
+            cursor: grabbing;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            background: rgba(0,0,0,.55);
+            color: #fff;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+        }
+
+        .slider-btn.prev {
+            left: 6px;
+        }
+
+        .slider-btn.next {
+            right: 6px;
+        }
+
+        .slider-btn:hover {
+            background: rgba(0,0,0,.75);
+        }
+
+        .post-slide {
+            flex: 0 0 100%;
+            padding-right: 12px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .post-slide img {
+            width: 350px;
+            height: 200px;
+            object-fit: contain;
+            background: #f3f4f6;
+            border-radius: 16px;
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+
+            .post-slide {
+                flex: 0 0 50%;
+            }
+
+        }
+
+        @media (min-width: 1024px) {
+
+            .post-slide {
+                flex: 0 0 33.3333%;
+            }
+
+        }
+
+
+        /* =====================================================
+           EXISTING CARD SYSTEM
+        ====================================================== */
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .therapist-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 14px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,.06);
+        }
+
+        .therapist-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .therapist-card h4 {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .therapist-card small {
+            color: #777;
+            font-size: 12px;
+        }
+
+        .review-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,.06);
+        }
+
+        .review-card p {
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .review-card small {
+            font-size: 12px;
+            color: #666;
+        }
+
+
+        /* =====================================================
+           OFFICE INFORMATION
+        ====================================================== */
+
+        .office-info {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .office-address {
+            display: flex;
+            gap: 12px;
+            max-width: 420px;
+            color: #1f2937;
+        }
+
+        .office-address .material-icons-round {
+            color: #dc2626;
+            font-size: 26px;
+            margin-top: 4px;
+        }
+
+        .office-address p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .vertical-divider {
+            width: 1px;
+            height: 140px;
+            background: #e5e7eb;
+        }
+
+        .google-rating {
+            display: flex;
+            align-items: center;
+        }
+
+        .rating-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,.08);
+            text-align: center;
+            border: 0;
+            cursor: pointer;
+            max-width: 280px;
+        }
+
+        .rating-score {
+            font-size: 42px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .rating-stars {
+            font-size: 22px;
+            color: #fbbc04;
+            margin: 6px 0;
+        }
+
+        .rating-count {
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .rating-source {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .rating-source img {
+            width: 16px;
+            height: 16px;
+        }
+
+        @media (max-width: 768px) {
+
+            .office-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .office-address {
+                justify-content: center;
+            }
+
+            .vertical-divider {
+                width: 100%;
+                height: 1px;
+            }
+
+        }
+
+
+        /* =====================================================
+           REVIEWS MODAL
+        ====================================================== */
+
+        .reviews-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+        }
+
+        .reviews-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,.6);
+        }
+
+        .reviews-modal-box {
+            position: relative;
+            width: 92%;
+            max-width: 420px;
+            height: 70vh;
+            margin: 8vh auto;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,.25);
+        }
+
+        .reviews-modal-box iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,.2);
+            z-index: 2;
+        }
+
+
+        /* =====================================================
+           SIGNUP MODAL
+        ====================================================== */
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .modal-backdrop.show {
+            display: flex;
+        }
+
+        .modal-card {
+            background: #fff;
+            width: 90%;
+            max-width: 360px;
+            border-radius: 18px;
+            padding: 22px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,.25);
+            animation: modalFadeIn .35s ease;
+        }
+
+        .modal-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .modal-card p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 18px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-actions .btn {
+            flex: 1;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #ccc;
+            color: #333;
+        }
+
+        @keyframes modalFadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+
+        /* =====================================================
+           INSTALL MODAL
+        ====================================================== */
+
+        .install-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.65);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            padding: 20px;
+        }
+
+        .install-modal-content {
+            background: #fff;
+            border-radius: 22px;
+            padding: 28px;
+            max-width: 360px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,.25);
+        }
+
+        .install-modal img {
+            margin-bottom: 15px;
+        }
+
+        .install-modal h2 {
+            margin-bottom: 10px;
+        }
+
+        .install-steps {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        #closeIOSInstall {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: #9C1C1C;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE EXISTING GRID
+        ====================================================== */
+
+        @media (min-width: 600px) {
+
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        @media (min-width: 992px) {
+
+            .card-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         BRAND PRELOADER
+    ========================================================== -->
+
+    <div id="preloader">
+
+        <div class="preloader-content">
+
+            <img
+                src="assets/images/logo.png"
+                alt="Pax & Pearl Body Works Logo"
+            >
+
+            <div class="loader-ring"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         EXISTING TOP BAR
+    ========================================================== -->
+
+    <div class="container">
+
+        <header class="top-bar">
+
+            <section class="greeting">
+
+                <h2 id="greeting">
+
+                    <span id="user-name">
+                        Hello 👋
+                    </span>
+
+                    <br>
+
+                    <span id="time-greeting"></span>
+
+                </h2>
+
+            </section>
+
+
+            <div class="top-bar-right">
+
+                <div class="brand-logo">
+
+                    <img
+                        src="assets/images/logo.png"
+                        alt="Pax & Pearl Body Works"
+                    >
+
+                </div>
+
+
+                <button
+                    class="notification-btn"
+                    aria-label="Notifications"
+                >
+
+                    <span class="material-icons-round">
+                        notifications_none
+                    </span>
+
+                </button>
+
+            </div>
+
+        </header>
+
+    </div>
+
+
+    <!-- =========================================================
+         SEARCH
+    ========================================================== -->
+
+    <section class="search-section">
+
+        <div class="page-wrap">
+
+            <div class="search-box">
+
+                <span class="material-icons-round">
+                    search
+                </span>
+
+                <input
+                    type="text"
+                    placeholder="Search services, stylists..."
+                    aria-label="Search Pax & Pearl services"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         NEW HERO
+    ========================================================== -->
+
+    <section
+        class="pp-hero"
+        aria-labelledby="hero-title"
+    >
+
+        <div class="pp-hero-content">
+
+            <span class="pp-eyebrow">
+
+                <span class="material-icons-round">
+                    spa
+                </span>
+
+                Massage & Spa in Festac Town, Lagos
+
+            </span>
+
+
+            <h1 id="hero-title">
+
+                Your Body Deserves
+                <em>to Feel This Good.</em>
+
+            </h1>
+
+
+            <p>
+
+                Massage, spa and beauty treatments designed to help you
+                relax, reset and take better care of yourself —
+                right here in Festac Town, Lagos.
+
+            </p>
+
+
+            <div class="pp-hero-actions">
+
+                <a
+                    href="services.html"
+                    class="pp-hero-btn primary"
+                >
+
+                    <span class="material-icons-round">
+                        calendar_month
+                    </span>
+
+                    Book a Treatment
+
+                </a>
+
+
+                <a
+                    href="#explore-services"
+                    class="pp-hero-btn secondary"
+                >
+
+                    Explore Services
+
+                    <span class="material-icons-round">
+                        arrow_downward
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         TRUST STRIP
+    ========================================================== -->
+
+    <div class="pp-trust-strip">
+
+        <div class="pp-trust-item">
+
+            <strong>
+                ★ 4.7
+            </strong>
+
+            <span>
+                Google Rating
+            </span>
+
+        </div>
+
+
+        <div class="pp-trust-item">
+
+            <strong>
+                349+
+            </strong>
+
+            <span>
+                Google Reviews
+            </span>
+
+        </div>
+
+
+        <div class="pp-trust-item">
+
+            <strong>
+                FESTAC
+            </strong>
+
+            <span>
+                Lagos, Nigeria
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         EXISTING CATEGORIES
+    ========================================================== -->
+
+    <section id="explore-services">
+
+        <div class="page-wrap">
+
+            <div class="categories">
+
+                <a
+                    href="services.html?category=massage"
+                    class="category-btn"
+                >
+
+                    <span class="material-icons-round">
+                        self_improvement
+                    </span>
+
+                    <small>
+                        Massage
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="services.html?category=facial"
+                    class="category-btn"
+                >
+
+                    <span class="material-icons-round">
+                        face
+                    </span>
+
+                    <small>
+                        Facial
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="services.html?category=waxing"
+                    class="category-btn"
+                >
+
+                    <span class="material-icons-round">
+                        content_cut
+                    </span>
+
+                    <small>
+                        Waxing
+                    </small>
+
+                </a>
+
+
+                <a
+                    href="services.html?category=pedicure"
+                    class="category-btn"
+                >
+
+                    <span class="material-icons-round">
+                        spa
+                    </span>
+
+                    <small>
+                        Pedicure
+                    </small>
+
+                </a>
+
+            </div>
+
+
+            <div class="see-more-wrapper">
+
+                <a
+                    href="services.html"
+                    class="see-more-btn"
+                >
+
+                    See more
+
+                    <span class="material-icons-round">
+                        chevron_right
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         NEW SERVICE DISCOVERY
+    ========================================================== -->
+
+    <section class="pp-section">
+
+        <div class="page-wrap">
+
+            <div class="pp-section-heading">
+
+                <span class="eyebrow">
+                    Choose your experience
+                </span>
+
+                <h2>
+                    What Are You in the Mood For?
+                </h2>
+
+                <p>
+
+                    Whether you need a relaxing massage, a fresh facial,
+                    a body treatment or some time to care for your hands
+                    and feet, explore treatments at Pax & Pearl Body Works.
+
+                </p>
+
+            </div>
+
+
+            <div class="pp-service-discovery">
+
+
+                <a
+                    href="deep-tissue-massage-festac/"
+                    class="pp-service-discovery-card"
+                >
+
+                    <span class="pp-service-icon">
+
+                        <span class="material-icons-round">
+                            self_improvement
+                        </span>
+
+                    </span>
+
+                    <h3>
+                        Massage
+                    </h3>
+
+                    <p>
+                        Relax, release tension and reset.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="facial-spa-festac/"
+                    class="pp-service-discovery-card"
+                >
+
+                    <span class="pp-service-icon">
+
+                        <span class="material-icons-round">
+                            face
+                        </span>
+
+                    </span>
+
+                    <h3>
+                        Facials
+                    </h3>
+
+                    <p>
+                        Refresh and care for your skin.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="body-scrub-festac/"
+                    class="pp-service-discovery-card"
+                >
+
+                    <span class="pp-service-icon">
+
+                        <span class="material-icons-round">
+                            water_drop
+                        </span>
+
+                    </span>
+
+                    <h3>
+                        Body Treatments
+                    </h3>
+
+                    <p>
+                        Polish, refresh and rejuvenate.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="waxing-festac/"
+                    class="pp-service-discovery-card"
+                >
+
+                    <span class="pp-service-icon">
+
+                        <span class="material-icons-round">
+                            content_cut
+                        </span>
+
+                    </span>
+
+                    <h3>
+                        Waxing
+                    </h3>
+
+                    <p>
+                        Smooth, confident skin.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="pedicure-festac/"
+                    class="pp-service-discovery-card"
+                >
+
+                    <span class="pp-service-icon">
+
+                        <span class="material-icons-round">
+                            spa
+                        </span>
+
+                    </span>
+
+                    <h3>
+                        Hands & Feet
+                    </h3>
+
+                    <p>
+                        Give your hands and feet some attention.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="spa-packages-festac/"
+                    class="pp-service-discovery-card"
+                >
+
+                    <span class="pp-service-icon">
+
+                        <span class="material-icons-round">
+                            card_giftcard
+                        </span>
+
+                    </span>
+
+                    <h3>
+                        Spa Packages
+                    </h3>
+
+                    <p>
+                        Make more time for yourself.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         EXISTING POST SLIDER
+    ========================================================== -->
+
+    <section class="post-slider">
+
+        <div class="page-wrap">
+
+            <div class="post-slider-viewport">
+
+                <div
+                    class="post-slider-track"
+                    id="postSlider"
+                >
+
+                    <div class="post-slide">
+
+                        <img
+                            src="assets/images/post1.jpg"
+                            alt="Pax & Pearl spa experience in Festac Lagos"
+                        >
+
+                    </div>
+
+
+                    <div class="post-slide">
+
+                        <img
+                            src="assets/images/post2.jpg"
+                            alt="Massage therapy at Pax & Pearl Body Works"
+                        >
+
+                    </div>
+
+
+                    <div class="post-slide">
+
+                        <img
+                            src="assets/images/post3.jpg"
+                            alt="Facial treatment at Pax & Pearl Body Works"
+                        >
+
+                    </div>
+
+
+                    <div class="post-slide">
+
+                        <img
+                            src="assets/images/post4.jpg"
+                            alt="Waxing service at Pax & Pearl Body Works"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="slider-btn prev"
+                id="prevSlide"
+                aria-label="Previous slide"
+            >
+
+                <span class="material-icons-round">
+                    chevron_left
+                </span>
+
+            </button>
+
+
+            <button
+                class="slider-btn next"
+                id="nextSlide"
+                aria-label="Next slide"
+            >
+
+                <span class="material-icons-round">
+                    chevron_right
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         NEW SEO / LOCAL POSITIONING SECTION
+    ========================================================== -->
+
+    <section class="pp-section soft">
+
+        <div class="page-wrap">
+
+            <div class="pp-location-copy">
+
+                <div class="pp-location-copy-text">
+
+                    <span class="pp-section-heading">
+
+                        <span class="eyebrow">
+                            Local wellness destination
+                        </span>
+
+                    </span>
+
+
+                    <h2>
+                        Massage & Spa in Festac Town, Lagos
+                    </h2>
+
+
+                    <p>
+
+                        Welcome to Pax & Pearl Body Works, a massage and
+                        spa destination in Festac Town, Lagos. We offer
+                        massage, facial, body, waxing, pedicure and wellness
+                        treatments for clients looking for time to relax,
+                        reset and take better care of themselves.
+
+                    </p>
+
+
+                    <p>
+
+                        If you're searching for a
+
+                        <strong>
+                            massage in Festac
+                        </strong>,
+
+                        a
+
+                        <strong>
+                            spa in Festac
+                        </strong>,
+
+                        a
+
+                        <strong>
+                            deep tissue massage
+                        </strong>,
+
+                        facial treatment, body scrub, waxing, pedicure,
+                        couples massage or a spa package in Lagos,
+                        Pax & Pearl Body Works gives you a convenient
+                        local place to begin your wellness experience.
+
+                    </p>
+
+
+                    <a
+                        href="spa-in-lagos/"
+                        class="pp-hero-btn"
+                        style="background:#9C1C1C;color:#fff;margin-top:8px;"
+                    >
+
+                        Explore Spa in Lagos
+
+                        <span class="material-icons-round">
+                            arrow_forward
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="pp-location-points">
+
+                    <div class="pp-location-point">
+
+                        <strong>
+                            Massage
+                        </strong>
+
+                        <span>
+                            Relaxation and focused massage experiences.
+                        </span>
+
+                    </div>
+
+
+                    <div class="pp-location-point">
+
+                        <strong>
+                            Facials
+                        </strong>
+
+                        <span>
+                            Treatments designed around your skin-care needs.
+                        </span>
+
+                    </div>
+
+
+                    <div class="pp-location-point">
+
+                        <strong>
+                            Body Treatments
+                        </strong>
+
+                        <span>
+                            Body scrubs and rejuvenating experiences.
+                        </span>
+
+                    </div>
+
+
+                    <div class="pp-location-point">
+
+                        <strong>
+                            Beauty Care
+                        </strong>
+
+                        <span>
+                            Waxing, pedicure and other beauty treatments.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FEATURED MASSAGE
+    ========================================================== -->
+
+    <section class="pp-section">
+
+        <div class="page-wrap">
+
+            <div class="pp-section-heading">
+
+                <span class="eyebrow">
+                    Featured experience
+                </span>
+
+                <h2>
+                    Massage That Meets You Where You Are
+                </h2>
+
+                <p>
+
+                    Sometimes you need deep pressure. Sometimes you simply
+                    need to slow down. Explore our massage experiences and
+                    choose what feels right for you.
+
+                </p>
+
+            </div>
+
+
+            <div class="pp-featured-massage">
+
+                <div
+                    class="pp-featured-massage-image"
+                    role="img"
+                    aria-label="Deep tissue massage at Pax & Pearl Body Works"
+                ></div>
+
+
+                <div class="pp-featured-massage-content">
+
+                    <span class="pp-featured-label">
+                        Signature treatment
+                    </span>
+
+
+                    <h2>
+                        Deep Tissue Massage
+                    </h2>
+
+
+                    <p>
+
+                        A focused massage experience for clients who prefer
+                        deeper, firmer pressure. It is designed to provide
+                        a more intensive massage experience while giving you
+                        dedicated time to relax and reset.
+
+                    </p>
+
+
+                    <div class="pp-treatment-meta">
+
+                        <span>
+                            60 minutes
+                        </span>
+
+                        <span>
+                            ₦35,000
+                        </span>
+
+                        <span>
+                            Festac Town
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="deep-tissue-massage-festac/"
+                        class="btn btn-primary"
+                    >
+
+                        Explore Deep Tissue Massage
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         EXISTING FEATURED SERVICES
+    ========================================================== -->
+
+    <section class="section">
+
+        <div class="page-wrap">
+
+            <div class="section-header">
+
+                <h3>
+                    Popular Treatments
+                </h3>
+
+                <a href="services.html">
+                    View all
+                </a>
+
+            </div>
+
+
+            <div class="service-grid">
+
+
+                <div class="service-card1">
+
+                    <img
+                        src="assets/images/massage.jpg"
+                        alt="Deep Tissue Massage in Festac Lagos"
+                    >
+
+                    <div class="service-info1">
+
+                        <h4>
+                            Deep Tissue Massage
+                        </h4>
+
+                        <p>
+                            60 mins · ₦35,000
+                        </p>
+
+                        <a
+                            href="services.html"
+                            class="btn btn-primary btn-sm"
+                        >
+                            Book
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="service-card1">
+
+                    <img
+                        src="assets/images/facial.jpg"
+                        alt="Deep Cleansing Facial in Festac Lagos"
+                    >
+
+                    <div class="service-info1">
+
+                        <h4>
+                            Deep Cleansing Facial
+                        </h4>
+
+                        <p>
+                            40 mins · ₦20,000
+                        </p>
+
+                        <a
+                            href="services.html"
+                            class="btn btn-primary btn-sm"
+                        >
+                            Book
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="service-card1">
+
+                    <img
+                        src="assets/images/waxing.jpg"
+                        alt="Full Leg Wax in Festac Lagos"
+                    >
+
+                    <div class="service-info1">
+
+                        <h4>
+                            Full Leg Wax
+                        </h4>
+
+                        <p>
+                            40 mins · ₦30,000
+                        </p>
+
+                        <a
+                            href="services.html"
+                            class="btn btn-primary btn-sm"
+                        >
+                            Book
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="service-card1">
+
+                    <img
+                        src="assets/images/pedicure.jpg"
+                        alt="Spa Pedicure in Festac Lagos"
+                    >
+
+                    <div class="service-info1">
+
+                        <h4>
+                            Spa Pedicure
+                        </h4>
+
+                        <p>
+                            40 mins · ₦10,000
+                        </p>
+
+                        <a
+                            href="services.html"
+                            class="btn btn-primary btn-sm"
+                        >
+                            Book
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         WHY PAX & PEARL
+    ========================================================== -->
+
+    <section class="pp-section red-soft">
+
+        <div class="page-wrap">
+
+            <div class="pp-section-heading">
+
+                <span class="eyebrow">
+                    The Pax & Pearl experience
+                </span>
+
+                <h2>
+                    More Than a Massage
+                </h2>
+
+                <p>
+
+                    Your time at Pax & Pearl is about more than choosing
+                    a treatment. It is about creating space to pause,
+                    recharge and care for yourself.
+
+                </p>
+
+            </div>
+
+
+            <div class="pp-why-grid">
+
+
+                <div class="pp-why-card">
+
+                    <span class="material-icons-round">
+                        verified
+                    </span>
+
+                    <h3>
+                        Professional Care
+                    </h3>
+
+                    <p>
+
+                        A treatment experience centred around attentive,
+                        professional service.
+
+                    </p>
+
+                </div>
+
+
+                <div class="pp-why-card">
+
+                    <span class="material-icons-round">
+                        self_improvement
+                    </span>
+
+                    <h3>
+                        A Calm Experience
+                    </h3>
+
+                    <p>
+
+                        A space designed to help you step away from the
+                        pace of everyday Lagos life.
+
+                    </p>
+
+                </div>
+
+
+                <div class="pp-why-card">
+
+                    <span class="material-icons-round">
+                        spa
+                    </span>
+
+                    <h3>
+                        Multiple Treatments
+                    </h3>
+
+                    <p>
+
+                        Massage, facials, body treatments, waxing,
+                        pedicure and spa experiences.
+
+                    </p>
+
+                </div>
+
+
+                <div class="pp-why-card">
+
+                    <span class="material-icons-round">
+                        location_on
+                    </span>
+
+                    <h3>
+                        Conveniently in Festac
+                    </h3>
+
+                    <p>
+
+                        Located in Festac Town, Lagos, making your wellness
+                        appointment easy to fit into your day.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         TOP THERAPISTS
+    ========================================================== -->
+
+    <section class="section soft-bg">
+
+        <div class="page-wrap">
+
+            <div class="section-header">
+
+                <h3>
+                    Meet Our Specialists
+                </h3>
+
+            </div>
+
+
+            <div class="card-grid">
+
+                <div class="therapist-card">
+
+                    <span class="verified-badge">
+
+                        <span class="material-icons-round">
+                            verified
+                        </span>
+
+                    </span>
+
+
+                    <img
+                        src="assets/images/therapist2.jpg"
+                        alt="Gift H., Lead Spa Therapist at Pax & Pearl Body Works"
+                    >
+
+
+                    <h4>
+                        Gift H.
+                    </h4>
+
+
+                    <small>
+                        Lead, Spa Therapist
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         SPA PACKAGES
+    ========================================================== -->
+
+    <section class="pp-section">
+
+        <div class="page-wrap">
+
+            <div class="pp-section-heading">
+
+                <span class="eyebrow">
+                    Wellness combinations
+                </span>
+
+                <h2>
+                    Make More Time for Yourself
+                </h2>
+
+                <p>
+
+                    Explore spa packages designed to bring multiple
+                    elements of your self-care experience together.
+
+                </p>
+
+            </div>
+
+
+            <div class="pp-packages">
+
+
+                <div class="pp-package-card">
+
+                    <h3>
+                        Reset
+                    </h3>
+
+                    <p>
+
+                        Combine a massage experience with time to
+                        slow down, relax and recharge.
+
+                    </p>
+
+                    <a
+                        href="spa-packages-festac/"
+                        class="pp-package-link"
+                    >
+
+                        Explore Packages
+
+                        <span class="material-icons-round">
+                            arrow_forward
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="pp-package-card featured">
+
+                    <span class="pp-package-badge">
+                        Popular
+                    </span>
+
+                    <h3>
+                        Glow
+                    </h3>
+
+                    <p>
+
+                        Explore combinations of body, facial and beauty
+                        treatments for a fuller self-care experience.
+
+                    </p>
+
+                    <a
+                        href="spa-packages-festac/"
+                        class="pp-package-link"
+                    >
+
+                        Explore Packages
+
+                        <span class="material-icons-round">
+                            arrow_forward
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="pp-package-card">
+
+                    <h3>
+                        Together
+                    </h3>
+
+                    <p>
+
+                        Discover couples and shared spa experiences
+                        designed for two.
+
+                    </p>
+
+                    <a
+                        href="couples-massage-festac/"
+                        class="pp-package-link"
+                    >
+
+                        Explore Couples Massage
+
+                        <span class="material-icons-round">
+                            arrow_forward
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         REVIEWS
+    ========================================================== -->
+
+    <section class="section soft-bg">
+
+        <div class="page-wrap">
+
+            <div class="pp-reviews-heading">
+
+                <div class="section-header">
+
+                    <h3>
+                        What Clients Say
+                    </h3>
+
+                </div>
+
+
+                <div class="pp-google-summary">
+
+                    <div>
+
+                        <div class="pp-google-score">
+                            4.7
+                        </div>
+
+                        <div class="pp-google-stars">
+                            ★★★★★
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            Based on
+                        </small>
+
+                        <small>
+                            <strong>
+                                349+ Google reviews
+                            </strong>
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card-grid">
+
+
+                <div class="review-card">
+
+                    <p>
+
+                        “Serene atmosphere. Professional service.
+                        Felt like a newborn baby afterwards.
+                        Would definitely make this place my regular staple.”
+
+                    </p>
+
+                    <small>
+                        — Idowu J.
+                    </small>
+
+                </div>
+
+
+                <div class="review-card">
+
+                    <p>
+
+                        “Very kind people, gentle and calm.
+                        They will pamper you and you will not want
+                        to leave. I actually want to go back there soon.”
+
+                    </p>
+
+                    <small>
+                        — Joshua K.
+                    </small>
+
+                </div>
+
+
+                <div class="review-card">
+
+                    <p>
+
+                        “I loved every bit of the service I got.
+                        The deep tissue massage was amazing, I have
+                        not slept so well for a long time but after
+                        the massage now I sleep like a baby.”
+
+                    </p>
+
+                    <small>
+                        — Riz C.
+                    </small>
+
+                </div>
+
+
+                <div class="review-card">
+
+                    <p>
+
+                        “I took a little time out to pamper myself
+                        and it was a beautiful experience. I felt
+                        so much relief after the deep tissue body massage.”
+
+                    </p>
+
+                    <small>
+                        — Florence U.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- GOOGLE REVIEWS MODAL -->
+
+            <div
+                class="reviews-modal"
+                id="reviewsModal"
+            >
+
+                <div
+                    class="reviews-backdrop"
+                    onclick="closeReviewsModal()"
+                ></div>
+
+
+                <div class="reviews-modal-box">
+
+                    <button
+                        class="modal-close"
+                        onclick="closeReviewsModal()"
+                        aria-label="Close reviews"
+                    >
+                        ✕
+                    </button>
+
+
+                    <iframe
+                        src="https://www.google.com/maps?q=Pax+%26+Pearl+Body+Works+(Spa+in+Lagos)&output=embed"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         WELLNESS QUESTIONS / AI SEARCH HUB
+    ========================================================== -->
+
+    <section class="pp-section">
+
+        <div class="page-wrap">
+
+            <div class="pp-section-heading">
+
+                <span class="eyebrow">
+                    Wellness guides
+                </span>
+
+                <h2>
+                    Your Wellness Questions, Answered
+                </h2>
+
+                <p>
+
+                    Learn more about massage, spa treatments and
+                    self-care before your appointment.
+
+                </p>
+
+            </div>
+
+
+            <div class="pp-guides-grid">
+
+
+                <a
+                    href="what-is-deep-tissue-massage.html"
+                    class="pp-guide-card"
+                >
+
+                    <span class="material-icons-round">
+                        self_improvement
+                    </span>
+
+                    <h3>
+                        What Is Deep Tissue Massage?
+                    </h3>
+
+                    <p>
+                        Understand what a deep tissue massage involves
+                        and what to expect during your session.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="how-often-should-you-get-a-massage.html"
+                    class="pp-guide-card"
+                >
+
+                    <span class="material-icons-round">
+                        event_repeat
+                    </span>
+
+                    <h3>
+                        How Often Should You Get a Massage?
+                    </h3>
+
+                    <p>
+                        Explore how massage can fit into a regular
+                        self-care routine.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="what-to-do-before-a-massage.html"
+                    class="pp-guide-card"
+                >
+
+                    <span class="material-icons-round">
+                        tips_and_updates
+                    </span>
+
+                    <h3>
+                        What Should You Do Before a Massage?
+                    </h3>
+
+                    <p>
+                        Simple things you can do before your appointment
+                        for a smoother experience.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="deep-tissue-vs-relaxation-massage.html"
+                    class="pp-guide-card"
+                >
+
+                    <span class="material-icons-round">
+                        compare
+                    </span>
+
+                    <h3>
+                        Deep Tissue vs Relaxation Massage
+                    </h3>
+
+                    <p>
+                        Understand the difference between two popular
+                        massage experiences.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="how-much-does-massage-cost-in-lagos.html"
+                    class="pp-guide-card"
+                >
+
+                    <span class="material-icons-round">
+                        payments
+                    </span>
+
+                    <h3>
+                        How Much Does Massage Cost in Lagos?
+                    </h3>
+
+                    <p>
+                        Factors that can influence massage pricing
+                        and what to consider when choosing a spa.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="massage-in-festac.html"
+                    class="pp-guide-card"
+                >
+
+                    <span class="material-icons-round">
+                        location_on
+                    </span>
+
+                    <h3>
+                        Where Can I Get a Massage in Festac?
+                    </h3>
+
+                    <p>
+                        Explore what to consider when choosing a massage
+                        and spa experience in Festac Town.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FAQ
+    ========================================================== -->
+
+    <section class="pp-section soft">
+
+        <div class="page-wrap">
+
+            <div class="pp-section-heading">
+
+                <span class="eyebrow">
+                    Frequently asked questions
+                </span>
+
+                <h2>
+                    Frequently Asked Questions About Pax & Pearl
+                </h2>
+
+            </div>
+
+
+            <div class="pp-faq">
+
+
+                <details>
+
+                    <summary>
+                        Where is Pax & Pearl Body Works located?
+                    </summary>
+
+                    <div class="pp-faq-answer">
+
+                        Pax & Pearl Body Works is located at
+                        Suite 8, Okaka Plaza, 1st Avenue,
+                        Festac Town, Lagos.
+
+                    </div>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        Does Pax & Pearl offer massage in Festac?
+                    </summary>
+
+                    <div class="pp-faq-answer">
+
+                        Yes. Pax & Pearl Body Works offers massage
+                        experiences in Festac Town, including
+                        deep tissue massage and other massage treatments.
+
+                    </div>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        Does Pax & Pearl offer deep tissue massage?
+                    </summary>
+
+                    <div class="pp-faq-answer">
+
+                        Yes. Deep Tissue Massage is one of the featured
+                        treatments available at Pax & Pearl Body Works.
+
+                    </div>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        Does Pax & Pearl offer couples massage?
+                    </summary>
+
+                    <div class="pp-faq-answer">
+
+                        Yes. Couples massage and shared spa experiences
+                        are available. Explore the dedicated couples
+                        massage page for more information.
+
+                    </div>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        Does Pax & Pearl offer facials?
+                    </summary>
+
+                    <div class="pp-faq-answer">
+
+                        Yes. Facial treatments, including Deep Cleansing
+                        Facial, are available at Pax & Pearl Body Works.
+
+                    </div>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        Does Pax & Pearl offer waxing?
+                    </summary>
+
+                    <div class="pp-faq-answer">
+
+                        Yes. Waxing treatments are available, including
+                        Full Leg Wax.
+
+                    </div>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        Does Pax & Pearl offer pedicures?
+                    </summary>
+
+                    <div class="pp-faq-answer">
+
+                        Yes. Pax & Pearl offers pedicure services,
+                        including Spa Pedicure.
+
+                    </div>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        How do I book a treatment?
+                    </summary>
+
+                    <div class="pp-faq-answer">
+
+                        You can explore available treatments and begin
+                        your booking through the Pax & Pearl services page.
+
+                    </div>
+
+                </details>
+
+
+                <details>
+
+                    <summary>
+                        What are Pax & Pearl's opening hours?
+                    </summary>
+
+                    <div class="pp-faq-answer">
+
+                        Pax & Pearl Body Works is open Monday to Saturday
+                        from 9AM to 7PM. Sunday appointments are available
+                        from 3PM to 7PM by booking.
+
+                    </div>
+
+                </details>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         EXISTING OFFICE INFORMATION
+    ========================================================== -->
+
+    <section class="office-info">
+
+        <div class="office-address">
+
+            <span class="material-icons-round">
+                location_on
+            </span>
+
+            <p>
+
+                <strong>
+                    Pax & Pearl Body Works
+                </strong>
+
+                <br>
+
+                Suite 8, Okaka Plaza,
+                1st Avenue,
+                FESTAC Town, Lagos
+
+                <br>
+
+                Monday - Saturday:
+                9AM - 7PM
+
+                <br>
+
+                Sunday:
+                3PM - 7PM
+                (only by booking)
+
+                <br>
+
+                +2347064302016,
+                +2348122270495
+
+            </p>
+
+        </div>
+
+
+        <div class="vertical-divider"></div>
+
+
+        <div class="google-rating">
+
+            <button
+                class="rating-card"
+                onclick="openReviewsModal()"
+                aria-label="View Pax & Pearl Google reviews"
+            >
+
+                <div class="rating-score">
+                    4.7
+                </div>
+
+                <div class="rating-stars">
+                    ★★★★★
+                </div>
+
+                <div class="rating-count">
+
+                    Based on
+                    <strong>
+                        349+ Google reviews
+                    </strong>
+
+                </div>
+
+                <div class="rating-source">
+
+                    <img
+                        src="assets/images/google-logo.png"
+                        alt="Google"
+                    >
+
+                    <span>
+                        Google Reviews
+                    </span>
+
+                </div>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FINAL CTA
+    ========================================================== -->
+
+    <div class="page-wrap">
+
+        <section class="pp-final-cta">
+
+            <h2>
+                Ready to Make Time for Yourself?
+            </h2>
+
+            <p>
+
+                Choose your treatment and experience the Pax & Pearl
+                Body Works approach to massage, spa and personal care
+                in Festac Town, Lagos.
+
+            </p>
+
+
+            <a
+                href="services.html"
+                class="pp-hero-btn"
+            >
+
+                <span class="material-icons-round">
+                    calendar_month
+                </span>
+
+                Book Now
+
+            </a>
+
+        </section>
+
+    </div>
+
+
+    <!-- =========================================================
+         SIGN-UP MODAL
+    ========================================================== -->
+
+    <div
+        id="signupModal"
+        class="modal-backdrop"
+    >
+
+        <div class="modal-card">
+
+            <h3>
+                Get a Better Experience ✨
+            </h3>
+
+            <p>
+
+                Sign up to manage bookings faster, save favorites,
+                and enjoy personalized spa offers.
+
+            </p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn btn-primary"
+                    id="acceptSignup"
+                >
+                    Sign Up Now
+                </button>
+
+
+                <button
+                    class="btn btn-outline"
+                    id="dismissSignup"
+                >
+                    Maybe Later
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         PWA INSTALL BANNER
+    ========================================================== -->
+
+    <div
+        id="installBanner"
+        style="
+            display:none;
+            position:fixed;
+            bottom:20px;
+            left:20px;
+            right:20px;
+            background:#ffffff;
+            border-radius:16px;
+            padding:18px;
+            box-shadow:0 10px 30px rgba(0,0,0,.15);
+            z-index:99999;
+        "
+    >
+
+        <h3>
+            Install Pax & Pearl App
+        </h3>
+
+        <p>
+            Get faster booking, exclusive offers and
+            one-tap access from your Home Screen.
+        </p>
+
+        <button id="installApp">
+            Install App
+        </button>
+
+    </div>
+
+
+    <!-- =========================================================
+         IOS INSTALL MODAL
+    ========================================================== -->
+
+    <div
+        id="iosInstallModal"
+        class="install-modal"
+    >
+
+        <div class="install-modal-content">
+
+            <img
+                src="assets/images/logo.png"
+                alt="Pax & Pearl"
+                width="80"
+            >
+
+            <h2>
+                Install Pax & Pearl
+            </h2>
+
+            <p>
+
+                Add Pax & Pearl to your Home Screen for faster
+                booking and a better experience.
+
+            </p>
+
+
+            <div class="install-steps">
+
+                <p>
+                    <strong>1.</strong>
+                    Tap the
+                    <strong>Share</strong>
+                    button ⬆️
+                </p>
+
+                <p>
+                    <strong>2.</strong>
+                    Tap
+                    <strong>Add to Home Screen</strong>
+                </p>
+
+                <p>
+                    <strong>3.</strong>
+                    Tap
+                    <strong>Add</strong>
+                </p>
+
+            </div>
+
+
+            <button id="closeIOSInstall">
+                Maybe Later
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         MOBILE BOTTOM NAV
+    ========================================================== -->
+
+    <nav class="mobile-nav">
+
+        <a
+            href="index.html"
+            class="active"
+        >
+
+            <span class="material-icons-round">
+                home
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </a>
+
+
+        <a href="booking.html">
+
+            <span class="material-icons-round">
+                event
+            </span>
+
+            <small>
+                Booking
+            </small>
+
+        </a>
+
+
+        <a href="saved.html">
+
+            <span class="material-icons-round">
+                favorite
+            </span>
+
+            <small>
+                Saved
+            </small>
+
+        </a>
+
+
+        <a
+            id="messageAdmin"
+            href="#"
+        >
+
+            <span class="material-icons-round">
+                chat
+            </span>
+
+            <small>
+                Message
+            </small>
+
+        </a>
+
+
+        <a href="profile.html">
+
+            <span class="material-icons-round">
+                person
+            </span>
+
+            <small>
+                Profile
+            </small>
+
+        </a>
+
+    </nav>
+
+
+    <!-- =========================================================
+         POST SLIDER JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+    (() => {
+
+        const track =
+            document.getElementById("postSlider");
+
+        if (!track) return;
+
+        const slides =
+            Array.from(track.children);
+
+        const prev =
+            document.getElementById("prevSlide");
+
+        const next =
+            document.getElementById("nextSlide");
+
+        let index = 0;
+
+        let autoTimer = null;
+
+
+        function slidesPerView() {
+
+            return window.innerWidth >= 768
+                ? 2
+                : 1;
+
+        }
+
+
+        function maxIndex() {
+
+            return Math.max(
+                0,
+                slides.length - slidesPerView()
+            );
+
+        }
+
+
+        function slideWidth() {
+
+            return slides[0]
+                .getBoundingClientRect()
+                .width;
+
+        }
+
+
+        function updateSlider(animate = true) {
+
+            track.style.transition =
+                animate
+                    ? "transform .45s ease"
+                    : "none";
+
+            track.style.transform =
+                `translateX(-${index * slideWidth()}px)`;
+
+        }
+
+
+        next?.addEventListener("click", () => {
+
+            index =
+                Math.min(
+                    index + 1,
+                    maxIndex()
+                );
+
+            updateSlider();
+
+            resetAuto();
+
+        });
+
+
+        prev?.addEventListener("click", () => {
+
+            index =
+                Math.max(
+                    index - 1,
+                    0
+                );
+
+            updateSlider();
+
+            resetAuto();
+
+        });
+
+
+        function startAuto() {
+
+            stopAuto();
+
+            autoTimer =
+                setInterval(() => {
+
+                    index =
+                        index >= maxIndex()
+                            ? 0
+                            : index + 1;
+
+                    updateSlider();
+
+                }, 5000);
+
+        }
+
+
+        function stopAuto() {
+
+            if (autoTimer) {
+
+                clearInterval(autoTimer);
+
+            }
+
+        }
+
+
+        function resetAuto() {
+
+            stopAuto();
+
+            startAuto();
+
+        }
+
+
+        track.addEventListener(
+            "mouseenter",
+            stopAuto
+        );
+
+
+        track.addEventListener(
+            "mouseleave",
+            startAuto
+        );
+
+
+        let startX = 0;
+
+        let currentX = 0;
+
+        let isDragging = false;
+
+
+        track.addEventListener(
+            "touchstart",
+            e => {
+
+                startX =
+                    e.touches[0].clientX;
+
+                currentX = startX;
+
+                isDragging = true;
+
+                stopAuto();
+
+                track.style.transition =
+                    "none";
+
+            },
+            { passive: true }
+        );
+
+
+        track.addEventListener(
+            "touchmove",
+            e => {
+
+                if (!isDragging) return;
+
+                currentX =
+                    e.touches[0].clientX;
+
+                const diff =
+                    startX - currentX;
+
+                track.style.transform =
+                    `translateX(-${index * slideWidth() + diff}px)`;
+
+            },
+            { passive: true }
+        );
+
+
+        track.addEventListener(
+            "touchend",
+            () => {
+
+                if (!isDragging) return;
+
+                isDragging = false;
+
+                const diff =
+                    startX - currentX;
+
+                const threshold =
+                    slideWidth() * .25;
+
+
+                if (diff > threshold) {
+
+                    index =
+                        Math.min(
+                            index + 1,
+                            maxIndex()
+                        );
+
+                }
+
+
+                if (diff < -threshold) {
+
+                    index =
+                        Math.max(
+                            index - 1,
+                            0
+                        );
+
+                }
+
+
+                updateSlider();
+
+                startAuto();
+
+            }
+        );
+
+
+        window.addEventListener(
+            "resize",
+            () => {
+
+                index =
+                    Math.min(
+                        index,
+                        maxIndex()
+                    );
+
+                updateSlider(false);
+
+            }
+        );
+
+
+        updateSlider(false);
+
+        startAuto();
+
+    })();
+
+    </script>
+
+
+    <!-- =========================================================
+         GOOGLE REVIEWS MODAL
+    ========================================================== -->
+
+    <script>
+
+    function openReviewsModal() {
+
+        const modal =
+            document.getElementById("reviewsModal");
+
+        if (!modal) return;
+
+        modal.style.display = "block";
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+    function closeReviewsModal() {
+
+        const modal =
+            document.getElementById("reviewsModal");
+
+        if (!modal) return;
+
+        modal.style.display = "none";
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+    </script>
+
+
+    <!-- =========================================================
+         ADMIN WHATSAPP
+    ========================================================== -->
+
+    <script>
+
+    (function bindAdminWhatsAppFromCatalog() {
+
+        const msgBtn =
+            document.getElementById("messageAdmin");
+
+        if (!msgBtn) return;
+
+
+        fetch("/catalog1.json")
+
+            .then(res => {
+
+                if (!res.ok) {
+
+                    throw new Error(
+                        "Catalog not found"
+                    );
+
+                }
+
+                return res.json();
+
+            })
+
+            .then(data => {
+
+                const phone =
+                    data?.admin?.whatsapp;
+
+                if (!phone) {
+
+                    throw new Error(
+                        "Admin WhatsApp missing"
+                    );
+
+                }
+
+
+                const cleanPhone =
+                    phone.replace(/\D/g, "");
+
+
+                msgBtn.href =
+                    `https://wa.me/${cleanPhone}`;
+
+                msgBtn.target =
+                    "_blank";
+
+            })
+
+            .catch(() => {
+
+                msgBtn.href = "#";
+
+
+                msgBtn.addEventListener(
+                    "click",
+                    e => {
+
+                        e.preventDefault();
+
+                        alert(
+                            "Admin WhatsApp not available yet."
+                        );
+
+                    }
+                );
+
+            });
+
+    })();
+
+    </script>
+
+
+    <!-- =========================================================
+         PERSONAL GREETING
+    ========================================================== -->
+
+    <script>
+
+    (() => {
+
+        const profile =
+            JSON.parse(
+                localStorage.getItem(
+                    "userProfile"
+                ) || "{}"
+            );
+
+
+        const userName =
+            document.getElementById(
+                "user-name"
+            );
+
+
+        if (profile.name) {
+
+            userName.textContent =
+                `Hello ${profile.name} 👋`;
+
+        } else {
+
+            userName.textContent =
+                "Hello 👋";
+
+        }
+
+
+        function setGreetingWAT() {
+
+            const timeGreetingEl =
+                document.getElementById(
+                    "time-greeting"
+                );
+
+
+            const now =
+                new Date();
+
+
+            const options = {
+
+                hour: "numeric",
+
+                hour12: false,
+
+                timeZone: "Africa/Lagos"
+
+            };
+
+
+            const hour =
+                parseInt(
+                    new Intl.DateTimeFormat(
+                        "en-US",
+                        options
+                    ).format(now),
+                    10
+                );
+
+
+            let greetingText = "";
+
+
+            if (
+                hour >= 0 &&
+                hour < 12
+            ) {
+
+                greetingText =
+                    "Good Morning ☀️";
+
+            }
+
+            else if (
+                hour >= 12 &&
+                hour <= 15
+            ) {
+
+                greetingText =
+                    "Good Afternoon ☀️";
+
+            }
+
+            else {
+
+                greetingText =
+                    "Good Evening 🌙";
+
+            }
+
+
+            timeGreetingEl.textContent =
+                greetingText;
+
+        }
+
+
+        setGreetingWAT();
+
+    })();
+
+    </script>
+
+
+    <!-- =========================================================
+         SIGNUP MODAL
+    ========================================================== -->
+
+    <script>
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
+
+            const MODAL_DELAY =
+                20 * 1000;
+
+
+            const modal =
+                document.getElementById(
+                    "signupModal"
+                );
+
+
+            const acceptBtn =
+                document.getElementById(
+                    "acceptSignup"
+                );
+
+
+            const dismissBtn =
+                document.getElementById(
+                    "dismissSignup"
+                );
+
+
+            if (
+                !modal ||
+                !acceptBtn ||
+                !dismissBtn
+            ) return;
+
+
+            const timer =
+                setTimeout(() => {
+
+                    modal.classList.add(
+                        "show"
+                    );
+
+                }, MODAL_DELAY);
+
+
+            acceptBtn.addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "profile.html";
+
+                }
+            );
+
+
+            dismissBtn.addEventListener(
+                "click",
+                () => {
+
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                    clearTimeout(timer);
+
+                }
+            );
+
+        }
+    );
+
+    </script>
+
+
+    <!-- =========================================================
+         PWA / APPLICATION SCRIPTS
+    ========================================================== -->
+
+    <script src="js/data.js"></script>
+
+    <script src="js/booking.js"></script>
+
+
+    <!-- =========================================================
+         PRELOADER
+    ========================================================== -->
+
+    <script>
+
+    window.addEventListener(
+        "load",
+        function () {
+
+            const preloader =
+                document.getElementById(
+                    "preloader"
+                );
+
+
+            if (!preloader) return;
+
+
+            setTimeout(
+                function () {
+
+                    preloader.style.opacity =
+                        "0";
+
+
+                    setTimeout(
+                        function () {
+
+                            preloader.style.display =
+                                "none";
+
+                        },
+                        500
+                    );
+
+                },
+                1200
+            );
+
+        }
+    );
+
+    </script>
+
+
+    <!-- =========================================================
+         SERVICE WORKER
+    ========================================================== -->
+
+    <script>
+
+    if (
+        "serviceWorker"
+        in navigator
+    ) {
+
+        window.addEventListener(
+            "load",
+            () => {
+
+                navigator.serviceWorker
+                    .register(
+                        "service-worker.js"
+                    )
+                    .then(reg => {
+
+                        console.log(
+                            "Service Worker Registered",
+                            reg
+                        );
+
+                    })
+                    .catch(err => {
+
+                        console.log(err);
+
+                    });
+
+            }
+        );
+
+    }
+
+    </script>
+
+
+    <!-- =========================================================
+         PWA INSTALL LOGIC
+    ========================================================== -->
+
+    <script>
+
+    let deferredPrompt = null;
+
+
+    const ua =
+        window.navigator.userAgent
+            .toLowerCase();
+
+
+    const isIOS =
+        /iphone|ipad|ipod/.test(ua);
+
+
+    const isSafari =
+        isIOS &&
+        ua.includes("safari") &&
+        !ua.includes("crios") &&
+        !ua.includes("fxios");
+
+
+    const isStandalone =
+        window.matchMedia(
+            "(display-mode: standalone)"
+        ).matches ||
+        window.navigator.standalone === true;
+
+
+    const iosModal =
+        document.getElementById(
+            "iosInstallModal"
+        );
+
+
+    const closeIOS =
+        document.getElementById(
+            "closeIOSInstall"
+        );
+
+
+    if (
+        isSafari &&
+        !isStandalone &&
+        iosModal
+    ) {
+
+        setTimeout(
+            () => {
+
+                iosModal.style.display =
+                    "flex";
+
+            },
+            2600
+        );
+
+    }
+
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            setTimeout(
+                () => {
+
+                    if (
+                        isIOS &&
+                        !isStandalone &&
+                        iosModal
+                    ) {
+
+                        iosModal.style.display =
+                            "flex";
+
+                    }
+
+                },
+                2600
+            );
+
+        }
+    );
+
+
+    closeIOS?.addEventListener(
+        "click",
+        () => {
+
+            if (iosModal) {
+
+                iosModal.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+
+    window.addEventListener(
+        "beforeinstallprompt",
+        e => {
+
+            e.preventDefault();
+
+            deferredPrompt = e;
+
+
+            const banner =
+                document.getElementById(
+                    "installBanner"
+                );
+
+
+            if (banner) {
+
+                banner.style.display =
+                    "block";
+
+            }
+
+        }
+    );
+
+
+    const installBtn =
+        document.getElementById(
+            "installApp"
+        );
+
+
+    if (installBtn) {
+
+        installBtn.addEventListener(
+            "click",
+            async () => {
+
+                if (!deferredPrompt)
+                    return;
+
+
+                deferredPrompt.prompt();
+
+
+                await deferredPrompt.userChoice;
+
+
+                deferredPrompt = null;
+
+            }
+        );
+
+    }
+
+    </script>
+
 
 </body>
+
 </html>
