@@ -1,6 +1,181 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
 
-  "cleanUrls": true,
-  "trailingSlash": false
+  "cleanUrls": false,
+
+  "trailingSlash": false,
+
+  "rewrites": [
+
+    {
+      "source": "/services",
+      "destination": "/services.html"
+    },
+
+    {
+      "source": "/booking",
+      "destination": "/booking.html"
+    },
+
+    {
+      "source": "/profile",
+      "destination": "/profile.html"
+    },
+
+    {
+      "source": "/saved",
+      "destination": "/saved.html"
+    },
+
+    {
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+
+    {
+      "source": "/aichat",
+      "destination": "/aichat.html"
+    },
+
+    {
+      "source": "/benefits-of-massage",
+      "destination": "/benefits-of-massage.html"
+    },
+
+    {
+      "source": "/best-massage-for-desk-workers",
+      "destination": "/best-massage-for-desk-workers.html"
+    },
+
+    {
+      "source": "/body-scrub-festac",
+      "destination": "/body-scrub-festac.html"
+    },
+
+    {
+      "source": "/confirmation",
+      "destination": "/confirmation.html"
+    },
+
+    {
+      "source": "/couple-massage-festac",
+      "destination": "/couple-massage-festac.html"
+    },
+
+    {
+      "source": "/deep-tissue-massage-festac",
+      "destination": "/deep-tissue-massage-festac.html"
+    },
+
+    {
+      "source": "/deep-tissue-massage-vs-relaxation-massage",
+      "destination": "/deep-tissue-massage-vs-relaxation-massage.html"
+    },
+
+    {
+      "source": "/facial-spa-festac",
+      "destination": "/facial-spa-festac.html"
+    },
+
+    {
+      "source": "/facials-spa-festac",
+      "destination": "/facials-spa-festac.html"
+    },
+
+    {
+      "source": "/how-much-does-a-massage-cost-in-lagos",
+      "destination": "/how-much-does-a-massage-cost-in-lagos.html"
+    },
+
+    {
+      "source": "/how-much-does-massage-cost-in-lagos",
+      "destination": "/how-much-does-massage-cost-in-lagos.html"
+    },
+
+    {
+      "source": "/how-often-should-you-get-a-massage",
+      "destination": "/how-often-should-you-get-a-massage.html"
+    },
+
+    {
+      "source": "/is-massage-good-for-stress",
+      "destination": "/is-massage-good-for-stress.html"
+    },
+
+    {
+      "source": "/learn-how-to-compare-massage-spas",
+      "destination": "/learn-how-to-compare-massage-spas.html"
+    },
+
+    {
+      "source": "/massage-faq-lagos",
+      "destination": "/massage-faq-lagos.html"
+    },
+
+    {
+      "source": "/massage-in-lagos",
+      "destination": "/massage-in-lagos.html"
+    },
+
+    {
+      "source": "/massage-near-me-lagos",
+      "destination": "/massage-near-me-lagos.html"
+    },
+
+    {
+      "source": "/massage-spa-festac",
+      "destination": "/massage-spa-festac.html"
+    },
+
+    {
+      "source": "/pedicure-festac",
+      "destination": "/pedicure-festac.html"
+    },
+
+    {
+      "source": "/spa-in-festac",
+      "destination": "/spa-in-festac.html"
+    },
+
+    {
+      "source": "/spa-in-lagos",
+      "destination": "/spa-in-lagos.html"
+    },
+
+    {
+      "source": "/spa-near-me",
+      "destination": "/spa-near-me.html"
+    },
+
+    {
+      "source": "/spa-packages-festac",
+      "destination": "/spa-packages-festac.html"
+    },
+
+    {
+      "source": "/the-spa-in-lagos",
+      "destination": "/the-spa-in-lagos.html"
+    },
+
+    {
+      "source": "/waxing-festac",
+      "destination": "/waxing-festac.html"
+    },
+
+    {
+      "source": "/what-should-you-do-before-a-massage",
+      "destination": "/what-should-you-do-before-a-massage.html"
+    },
+
+    {
+      "source": "/what-to-expect-from-your-first-massage",
+      "destination": "/what-to-expect-from-your-first-massage.html"
+    },
+
+    {
+      "source": "/where-can-i-get-a-full-body-massage-in-lagos",
+      "destination": "/where-can-i-get-a-full-body-massage-in-lagos.html"
+    }
+
+  ]
 }
