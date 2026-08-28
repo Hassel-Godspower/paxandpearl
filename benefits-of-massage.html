@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,7 @@
 
     <meta
         name="description"
-        content="What are the benefits of massage? Learn how massage may support relaxation, comfort and general wellbeing, and discover how to choose the right massage experience."
+        content="Discover the potential benefits of massage, including relaxation, comfort, support for muscular tension and dedicated self-care. Learn what to expect from a massage experience at Pax & Pearl Body Works in Festac Town, Lagos."
     >
 
     <meta
@@ -20,89 +21,803 @@
         content="index, follow"
     >
 
+    <meta
+        name="theme-color"
+        content="#123b2a"
+    >
+
     <title>
-        Benefits of Massage: What You Should Know | Pax & Pearl BodyWorks
+        Benefits of Massage: What You Should Know | Pax & Pearl Body Works
     </title>
+
+    <!-- Google Material Icons -->
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+    >
+
+    <style>
+
+        /* =========================================================
+           BASE
+        ========================================================== */
+
+        :root {
+            --green: #123b2a;
+            --green-dark: #0d2d20;
+            --gold: #b8945b;
+            --gold-light: #d9bd8a;
+            --cream: #f8f5ee;
+            --white: #ffffff;
+            --text: #26312b;
+            --muted: #657068;
+            --border: #e3e0d7;
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+            background: var(--cream);
+            color: var(--text);
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+
+        a {
+            color: inherit;
+        }
+
+
+        /* =========================================================
+           TOP BAR
+        ========================================================== */
+
+        .article-topbar {
+            padding: 18px 20px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+
+
+        .article-topbar-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            color: var(--green);
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .back-link .material-icons-round {
+            font-size: 20px;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================== */
+
+        .article-hero {
+            padding: 70px 20px 55px;
+
+            background: var(--green);
+            color: var(--white);
+        }
+
+
+        .article-hero-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+
+        .article-category {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 22px;
+
+            color: var(--gold-light);
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+
+        .article-category .material-icons-round {
+            font-size: 18px;
+        }
+
+
+        .article-hero h1 {
+            max-width: 820px;
+
+            margin: 0 0 22px;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: clamp(42px, 7vw, 68px);
+            line-height: 1.06;
+            font-weight: 400;
+        }
+
+
+        .article-intro {
+            max-width: 760px;
+
+            margin: 0 0 25px;
+
+            color: rgba(255, 255, 255, .82);
+
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+
+        .article-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            color: rgba(255, 255, 255, .72);
+
+            font-size: 14px;
+        }
+
+
+        .article-location .material-icons-round {
+            font-size: 18px;
+        }
+
+
+        /* =========================================================
+           ARTICLE
+        ========================================================== */
+
+        .article-section {
+            padding: 45px 20px 120px;
+        }
+
+
+        .article-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================================================
+           FEATURED IMAGE
+        ========================================================== */
+
+        .article-image {
+            width: 100%;
+
+            margin: 0 0 42px;
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            background: #e8e3d8;
+        }
+
+
+        .article-image img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            aspect-ratio: 16 / 9;
+
+            object-fit: cover;
+        }
+
+
+        /* =========================================================
+           QUICK ANSWER
+        ========================================================== */
+
+        .quick-answer {
+            margin-bottom: 42px;
+
+            padding: 28px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+            border-radius: 22px;
+        }
+
+
+        .quick-answer-label {
+            margin-bottom: 12px;
+
+            color: var(--gold);
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+
+        .quick-answer p {
+            margin: 0;
+
+            color: var(--green);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 21px;
+            line-height: 1.65;
+        }
+
+
+        /* =========================================================
+           ARTICLE COPY
+        ========================================================== */
+
+        .article-content p {
+            margin: 0 0 24px;
+
+            color: #4f5a53;
+
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+
+        .article-content h2 {
+            margin: 55px 0 18px;
+
+            color: var(--green);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 36px;
+            line-height: 1.2;
+            font-weight: 400;
+        }
+
+
+        .article-content h3 {
+            margin: 35px 0 12px;
+
+            color: var(--green);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 26px;
+            font-weight: 400;
+        }
+
+
+        .article-content ul {
+            margin: 20px 0 30px;
+            padding-left: 24px;
+
+            color: #4f5a53;
+        }
+
+
+        .article-content li {
+            margin-bottom: 13px;
+
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           BENEFIT CARDS
+        ========================================================== */
+
+        .benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            margin: 30px 0 45px;
+        }
+
+
+        .benefit-card {
+            padding: 27px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+
+        .benefit-number {
+            margin-bottom: 8px;
+
+            color: var(--gold);
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+
+        .benefit-card h3 {
+            margin: 0 0 10px;
+
+            color: var(--green);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 28px;
+            font-weight: 400;
+        }
+
+
+        .benefit-card p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           INFORMATION BOX
+        ========================================================== */
+
+        .info-box {
+            margin: 30px 0;
+
+            padding: 28px;
+
+            background: #f1ede3;
+
+            border-left: 4px solid var(--gold);
+
+            border-radius: 16px;
+        }
+
+
+        .info-box p {
+            margin: 0;
+
+            color: #4f5a53;
+
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           FAQ
+        ========================================================== */
+
+        .faq {
+            margin-top: 60px;
+        }
+
+
+        .faq-item {
+            padding: 24px 0;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+
+        .faq-item:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+
+        .faq-question {
+            margin: 0 0 10px;
+
+            color: var(--green);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 22px;
+            font-weight: 400;
+        }
+
+
+        .faq-answer {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           CTA
+        ========================================================== */
+
+        .article-cta {
+            margin-top: 65px;
+
+            padding: 38px 30px;
+
+            background: var(--green);
+
+            border-radius: 24px;
+
+            color: var(--white);
+        }
+
+
+        .cta-label {
+            margin-bottom: 12px;
+
+            color: var(--gold-light);
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+
+        .article-cta h2 {
+            margin: 0 0 14px;
+
+            color: var(--white);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 34px;
+            line-height: 1.2;
+            font-weight: 400;
+        }
+
+
+        .article-cta p {
+            max-width: 650px;
+
+            margin: 0 0 24px;
+
+            color: rgba(255, 255, 255, .78);
+
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 14px 22px;
+
+            background: var(--gold);
+
+            color: var(--white);
+
+            border-radius: 999px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .cta-button .material-icons-round {
+            font-size: 18px;
+        }
+
+
+        /* =========================================================
+           MOBILE BOTTOM NAV
+        ========================================================== */
+
+        .mobile-nav {
+            position: fixed;
+
+            left: 50%;
+            bottom: 14px;
+
+            z-index: 1000;
+
+            transform: translateX(-50%);
+
+            width: calc(100% - 24px);
+            max-width: 520px;
+
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+
+            padding: 8px;
+
+            background: rgba(18, 59, 42, .96);
+
+            border: 1px solid rgba(255, 255, 255, .08);
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 14px 35px rgba(0, 0, 0, .22);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+
+        .mobile-nav a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+
+            min-height: 58px;
+
+            color: rgba(255, 255, 255, .62);
+
+            text-decoration: none;
+
+            border-radius: 17px;
+
+            transition:
+                background .2s ease,
+                color .2s ease;
+        }
+
+
+        .mobile-nav a:hover,
+        .mobile-nav a.active {
+            color: #ffffff;
+
+            background: rgba(255, 255, 255, .10);
+        }
+
+
+        .mobile-nav .material-icons-round {
+            font-size: 22px;
+        }
+
+
+        .mobile-nav small {
+            font-size: 10px;
+            line-height: 1;
+        }
+
+
+        /* =========================================================
+           DESKTOP
+        ========================================================== */
+
+        @media (min-width: 768px) {
+
+            .article-topbar {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+
+
+            .article-hero {
+                padding-top: 85px;
+                padding-bottom: 70px;
+            }
+
+
+            .article-section {
+                padding-top: 60px;
+            }
+
+
+            .mobile-nav {
+                width: auto;
+                min-width: 470px;
+            }
+
+        }
+
+
+        /* =========================================================
+           SMALL MOBILE
+        ========================================================== */
+
+        @media (max-width: 480px) {
+
+            .article-hero {
+                padding-top: 55px;
+            }
+
+
+            .article-hero h1 {
+                font-size: 42px;
+            }
+
+
+            .article-intro {
+                font-size: 16px;
+            }
+
+
+            .article-section {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+
+            .article-image {
+                border-radius: 18px;
+            }
+
+
+            .quick-answer {
+                padding: 22px;
+            }
+
+
+            .quick-answer p {
+                font-size: 18px;
+            }
+
+
+            .article-content h2 {
+                font-size: 31px;
+            }
+
+
+            .article-cta {
+                padding: 30px 24px;
+                border-radius: 20px;
+            }
+
+
+            .article-cta h2 {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
 
-<body
-    style="
-        margin:0;
-        background:#f8f5ee;
-        color:#26312b;
-        font-family:Arial,Helvetica,sans-serif;
-    "
->
+<body>
 
 
-<main>
+    <!-- =========================================================
+         TOP BAR
+    ========================================================== -->
 
+    <header class="article-topbar">
 
-    <!-- HERO -->
+        <div class="article-topbar-inner">
 
-    <section
-        style="
-            padding:90px 20px 70px;
-            background:#123b2a;
-            color:#ffffff;
-        "
-    >
-
-        <div
-            style="
-                max-width:1100px;
-                margin:0 auto;
-            "
-        >
-
-            <div
-                style="
-                    max-width:850px;
-                "
+            <a
+                href="/"
+                class="back-link"
             >
 
-                <div
-                    style="
-                        color:#d9bd8a;
-                        font-size:12px;
-                        font-weight:700;
-                        letter-spacing:2px;
-                        text-transform:uppercase;
-                        margin-bottom:20px;
-                    "
-                >
-                    WELLNESS GUIDE · MASSAGE
-                </div>
+                <span class="material-icons-round">
+                    arrow_back
+                </span>
+
+                Back to Pax & Pearl
+
+            </a>
+
+        </div>
+
+    </header>
 
 
-                <h1
-                    style="
-                        margin:0 0 25px;
-                        font-family:Georgia,'Times New Roman',serif;
-                        font-size:clamp(40px,6vw,66px);
-                        line-height:1.08;
-                        font-weight:400;
-                    "
-                >
-                    Benefits of Massage: What You Should Know
-                </h1>
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <section class="article-hero">
+
+        <div class="article-hero-inner">
+
+            <div class="article-category">
+
+                <span class="material-icons-round">
+                    self_improvement
+                </span>
+
+                Wellness Guide
+
+            </div>
 
 
-                <p
-                    style="
-                        margin:0;
-                        max-width:760px;
-                        color:rgba(255,255,255,.82);
-                        font-size:18px;
-                        line-height:1.8;
-                    "
-                >
-                    Massage is often chosen as part of a relaxation and
-                    wellbeing routine. Learn what people commonly seek
-                    from massage and how to approach treatment thoughtfully.
-                </p>
+            <h1>
+                Benefits of Massage:
+                What You Should Know
+            </h1>
+
+
+            <p class="article-intro">
+
+                A simple guide to understanding the potential benefits
+                of massage, why people choose massage and what to consider
+                when selecting the right massage experience.
+
+            </p>
+
+
+            <div class="article-location">
+
+                <span class="material-icons-round">
+                    spa
+                </span>
+
+                <span>
+                    Massage
+                </span>
+
+                <span>
+                    ·
+                </span>
+
+                <span class="material-icons-round">
+                    location_on
+                </span>
+
+                <span>
+                    Festac Town, Lagos
+                </span>
 
             </div>
 
@@ -112,473 +827,744 @@
 
 
 
-    <!-- CONTENT -->
+    <!-- =========================================================
+         ARTICLE
+    ========================================================== -->
 
-    <section
-        style="
-            padding:70px 20px 90px;
-        "
-    >
+    <main class="article-section">
 
-        <div
-            style="
-                max-width:840px;
-                margin:0 auto;
-            "
-        >
+        <article class="article-container">
 
 
-            <p
-                style="
-                    font-size:18px;
-                    line-height:1.9;
-                    color:#4f5a53;
-                "
-            >
-                Massage has been used in many cultures as a way to promote
-                relaxation, comfort and physical wellbeing. Today, people
-                visit massage spas for many different reasons.
-            </p>
+            <!-- =================================================
+                 FEATURED IMAGE
+            ================================================== -->
 
+            <div class="article-image">
 
-            <p
-                style="
-                    font-size:18px;
-                    line-height:1.9;
-                    color:#4f5a53;
-                "
-            >
-                Some people simply want to slow down after a demanding
-                week. Others prefer focused massage around areas where they
-                experience muscular tension.
-            </p>
-
-
-            <p
-                style="
-                    font-size:18px;
-                    line-height:1.9;
-                    color:#4f5a53;
-                "
-            >
-                The experience and benefits can vary from person to person,
-                so massage should be viewed as one part of overall
-                wellbeing rather than a replacement for medical care.
-            </p>
-
-
-
-            <!-- BENEFITS -->
-
-            <div
-                style="
-                    margin:40px 0;
-                    display:flex;
-                    flex-direction:column;
-                    gap:15px;
-                "
-            >
-
-                <div
-                    style="
-                        background:#ffffff;
-                        border:1px solid #e3e0d7;
-                        border-radius:20px;
-                        padding:28px;
-                    "
+                <img
+                    src="/assets/images/massage-benefits.jpg"
+                    alt="Massage treatment at Pax & Pearl Body Works in Festac Town, Lagos"
                 >
-
-                    <h2
-                        style="
-                            margin:0 0 10px;
-                            font-family:Georgia,'Times New Roman',serif;
-                            font-size:28px;
-                            font-weight:400;
-                            color:#123b2a;
-                        "
-                    >
-                        01. Relaxation
-                    </h2>
-
-                    <p
-                        style="
-                            margin:0;
-                            color:#657068;
-                            line-height:1.8;
-                        "
-                    >
-                        One of the most common reasons people choose massage
-                        is simply to relax. A calm environment and
-                        comfortable treatment can create a dedicated period
-                        away from everyday demands.
-                    </p>
-
-                </div>
-
-
-                <div
-                    style="
-                        background:#ffffff;
-                        border:1px solid #e3e0d7;
-                        border-radius:20px;
-                        padding:28px;
-                    "
-                >
-
-                    <h2
-                        style="
-                            margin:0 0 10px;
-                            font-family:Georgia,'Times New Roman',serif;
-                            font-size:28px;
-                            font-weight:400;
-                            color:#123b2a;
-                        "
-                    >
-                        02. Feeling less tense
-                    </h2>
-
-                    <p
-                        style="
-                            margin:0;
-                            color:#657068;
-                            line-height:1.8;
-                        "
-                    >
-                        Massage may help some people feel more comfortable
-                        when dealing with muscular tension. The appropriate
-                        treatment depends on the individual.
-                    </p>
-
-                </div>
-
-
-                <div
-                    style="
-                        background:#ffffff;
-                        border:1px solid #e3e0d7;
-                        border-radius:20px;
-                        padding:28px;
-                    "
-                >
-
-                    <h2
-                        style="
-                            margin:0 0 10px;
-                            font-family:Georgia,'Times New Roman',serif;
-                            font-size:28px;
-                            font-weight:400;
-                            color:#123b2a;
-                        "
-                    >
-                        03. A dedicated self-care moment
-                    </h2>
-
-                    <p
-                        style="
-                            margin:0;
-                            color:#657068;
-                            line-height:1.8;
-                        "
-                    >
-                        Scheduling a massage can create intentional time
-                        for rest and personal care, especially for people
-                        with busy work and family routines.
-                    </p>
-
-                </div>
-
-
-                <div
-                    style="
-                        background:#ffffff;
-                        border:1px solid #e3e0d7;
-                        border-radius:20px;
-                        padding:28px;
-                    "
-                >
-
-                    <h2
-                        style="
-                            margin:0 0 10px;
-                            font-family:Georgia,'Times New Roman',serif;
-                            font-size:28px;
-                            font-weight:400;
-                            color:#123b2a;
-                        "
-                    >
-                        04. A more comfortable body
-                    </h2>
-
-                    <p
-                        style="
-                            margin:0;
-                            color:#657068;
-                            line-height:1.8;
-                        "
-                    >
-                        Some people seek massage because they feel muscular
-                        tightness or general physical discomfort. Massage
-                        may provide temporary relief for some people, but
-                        persistent or severe symptoms should be professionally
-                        assessed.
-                    </p>
-
-                </div>
 
             </div>
 
 
 
-            <h2
-                style="
-                    margin:55px 0 18px;
-                    font-family:Georgia,'Times New Roman',serif;
-                    font-size:36px;
-                    font-weight:400;
-                    color:#123b2a;
-                "
-            >
-                Can massage help with stress and relaxation?
-            </h2>
+            <!-- =================================================
+                 QUICK ANSWER
+            ================================================== -->
+
+            <div class="quick-answer">
+
+                <div class="quick-answer-label">
+                    Quick answer
+                </div>
 
 
-            <p
-                style="
-                    font-size:17px;
-                    line-height:1.9;
-                    color:#5d675f;
-                "
-            >
-                Massage can provide a quiet period away from daily
-                responsibilities and may help people feel relaxed.
-                The environment, music, temperature, pressure and overall
-                spa experience can all influence how relaxing the session
-                feels.
-            </p>
+                <p>
 
+                    Massage may support relaxation, comfort and general
+                    wellbeing. People choose massage for different reasons,
+                    including taking time to unwind, experiencing focused
+                    work around areas of muscular tension and creating a
+                    dedicated moment for self-care.
 
-
-            <h2
-                style="
-                    margin:55px 0 18px;
-                    font-family:Georgia,'Times New Roman',serif;
-                    font-size:36px;
-                    font-weight:400;
-                    color:#123b2a;
-                "
-            >
-                Can massage help with muscle tension?
-            </h2>
-
-
-            <p
-                style="
-                    font-size:17px;
-                    line-height:1.9;
-                    color:#5d675f;
-                "
-            >
-                Massage may help some people feel less tense or more
-                comfortable. Deep tissue massage provides a more focused
-                approach and is often selected by people seeking attention
-                around areas of muscular tension.
-            </p>
-
-
-
-            <h2
-                style="
-                    margin:55px 0 18px;
-                    font-family:Georgia,'Times New Roman',serif;
-                    font-size:36px;
-                    font-weight:400;
-                    color:#123b2a;
-                "
-            >
-                Is massage a medical treatment?
-            </h2>
-
-
-            <p
-                style="
-                    font-size:17px;
-                    line-height:1.9;
-                    color:#5d675f;
-                "
-            >
-                Massage can be part of a person's general wellness routine,
-                but it should not be presented as a substitute for medical
-                diagnosis or treatment.
-            </p>
-
-
-            <p
-                style="
-                    font-size:17px;
-                    line-height:1.9;
-                    color:#5d675f;
-                "
-            >
-                If you have persistent pain, an injury, a medical condition
-                or another health concern, speak with an appropriate
-                healthcare professional.
-            </p>
-
-
-
-            <h2
-                style="
-                    margin:55px 0 18px;
-                    font-family:Georgia,'Times New Roman',serif;
-                    font-size:36px;
-                    font-weight:400;
-                    color:#123b2a;
-                "
-            >
-                Which massage should you choose?
-            </h2>
-
-
-            <p
-                style="
-                    font-size:17px;
-                    line-height:1.9;
-                    color:#5d675f;
-                "
-            >
-                Your choice should depend on what you want from the
-                experience.
-            </p>
-
-
-            <div
-                style="
-                    margin:30px 0;
-                    padding:30px;
-                    background:#ffffff;
-                    border:1px solid #e3e0d7;
-                    border-radius:22px;
-                "
-            >
-
-                <p
-                    style="
-                        margin:0 0 15px;
-                        color:#5d675f;
-                        line-height:1.8;
-                    "
-                >
-                    <strong style="color:#123b2a;">
-                        For relaxation:
-                    </strong>
-                    consider a relaxation-focused massage.
-                </p>
-
-
-                <p
-                    style="
-                        margin:0 0 15px;
-                        color:#5d675f;
-                        line-height:1.8;
-                    "
-                >
-                    <strong style="color:#123b2a;">
-                        For focused muscular work:
-                    </strong>
-                    ask about deep tissue massage.
-                </p>
-
-
-                <p
-                    style="
-                        margin:0;
-                        color:#5d675f;
-                        line-height:1.8;
-                    "
-                >
-                    <strong style="color:#123b2a;">
-                        For a shared experience:
-                    </strong>
-                    consider a couples massage.
                 </p>
 
             </div>
 
 
 
-            <!-- CTA -->
+            <!-- =================================================
+                 CONTENT
+            ================================================== -->
 
-            <div
-                style="
-                    margin-top:65px;
-                    padding:40px 32px;
-                    background:#123b2a;
-                    border-radius:24px;
-                    color:#ffffff;
-                "
-            >
-
-                <div
-                    style="
-                        color:#d9bd8a;
-                        font-size:12px;
-                        font-weight:700;
-                        letter-spacing:2px;
-                        text-transform:uppercase;
-                        margin-bottom:12px;
-                    "
-                >
-                    PAX & PEARL BODYWORKS
-                </div>
+            <div class="article-content">
 
 
-                <h2
-                    style="
-                        margin:0 0 15px;
-                        font-family:Georgia,'Times New Roman',serif;
-                        font-size:34px;
-                        font-weight:400;
-                    "
-                >
-                    Your time. Your treatment. Your experience.
+                <p>
+
+                    Massage has been used in many cultures as part of
+                    relaxation and personal wellbeing routines. Today,
+                    people visit massage spas for many different reasons,
+                    from simply wanting time to slow down to seeking a
+                    more focused massage experience.
+
+                </p>
+
+
+                <p>
+
+                    The experience can vary depending on the type of
+                    massage, the pressure used, the areas being treated
+                    and the preferences of the individual.
+
+                </p>
+
+
+                <p>
+
+                    At Pax & Pearl Body Works in Festac Town, massage
+                    experiences are designed around comfort, communication
+                    and the type of treatment the client is looking for.
+
+                </p>
+
+
+
+                <!-- =============================================
+                     WHAT ARE THE BENEFITS?
+                ============================================== -->
+
+                <h2>
+                    What Are the Benefits of Massage?
                 </h2>
 
 
-                <p
-                    style="
-                        margin:0 0 25px;
-                        color:rgba(255,255,255,.78);
-                        line-height:1.8;
-                    "
-                >
-                    Explore massage and spa experiences at Pax & Pearl
-                    BodyWorks in Festac, Lagos.
+                <p>
+
+                    Massage can be a valuable part of a personal
+                    relaxation and wellbeing routine. While everyone
+                    responds differently, there are several common reasons
+                    people choose to have a massage.
+
                 </p>
 
 
-                <a
-                    href="/massage-spa-festac/"
-                    style="
-                        display:inline-block;
-                        padding:14px 24px;
-                        background:#b8945b;
-                        color:#ffffff;
-                        text-decoration:none;
-                        border-radius:999px;
-                        font-weight:700;
-                    "
-                >
-                    Explore Massage Services
-                </a>
+                <div class="benefits">
+
+
+                    <div class="benefit-card">
+
+                        <div class="benefit-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Relaxation
+                        </h3>
+
+                        <p>
+
+                            One of the most common reasons people choose
+                            massage is to relax. A quiet environment,
+                            comfortable treatment and dedicated time away
+                            from everyday responsibilities can create a
+                            calming experience.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="benefit-card">
+
+                        <div class="benefit-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Feeling Less Tense
+                        </h3>
+
+                        <p>
+
+                            Some people choose massage when they feel
+                            muscular tightness or tension. Depending on
+                            the treatment selected, the therapist can
+                            focus more attention on particular areas.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="benefit-card">
+
+                        <div class="benefit-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Dedicated Self-Care
+                        </h3>
+
+                        <p>
+
+                            Booking a massage creates intentional time
+                            for rest and personal care. This can be
+                            especially appealing for people balancing
+                            demanding work, family and everyday routines.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="benefit-card">
+
+                        <div class="benefit-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Physical Comfort
+                        </h3>
+
+                        <p>
+
+                            People may also seek massage when they feel
+                            general muscular tightness or physical
+                            discomfort. Different massage approaches can
+                            provide different experiences depending on
+                            the individual's preferences.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     STRESS
+                ============================================== -->
+
+                <h2>
+                    Can Massage Help With Stress and Relaxation?
+                </h2>
+
+
+                <p>
+
+                    Massage can provide a dedicated period away from
+                    daily responsibilities. For many people, the
+                    combination of a calm environment, comfortable
+                    positioning and therapeutic touch can make the
+                    experience feel relaxing.
+
+                </p>
+
+
+                <p>
+
+                    The overall environment can also influence how
+                    relaxing a session feels. Music, temperature, lighting,
+                    pressure and communication with the therapist can all
+                    contribute to the experience.
+
+                </p>
+
+
+
+                <!-- =============================================
+                     MUSCLE TENSION
+                ============================================== -->
+
+                <h2>
+                    Can Massage Help With Muscle Tension?
+                </h2>
+
+
+                <p>
+
+                    Some people choose massage because they experience
+                    areas of muscular tightness or tension. A massage
+                    therapist can adjust the treatment to focus more
+                    attention on areas that the client identifies.
+
+                </p>
+
+
+                <p>
+
+                    Deep tissue massage, for example, generally uses
+                    slower, more focused and firmer pressure than a
+                    traditional relaxation massage. The appropriate
+                    pressure should always be adjusted according to
+                    individual comfort.
+
+                </p>
+
+
+
+                <!-- =============================================
+                     DIFFERENT TYPES
+                ============================================== -->
+
+                <h2>
+                    Different Massage Experiences
+                </h2>
+
+
+                <p>
+
+                    There is no single massage that is right for
+                    everyone. Different approaches provide different
+                    experiences.
+
+                </p>
+
+
+                <ul>
+
+                    <li>
+
+                        <strong>
+                            Relaxation massage:
+                        </strong>
+
+                        generally focuses on calming, comfortable
+                        movements and an overall relaxing experience.
+
+                    </li>
+
+
+                    <li>
+
+                        <strong>
+                            Deep tissue massage:
+                        </strong>
+
+                        generally involves slower, more focused and
+                        firmer pressure around areas of muscular tension.
+
+                    </li>
+
+
+                    <li>
+
+                        <strong>
+                            Couples massage:
+                        </strong>
+
+                        provides an opportunity for two people to enjoy
+                        a massage experience together.
+
+                    </li>
+
+                </ul>
+
+
+
+                <!-- =============================================
+                     CHOOSING
+                ============================================== -->
+
+                <h2>
+                    Which Massage Should You Choose?
+                </h2>
+
+
+                <p>
+
+                    Your choice should depend on the type of experience
+                    you want and the areas you would like the therapist
+                    to focus on.
+
+                </p>
+
+
+                <div class="info-box">
+
+                    <p>
+
+                        <strong>
+                            Looking for relaxation?
+                        </strong>
+
+                        A relaxation-focused massage may be a suitable
+                        choice.
+
+                        <br><br>
+
+                        <strong>
+                            Prefer firmer, focused pressure?
+                        </strong>
+
+                        You may want to explore deep tissue massage.
+
+                        <br><br>
+
+                        <strong>
+                            Want to share the experience?
+                        </strong>
+
+                        A couples massage may be worth considering.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     BEFORE MASSAGE
+                ============================================== -->
+
+                <h2>
+                    What Should You Do Before a Massage?
+                </h2>
+
+
+                <p>
+
+                    A few simple preparations can make your appointment
+                    more comfortable.
+
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        Arrive with enough time to settle in.
+                    </li>
+
+                    <li>
+                        Tell your therapist about areas you would like
+                        them to focus on.
+                    </li>
+
+                    <li>
+                        Communicate your preferred pressure.
+                    </li>
+
+                    <li>
+                        Mention anything that may affect your comfort
+                        during the treatment.
+                    </li>
+
+                    <li>
+                        Avoid arriving extremely rushed if possible.
+                    </li>
+
+                </ul>
+
+
+
+                <!-- =============================================
+                     AFTER MASSAGE
+                ============================================== -->
+
+                <h2>
+                    What Should You Expect After a Massage?
+                </h2>
+
+
+                <p>
+
+                    People can respond differently to massage. Some
+                    people feel relaxed immediately after their session,
+                    while others may notice temporary sensitivity in
+                    areas that received focused attention.
+
+                </p>
+
+
+                <p>
+
+                    Give yourself some time to settle after the treatment
+                    and follow any aftercare guidance provided by your
+                    therapist.
+
+                </p>
+
+
+
+                <!-- =============================================
+                     MEDICAL DISCLAIMER
+                ============================================== -->
+
+                <h2>
+                    Is Massage a Medical Treatment?
+                </h2>
+
+
+                <p>
+
+                    Massage can be part of a person's general wellness
+                    routine, but it should not be presented as a
+                    replacement for medical diagnosis or treatment.
+
+                </p>
+
+
+                <p>
+
+                    If you have persistent pain, a recent injury, an
+                    unexplained symptom, a medical condition or another
+                    health concern, speak with an appropriate healthcare
+                    professional before booking a massage.
+
+                </p>
+
+
+
+                <!-- =============================================
+                     FAQ
+                ============================================== -->
+
+                <section class="faq">
+
+                    <h2>
+                        Frequently Asked Questions
+                    </h2>
+
+
+                    <div class="faq-item">
+
+                        <h3 class="faq-question">
+                            What are the main benefits of massage?
+                        </h3>
+
+                        <p class="faq-answer">
+
+                            People commonly choose massage for relaxation,
+                            comfort, focused attention around areas of
+                            muscular tension and dedicated self-care time.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="faq-item">
+
+                        <h3 class="faq-question">
+                            Can massage help with relaxation?
+                        </h3>
+
+                        <p class="faq-answer">
+
+                            Massage can provide a dedicated period away
+                            from everyday responsibilities and may help
+                            some people feel relaxed.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="faq-item">
+
+                        <h3 class="faq-question">
+                            Can massage help with muscle tension?
+                        </h3>
+
+                        <p class="faq-answer">
+
+                            Some people choose massage when they experience
+                            muscular tightness. The type and pressure of
+                            massage can be adjusted according to the
+                            individual's preferences and comfort.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="faq-item">
+
+                        <h3 class="faq-question">
+                            Is deep tissue massage better than relaxation massage?
+                        </h3>
+
+                        <p class="faq-answer">
+
+                            Neither is automatically better. They provide
+                            different experiences. Deep tissue massage
+                            generally uses firmer, more focused pressure,
+                            while relaxation massage focuses more on
+                            calming and comfortable movements.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="faq-item">
+
+                        <h3 class="faq-question">
+                            Is massage suitable for everyone?
+                        </h3>
+
+                        <p class="faq-answer">
+
+                            Massage is not appropriate for every situation.
+                            If you have a medical condition, recent injury,
+                            unexplained pain or another health concern,
+                            speak with an appropriate healthcare
+                            professional before booking.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="faq-item">
+
+                        <h3 class="faq-question">
+                            Where can I get a massage in Festac?
+                        </h3>
+
+                        <p class="faq-answer">
+
+                            Pax & Pearl Body Works offers massage and spa
+                            experiences in Festac Town, Lagos.
+
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =============================================
+                     CTA
+                ============================================== -->
+
+                <section class="article-cta">
+
+                    <div class="cta-label">
+                        PAX & PEARL BODY WORKS
+                    </div>
+
+
+                    <h2>
+                        Your time. Your treatment. Your experience.
+                    </h2>
+
+
+                    <p>
+
+                        Explore massage and spa experiences at
+                        Pax & Pearl Body Works in Festac Town, Lagos,
+                        and choose the treatment that suits what you
+                        are looking for.
+
+                    </p>
+
+
+                    <a
+                        href="services.html"
+                        class="cta-button"
+                    >
+
+                        Explore Massage Services
+
+                        <span class="material-icons-round">
+                            arrow_forward
+                        </span>
+
+                    </a>
+
+                </section>
+
 
             </div>
 
+        </article>
 
-        </div>
+    </main>
 
-    </section>
 
-</main>
+
+    <!-- =========================================================
+         MOBILE BOTTOM NAV
+    ========================================================== -->
+
+    <nav class="mobile-nav">
+
+        <a
+            href="/"
+        >
+
+            <span class="material-icons-round">
+                home
+            </span>
+
+            <small>
+                Home
+            </small>
+
+        </a>
+
+
+        <a
+            href="services.html"
+            class="active"
+        >
+
+            <span class="material-icons-round">
+                event
+            </span>
+
+            <small>
+                Booking
+            </small>
+
+        </a>
+
+
+        <a
+            href="/saved"
+        >
+
+            <span class="material-icons-round">
+                favorite
+            </span>
+
+            <small>
+                Saved
+            </small>
+
+        </a>
+
+
+        <a
+            id="messageAdmin"
+            href="services.html"
+        >
+
+            <span class="material-icons-round">
+                chat
+            </span>
+
+            <small>
+                Message
+            </small>
+
+        </a>
+
+
+        <a
+            href="/profile"
+        >
+
+            <span class="material-icons-round">
+                person
+            </span>
+
+            <small>
+                Profile
+            </small>
+
+        </a>
+
+    </nav>
+
 
 </body>
 
