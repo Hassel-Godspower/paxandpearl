@@ -2,6 +2,54 @@
    PAX & PEARL BODY WORKS
    HOMEPAGE JAVASCRIPT
 ========================================================= */
+(function () {
+
+    const preloader = document.getElementById("preloader");
+
+    if (!preloader) return;
+
+    let hidden = false;
+
+    function hidePreloader() {
+
+        if (hidden) return;
+
+        hidden = true;
+
+        preloader.classList.add("preloader-hidden");
+
+        setTimeout(function () {
+
+            if (preloader && preloader.parentNode) {
+                preloader.parentNode.removeChild(preloader);
+            }
+
+        }, 750);
+    }
+
+
+    /* Hide after everything on the page has loaded */
+
+    window.addEventListener("load", function () {
+
+        setTimeout(hidePreloader, 450);
+
+    });
+
+
+    /* Safety fallback:
+       prevents the preloader from remaining
+       permanently visible if something fails to load.
+    */
+
+    setTimeout(function () {
+
+        hidePreloader();
+
+    }, 8000);
+
+
+})();
 
 
 /* =========================================================
