@@ -197,56 +197,144 @@
 
 
         /* =====================================================
-           SUCCESS ICON
+           ANIMATED SUCCESS CHECKMARK
         ===================================================== */
-
+        
         .success-icon {
-
-            width: 76px;
-
-            height: 76px;
-
+        
+            width: 82px;
+            height: 82px;
+        
             margin: 0 auto 25px;
-
-            border-radius: 50%;
-
+        
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
-            background:
-                rgba(117,139,103,0.12);
-
-            border:
-                1px solid rgba(117,139,103,0.22);
-
-            color: var(--success);
-
+        
+            border-radius: 50%;
+        
+            background: rgba(117, 139, 103, 0.10);
+        
             animation:
-                successPop 0.7s cubic-bezier(.17,.67,.34,1.4)
-                forwards;
-
+                successContainer 0.55s ease-out forwards;
+        
         }
-
-
-        .success-icon svg {
-
-            width: 34px;
-
-            height: 34px;
-
-            stroke: currentColor;
-
-            stroke-width: 2;
-
+        
+        
+        /* SVG */
+        
+        .checkmark {
+        
+            width: 68px;
+            height: 68px;
+        
+            overflow: visible;
+        
+        }
+        
+        
+        /* Circle */
+        
+        .check-circle {
+        
             fill: none;
-
+        
+            stroke: #758b67;
+        
+            stroke-width: 2;
+        
             stroke-linecap: round;
-
+        
+            stroke-dasharray: 151;
+        
+            stroke-dashoffset: 151;
+        
+            animation:
+                drawCircle 0.7s
+                cubic-bezier(0.65, 0, 0.35, 1)
+                0.15s forwards;
+        
+        }
+        
+        
+        /* Actual checkmark */
+        
+        .check-mark {
+        
+            fill: none;
+        
+            stroke: #758b67;
+        
+            stroke-width: 3.5;
+        
+            stroke-linecap: round;
+        
             stroke-linejoin: round;
-
+        
+            stroke-dasharray: 35;
+        
+            stroke-dashoffset: 35;
+        
+            animation:
+                drawCheck 0.45s
+                cubic-bezier(0.65, 0, 0.35, 1)
+                0.75s forwards;
+        
+        }
+        
+        
+        /* =====================================================
+           ANIMATIONS
+        ===================================================== */
+        
+        @keyframes successContainer {
+        
+            0% {
+        
+                opacity: 0;
+        
+                transform: scale(0.65);
+        
+            }
+        
+            70% {
+        
+                opacity: 1;
+        
+                transform: scale(1.08);
+        
+            }
+        
+            100% {
+        
+                opacity: 1;
+        
+                transform: scale(1);
+        
+            }
+        
+        }
+        
+        
+        @keyframes drawCircle {
+        
+            to {
+        
+                stroke-dashoffset: 0;
+        
+            }
+        
+        }
+        
+        
+        @keyframes drawCheck {
+        
+            to {
+        
+                stroke-dashoffset: 0;
+        
+            }
+        
         }
 
 
@@ -777,21 +865,26 @@
                  SUCCESS ICON
             ================================================== -->
 
-            <div
-                class="success-icon"
-                aria-hidden="true"
-            >
-
+            <div class="success-icon" aria-label="Booking confirmed">
+            
                 <svg
-                    viewBox="0 0 24 24"
+                    class="checkmark"
+                    viewBox="0 0 52 52"
+                    aria-hidden="true"
                 >
-
-                    <polyline
-                        points="20 6 9 17 4 12"
-                    ></polyline>
-
+                    <circle
+                        class="check-circle"
+                        cx="26"
+                        cy="26"
+                        r="24"
+                    />
+            
+                    <path
+                        class="check-mark"
+                        d="M14 27 L22 35 L39 17"
+                    />
                 </svg>
-
+            
             </div>
 
 
