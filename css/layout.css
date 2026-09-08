@@ -1,6 +1,351 @@
 /* =========================================================
    PAX & PEARL — GLOBAL LAYOUT SYSTEM
 ========================================================= */
+/* =========================================
+   PREMIUM HEADER
+========================================= */
+
+.top-bar {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 82px;
+
+    padding: 16px 0;
+
+    margin-bottom: 8px;
+}
+
+
+/* -----------------------------------------
+   GREETING
+----------------------------------------- */
+
+.greeting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+}
+
+.greeting-eyebrow {
+    margin-bottom: 5px;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+
+    color: #a38a68;
+
+    opacity: 0.9;
+}
+
+#greeting {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin: 0;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    line-height: 1.25;
+
+    font-weight: 500;
+
+    color: #29251f;
+}
+
+#user-name {
+    font-weight: 600;
+    color: #29251f;
+}
+
+#time-greeting {
+    font-size: 20px;
+    font-weight: 400;
+    color: #777168;
+}
+
+.greeting-divider {
+    font-size: 12px;
+    color: #b8955a;
+    opacity: 0.7;
+}
+
+
+/* -----------------------------------------
+   RIGHT SIDE
+----------------------------------------- */
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+/* -----------------------------------------
+   LOGO
+----------------------------------------- */
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.78);
+
+    border: 1px solid rgba(184, 149, 90, 0.18);
+
+    box-shadow:
+        0 4px 16px rgba(61, 49, 35, 0.07),
+        inset 0 0 0 1px rgba(255,255,255,0.5);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.brand-logo:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 20px rgba(61, 49, 35, 0.10);
+}
+
+.brand-logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* -----------------------------------------
+   NOTIFICATION BUTTON
+----------------------------------------- */
+
+.notification-btn {
+    position: relative;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(184, 149, 90, 0.16);
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    color: #6f6251;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 16px rgba(61, 49, 35, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.notification-btn:hover {
+    transform: translateY(-2px);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 7px 20px rgba(61, 49, 35, 0.10);
+}
+
+.notification-btn:active {
+    transform: scale(0.94);
+}
+
+.notification-btn .material-icons-round {
+    font-size: 22px;
+    font-weight: 400;
+}
+
+
+/* -----------------------------------------
+   NOTIFICATION INDICATOR
+----------------------------------------- */
+
+.notification-dot {
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #b8955a;
+
+    border: 2px solid #fff;
+
+    box-sizing: content-box;
+
+    opacity: 0;
+
+    transform: scale(0);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* Activate when notifications exist */
+.notification-btn.has-notifications .notification-dot {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* -----------------------------------------
+   HEADER FADE-IN
+----------------------------------------- */
+
+.top-bar {
+    animation: headerEnter 0.65s ease both;
+}
+
+@keyframes headerEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .top-bar {
+        min-height: 72px;
+        padding: 12px 0;
+    }
+
+    .greeting-eyebrow {
+        font-size: 8px;
+        letter-spacing: 1.8px;
+        margin-bottom: 4px;
+    }
+
+    #greeting {
+        font-size: 17px;
+        gap: 5px;
+    }
+
+    #time-greeting {
+        font-size: 17px;
+    }
+
+    .greeting-divider {
+        font-size: 10px;
+    }
+
+    .top-bar-right {
+        gap: 8px;
+    }
+
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+        padding: 5px;
+    }
+
+    .notification-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .notification-btn .material-icons-round {
+        font-size: 20px;
+    }
+
+    .notification-dot {
+        top: 8px;
+        right: 8px;
+        width: 6px;
+        height: 6px;
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .greeting-eyebrow {
+        font-size: 7px;
+        letter-spacing: 1.4px;
+    }
+
+    #greeting {
+        font-size: 15px;
+    }
+
+    #time-greeting {
+        font-size: 15px;
+    }
+
+    .brand-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .notification-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+}
+
 /* =========================================================
    PAX & PEARL — LUXURY PRELOADER
 ========================================================= */
