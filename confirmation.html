@@ -1,31 +1,967 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NG">
+
 <head>
-<meta charset="UTF-8">
-<title>Booking Confirmed</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=DM+Sans&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+
+    <title>Booking Confirmed | Pax & Pearl Body Works</title>
+
+    <meta
+        name="description"
+        content="Your Pax & Pearl Body Works appointment has been successfully scheduled. We look forward to welcoming you for your spa and wellness experience."
+    >
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="robots"
+        content="noindex, nofollow"
+    >
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Montserrat:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         STYLES
+    ====================================================== -->
+
+    <style>
+
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+
+        :root {
+
+            --cream: #f8f5ef;
+
+            --cream-dark: #eee7dc;
+
+            --gold: #b8955a;
+
+            --gold-dark: #8b6f47;
+
+            --gold-light: #d8bf91;
+
+            --text: #29251f;
+
+            --muted: #777168;
+
+            --white: #ffffff;
+
+            --border: #e7e0d5;
+
+            --success: #758b67;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        html {
+
+            min-height: 100%;
+
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                "DM Sans",
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top center,
+                    rgba(184,149,90,0.12),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f8f5ef 0%,
+                    #f2ede4 100%
+                );
+
+            color: var(--text);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 25px;
+
+        }
+
+
+        /* =====================================================
+           MAIN CARD
+        ===================================================== */
+
+        .confirmation-wrapper {
+
+            width: 100%;
+
+            max-width: 620px;
+
+            text-align: center;
+
+        }
+
+
+        .confirmation-card {
+
+            background: rgba(255,255,255,0.96);
+
+            border: 1px solid var(--border);
+
+            border-radius: 28px;
+
+            padding: 55px 45px;
+
+            box-shadow:
+                0 25px 70px rgba(55,45,30,0.10);
+
+            animation:
+                cardEnter 0.7s ease forwards;
+
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo {
+
+            display: flex;
+
+            justify-content: center;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .logo img {
+
+            width: 125px;
+
+            height: auto;
+
+            object-fit: contain;
+
+        }
+
+
+        /* =====================================================
+           SUCCESS ICON
+        ===================================================== */
+
+        .success-icon {
+
+            width: 76px;
+
+            height: 76px;
+
+            margin: 0 auto 25px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(117,139,103,0.12);
+
+            border:
+                1px solid rgba(117,139,103,0.22);
+
+            color: var(--success);
+
+            animation:
+                successPop 0.7s cubic-bezier(.17,.67,.34,1.4)
+                forwards;
+
+        }
+
+
+        .success-icon svg {
+
+            width: 34px;
+
+            height: 34px;
+
+            stroke: currentColor;
+
+            stroke-width: 2;
+
+            fill: none;
+
+            stroke-linecap: round;
+
+            stroke-linejoin: round;
+
+        }
+
+
+        /* =====================================================
+           EYEBROW
+        ===================================================== */
+
+        .eyebrow {
+
+            display: block;
+
+            font-family: "Montserrat", sans-serif;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            color: var(--gold-dark);
+
+            margin-bottom: 12px;
+
+        }
+
+
+        /* =====================================================
+           HEADINGS
+        ===================================================== */
+
+        h1 {
+
+            font-family: "Montserrat", sans-serif;
+
+            font-size: clamp(30px, 6vw, 42px);
+
+            line-height: 1.2;
+
+            font-weight: 600;
+
+            letter-spacing: -0.8px;
+
+            color: var(--text);
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .intro {
+
+            max-width: 470px;
+
+            margin: 0 auto;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =====================================================
+           CONFIRMATION MESSAGE
+        ===================================================== */
+
+        .confirmation-message {
+
+            margin-top: 30px;
+
+            padding: 20px;
+
+            border-radius: 16px;
+
+            background: #faf8f4;
+
+            border: 1px solid var(--border);
+
+        }
+
+
+        .confirmation-message strong {
+
+            display: block;
+
+            font-family: "Montserrat", sans-serif;
+
+            font-size: 14px;
+
+            color: var(--text);
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .confirmation-message p {
+
+            margin: 0;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            color: var(--muted);
+
+        }
+
+
+        /* =====================================================
+           NEXT STEPS
+        ===================================================== */
+
+        .next-steps {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .step {
+
+            padding: 18px 12px;
+
+            border-radius: 15px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+        }
+
+
+        .step-number {
+
+            width: 28px;
+
+            height: 28px;
+
+            margin: 0 auto 9px;
+
+            border-radius: 50%;
+
+            background: #f3eee6;
+
+            color: var(--gold-dark);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+        }
+
+
+        .step strong {
+
+            display: block;
+
+            font-size: 12px;
+
+            margin-bottom: 3px;
+
+            color: var(--text);
+
+        }
+
+
+        .step span {
+
+            display: block;
+
+            font-size: 11px;
+
+            color: var(--muted);
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .actions {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            margin-top: 32px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 50px;
+
+            padding: 0 25px;
+
+            border-radius: 50px;
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease;
+
+        }
+
+
+        .button:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .button-primary {
+
+            background: var(--gold-dark);
+
+            color: white;
+
+            border: 1px solid var(--gold-dark);
+
+        }
+
+
+        .button-primary:hover {
+
+            background: #705735;
+
+        }
+
+
+        .button-secondary {
+
+            background: white;
+
+            color: var(--text);
+
+            border: 1px solid var(--border);
+
+        }
+
+
+        .button-secondary:hover {
+
+            border-color: var(--gold);
+
+            color: var(--gold-dark);
+
+        }
+
+
+        /* =====================================================
+           CONTACT NOTE
+        ===================================================== */
+
+        .contact-note {
+
+            margin-top: 27px;
+
+            font-size: 12px;
+
+            color: var(--muted);
+
+            line-height: 1.7;
+
+        }
+
+
+        .contact-note a {
+
+            color: var(--gold-dark);
+
+            font-weight: 600;
+
+            text-decoration: none;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+
+            margin-top: 22px;
+
+            text-align: center;
+
+            font-size: 11px;
+
+            color: #8b847b;
+
+        }
+
+
+        /* =====================================================
+           ANIMATIONS
+        ===================================================== */
+
+        @keyframes cardEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(18px)
+                    scale(0.98);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+        }
+
+
+        @keyframes successPop {
+
+            from {
+
+                opacity: 0;
+
+                transform: scale(0.5);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: scale(1);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 15px;
+
+            }
+
+
+            .confirmation-card {
+
+                padding: 40px 22px;
+
+                border-radius: 22px;
+
+            }
+
+
+            .logo {
+
+                margin-bottom: 28px;
+
+            }
+
+
+            .logo img {
+
+                width: 110px;
+
+            }
+
+
+            .success-icon {
+
+                width: 68px;
+
+                height: 68px;
+
+                margin-bottom: 22px;
+
+            }
+
+
+            h1 {
+
+                font-size: 30px;
+
+            }
+
+
+            .intro {
+
+                font-size: 14px;
+
+            }
+
+
+            .next-steps {
+
+                grid-template-columns: 1fr;
+
+                gap: 9px;
+
+            }
+
+
+            .step {
+
+                display: flex;
+
+                align-items: center;
+
+                text-align: left;
+
+                gap: 12px;
+
+                padding: 13px;
+
+            }
+
+
+            .step-number {
+
+                margin: 0;
+
+                flex-shrink: 0;
+
+            }
+
+
+            .actions {
+
+                flex-direction: column;
+
+            }
+
+
+            .button {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<div class="container" style="text-align:center;padding-top:80px;">
-  <h1>🎉 Booking Confirmed</h1>
-  <p>Your appointment has been scheduled successfully.</p>
-  <button onclick="location.href='index.html'">Back to Home</button>
-</div>
 
-<style>
-body{font-family:'DM Sans',sans-serif;}
-button{
-  margin-top:20px;
-  padding:14px 24px;
-  background:#7b5cff;
-  border:none;
-  color:#fff;
-  border-radius:10px;
-}
-</style>
+    <main class="confirmation-wrapper">
+
+
+        <div class="confirmation-card">
+
+
+            <!-- =================================================
+                 LOGO
+            ================================================== -->
+
+            <div class="logo">
+
+                <img
+                    src="assets/images/logo.png"
+                    alt="Pax & Pearl Body Works"
+                >
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SUCCESS ICON
+            ================================================== -->
+
+            <div
+                class="success-icon"
+                aria-hidden="true"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                >
+
+                    <polyline
+                        points="20 6 9 17 4 12"
+                    ></polyline>
+
+                </svg>
+
+            </div>
+
+
+
+            <span class="eyebrow">
+                Appointment Successfully Scheduled
+            </span>
+
+
+            <h1>
+                Booking Confirmed
+            </h1>
+
+
+            <p class="intro">
+                Thank you for choosing Pax & Pearl Body Works.
+                Your appointment request has been received successfully.
+            </p>
+
+
+
+            <!-- =================================================
+                 CONFIRMATION MESSAGE
+            ================================================== -->
+
+            <div class="confirmation-message">
+
+                <strong>
+                    We look forward to welcoming you.
+                </strong>
+
+                <p>
+                    Please keep your phone available in case our team
+                    needs to contact you regarding your appointment.
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 NEXT STEPS
+            ================================================== -->
+
+            <div class="next-steps">
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Booking Received
+                        </strong>
+
+                        <span>
+                            Your appointment details have been received.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Confirmation
+                        </strong>
+
+                        <span>
+                            Our team may contact you to confirm details.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Visit Us
+                        </strong>
+
+                        <span>
+                            Come relax and enjoy your treatment.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ACTIONS
+            ================================================== -->
+
+            <div class="actions">
+
+                <a
+                    href="index.html"
+                    class="button button-primary"
+                >
+                    Back to Home
+                </a>
+
+
+                <a
+                    href="services.html"
+                    class="button button-secondary"
+                >
+                    Explore Services
+                </a>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CONTACT
+            ================================================== -->
+
+            <p class="contact-note">
+
+                Need to make a change or have a question?
+
+                <a href="tel:+2347064302016">
+                    Call +234 706 430 2016
+                </a>
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="footer">
+
+            Pax & Pearl Body Works · Festac Town, Lagos
+
+        </div>
+
+
+    </main>
+
 
 </body>
+
 </html>
