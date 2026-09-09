@@ -193,6 +193,19 @@
     {
       "source": "/best-massage-near-me",
       "destination": "/best-massage-near-me.html"
+    },
+
+    {
+      "source": "/about-pax-and-pearl",
+      "destination": "/about-pax-and-pearl.html"
+    },
+    {
+      "source": "/why-pax-and-pearl",
+      "destination": "/why-pax-and-pearl.html"
+    },
+    {
+      "source": "/reviews",
+      "destination": "/reviews.html"
     }
 
   ]
