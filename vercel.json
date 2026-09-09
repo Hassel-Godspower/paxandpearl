@@ -174,7 +174,21 @@
     {
       "source": "/where-can-i-get-a-full-body-massage-in-lagos",
       "destination": "/where-can-i-get-a-full-body-massage-in-lagos.html"
-    }
+    },
+
+    {
+      "source": "/best-spa-in-festac",
+      "destination": "/best-spa-in-festac.html"
+    },
+    
+    {
+      "source": "/top-rated-spa-in-festac",
+      "destination": "/top-rated-spa-in-festac.html"
+    },
+    {
+      "source": "/best-massage-in-festac",
+      "destination": "/best-massage-in-festac.html"
+     }
 
   ]
 }
