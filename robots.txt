@@ -1,0 +1,39 @@
+# Pax & Pearl Body Works
+# https://paxandpearl.vercel.app/
+
+User-agent: *
+Allow: /
+
+# Explicitly allow major search and AI crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Keep private/user-specific areas out of crawler requests
+Disallow: /admin
+Disallow: /profile
+Disallow: /saved
+Disallow: /confirmation
+
+# Sitemap
+Sitemap: https://paxandpearl.vercel.app/sitemap.xml
