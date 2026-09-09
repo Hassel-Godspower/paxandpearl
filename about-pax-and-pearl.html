@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About Pax & Pearl Body Works | Spa in Festac, Lagos</title>
+
+  <meta
+    name="description"
+    content="Learn about Pax & Pearl Body Works, a massage, spa and beauty-care destination in Festac Town, Lagos. Discover our services, location, approach and commitment to wellness."
+  >
+
+  <meta
+    name="keywords"
+    content="Pax and Pearl Body Works, Pax & Pearl, spa in Festac, massage spa Festac, spa Festac Lagos, massage Festac Lagos, wellness Festac"
+  >
+
+  <link
+    rel="canonical"
+    href="https://paxandpearl.vercel.app/about-pax-and-pearl"
+  >
+
+  <meta property="og:type" content="website">
+
+  <meta
+    property="og:title"
+    content="About Pax & Pearl Body Works | Spa in Festac, Lagos"
+  >
+
+  <meta
+    property="og:description"
+    content="Discover Pax & Pearl Body Works, a massage, spa and beauty-care destination in Festac Town, Lagos."
+  >
+
+  <meta
+    property="og:url"
+    content="https://paxandpearl.vercel.app/about-pax-and-pearl"
+  >
+
+  <meta
+    property="og:image"
+    content="https://paxandpearl.vercel.app/assets/images/logo.png"
+  >
+
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    :root {
+      --gold: #c9a45c;
+      --dark: #101010;
+      --dark2: #171717;
+      --text: #252525;
+      --muted: #686868;
+      --cream: #faf7f0;
+      --white: #ffffff;
+      --border: #e8e1d5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hero {
+      background:
+        linear-gradient(
+          rgba(0,0,0,.78),
+          rgba(0,0,0,.78)
+        ),
+        url("/assets/images/logo.png") center/contain no-repeat,
+        var(--dark);
+
+      color: white;
+      padding: 90px 20px 80px;
+      text-align: center;
+    }
+
+    .hero-inner,
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .8rem;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      margin: 15px 0;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      line-height: 1.15;
+      margin-top: 0;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 20px auto 0;
+      color: #ddd;
+      font-size: 1.08rem;
+    }
+
+    .section {
+      padding: 70px 20px;
+    }
+
+    .section.white {
+      background: white;
+    }
+
+    .section.dark {
+      background: var(--dark);
+      color: white;
+    }
+
+    .lead {
+      font-size: 1.12rem;
+      max-width: 850px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 35px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 28px;
+      border-radius: 16px;
+    }
+
+    .dark .card {
+      background: var(--dark2);
+      border-color: #333;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin-top: 35px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .fact {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fact strong {
+      display: block;
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      background: var(--gold);
+      color: #111;
+    }
+
+    .button.alt {
+      background: transparent;
+      border: 1px solid #777;
+      color: white;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    footer {
+      background: #080808;
+      color: #bbb;
+      padding: 35px 20px;
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 760px) {
+      .grid,
+      .facts {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+    }
+  </style>
+
+  <!-- SITE-WIDE ENTITY GRAPH -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "DaySpa",
+        "@id": "https://paxandpearl.vercel.app/#business",
+        "name": "Pax & Pearl Body Works",
+        "url": "https://paxandpearl.vercel.app/",
+        "image": "https://paxandpearl.vercel.app/assets/images/logo.png",
+        "description": "Pax & Pearl Body Works is a massage, spa and beauty-care destination in Festac Town, Lagos, Nigeria.",
+        "telephone": [
+          "+2347064302016",
+          "+2348122270495"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Suite 8, Okaka Plaza, 1st Avenue",
+          "addressLocality": "Festac Town",
+          "addressRegion": "Lagos",
+          "addressCountry": "NG"
+        },
+        "areaServed": [
+          {
+            "@type": "Place",
+            "name": "Festac Town"
+          },
+          {
+            "@type": "Place",
+            "name": "Amuwo-Odofin"
+          },
+          {
+            "@type": "City",
+            "name": "Lagos"
+          }
+        ],
+        "priceRange": "₦₦",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "09:00",
+            "closes": "19:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "15:00",
+            "closes": "19:00"
+          }
+        ],
+        "sameAs": [
+          "https://paxandpearl.vercel.app/"
+        ]
+      },
+
+      {
+        "@type": "WebSite",
+        "@id": "https://paxandpearl.vercel.app/#website",
+        "url": "https://paxandpearl.vercel.app/",
+        "name": "Pax & Pearl Body Works",
+        "publisher": {
+          "@id": "https://paxandpearl.vercel.app/#business"
+        }
+      },
+
+      {
+        "@type": "WebPage",
+        "@id": "https://paxandpearl.vercel.app/about-pax-and-pearl#webpage",
+        "url": "https://paxandpearl.vercel.app/about-pax-and-pearl",
+        "name": "About Pax & Pearl Body Works",
+        "description": "About Pax & Pearl Body Works, a massage, spa and beauty-care destination in Festac Town, Lagos.",
+        "isPartOf": {
+          "@id": "https://paxandpearl.vercel.app/#website"
+        },
+        "about": {
+          "@id": "https://paxandpearl.vercel.app/#business"
+        }
+      },
+
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://paxandpearl.vercel.app/about-pax-and-pearl#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://paxandpearl.vercel.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About Pax & Pearl",
+            "item": "https://paxandpearl.vercel.app/about-pax-and-pearl"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Pax & Pearl Body Works</div>
+
+    <h1>About Pax & Pearl Body Works</h1>
+
+    <p>
+      A massage, spa and beauty-care destination in
+      Festac Town, Lagos, created around relaxation,
+      restoration and personal wellness.
+    </p>
+  </div>
+</header>
+
+<main>
+
+<section class="section white">
+  <div class="container">
+
+    <div class="eyebrow">Who We Are</div>
+
+    <h2>A wellness destination in the heart of Festac Town</h2>
+
+    <p class="lead">
+      Pax & Pearl Body Works is a massage, spa and beauty-care
+      destination located in Festac Town, Lagos, Nigeria.
+      We provide treatments designed to help clients relax,
+      care for their bodies and enjoy a more intentional
+      wellness experience.
+    </p>
+
+    <p>
+      Our services span massage, facials, body treatments,
+      waxing, pedicure and spa experiences. This makes Pax &
+      Pearl a convenient destination for clients looking for
+      massage and personal-care treatments in Festac and the
+      wider Lagos Mainland area.
+    </p>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="eyebrow">What We Offer</div>
+
+    <h2>Massage, spa and beauty treatments</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Massage</h3>
+        <p>
+          Massage experiences including deep tissue and other
+          relaxation-focused treatments.
+        </p>
+        <a href="/massage-in-lagos">Explore massage</a>
+      </div>
+
+      <div class="card">
+        <h3>Facials</h3>
+        <p>
+          Facial treatments designed around cleansing,
+          refreshing and caring for the skin.
+        </p>
+        <a href="/facial-spa-festac">Explore facials</a>
+      </div>
+
+      <div class="card">
+        <h3>Body Treatments</h3>
+        <p>
+          Body-care experiences including body scrub and
+          other spa treatments.
+        </p>
+        <a href="/body-scrub-festac">Explore body treatments</a>
+      </div>
+
+      <div class="card">
+        <h3>Couples Massage</h3>
+        <p>
+          A shared massage experience for couples and partners
+          looking to relax together.
+        </p>
+        <a href="/couple-massage-festac">Explore couples massage</a>
+      </div>
+
+      <div class="card">
+        <h3>Waxing</h3>
+        <p>
+          Personal-care waxing services available as part of
+          the spa's beauty-treatment offering.
+        </p>
+        <a href="/waxing-festac">Explore waxing</a>
+      </div>
+
+      <div class="card">
+        <h3>Pedicure</h3>
+        <p>
+          Foot-care and pedicure treatments for clients seeking
+          a complete personal-care experience.
+        </p>
+        <a href="/pedicure-festac">Explore pedicure</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section white">
+  <div class="container">
+
+    <div class="eyebrow">Pax & Pearl Facts</div>
+
+    <h2>Business information</h2>
+
+    <div class="facts">
+
+      <div class="fact">
+        <strong>Business</strong>
+        Pax & Pearl Body Works
+      </div>
+
+      <div class="fact">
+        <strong>Category</strong>
+        Massage, Day Spa & Beauty Care
+      </div>
+
+      <div class="fact">
+        <strong>Location</strong>
+        Festac Town, Lagos
+      </div>
+
+      <div class="fact">
+        <strong>Address</strong>
+        Suite 8, Okaka Plaza, 1st Avenue
+      </div>
+
+      <div class="fact">
+        <strong>Primary Area</strong>
+        Festac Town
+      </div>
+
+      <div class="fact">
+        <strong>Additional Service Area</strong>
+        Amuwo-Odofin & Lagos Mainland
+      </div>
+
+      <div class="fact">
+        <strong>Phone</strong>
+        +234 706 430 2016
+      </div>
+
+      <div class="fact">
+        <strong>Alternative Phone</strong>
+        +234 812 227 0495
+      </div>
+
+      <div class="fact">
+        <strong>Google Rating Displayed</strong>
+        4.7
+      </div>
+
+      <div class="fact">
+        <strong>Google Reviews Displayed</strong>
+        349+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section dark">
+  <div class="container">
+
+    <div class="eyebrow">Find Us</div>
+
+    <h2>Pax & Pearl Body Works in Festac Town</h2>
+
+    <p>
+      Pax & Pearl Body Works is located at Suite 8, Okaka Plaza,
+      1st Avenue, Festac Town, Lagos.
+    </p>
+
+    <p>
+      The location serves clients in Festac Town and surrounding
+      parts of Amuwo-Odofin and Lagos Mainland.
+    </p>
+
+    <div class="buttons">
+      <a class="button" href="/booking">Book a Treatment</a>
+      <a class="button alt" href="/services">View Services</a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>
+    © Pax & Pearl Body Works · Festac Town, Lagos, Nigeria
+  </p>
+
+  <p>
+    Massage · Spa · Facials · Body Treatments · Waxing · Pedicure
+  </p>
+</footer>
+
+</body>
+  </html>
