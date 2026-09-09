@@ -188,7 +188,12 @@
     {
       "source": "/best-massage-in-festac",
       "destination": "/best-massage-in-festac.html"
-     }
+     },
+
+    {
+      "source": "/best-massage-near-me",
+      "destination": "/best-massage-near-me.html"
+    }
 
   ]
 }
