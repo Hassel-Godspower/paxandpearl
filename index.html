@@ -444,78 +444,109 @@
 
 
         <!-- =====================================================
-             HERO
-        ====================================================== -->
+     HERO
+====================================================== -->
 
-        <section
-            class="pp-hero"
-            aria-labelledby="hero-title"
+<section
+    class="pp-hero"
+    aria-labelledby="hero-title"
+>
+
+    <!-- Background Video -->
+    <div class="pp-hero-video" aria-hidden="true">
+
+        <video
+            class="pp-hero-video-element"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="assets/images/hero-poster.jpg"
         >
 
-            <div class="pp-hero-content">
+            <source
+                src="assets/videos/pax-pearl-hero.mp4"
+                type="video/mp4"
+            >
 
-                <span class="pp-eyebrow">
+        </video>
 
-                    <span class="material-icons-round">
-                        spa
-                    </span>
+    </div>
 
-                    Massage & Spa in Festac Town, Lagos
 
+    <!-- Dark / Brand Overlay -->
+    <div
+        class="pp-hero-overlay"
+        aria-hidden="true"
+    ></div>
+
+
+    <!-- Hero Content -->
+    <div class="pp-hero-content">
+
+        <span class="pp-eyebrow">
+
+            <span class="material-icons-round">
+                spa
+            </span>
+
+            Massage & Spa in Festac Town, Lagos
+
+        </span>
+
+
+        <h1 id="hero-title">
+
+            Your Body Deserves
+            <em>to Feel This Good.</em>
+
+        </h1>
+
+
+        <p>
+
+            Massage, spa and beauty treatments designed to help you
+            relax, reset and take better care of yourself —
+            right here in Festac Town, Lagos.
+
+        </p>
+
+
+        <div class="pp-hero-actions">
+
+            <a
+                href="services.html"
+                class="pp-hero-btn primary"
+            >
+
+                <span class="material-icons-round">
+                    calendar_month
                 </span>
 
+                Book a Treatment
 
-                <h1 id="hero-title">
-
-                    Your Body Deserves
-                    <em>to Feel This Good.</em>
-
-                </h1>
+            </a>
 
 
-                <p>
+            <a
+                href="#explore-services"
+                class="pp-hero-btn secondary"
+            >
 
-                    Massage, spa and beauty treatments designed to help you
-                    relax, reset and take better care of yourself —
-                    right here in Festac Town, Lagos.
+                Explore Services
 
-                </p>
+                <span class="material-icons-round">
+                    arrow_downward
+                </span>
 
+            </a>
 
-                <div class="pp-hero-actions">
+        </div>
 
-                    <a
-                        href="services.html"
-                        class="pp-hero-btn primary"
-                    >
+    </div>
 
-                        <span class="material-icons-round">
-                            calendar_month
-                        </span>
-
-                        Book a Treatment
-
-                    </a>
-
-
-                    <a
-                        href="#explore-services"
-                        class="pp-hero-btn secondary"
-                    >
-
-                        Explore Services
-
-                        <span class="material-icons-round">
-                            arrow_downward
-                        </span>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
+</section>
 
 
         <!-- =====================================================
