@@ -1788,15 +1788,14 @@ body {
     background:
         linear-gradient(
             90deg,
-            rgba(5, 20, 14, 0.88) 0%,
-            rgba(5, 20, 14, 0.72) 38%,
-            rgba(5, 20, 14, 0.40) 68%,
-            rgba(5, 20, 14, 0.48) 100%
+            rgba(5, 20, 14, 0.50) 0%,
+            rgba(5, 20, 14, 0.40) 38%,
+            rgba(5, 20, 14, 0.25) 68%,
+            rgba(5, 20, 14, 0.30) 100%
         );
 
     pointer-events: none;
 }
-
 
 /* -----------------------------------------------------
    HERO CONTENT
@@ -1831,18 +1830,16 @@ body {
         background:
             linear-gradient(
                 180deg,
-                rgba(5, 20, 14, 0.70) 0%,
-                rgba(5, 20, 14, 0.78) 45%,
-                rgba(5, 20, 14, 0.90) 100%
+                rgba(5, 20, 14, 0.40) 0%,
+                rgba(5, 20, 14, 0.48) 45%,
+                rgba(5, 20, 14, 0.60) 100%
             );
     }
 
     .pp-hero-content {
         padding: 100px 24px 80px;
     }
-
 }
-
 
 /* -----------------------------------------------------
    REDUCED MOTION ACCESSIBILITY
