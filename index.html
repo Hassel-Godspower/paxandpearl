@@ -224,7 +224,7 @@
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.7",
-            "reviewCount": "349"
+            "reviewCount": "325"
         },
         "openingHoursSpecification": [
             {
@@ -319,383 +319,6 @@
         ]
     }
     </script>
-
-
-<style>
-/* =========================================================
-   PAX & PEARL HOMEPAGE — CONVERSION / WELLNESS LAYER
-   Additive styles: existing classes and functionality remain intact.
-========================================================= */
-
-.pp-home-intro {
-    max-width: 760px;
-}
-
-.pp-home-intro .eyebrow,
-.pp-section-heading .eyebrow,
-.pp-section-heading .pp-eyebrow {
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    font-size: .76rem;
-    font-weight: 600;
-}
-
-.pp-need-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-top: 28px;
-}
-
-.pp-need-card {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 24px 20px;
-    min-height: 150px;
-    border-radius: 20px;
-    text-decoration: none;
-    border: 1px solid rgba(156, 28, 28, .12);
-    background: rgba(255,255,255,.78);
-    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-}
-
-.pp-need-card:hover,
-.pp-need-card:focus-visible {
-    transform: translateY(-3px);
-    border-color: rgba(156, 28, 28, .32);
-    box-shadow: 0 12px 30px rgba(0,0,0,.08);
-}
-
-.pp-need-icon {
-    width: 44px;
-    height: 44px;
-    display: grid;
-    place-items: center;
-    border-radius: 14px;
-    background: rgba(156, 28, 28, .08);
-}
-
-.pp-need-card h3 {
-    margin: 0;
-    font-size: 1.05rem;
-}
-
-.pp-need-card p {
-    margin: 0;
-    line-height: 1.55;
-    opacity: .78;
-    font-size: .9rem;
-}
-
-.pp-need-arrow {
-    margin-top: auto;
-    font-size: .85rem;
-    font-weight: 600;
-}
-
-.pp-signature {
-    display: grid;
-    grid-template-columns: 1.05fr .95fr;
-    gap: 0;
-    overflow: hidden;
-    border-radius: 28px;
-    background: #171313;
-    color: #fff;
-    box-shadow: 0 18px 50px rgba(0,0,0,.12);
-}
-
-.pp-signature-media {
-    min-height: 420px;
-    background:
-        linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.42)),
-        url("../assets/images/massage.jpg") center/cover no-repeat;
-}
-
-.pp-signature-content {
-    padding: clamp(28px, 5vw, 56px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.pp-signature-kicker {
-    text-transform: uppercase;
-    letter-spacing: .14em;
-    font-size: .72rem;
-    font-weight: 600;
-    opacity: .72;
-}
-
-.pp-signature-content h2 {
-    margin: 10px 0 14px;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-}
-
-.pp-signature-content p {
-    max-width: 580px;
-    line-height: 1.75;
-    opacity: .82;
-}
-
-.pp-signature-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 12px 0 24px;
-}
-
-.pp-signature-meta span {
-    border: 1px solid rgba(255,255,255,.18);
-    border-radius: 999px;
-    padding: 8px 12px;
-    font-size: .82rem;
-}
-
-.pp-choice {
-    border-radius: 26px;
-    padding: clamp(24px, 4vw, 42px);
-    background: linear-gradient(135deg, rgba(156,28,28,.07), rgba(156,28,28,.015));
-    border: 1px solid rgba(156,28,28,.12);
-}
-
-.pp-choice-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin-top: 24px;
-}
-
-.pp-choice-button {
-    appearance: none;
-    border: 1px solid rgba(156,28,28,.14);
-    background: #fff;
-    border-radius: 18px;
-    padding: 18px;
-    text-align: left;
-    cursor: pointer;
-    font: inherit;
-    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-}
-
-.pp-choice-button:hover,
-.pp-choice-button:focus-visible,
-.pp-choice-button.is-selected {
-    transform: translateY(-2px);
-    border-color: rgba(156,28,28,.42);
-    box-shadow: 0 10px 28px rgba(0,0,0,.07);
-}
-
-.pp-choice-button strong {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.pp-choice-button span {
-    display: block;
-    font-size: .84rem;
-    line-height: 1.5;
-    opacity: .72;
-}
-
-.pp-recommendation {
-    display: none;
-    margin-top: 22px;
-    padding: 22px;
-    border-radius: 18px;
-    background: #fff;
-    border: 1px solid rgba(156,28,28,.14);
-}
-
-.pp-recommendation.is-visible {
-    display: block;
-}
-
-.pp-recommendation h3 {
-    margin: 4px 0 6px;
-}
-
-.pp-recommendation p {
-    margin: 0 0 14px;
-    line-height: 1.6;
-}
-
-.pp-recommendation-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.pp-proof-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 24px;
-    align-items: stretch;
-}
-
-.pp-proof-score {
-    border-radius: 24px;
-    padding: 32px;
-    background: #171313;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.pp-proof-score strong {
-    font-size: clamp(3rem, 7vw, 5rem);
-    line-height: 1;
-}
-
-.pp-proof-score .stars {
-    letter-spacing: .12em;
-    margin: 12px 0 6px;
-}
-
-.pp-proof-score p {
-    opacity: .76;
-    line-height: 1.6;
-    max-width: 420px;
-}
-
-.pp-proof-quote-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-}
-
-.pp-proof-quote {
-    padding: 22px;
-    border-radius: 20px;
-    background: #fff;
-    border: 1px solid rgba(0,0,0,.08);
-}
-
-.pp-proof-quote small {
-    display: block;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    font-weight: 600;
-    opacity: .62;
-}
-
-.pp-proof-quote p {
-    margin: 0;
-    line-height: 1.65;
-}
-
-.pp-therapist-upgrade {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 28px;
-    align-items: center;
-    max-width: 900px;
-    margin-top: 26px;
-}
-
-.pp-therapist-upgrade img {
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border-radius: 24px;
-}
-
-.pp-therapist-copy h3 {
-    margin: 4px 0 6px;
-}
-
-.pp-therapist-copy p {
-    line-height: 1.7;
-}
-
-.pp-trust-promises {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-top: 26px;
-}
-
-.pp-trust-promise {
-    padding: 18px;
-    border-radius: 18px;
-    background: rgba(255,255,255,.7);
-    border: 1px solid rgba(0,0,0,.07);
-}
-
-.pp-trust-promise strong {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.pp-trust-promise span {
-    font-size: .86rem;
-    line-height: 1.5;
-    opacity: .72;
-}
-
-.pp-review-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    margin-top: 18px;
-    font-weight: 600;
-}
-
-.pp-final-cta-enhanced {
-    text-align: center;
-}
-
-.pp-final-cta-enhanced .cta-actions {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 22px;
-}
-
-@media (max-width: 900px) {
-    .pp-need-grid,
-    .pp-trust-promises {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .pp-signature,
-    .pp-proof-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .pp-signature-media {
-        min-height: 300px;
-    }
-
-    .pp-choice-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 620px) {
-    .pp-need-grid,
-    .pp-choice-grid,
-    .pp-proof-quote-grid,
-    .pp-trust-promises {
-        grid-template-columns: 1fr;
-    }
-
-    .pp-therapist-upgrade {
-        grid-template-columns: 1fr;
-    }
-
-    .pp-therapist-upgrade img {
-        max-width: 260px;
-    }
-
-    .pp-signature-media {
-        min-height: 240px;
-    }
-}
-</style>
 
 </head>
 
@@ -817,1096 +440,1760 @@
     </section>
 
 
-    
-<main>
-
-    <!-- =====================================================
-         HERO — POSITIONING
-    ====================================================== -->
-    <section class="pp-hero" aria-labelledby="hero-title">
-        <div class="pp-hero-content">
-
-            <span class="pp-eyebrow">
-                <span class="material-icons-round">spa</span>
-                Massage & Body Wellness in Festac Town, Lagos
-            </span>
-
-            <h1 id="hero-title">
-                Your Body Deserves
-                <em>to Feel This Good.</em>
-            </h1>
-
-            <p>
-                Personalized massage, spa and beauty experiences designed
-                to help you relax, recover and feel better in your body —
-                right here in Festac Town.
-            </p>
-
-            <div class="pp-hero-actions">
-                <a href="services.html" class="pp-hero-btn primary">
-                    <span class="material-icons-round">calendar_month</span>
-                    Book a Treatment
-                </a>
-
-                <a href="#find-your-treatment" class="pp-hero-btn secondary">
-                    Find My Treatment
-                    <span class="material-icons-round">arrow_downward</span>
-                </a>
-            </div>
-
-        </div>
-    </section>
+    <main>
 
 
-    <!-- =====================================================
-         TRUST STRIP — KEEPING EXISTING SOCIAL PROOF
-    ====================================================== -->
-    <div class="pp-trust-strip" aria-label="Pax & Pearl trust indicators">
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
 
-        <div class="pp-trust-item">
-            <strong>★ 4.7</strong>
-            <span>Google Rating</span>
-        </div>
+        <section
+            class="pp-hero"
+            aria-labelledby="hero-title"
+        >
 
-        <div class="pp-trust-item">
-            <strong>349+</strong>
-            <span>Google Reviews</span>
-        </div>
+            <div class="pp-hero-content">
 
-        <div class="pp-trust-item">
-            <strong>FESTAC</strong>
-            <span>Lagos, Nigeria</span>
-        </div>
+                <span class="pp-eyebrow">
 
-    </div>
-
-
-    <!-- =====================================================
-         SERVICE CATEGORIES — EXISTING WORKING LINKS
-    ====================================================== -->
-    <section id="explore-services">
-        <div class="page-wrap">
-
-            <div class="categories">
-
-                <a href="services.html?category=massage" class="category-btn">
-                    <span class="material-icons-round">self_improvement</span>
-                    <small>Massage</small>
-                </a>
-
-                <a href="services.html?category=facial" class="category-btn">
-                    <span class="material-icons-round">face</span>
-                    <small>Facial</small>
-                </a>
-
-                <a href="services.html?category=waxing" class="category-btn">
-                    <span class="material-icons-round">content_cut</span>
-                    <small>Waxing</small>
-                </a>
-
-                <a href="services.html?category=pedicure" class="category-btn">
-                    <span class="material-icons-round">spa</span>
-                    <small>Pedicure</small>
-                </a>
-
-            </div>
-
-            <div class="see-more-wrapper">
-                <a href="services.html" class="see-more-btn">
-                    See all services
-                    <span class="material-icons-round">chevron_right</span>
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =====================================================
-         NEED-BASED DISCOVERY
-    ====================================================== -->
-    <section class="pp-section" id="find-your-treatment">
-        <div class="page-wrap">
-
-            <div class="pp-home-intro">
-                <div class="pp-section-heading">
-                    <span class="eyebrow">Start with how you feel</span>
-
-                    <h2>What Does Your Body Need Today?</h2>
-
-                    <p>
-                        You don't have to know the name of the treatment.
-                        Tell us what you need and we'll point you toward the
-                        experience that makes the most sense.
-                    </p>
-                </div>
-            </div>
-
-            <div class="pp-need-grid">
-
-                <a href="services.html?category=massage" class="pp-need-card">
-                    <span class="pp-need-icon">
-                        <span class="material-icons-round">spa</span>
+                    <span class="material-icons-round">
+                        spa
                     </span>
-                    <h3>Relax</h3>
-                    <p>I'm stressed, mentally tired or simply need to slow down.</p>
-                    <span class="pp-need-arrow">Explore relaxation →</span>
-                </a>
 
-                <a href="deep-tissue-massage-festac.html" class="pp-need-card">
-                    <span class="pp-need-icon">
-                        <span class="material-icons-round">fitness_center</span>
-                    </span>
-                    <h3>Recover</h3>
-                    <p>My muscles feel tight, sore or overworked.</p>
-                    <span class="pp-need-arrow">Explore deep tissue →</span>
-                </a>
+                    Massage & Spa in Festac Town, Lagos
 
-                <a href="services.html?category=massage" class="pp-need-card">
-                    <span class="pp-need-icon">
-                        <span class="material-icons-round">self_improvement</span>
-                    </span>
-                    <h3>Reset</h3>
-                    <p>I need dedicated time to disconnect and feel refreshed.</p>
-                    <span class="pp-need-arrow">Find a massage →</span>
-                </a>
-
-                <a href="spa-packages-festac.html" class="pp-need-card">
-                    <span class="pp-need-icon">
-                        <span class="material-icons-round">favorite</span>
-                    </span>
-                    <h3>Pamper</h3>
-                    <p>I want a fuller self-care experience, not just one treatment.</p>
-                    <span class="pp-need-arrow">Explore packages →</span>
-                </a>
-
-            </div>
-
-        </div>
-    </section>
+                </span>
 
 
-    <!-- =====================================================
-         SIGNATURE EXPERIENCE — PRODUCTIZATION WITHOUT BREAKING
-         EXISTING DEEP-TISSUE OFFER
-    ====================================================== -->
-    <section class="pp-section red-soft">
-        <div class="page-wrap">
+                <h1 id="hero-title">
 
-            <div class="pp-section-heading">
-                <span class="eyebrow">Featured body experience</span>
+                    Your Body Deserves
+                    <em>to Feel This Good.</em>
 
-                <h2>A More Personal Way to Reset</h2>
+                </h1>
+
 
                 <p>
-                    Our massage experience starts with what your body needs,
-                    not just a treatment name. For clients who prefer firmer,
-                    focused pressure, Deep Tissue Massage remains one of our
-                    featured experiences.
-                </p>
-            </div>
 
-            <div class="pp-signature">
+                    Massage, spa and beauty treatments designed to help you
+                    relax, reset and take better care of yourself —
+                    right here in Festac Town, Lagos.
 
-                <div class="pp-signature-media"
-                     role="img"
-                     aria-label="Massage treatment at Pax & Pearl Body Works">
-                </div>
-
-                <div class="pp-signature-content">
-
-                    <span class="pp-signature-kicker">
-                        Featured treatment
-                    </span>
-
-                    <h2>Deep Tissue Massage</h2>
-
-                    <p>
-                        A focused massage experience for clients who prefer
-                        deeper, firmer pressure. Your session gives you
-                        dedicated time to release tension, slow down and reset.
-                    </p>
-
-                    <div class="pp-signature-meta">
-                        <span>60 minutes</span>
-                        <span>₦35,000</span>
-                        <span>Festac Town</span>
-                    </div>
-
-                    <div class="pp-hero-actions">
-                        <a href="deep-tissue-massage-festac.html"
-                           class="pp-hero-btn primary">
-                            Explore Deep Tissue
-                            <span class="material-icons-round">arrow_forward</span>
-                        </a>
-
-                        <a href="services.html"
-                           class="pp-hero-btn secondary">
-                            View all treatments
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =====================================================
-         FIND YOUR TREATMENT — SIMPLE INTERACTIVE QUALIFIER
-    ====================================================== -->
-    <section class="pp-section" aria-labelledby="choice-title">
-        <div class="page-wrap">
-
-            <div class="pp-choice">
-
-                <div class="pp-section-heading">
-                    <span class="eyebrow">30-second treatment finder</span>
-
-                    <h2 id="choice-title">Not Sure What to Book?</h2>
-
-                    <p>
-                        Choose what best describes you right now. This is a
-                        starting point, not a diagnosis — your therapist can
-                        help personalize the experience when you arrive.
-                    </p>
-                </div>
-
-                <div class="pp-choice-grid" role="group" aria-label="Choose how you feel">
-
-                    <button class="pp-choice-button"
-                            type="button"
-                            data-treatment-choice="relax">
-                        <strong>😌 I need to relax</strong>
-                        <span>Stress, fatigue or a need to slow down.</span>
-                    </button>
-
-                    <button class="pp-choice-button"
-                            type="button"
-                            data-treatment-choice="recover">
-                        <strong>💪 My muscles are tight</strong>
-                        <span>Stiffness, tension or a physically demanding week.</span>
-                    </button>
-
-                    <button class="pp-choice-button"
-                            type="button"
-                            data-treatment-choice="reset">
-                        <strong>🧘 I need a reset</strong>
-                        <span>I want focused time away from everyday pressure.</span>
-                    </button>
-
-                    <button class="pp-choice-button"
-                            type="button"
-                            data-treatment-choice="pamper">
-                        <strong>✨ I want to be pampered</strong>
-                        <span>I'm looking for a fuller self-care experience.</span>
-                    </button>
-
-                    <button class="pp-choice-button"
-                            type="button"
-                            data-treatment-choice="skin">
-                        <strong>🌿 My skin needs attention</strong>
-                        <span>I want a facial or body-care experience.</span>
-                    </button>
-
-                    <button class="pp-choice-button"
-                            type="button"
-                            data-treatment-choice="together">
-                        <strong>❤️ It's for two</strong>
-                        <span>I'm looking for a couples or shared experience.</span>
-                    </button>
-
-                </div>
-
-                <div class="pp-recommendation" id="treatmentRecommendation" aria-live="polite">
-                    <span class="eyebrow">Your starting point</span>
-                    <h3 id="recommendationTitle"></h3>
-                    <p id="recommendationText"></p>
-
-                    <div class="pp-recommendation-actions">
-                        <a href="services.html"
-                           class="btn btn-primary"
-                           id="recommendationPrimary">
-                            View & Book
-                        </a>
-
-                        <a href="booking.html"
-                           class="btn btn-outline">
-                            Go to Booking
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =====================================================
-         POPULAR TREATMENTS — EXISTING PRODUCTS / PRICES
-    ====================================================== -->
-    <section class="section">
-        <div class="page-wrap">
-
-            <div class="section-header">
-                <h3>Popular Treatments</h3>
-                <a href="services.html">View all</a>
-            </div>
-
-            <div class="service-grid">
-
-                <div class="service-card1">
-                    <img src="assets/images/massage.jpg"
-                         alt="Deep Tissue Massage in Festac Lagos">
-
-                    <div class="service-info1">
-                        <h4>Deep Tissue Massage</h4>
-                        <p>60 mins · ₦35,000</p>
-                        <a href="deep-tissue-massage-festac.html"
-                           class="btn btn-primary btn-sm">
-                            Explore
-                        </a>
-                    </div>
-                </div>
-
-                <div class="service-card1">
-                    <img src="assets/images/facial.jpg"
-                         alt="Deep Cleansing Facial in Festac Lagos">
-
-                    <div class="service-info1">
-                        <h4>Deep Cleansing Facial</h4>
-                        <p>40 mins · ₦20,000</p>
-                        <a href="facial-spa-festac.html"
-                           class="btn btn-primary btn-sm">
-                            Explore
-                        </a>
-                    </div>
-                </div>
-
-                <div class="service-card1">
-                    <img src="assets/images/waxing.jpg"
-                         alt="Full Leg Wax in Festac Lagos">
-
-                    <div class="service-info1">
-                        <h4>Full Leg Wax</h4>
-                        <p>40 mins · ₦30,000</p>
-                        <a href="waxing-festac.html"
-                           class="btn btn-primary btn-sm">
-                            Explore
-                        </a>
-                    </div>
-                </div>
-
-                <div class="service-card1">
-                    <img src="assets/images/pedicure.jpg"
-                         alt="Spa Pedicure in Festac Lagos">
-
-                    <div class="service-info1">
-                        <h4>Spa Pedicure</h4>
-                        <p>40 mins · ₦10,000</p>
-                        <a href="pedicure-festac.html"
-                           class="btn btn-primary btn-sm">
-                            Explore
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =====================================================
-         WHY PAX & PEARL — EXPERIENCE STANDARD
-    ====================================================== -->
-    <section class="pp-section red-soft">
-        <div class="page-wrap">
-
-            <div class="pp-section-heading">
-                <span class="eyebrow">The Pax & Pearl experience</span>
-
-                <h2>More Than a Massage</h2>
-
-                <p>
-                    Your time here should feel intentional — from the moment
-                    you arrive to the moment you leave. We focus on a calm,
-                    professional and personal experience.
-                </p>
-            </div>
-
-            <div class="pp-trust-promises">
-
-                <div class="pp-trust-promise">
-                    <strong>Personalized</strong>
-                    <span>Choose an experience around how you feel and what you need.</span>
-                </div>
-
-                <div class="pp-trust-promise">
-                    <strong>Professional</strong>
-                    <span>A considered treatment environment with attention to comfort.</span>
-                </div>
-
-                <div class="pp-trust-promise">
-                    <strong>Calm</strong>
-                    <span>Space to pause, switch off and take care of yourself.</span>
-                </div>
-
-                <div class="pp-trust-promise">
-                    <strong>Local</strong>
-                    <span>A convenient body-wellness destination in Festac Town.</span>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =====================================================
-         PHOTO / SOCIAL PROOF SLIDER — KEEP EXISTING
-    ====================================================== -->
-    <section class="post-slider">
-        <div class="page-wrap">
-
-            <div class="post-slider-viewport">
-                <div class="post-slider-track" id="postSlider">
-
-                    <div class="post-slide">
-                        <img src="assets/images/post1.jpg"
-                             alt="Pax & Pearl spa experience in Festac Lagos">
-                    </div>
-
-                    <div class="post-slide">
-                        <img src="assets/images/post2.jpg"
-                             alt="Massage therapy at Pax & Pearl Body Works">
-                    </div>
-
-                    <div class="post-slide">
-                        <img src="assets/images/post3.jpg"
-                             alt="Facial treatment at Pax & Pearl Body Works">
-                    </div>
-
-                    <div class="post-slide">
-                        <img src="assets/images/post4.jpg"
-                             alt="Waxing service at Pax & Pearl Body Works">
-                    </div>
-
-                </div>
-            </div>
-
-            <button class="slider-btn prev"
-                    id="prevSlide"
-                    aria-label="Previous slide">
-                <span class="material-icons-round">chevron_left</span>
-            </button>
-
-            <button class="slider-btn next"
-                    id="nextSlide"
-                    aria-label="Next slide">
-                <span class="material-icons-round">chevron_right</span>
-            </button>
-
-        </div>
-    </section>
-
-
-    <!-- =====================================================
-         LOCAL SEO / DISCOVERY
-    ====================================================== -->
-    <section class="pp-section soft">
-        <div class="page-wrap">
-
-            <div class="pp-location-copy">
-
-                <div class="pp-location-copy-text">
-
-                    <span class="eyebrow">Your local wellness destination</span>
-
-                    <h2>Massage & Spa in Festac Town, Lagos</h2>
-
-                    <p>
-                        Pax & Pearl Body Works is a local massage and body
-                        wellness destination in Festac Town, Lagos. We offer
-                        massage, facial, body, waxing, pedicure and wellness
-                        experiences for clients who want to relax, reset and
-                        take better care of themselves.
-                    </p>
-
-                    <p>
-                        Searching for a <strong>massage in Festac</strong>,
-                        <strong>spa in Festac</strong>,
-                        <strong>deep tissue massage</strong>,
-                        facial treatment, body scrub, waxing, pedicure,
-                        couples massage or spa package in Lagos? Start with
-                        the experience that fits what you need.
-                    </p>
-
-                    <a href="spa-in-lagos.html"
-                       class="pp-hero-btn location-cta">
-                        Explore Spa in Lagos
-                        <span class="material-icons-round">arrow_forward</span>
-                    </a>
-
-                </div>
-
-                <div class="pp-location-points">
-
-                    <div class="pp-location-point">
-                        <strong>Massage</strong>
-                        <span>Relaxation and focused massage experiences.</span>
-                    </div>
-
-                    <div class="pp-location-point">
-                        <strong>Facials</strong>
-                        <span>Treatments designed around your skin-care needs.</span>
-                    </div>
-
-                    <div class="pp-location-point">
-                        <strong>Body Treatments</strong>
-                        <span>Body scrubs and rejuvenating experiences.</span>
-                    </div>
-
-                    <div class="pp-location-point">
-                        <strong>Beauty Care</strong>
-                        <span>Waxing, pedicure and other beauty treatments.</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =====================================================
-         THERAPIST TRUST
-    ====================================================== -->
-    <section class="section soft-bg">
-        <div class="page-wrap">
-
-            <div class="section-header">
-                <h3>Meet Our Specialists</h3>
-            </div>
-
-            <div class="pp-therapist-upgrade">
-
-                <img src="assets/images/therapist2.jpg"
-                     alt="Gift H., Lead Spa Therapist at Pax & Pearl Body Works">
-
-                <div class="pp-therapist-copy">
-
-                    <span class="eyebrow">Your treatment, handled with care</span>
-
-                    <h3>Gift H.</h3>
-
-                    <strong>Lead Spa Therapist</strong>
-
-                    <p>
-                        Your therapist is part of the experience. Before
-                        treatment, share what feels tense, what pressure you
-                        prefer and what you want from the session so the
-                        experience can be better tailored to you.
-                    </p>
-
-                    <a href="services.html"
-                       class="btn btn-primary">
-                        Explore Treatments
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =====================================================
-         PACKAGES — KEEP EXISTING
-    ====================================================== -->
-    <section class="pp-section">
-        <div class="page-wrap">
-
-            <div class="pp-section-heading">
-                <span class="eyebrow">Wellness combinations</span>
-
-                <h2>Make More Time for Yourself</h2>
-
-                <p>
-                    Explore spa packages designed to bring multiple elements
-                    of your self-care experience together.
-                </p>
-            </div>
-
-            <div class="pp-packages">
-
-                <div class="pp-package-card">
-                    <h3>Reset</h3>
-                    <p>
-                        Combine a massage experience with time to slow down,
-                        relax and recharge.
-                    </p>
-                    <a href="spa-packages-festac.html" class="pp-package-link">
-                        Explore Packages
-                        <span class="material-icons-round">arrow_forward</span>
-                    </a>
-                </div>
-
-                <div class="pp-package-card featured">
-                    <span class="pp-package-badge">Popular</span>
-
-                    <h3>Glow</h3>
-                    <p>
-                        Explore combinations of body, facial and beauty
-                        treatments for a fuller self-care experience.
-                    </p>
-                    <a href="spa-packages-festac.html" class="pp-package-link">
-                        Explore Packages
-                        <span class="material-icons-round">arrow_forward</span>
-                    </a>
-                </div>
-
-                <div class="pp-package-card">
-                    <h3>Together</h3>
-                    <p>
-                        Discover couples and shared spa experiences
-                        designed for two.
-                    </p>
-                    <a href="couple-massage-festac.html" class="pp-package-link">
-                        Explore Couples Massage
-                        <span class="material-icons-round">arrow_forward</span>
-                    </a>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =====================================================
-         REVIEWS — STRONGER PROOF HIERARCHY
-    ====================================================== -->
-    <section class="section soft-bg">
-        <div class="page-wrap">
-
-            <div class="pp-proof-grid">
-
-                <div class="pp-proof-score">
-
-                    <span class="eyebrow">Trusted by our clients</span>
-
-                    <strong>4.7</strong>
-
-                    <div class="stars">★★★★★</div>
-
-                    <p>
-                        Based on 349+ Google reviews from clients who have
-                        experienced Pax & Pearl Body Works.
-                    </p>
-
-                    <button class="btn btn-outline"
-                            id="openReviews"
-                            type="button">
-                        Read Google Reviews
-                    </button>
-
-                </div>
-
-                <div class="pp-proof-quote-grid">
-
-                    <div class="pp-proof-quote">
-                        <small>Atmosphere</small>
-                        <p>
-                            “Serene atmosphere. Professional service.
-                            Felt like a newborn baby afterwards.”
-                        </p>
-                    </div>
-
-                    <div class="pp-proof-quote">
-                        <small>Service</small>
-                        <p>
-                            “Very kind people, gentle and calm. They will
-                            pamper you and you will not want to leave.”
-                        </p>
-                    </div>
-
-                    <div class="pp-proof-quote">
-                        <small>Massage</small>
-                        <p>
-                            “The deep tissue massage was amazing... after
-                            the massage now I sleep like a baby.”
-                        </p>
-                    </div>
-
-                    <div class="pp-proof-quote">
-                        <small>Relief</small>
-                        <p>
-                            “It was a beautiful experience. I felt so much
-                            relief after the deep tissue body massage.”
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <a class="pp-review-link"
-               href="https://www.google.com/maps?q=Pax+%26+Pearl+Body+Works+(Spa+in+Lagos)"
-               target="_blank"
-               rel="noopener">
-                See more client reviews on Google
-                <span class="material-icons-round">open_in_new</span>
-            </a>
-
-            <!-- Existing Google reviews modal -->
-            <div class="reviews-modal" id="reviewsModal">
-
-                <div class="reviews-backdrop" data-close-reviews></div>
-
-                <div class="reviews-modal-box">
-
-                    <button class="modal-close"
-                            data-close-reviews
-                            aria-label="Close reviews">
-                        ✕
-                    </button>
-
-                    <iframe
-                        src="https://www.google.com/maps?q=Pax+%26+Pearl+Body+Works+(Spa+in+Lagos)&output=embed"
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Pax & Pearl Google Reviews">
-                    </iframe>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =====================================================
-         WELLNESS GUIDES — AUTHORITY / SEO ENGINE
-    ====================================================== -->
-    <section class="pp-section">
-        <div class="page-wrap">
-
-            <div class="pp-section-heading">
-
-                <span class="eyebrow">Wellness guides</span>
-
-                <h2>Your Wellness Questions, Answered</h2>
-
-                <p>
-                    Learn more about massage, spa treatments and self-care
-                    before your appointment.
                 </p>
 
-            </div>
 
-            <div class="pp-guides-grid">
+                <div class="pp-hero-actions">
 
-                <a href="what-is-deep-tissue-massage.html" class="pp-guide-card">
-                    <span class="material-icons-round">self_improvement</span>
-                    <h3>What Is Deep Tissue Massage?</h3>
-                    <p>Understand what a deep tissue massage involves and what to expect.</p>
-                </a>
+                    <a
+                        href="services.html"
+                        class="pp-hero-btn primary"
+                    >
 
-                <a href="how-often-should-you-get-a-massage.html" class="pp-guide-card">
-                    <span class="material-icons-round">event_repeat</span>
-                    <h3>How Often Should You Get a Massage?</h3>
-                    <p>Explore how massage can fit into a regular self-care routine.</p>
-                </a>
+                        <span class="material-icons-round">
+                            calendar_month
+                        </span>
 
-                <a href="what-to-do-before-a-massage.html" class="pp-guide-card">
-                    <span class="material-icons-round">tips_and_updates</span>
-                    <h3>What Should You Do Before a Massage?</h3>
-                    <p>Simple things you can do before your appointment for a smoother experience.</p>
-                </a>
+                        Book a Treatment
 
-                <a href="deep-tissue-vs-relaxation-massage.html" class="pp-guide-card">
-                    <span class="material-icons-round">compare</span>
-                    <h3>Deep Tissue vs Relaxation Massage</h3>
-                    <p>Understand the difference between two popular massage experiences.</p>
-                </a>
-
-                <a href="how-much-does-massage-cost-in-lagos.html" class="pp-guide-card">
-                    <span class="material-icons-round">payments</span>
-                    <h3>How Much Does Massage Cost in Lagos?</h3>
-                    <p>Understand pricing factors when choosing a massage experience.</p>
-                </a>
-
-                <a href="massage-in-festac.html" class="pp-guide-card">
-                    <span class="material-icons-round">location_on</span>
-                    <h3>Where Can I Get a Massage in Festac?</h3>
-                    <p>What to consider when choosing a massage and spa experience in Festac.</p>
-                </a>
-
-            </div>
-
-        </div>
-    </section>
+                    </a>
 
 
-    <!-- =====================================================
-         FAQ — EXISTING SEO SUPPORT
-    ====================================================== -->
-    <section class="pp-section soft">
-        <div class="page-wrap">
+                    <a
+                        href="#explore-services"
+                        class="pp-hero-btn secondary"
+                    >
 
-            <div class="pp-section-heading">
-                <span class="eyebrow">Frequently asked questions</span>
+                        Explore Services
 
-                <h2>Frequently Asked Questions About Pax & Pearl</h2>
-            </div>
+                        <span class="material-icons-round">
+                            arrow_downward
+                        </span>
 
-            <div class="pp-faq">
+                    </a>
 
-                <details>
-                    <summary>Where is Pax & Pearl Body Works located?</summary>
-                    <div class="pp-faq-answer">
-                        Pax & Pearl Body Works is located at Suite 8,
-                        Okaka Plaza, 1st Avenue, Festac Town, Lagos.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>Does Pax & Pearl offer massage in Festac?</summary>
-                    <div class="pp-faq-answer">
-                        Yes. Pax & Pearl Body Works offers massage experiences
-                        in Festac Town, including deep tissue massage and other
-                        massage treatments.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>Does Pax & Pearl offer deep tissue massage?</summary>
-                    <div class="pp-faq-answer">
-                        Yes. Deep Tissue Massage is one of the featured
-                        treatments available at Pax & Pearl Body Works.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>Does Pax & Pearl offer couples massage?</summary>
-                    <div class="pp-faq-answer">
-                        Yes. Couples massage and shared spa experiences are
-                        available. Explore the dedicated couples massage page
-                        for more information.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>Does Pax & Pearl offer facials?</summary>
-                    <div class="pp-faq-answer">
-                        Yes. Facial treatments, including Deep Cleansing
-                        Facial, are available at Pax & Pearl Body Works.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>Does Pax & Pearl offer waxing?</summary>
-                    <div class="pp-faq-answer">
-                        Yes. Waxing treatments are available, including
-                        Full Leg Wax.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>Does Pax & Pearl offer pedicures?</summary>
-                    <div class="pp-faq-answer">
-                        Yes. Pax & Pearl offers pedicure services, including
-                        Spa Pedicure.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>How do I book a treatment?</summary>
-                    <div class="pp-faq-answer">
-                        You can explore available treatments and begin your
-                        booking through the Pax & Pearl services page.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>What are Pax & Pearl's opening hours?</summary>
-                    <div class="pp-faq-answer">
-                        Pax & Pearl Body Works is open Monday to Saturday
-                        from 9AM to 7PM. Sunday appointments are available
-                        from 3PM to 7PM by booking.
-                    </div>
-                </details>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- =====================================================
-         LOCATION + GOOGLE PROOF
-    ====================================================== -->
-    <section class="office-info">
-
-        <div class="office-address">
-
-            <span class="material-icons-round">location_on</span>
-
-            <p>
-                <strong>Pax & Pearl Body Works</strong><br>
-                Suite 8, Okaka Plaza, 1st Avenue,<br>
-                FESTAC Town, Lagos<br>
-                Monday - Saturday: 9AM - 7PM<br>
-                Sunday: 3PM - 7PM (only by booking)<br>
-                +2347064302016, +2348122270495
-            </p>
-
-        </div>
-
-        <div class="vertical-divider"></div>
-
-        <div class="google-rating">
-
-            <button class="rating-card"
-                    id="openReviews"
-                    aria-label="View Pax & Pearl Google reviews"
-                    type="button">
-
-                <div class="rating-score">4.7</div>
-
-                <div class="rating-stars">★★★★★</div>
-
-                <div class="rating-count">
-                    Based on <strong>349+ Google reviews</strong>
                 </div>
-
-                <div class="rating-source">
-                    <img src="assets/images/google-logo.png" alt="Google">
-                    <span>Google Reviews</span>
-                </div>
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         FINAL CTA
-    ====================================================== -->
-    <div class="page-wrap">
-
-        <section class="pp-final-cta pp-final-cta-enhanced">
-
-            <span class="eyebrow">Your next reset starts here</span>
-
-            <h2>Ready to Make Time for Yourself?</h2>
-
-            <p>
-                Tell us what you need, choose your experience and book your
-                time at Pax & Pearl Body Works in Festac Town.
-            </p>
-
-            <div class="cta-actions">
-
-                <a href="#find-your-treatment" class="pp-hero-btn secondary">
-                    Find My Treatment
-                    <span class="material-icons-round">psychology</span>
-                </a>
-
-                <a href="services.html" class="pp-hero-btn primary">
-                    <span class="material-icons-round">calendar_month</span>
-                    Book Now
-                </a>
 
             </div>
 
         </section>
 
-    </div>
 
-</main>
+        <!-- =====================================================
+             TRUST STRIP
+        ====================================================== -->
+
+        <div class="pp-trust-strip">
+
+            <div class="pp-trust-item">
+
+                <strong>
+                    ★ 4.7
+                </strong>
+
+                <span>
+                    Google Rating
+                </span>
+
+            </div>
 
 
+            <div class="pp-trust-item">
+
+                <strong>
+                    349+
+                </strong>
+
+                <span>
+                    Google Reviews
+                </span>
+
+            </div>
 
 
-<script>
-(function () {
-    const buttons = document.querySelectorAll("[data-treatment-choice]");
-    const box = document.getElementById("treatmentRecommendation");
-    const title = document.getElementById("recommendationTitle");
-    const text = document.getElementById("recommendationText");
-    const primary = document.getElementById("recommendationPrimary");
+            <div class="pp-trust-item">
 
-    if (!buttons.length || !box || !title || !text || !primary) return;
+                <strong>
+                    FESTAC
+                </strong>
 
-    const recommendations = {
-        relax: {
-            title: "Start with a relaxation-focused massage",
-            text: "If your main need is to slow down and unwind, explore the massage options and choose the pressure and experience that feels right for you.",
-            href: "services.html?category=massage"
-        },
-        recover: {
-            title: "Start with Deep Tissue Massage",
-            text: "If your muscles feel tight, sore or overworked, our featured Deep Tissue Massage is a strong place to start.",
-            href: "deep-tissue-massage-festac.html"
-        },
-        reset: {
-            title: "Start with a massage experience",
-            text: "If you simply need dedicated time to disconnect and reset, explore the massage menu and choose the session that fits your time and preference.",
-            href: "services.html?category=massage"
-        },
-        pamper: {
-            title: "Explore our spa packages",
-            text: "If you want more than one treatment, explore packages that combine elements of massage, body care and beauty.",
-            href: "spa-packages-festac.html"
-        },
-        skin: {
-            title: "Start with facial or body care",
-            text: "If your priority is your skin, explore facial and body treatments designed around your self-care routine.",
-            href: "facial-spa-festac.html"
-        },
-        together: {
-            title: "Explore Couples Massage",
-            text: "For two people looking to share the experience, start with our dedicated couples massage offering.",
-            href: "couple-massage-festac.html"
-        }
-    };
+                <span>
+                    Lagos, Nigeria
+                </span>
 
-    buttons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            buttons.forEach(function (item) {
-                item.classList.remove("is-selected");
-            });
+            </div>
 
-            button.classList.add("is-selected");
+        </div>
 
-            const key = button.getAttribute("data-treatment-choice");
-            const recommendation = recommendations[key];
 
-            if (!recommendation) return;
+        <!-- =====================================================
+             CATEGORIES
+        ====================================================== -->
 
-            title.textContent = recommendation.title;
-            text.textContent = recommendation.text;
-            primary.href = recommendation.href;
-            box.classList.add("is-visible");
+        <section id="explore-services">
 
-            box.scrollIntoView({
-                behavior: "smooth",
-                block: "nearest"
-            });
-        });
-    });
-})();
-</script>
+            <div class="page-wrap">
+
+                <div class="categories">
+
+                    <a
+                        href="services.html?category=massage"
+                        class="category-btn"
+                    >
+
+                        <span class="material-icons-round">
+                            self_improvement
+                        </span>
+
+                        <small>
+                            Massage
+                        </small>
+
+                    </a>
+
+
+                    <a
+                        href="services.html?category=facial"
+                        class="category-btn"
+                    >
+
+                        <span class="material-icons-round">
+                            face
+                        </span>
+
+                        <small>
+                            Facial
+                        </small>
+
+                    </a>
+
+
+                    <a
+                        href="services.html?category=waxing"
+                        class="category-btn"
+                    >
+
+                        <span class="material-icons-round">
+                            content_cut
+                        </span>
+
+                        <small>
+                            Waxing
+                        </small>
+
+                    </a>
+
+
+                    <a
+                        href="services.html?category=pedicure"
+                        class="category-btn"
+                    >
+
+                        <span class="material-icons-round">
+                            spa
+                        </span>
+
+                        <small>
+                            Pedicure
+                        </small>
+
+                    </a>
+
+                </div>
+
+
+                <div class="see-more-wrapper">
+
+                    <a
+                        href="services.html"
+                        class="see-more-btn"
+                    >
+
+                        See more
+
+                        <span class="material-icons-round">
+                            chevron_right
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SERVICE DISCOVERY
+        ====================================================== -->
+
+        <section class="pp-section">
+
+            <div class="page-wrap">
+
+                <div class="pp-section-heading">
+
+                    <span class="eyebrow">
+                        Choose your experience
+                    </span>
+
+                    <h2>
+                        What Are You in the Mood For?
+                    </h2>
+
+                    <p>
+
+                        Whether you need a relaxing massage, a fresh facial,
+                        a body treatment or some time to care for your hands
+                        and feet, explore treatments at Pax & Pearl Body Works.
+
+                    </p>
+
+                </div>
+
+
+                <div class="pp-service-discovery">
+
+                    <a
+                        href="deep-tissue-massage-festac.html"
+                        class="pp-service-discovery-card"
+                    >
+
+                        <span class="pp-service-icon">
+
+                            <span class="material-icons-round">
+                                self_improvement
+                            </span>
+
+                        </span>
+
+                        <h3>
+                            Massage
+                        </h3>
+
+                        <p>
+                            Relax, release tension and reset.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="facial-spa-festac.html"
+                        class="pp-service-discovery-card"
+                    >
+
+                        <span class="pp-service-icon">
+
+                            <span class="material-icons-round">
+                                face
+                            </span>
+
+                        </span>
+
+                        <h3>
+                            Facials
+                        </h3>
+
+                        <p>
+                            Refresh and care for your skin.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="body-scrub-festac.html"
+                        class="pp-service-discovery-card"
+                    >
+
+                        <span class="pp-service-icon">
+
+                            <span class="material-icons-round">
+                                water_drop
+                            </span>
+
+                        </span>
+
+                        <h3>
+                            Body Treatments
+                        </h3>
+
+                        <p>
+                            Polish, refresh and rejuvenate.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="waxing-festac.html"
+                        class="pp-service-discovery-card"
+                    >
+
+                        <span class="pp-service-icon">
+
+                            <span class="material-icons-round">
+                                content_cut
+                            </span>
+
+                        </span>
+
+                        <h3>
+                            Waxing
+                        </h3>
+
+                        <p>
+                            Smooth, confident skin.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="pedicure-festac.html"
+                        class="pp-service-discovery-card"
+                    >
+
+                        <span class="pp-service-icon">
+
+                            <span class="material-icons-round">
+                                spa
+                            </span>
+
+                        </span>
+
+                        <h3>
+                            Hands & Feet
+                        </h3>
+
+                        <p>
+                            Give your hands and feet some attention.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="spa-packages-festac.html"
+                        class="pp-service-discovery-card"
+                    >
+
+                        <span class="pp-service-icon">
+
+                            <span class="material-icons-round">
+                                card_giftcard
+                            </span>
+
+                        </span>
+
+                        <h3>
+                            Spa Packages
+                        </h3>
+
+                        <p>
+                            Make more time for yourself.
+                        </p>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             POST SLIDER
+        ====================================================== -->
+
+        <section class="post-slider">
+
+            <div class="page-wrap">
+
+                <div class="post-slider-viewport">
+
+                    <div
+                        class="post-slider-track"
+                        id="postSlider"
+                    >
+
+                        <div class="post-slide">
+
+                            <img
+                                src="assets/images/post1.jpg"
+                                alt="Pax & Pearl spa experience in Festac Lagos"
+                            >
+
+                        </div>
+
+
+                        <div class="post-slide">
+
+                            <img
+                                src="assets/images/post2.jpg"
+                                alt="Massage therapy at Pax & Pearl Body Works"
+                            >
+
+                        </div>
+
+
+                        <div class="post-slide">
+
+                            <img
+                                src="assets/images/post3.jpg"
+                                alt="Facial treatment at Pax & Pearl Body Works"
+                            >
+
+                        </div>
+
+
+                        <div class="post-slide">
+
+                            <img
+                                src="assets/images/post4.jpg"
+                                alt="Waxing service at Pax & Pearl Body Works"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="slider-btn prev"
+                    id="prevSlide"
+                    aria-label="Previous slide"
+                >
+
+                    <span class="material-icons-round">
+                        chevron_left
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="slider-btn next"
+                    id="nextSlide"
+                    aria-label="Next slide"
+                >
+
+                    <span class="material-icons-round">
+                        chevron_right
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             LOCAL POSITIONING
+        ====================================================== -->
+
+        <section class="pp-section soft">
+
+            <div class="page-wrap">
+
+                <div class="pp-location-copy">
+
+                    <div class="pp-location-copy-text">
+
+                        <span class="eyebrow">
+                            Local wellness destination
+                        </span>
+
+
+                        <h2>
+                            Massage & Spa in Festac Town, Lagos
+                        </h2>
+
+
+                        <p>
+
+                            Welcome to Pax & Pearl Body Works, a massage and
+                            spa destination in Festac Town, Lagos. We offer
+                            massage, facial, body, waxing, pedicure and wellness
+                            treatments for clients looking for time to relax,
+                            reset and take better care of themselves.
+
+                        </p>
+
+
+                        <p>
+
+                            If you're searching for a
+                            <strong>massage in Festac</strong>,
+                            a
+                            <strong>spa in Festac</strong>,
+                            a
+                            <strong>deep tissue massage</strong>,
+                            facial treatment, body scrub, waxing, pedicure,
+                            couples massage or a spa package in Lagos,
+                            Pax & Pearl Body Works gives you a convenient
+                            local place to begin your wellness experience.
+
+                        </p>
+
+
+                        <a
+                            href="spa-in-lagos.html"
+                            class="pp-hero-btn location-cta"
+                        >
+
+                            Explore Spa in Lagos
+
+                            <span class="material-icons-round">
+                                arrow_forward
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="pp-location-points">
+
+                        <div class="pp-location-point">
+
+                            <strong>
+                                Massage
+                            </strong>
+
+                            <span>
+                                Relaxation and focused massage experiences.
+                            </span>
+
+                        </div>
+
+
+                        <div class="pp-location-point">
+
+                            <strong>
+                                Facials
+                            </strong>
+
+                            <span>
+                                Treatments designed around your skin-care needs.
+                            </span>
+
+                        </div>
+
+
+                        <div class="pp-location-point">
+
+                            <strong>
+                                Body Treatments
+                            </strong>
+
+                            <span>
+                                Body scrubs and rejuvenating experiences.
+                            </span>
+
+                        </div>
+
+
+                        <div class="pp-location-point">
+
+                            <strong>
+                                Beauty Care
+                            </strong>
+
+                            <span>
+                                Waxing, pedicure and other beauty treatments.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FEATURED MASSAGE
+        ====================================================== -->
+
+        <section class="pp-section">
+
+            <div class="page-wrap">
+
+                <div class="pp-section-heading">
+
+                    <span class="eyebrow">
+                        Featured experience
+                    </span>
+
+                    <h2>
+                        Massage That Meets You Where You Are
+                    </h2>
+
+                    <p>
+
+                        Sometimes you need deep pressure. Sometimes you simply
+                        need to slow down. Explore our massage experiences and
+                        choose what feels right for you.
+
+                    </p>
+
+                </div>
+
+
+                <div class="pp-featured-massage">
+
+                    <div
+                        class="pp-featured-massage-image"
+                        role="img"
+                        aria-label="Deep tissue massage at Pax & Pearl Body Works"
+                    ></div>
+
+
+                    <div class="pp-featured-massage-content">
+
+                        <span class="pp-featured-label">
+                            Signature treatment
+                        </span>
+
+
+                        <h2>
+                            Deep Tissue Massage
+                        </h2>
+
+
+                        <p>
+
+                            A focused massage experience for clients who prefer
+                            deeper, firmer pressure. It is designed to provide
+                            a more intensive massage experience while giving you
+                            dedicated time to relax and reset.
+
+                        </p>
+
+
+                        <div class="pp-treatment-meta">
+
+                            <span>
+                                60 minutes
+                            </span>
+
+                            <span>
+                                ₦35,000
+                            </span>
+
+                            <span>
+                                Festac Town
+                            </span>
+
+                        </div>
+
+
+                        <a
+                            href="deep-tissue-massage-festac.html"
+                            class="btn btn-primary"
+                        >
+                            Explore Deep Tissue Massage
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             POPULAR TREATMENTS
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="page-wrap">
+
+                <div class="section-header">
+
+                    <h3>
+                        Popular Treatments
+                    </h3>
+
+                    <a href="services.html">
+                        View all
+                    </a>
+
+                </div>
+
+
+                <div class="service-grid">
+
+                    <div class="service-card1">
+
+                        <img
+                            src="assets/images/massage.jpg"
+                            alt="Deep Tissue Massage in Festac Lagos"
+                        >
+
+                        <div class="service-info1">
+
+                            <h4>
+                                Deep Tissue Massage
+                            </h4>
+
+                            <p>
+                                60 mins · ₦35,000
+                            </p>
+
+                            <a
+                                href="services.html"
+                                class="btn btn-primary btn-sm"
+                            >
+                                Book
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="service-card1">
+
+                        <img
+                            src="assets/images/facial.jpg"
+                            alt="Deep Cleansing Facial in Festac Lagos"
+                        >
+
+                        <div class="service-info1">
+
+                            <h4>
+                                Deep Cleansing Facial
+                            </h4>
+
+                            <p>
+                                40 mins · ₦20,000
+                            </p>
+
+                            <a
+                                href="services.html"
+                                class="btn btn-primary btn-sm"
+                            >
+                                Book
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="service-card1">
+
+                        <img
+                            src="assets/images/waxing.jpg"
+                            alt="Full Leg Wax in Festac Lagos"
+                        >
+
+                        <div class="service-info1">
+
+                            <h4>
+                                Full Leg Wax
+                            </h4>
+
+                            <p>
+                                40 mins · ₦30,000
+                            </p>
+
+                            <a
+                                href="services.html"
+                                class="btn btn-primary btn-sm"
+                            >
+                                Book
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="service-card1">
+
+                        <img
+                            src="assets/images/pedicure.jpg"
+                            alt="Spa Pedicure in Festac Lagos"
+                        >
+
+                        <div class="service-info1">
+
+                            <h4>
+                                Spa Pedicure
+                            </h4>
+
+                            <p>
+                                40 mins · ₦10,000
+                            </p>
+
+                            <a
+                                href="services.html"
+                                class="btn btn-primary btn-sm"
+                            >
+                                Book
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             WHY PAX & PEARL
+        ====================================================== -->
+
+        <section class="pp-section red-soft">
+
+            <div class="page-wrap">
+
+                <div class="pp-section-heading">
+
+                    <span class="eyebrow">
+                        The Pax & Pearl experience
+                    </span>
+
+                    <h2>
+                        More Than a Massage
+                    </h2>
+
+                    <p>
+
+                        Your time at Pax & Pearl is about more than choosing
+                        a treatment. It is about creating space to pause,
+                        recharge and care for yourself.
+
+                    </p>
+
+                </div>
+
+
+                <div class="pp-why-grid">
+
+                    <div class="pp-why-card">
+
+                        <span class="material-icons-round">
+                            verified
+                        </span>
+
+                        <h3>
+                            Professional Care
+                        </h3>
+
+                        <p>
+                            A treatment experience centred around attentive,
+                            professional service.
+                        </p>
+
+                    </div>
+
+
+                    <div class="pp-why-card">
+
+                        <span class="material-icons-round">
+                            self_improvement
+                        </span>
+
+                        <h3>
+                            A Calm Experience
+                        </h3>
+
+                        <p>
+                            A space designed to help you step away from the
+                            pace of everyday Lagos life.
+                        </p>
+
+                    </div>
+
+
+                    <div class="pp-why-card">
+
+                        <span class="material-icons-round">
+                            spa
+                        </span>
+
+                        <h3>
+                            Multiple Treatments
+                        </h3>
+
+                        <p>
+                            Massage, facials, body treatments, waxing,
+                            pedicure and spa experiences.
+                        </p>
+
+                    </div>
+
+
+                    <div class="pp-why-card">
+
+                        <span class="material-icons-round">
+                            location_on
+                        </span>
+
+                        <h3>
+                            Conveniently in Festac
+                        </h3>
+
+                        <p>
+                            Located in Festac Town, Lagos, making your wellness
+                            appointment easy to fit into your day.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SPECIALISTS
+        ====================================================== -->
+
+        <section class="section soft-bg">
+
+            <div class="page-wrap">
+
+                <div class="section-header">
+
+                    <h3>
+                        Meet Our Specialists
+                    </h3>
+
+                </div>
+
+
+                <div class="card-grid">
+
+                    <div class="therapist-card">
+
+                        <span class="verified-badge">
+
+                            <span class="material-icons-round">
+                                verified
+                            </span>
+
+                        </span>
+
+
+                        <img
+                            src="assets/images/therapist2.jpg"
+                            alt="Gift H., Lead Spa Therapist at Pax & Pearl Body Works"
+                        >
+
+
+                        <h4>
+                            Gift H.
+                        </h4>
+
+
+                        <small>
+                            Lead, Spa Therapist
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SPA PACKAGES
+        ====================================================== -->
+
+        <section class="pp-section">
+
+            <div class="page-wrap">
+
+                <div class="pp-section-heading">
+
+                    <span class="eyebrow">
+                        Wellness combinations
+                    </span>
+
+                    <h2>
+                        Make More Time for Yourself
+                    </h2>
+
+                    <p>
+
+                        Explore spa packages designed to bring multiple
+                        elements of your self-care experience together.
+
+                    </p>
+
+                </div>
+
+
+                <div class="pp-packages">
+
+                    <div class="pp-package-card">
+
+                        <h3>
+                            Reset
+                        </h3>
+
+                        <p>
+                            Combine a massage experience with time to
+                            slow down, relax and recharge.
+                        </p>
+
+                        <a
+                            href="spa-packages-festac.html"
+                            class="pp-package-link"
+                        >
+
+                            Explore Packages
+
+                            <span class="material-icons-round">
+                                arrow_forward
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="pp-package-card featured">
+
+                        <span class="pp-package-badge">
+                            Popular
+                        </span>
+
+                        <h3>
+                            Glow
+                        </h3>
+
+                        <p>
+                            Explore combinations of body, facial and beauty
+                            treatments for a fuller self-care experience.
+                        </p>
+
+                        <a
+                            href="spa-packages-festac.html"
+                            class="pp-package-link"
+                        >
+
+                            Explore Packages
+
+                            <span class="material-icons-round">
+                                arrow_forward
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="pp-package-card">
+
+                        <h3>
+                            Together
+                        </h3>
+
+                        <p>
+                            Discover couples and shared spa experiences
+                            designed for two.
+                        </p>
+
+                        <a
+                            href="couple-massage-festac.html"
+                            class="pp-package-link"
+                        >
+
+                            Explore Couples Massage
+
+                            <span class="material-icons-round">
+                                arrow_forward
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             REVIEWS
+        ====================================================== -->
+
+        <section class="section soft-bg">
+
+            <div class="page-wrap">
+
+                <div class="pp-reviews-heading">
+
+                    <div class="section-header">
+
+                        <h3>
+                            What Clients Say
+                        </h3>
+
+                    </div>
+
+
+                    <div class="pp-google-summary">
+
+                        <div>
+
+                            <div class="pp-google-score">
+                                4.7
+                            </div>
+
+                            <div class="pp-google-stars">
+                                ★★★★★
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                Based on
+                            </small>
+
+                            <small>
+                                <strong>
+                                    349+ Google reviews
+                                </strong>
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-grid">
+
+                    <div class="review-card">
+
+                        <p>
+                            “Serene atmosphere. Professional service.
+                            Felt like a newborn baby afterwards.
+                            Would definitely make this place my regular staple.”
+                        </p>
+
+                        <small>
+                            — Idowu J.
+                        </small>
+
+                    </div>
+
+
+                    <div class="review-card">
+
+                        <p>
+                            “Very kind people, gentle and calm.
+                            They will pamper you and you will not want
+                            to leave. I actually want to go back there soon.”
+                        </p>
+
+                        <small>
+                            — Joshua K.
+                        </small>
+
+                    </div>
+
+
+                    <div class="review-card">
+
+                        <p>
+                            “I loved every bit of the service I got.
+                            The deep tissue massage was amazing, I have
+                            not slept so well for a long time but after
+                            the massage now I sleep like a baby.”
+                        </p>
+
+                        <small>
+                            — Riz C.
+                        </small>
+
+                    </div>
+
+
+                    <div class="review-card">
+
+                        <p>
+                            “I took a little time out to pamper myself
+                            and it was a beautiful experience. I felt
+                            so much relief after the deep tissue body massage.”
+                        </p>
+
+                        <small>
+                            — Florence U.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =============================================
+                     GOOGLE REVIEWS MODAL
+                ============================================== -->
+
+                <div
+                    class="reviews-modal"
+                    id="reviewsModal"
+                >
+
+                    <div
+                        class="reviews-backdrop"
+                        data-close-reviews
+                    ></div>
+
+
+                    <div class="reviews-modal-box">
+
+                        <button
+                            class="modal-close"
+                            data-close-reviews
+                            aria-label="Close reviews"
+                        >
+                            ✕
+                        </button>
+
+
+                        <iframe
+                            src="https://www.google.com/maps?q=Pax+%26+Pearl+Body+Works+(Spa+in+Lagos)&output=embed"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Pax & Pearl Google Reviews"
+                        ></iframe>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             WELLNESS GUIDES
+        ====================================================== -->
+
+        <section class="pp-section">
+
+            <div class="page-wrap">
+
+                <div class="pp-section-heading">
+
+                    <span class="eyebrow">
+                        Wellness guides
+                    </span>
+
+                    <h2>
+                        Your Wellness Questions, Answered
+                    </h2>
+
+                    <p>
+                        Learn more about massage, spa treatments and
+                        self-care before your appointment.
+                    </p>
+
+                </div>
+
+
+                <div class="pp-guides-grid">
+
+                    <a
+                        href="what-is-deep-tissue-massage.html"
+                        class="pp-guide-card"
+                    >
+
+                        <span class="material-icons-round">
+                            self_improvement
+                        </span>
+
+                        <h3>
+                            What Is Deep Tissue Massage?
+                        </h3>
+
+                        <p>
+                            Understand what a deep tissue massage involves
+                            and what to expect during your session.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="how-often-should-you-get-a-massage.html"
+                        class="pp-guide-card"
+                    >
+
+                        <span class="material-icons-round">
+                            event_repeat
+                        </span>
+
+                        <h3>
+                            How Often Should You Get a Massage?
+                        </h3>
+
+                        <p>
+                            Explore how massage can fit into a regular
+                            self-care routine.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="what-to-do-before-a-massage.html"
+                        class="pp-guide-card"
+                    >
+
+                        <span class="material-icons-round">
+                            tips_and_updates
+                        </span>
+
+                        <h3>
+                            What Should You Do Before a Massage?
+                        </h3>
+
+                        <p>
+                            Simple things you can do before your appointment
+                            for a smoother experience.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="deep-tissue-vs-relaxation-massage.html"
+                        class="pp-guide-card"
+                    >
+
+                        <span class="material-icons-round">
+                            compare
+                        </span>
+
+                        <h3>
+                            Deep Tissue vs Relaxation Massage
+                        </h3>
+
+                        <p>
+                            Understand the difference between two popular
+                            massage experiences.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="how-much-does-massage-cost-in-lagos.html"
+                        class="pp-guide-card"
+                    >
+
+                        <span class="material-icons-round">
+                            payments
+                        </span>
+
+                        <h3>
+                            How Much Does Massage Cost in Lagos?
+                        </h3>
+
+                        <p>
+                            Factors that can influence massage pricing
+                            and what to consider when choosing a spa.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="massage-in-festac.html"
+                        class="pp-guide-card"
+                    >
+
+                        <span class="material-icons-round">
+                            location_on
+                        </span>
+
+                        <h3>
+                            Where Can I Get a Massage in Festac?
+                        </h3>
+
+                        <p>
+                            Explore what to consider when choosing a massage
+                            and spa experience in Festac Town.
+                        </p>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FAQ
+        ====================================================== -->
+
+        <section class="pp-section soft">
+
+            <div class="page-wrap">
+
+                <div class="pp-section-heading">
+
+                    <span class="eyebrow">
+                        Frequently asked questions
+                    </span>
+
+                    <h2>
+                        Frequently Asked Questions About Pax & Pearl
+                    </h2>
+
+                </div>
+
+
+                <div class="pp-faq">
+
+                    <details>
+
+                        <summary>
+                            Where is Pax & Pearl Body Works located?
+                        </summary>
+
+                        <div class="pp-faq-answer">
+                            Pax & Pearl Body Works is located at
+                            Suite 8, Okaka Plaza, 1st Avenue,
+                            Festac Town, Lagos.
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            Does Pax & Pearl offer massage in Festac?
+                        </summary>
+
+                        <div class="pp-faq-answer">
+                            Yes. Pax & Pearl Body Works offers massage
+                            experiences in Festac Town, including
+                            deep tissue massage and other massage treatments.
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            Does Pax & Pearl offer deep tissue massage?
+                        </summary>
+
+                        <div class="pp-faq-answer">
+                            Yes. Deep Tissue Massage is one of the featured
+                            treatments available at Pax & Pearl Body Works.
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            Does Pax & Pearl offer couples massage?
+                        </summary>
+
+                        <div class="pp-faq-answer">
+                            Yes. Couples massage and shared spa experiences
+                            are available. Explore the dedicated couples
+                            massage page for more information.
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            Does Pax & Pearl offer facials?
+                        </summary>
+
+                        <div class="pp-faq-answer">
+                            Yes. Facial treatments, including Deep Cleansing
+                            Facial, are available at Pax & Pearl Body Works.
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            Does Pax & Pearl offer waxing?
+                        </summary>
+
+                        <div class="pp-faq-answer">
+                            Yes. Waxing treatments are available, including
+                            Full Leg Wax.
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            Does Pax & Pearl offer pedicures?
+                        </summary>
+
+                        <div class="pp-faq-answer">
+                            Yes. Pax & Pearl offers pedicure services,
+                            including Spa Pedicure.
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            How do I book a treatment?
+                        </summary>
+
+                        <div class="pp-faq-answer">
+                            You can explore available treatments and begin
+                            your booking through the Pax & Pearl services page.
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            What are Pax & Pearl's opening hours?
+                        </summary>
+
+                        <div class="pp-faq-answer">
+                            Pax & Pearl Body Works is open Monday to Saturday
+                            from 9AM to 7PM. Sunday appointments are available
+                            from 3PM to 7PM by booking.
+                        </div>
+
+                    </details>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             OFFICE INFORMATION
+        ====================================================== -->
+
+        <section class="office-info">
+
+            <div class="office-address">
+
+                <span class="material-icons-round">
+                    location_on
+                </span>
+
+                <p>
+
+                    <strong>
+                        Pax & Pearl Body Works
+                    </strong>
+
+                    <br>
+
+                    Suite 8, Okaka Plaza,
+                    1st Avenue,
+                    FESTAC Town, Lagos
+
+                    <br>
+
+                    Monday - Saturday:
+                    9AM - 7PM
+
+                    <br>
+
+                    Sunday:
+                    3PM - 7PM
+                    (only by booking)
+
+                    <br>
+
+                    +2347064302016,
+                    +2348122270495
+
+                </p>
+
+            </div>
+
+
+            <div class="vertical-divider"></div>
+
+
+            <div class="google-rating">
+
+                <button
+                    class="rating-card"
+                    id="openReviews"
+                    aria-label="View Pax & Pearl Google reviews"
+                >
+
+                    <div class="rating-score">
+                        4.7
+                    </div>
+
+                    <div class="rating-stars">
+                        ★★★★★
+                    </div>
+
+                    <div class="rating-count">
+
+                        Based on
+                        <strong>
+                            349+ Google reviews
+                        </strong>
+
+                    </div>
+
+                    <div class="rating-source">
+
+                        <img
+                            src="assets/images/google-logo.png"
+                            alt="Google"
+                        >
+
+                        <span>
+                            Google Reviews
+                        </span>
+
+                    </div>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FINAL CTA
+        ====================================================== -->
+
+        <div class="page-wrap">
+
+            <section class="pp-final-cta">
+
+                <h2>
+                    Ready to Make Time for Yourself?
+                </h2>
+
+                <p>
+
+                    Choose your treatment and experience the Pax & Pearl
+                    Body Works approach to massage, spa and personal care
+                    in Festac Town, Lagos.
+
+                </p>
+
+
+                <a
+                    href="services.html"
+                    class="pp-hero-btn"
+                >
+
+                    <span class="material-icons-round">
+                        calendar_month
+                    </span>
+
+                    Book Now
+
+                </a>
+
+            </section>
+
+        </div>
+
+
+    </main>
 
 
     <!-- =========================================================
