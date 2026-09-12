@@ -2118,8 +2118,8 @@ body.policy-modal-open {
     color: #8b6f47;
 
     font-family: "DM Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 800;
     line-height: 1.4;
 
     text-align: center;
@@ -2159,7 +2159,7 @@ body.policy-modal-open {
         margin-top: 24px;
         padding: 9px 16px;
 
-        font-size: 12px;
+        font-size: 14px;
     }
 
 }
