@@ -997,52 +997,70 @@ window.addEventListener(
    BOOKING & CLIENT POLICY MODAL
 ========================================= */
 
-const policyModal = document.getElementById("policyModal");
+document.addEventListener("click", function (event) {
 
-if (policyModal) {
+    /* OPEN POLICY */
+    const policyTrigger = event.target.closest("[data-policy-open]");
 
-    const policyTriggers = document.querySelectorAll(
-        '[data-policy-open], [href="#policy"], .policy-trigger'
-    );
+    if (policyTrigger) {
+        event.preventDefault();
 
-    const policyCloseButtons = policyModal.querySelectorAll(
-        "[data-policy-close]"
-    );
+        const policyModal = document.getElementById("policyModal");
 
-    function openPolicyModal(event) {
-        if (event) {
-            event.preventDefault();
+        if (!policyModal) {
+            console.error("Pax & Pearl: #policyModal was not found.");
+            return;
         }
 
         policyModal.classList.add("is-open");
         policyModal.setAttribute("aria-hidden", "false");
 
         document.body.classList.add("policy-modal-open");
+
+        return;
     }
 
-    function closePolicyModal() {
+
+    /* CLOSE POLICY */
+    const policyClose = event.target.closest("[data-policy-close]");
+
+    if (policyClose) {
+
+        const policyModal = document.getElementById("policyModal");
+
+        if (!policyModal) {
+            return;
+        }
+
         policyModal.classList.remove("is-open");
         policyModal.setAttribute("aria-hidden", "true");
 
         document.body.classList.remove("policy-modal-open");
     }
 
-    policyTriggers.forEach((trigger) => {
-        trigger.addEventListener("click", openPolicyModal);
-    });
-
-    policyCloseButtons.forEach((button) => {
-        button.addEventListener("click", closePolicyModal);
-    });
-
-    document.addEventListener("keydown", (event) => {
-        if (
-            event.key === "Escape" &&
-            policyModal.classList.contains("is-open")
-        ) {
-            closePolicyModal();
-        }
-    });
-}
+});
 
 
+/* CLOSE WITH ESCAPE */
+
+document.addEventListener("keydown", function (event) {
+
+    if (event.key !== "Escape") {
+        return;
+    }
+
+    const policyModal = document.getElementById("policyModal");
+
+    if (!policyModal) {
+        return;
+    }
+
+    if (policyModal.classList.contains("is-open")) {
+
+        policyModal.classList.remove("is-open");
+        policyModal.setAttribute("aria-hidden", "true");
+
+        document.body.classList.remove("policy-modal-open");
+    }
+
+});
