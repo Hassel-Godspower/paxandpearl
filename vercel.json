@@ -206,7 +206,18 @@
     {
       "source": "/reviews",
       "destination": "/reviews.html"
+    },
+
+    {
+      "source": "/workplace-wellness-lagos",
+      "destination": "/workplace-wellness-lagos.html"
+    },
+    {
+      "source": "/wellness-for-desk-workers",
+      "destination": "/wellness-for-desk-workers.html"
     }
+
+    
 
   ]
 }
