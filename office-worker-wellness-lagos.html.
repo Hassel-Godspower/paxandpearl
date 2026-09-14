@@ -1,0 +1,3133 @@
+<!DOCTYPE html>
+<html lang="en-NG">
+
+<head>
+
+    <!-- =========================================================
+         DOCUMENT
+    ========================================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Office Worker Wellness in Lagos | Desk Work, Stress & Recovery
+        | Pax & Pearl Body Works
+    </title>
+
+    <meta
+        name="description"
+        content="Practical office worker wellness guidance for Lagos professionals dealing with long desk hours, screen time, sitting, work stress, commuting and recovery."
+    >
+
+    <meta
+        name="robots"
+        content="index, follow, max-image-preview:large"
+    >
+
+    <meta
+        name="author"
+        content="Pax & Pearl Body Works"
+    >
+
+    <meta
+        name="theme-color"
+        content="#173c32"
+    >
+
+    <meta
+        name="format-detection"
+        content="telephone=yes"
+    >
+
+
+    <!-- =========================================================
+         CANONICAL
+    ========================================================== -->
+
+    <link
+        rel="canonical"
+        href="https://paxandpearl.vercel.app/office-worker-wellness-lagos"
+    >
+
+
+    <!-- =========================================================
+         OPEN GRAPH
+    ========================================================== -->
+
+    <meta
+        property="og:type"
+        content="article"
+    >
+
+    <meta
+        property="og:title"
+        content="Office Worker Wellness in Lagos | Pax & Pearl Body Works"
+    >
+
+    <meta
+        property="og:description"
+        content="A practical wellness guide for Lagos office workers dealing with desk work, screen time, prolonged sitting, workplace stress, commuting and recovery."
+    >
+
+    <meta
+        property="og:url"
+        content="https://paxandpearl.vercel.app/office-worker-wellness-lagos"
+    >
+
+    <meta
+        property="og:site_name"
+        content="Pax & Pearl Body Works"
+    >
+
+    <meta
+        property="og:locale"
+        content="en_NG"
+    >
+
+    <meta
+        property="og:image"
+        content="https://paxandpearl.vercel.app/assets/images/logo.png"
+    >
+
+    <meta
+        property="og:image:alt"
+        content="Pax & Pearl Body Works"
+    >
+
+
+    <!-- =========================================================
+         TWITTER / X
+    ========================================================== -->
+
+    <meta
+        name="twitter:card"
+        content="summary"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Office Worker Wellness in Lagos | Pax & Pearl Body Works"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Practical wellness guidance for Lagos office workers, professionals and desk-based employees."
+    >
+
+    <meta
+        name="twitter:image"
+        content="https://paxandpearl.vercel.app/assets/images/logo.png"
+    >
+
+
+    <!-- =========================================================
+         FONTS
+    ========================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================================
+         MATERIAL ICONS
+    ========================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================================
+         EXISTING SITE STYLES
+    ========================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/layout.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/components.css"
+    >
+
+
+    <!-- =========================================================
+         PWA
+    ========================================================== -->
+
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+    <meta
+        name="mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="Pax & Pearl"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="assets/icons/apple-touch-icon.png"
+    >
+
+
+    <!-- =========================================================
+         PAGE-SPECIFIC CSS
+    ========================================================== -->
+
+    <style>
+
+        /* =====================================================
+           OFFICE WORKER WELLNESS
+        ====================================================== */
+
+        :root {
+            --ow-green: #173c32;
+            --ow-green-dark: #102c25;
+            --ow-green-soft: #eaf1ed;
+            --ow-gold: #b99655;
+            --ow-gold-soft: #f4ecdd;
+            --ow-cream: #f7f4ed;
+            --ow-white: #ffffff;
+            --ow-text: #26312d;
+            --ow-muted: #66736d;
+            --ow-border: #dfe5e1;
+            --ow-shadow: 0 18px 45px rgba(16, 44, 37, 0.08);
+            --ow-radius: 18px;
+        }
+
+
+        .ow-page {
+            background: var(--ow-white);
+            color: var(--ow-text);
+            font-family: "DM Sans", sans-serif;
+            line-height: 1.75;
+        }
+
+
+        .ow-page *,
+        .ow-page *::before,
+        .ow-page *::after {
+            box-sizing: border-box;
+        }
+
+
+        .ow-page a {
+            color: inherit;
+        }
+
+
+        .ow-container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           BREADCRUMB
+        ====================================================== */
+
+        .ow-breadcrumb {
+            padding: 18px 0;
+            background: var(--ow-cream);
+            border-bottom: 1px solid var(--ow-border);
+        }
+
+
+        .ow-breadcrumb ol {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            color: var(--ow-muted);
+            font-size: 0.82rem;
+        }
+
+
+        .ow-breadcrumb li {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+
+        .ow-breadcrumb li:not(:last-child)::after {
+            content: "/";
+            color: #9ba59f;
+        }
+
+
+        .ow-breadcrumb a {
+            text-decoration: none;
+        }
+
+
+        .ow-breadcrumb a:hover {
+            color: var(--ow-green);
+        }
+
+
+        /* =====================================================
+           HERO
+        ====================================================== */
+
+        .ow-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 84px 0 82px;
+            color: var(--ow-white);
+            background:
+                radial-gradient(
+                    circle at 85% 18%,
+                    rgba(185,150,85,0.19),
+                    transparent 28%
+                ),
+                linear-gradient(
+                    135deg,
+                    var(--ow-green-dark),
+                    var(--ow-green)
+                );
+        }
+
+
+        .ow-hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            right: -240px;
+            top: -260px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+
+
+        .ow-hero-inner {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+            gap: 60px;
+            align-items: center;
+        }
+
+
+        .ow-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 18px;
+            color: #dbc38f;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+
+        .ow-eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--ow-gold);
+        }
+
+
+        .ow-hero h1 {
+            max-width: 850px;
+            margin: 0 0 22px;
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2.35rem, 5vw, 4.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.045em;
+        }
+
+
+        .ow-hero h1 span {
+            color: #d8bd80;
+        }
+
+
+        .ow-hero-intro {
+            max-width: 790px;
+            margin: 0;
+            color: rgba(255,255,255,0.82);
+            font-size: clamp(1rem, 1.6vw, 1.18rem);
+        }
+
+
+        .ow-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+
+        .ow-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 50px;
+            padding: 13px 21px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 800;
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .ow-button:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .ow-button-primary {
+            background: var(--ow-gold);
+            color: #17231f;
+        }
+
+
+        .ow-button-secondary {
+            border: 1px solid rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.06);
+            color: var(--ow-white);
+        }
+
+
+        .ow-hero-card {
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 22px;
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(10px);
+        }
+
+
+        .ow-hero-card-label {
+            margin-bottom: 16px;
+            color: #dbc38f;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+
+        .ow-hero-card strong {
+            display: block;
+            margin-bottom: 12px;
+            font-family: "Manrope", sans-serif;
+            font-size: 1.4rem;
+            line-height: 1.25;
+        }
+
+
+        .ow-hero-card p {
+            margin: 0;
+            color: rgba(255,255,255,0.73);
+            font-size: 0.95rem;
+        }
+
+
+        /* =====================================================
+           QUICK ANSWER
+        ====================================================== */
+
+        .ow-answer {
+            position: relative;
+            z-index: 5;
+            margin-top: -35px;
+        }
+
+
+        .ow-answer-card {
+            display: grid;
+            grid-template-columns: 75px minmax(0,1fr);
+            gap: 24px;
+            padding: 30px;
+            border: 1px solid var(--ow-border);
+            border-radius: var(--ow-radius);
+            background: var(--ow-white);
+            box-shadow: var(--ow-shadow);
+        }
+
+
+        .ow-answer-icon {
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: var(--ow-green-soft);
+            color: var(--ow-green);
+        }
+
+
+        .ow-answer-icon .material-icons-round {
+            font-size: 28px;
+        }
+
+
+        .ow-answer-card h2 {
+            margin: 0 0 8px;
+            font-family: "Manrope", sans-serif;
+            font-size: 1.35rem;
+            line-height: 1.25;
+        }
+
+
+        .ow-answer-card p {
+            margin: 0;
+            color: var(--ow-muted);
+        }
+
+
+        /* =====================================================
+           SECTIONS
+        ====================================================== */
+
+        .ow-section {
+            padding: 82px 0;
+        }
+
+
+        .ow-section.soft {
+            background: var(--ow-cream);
+        }
+
+
+        .ow-section.green {
+            background: var(--ow-green);
+            color: var(--ow-white);
+        }
+
+
+        .ow-heading {
+            max-width: 800px;
+            margin-bottom: 42px;
+        }
+
+
+        .ow-heading.center {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+
+        .ow-heading .eyebrow {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--ow-gold);
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+
+        .ow-heading h2 {
+            margin: 0 0 16px;
+            color: var(--ow-green-dark);
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(1.9rem, 3.5vw, 3rem);
+            line-height: 1.1;
+            letter-spacing: -0.035em;
+        }
+
+
+        .ow-section.green .ow-heading h2 {
+            color: var(--ow-white);
+        }
+
+
+        .ow-heading p {
+            margin: 0;
+            color: var(--ow-muted);
+            font-size: 1.04rem;
+        }
+
+
+        .ow-section.green .ow-heading p {
+            color: rgba(255,255,255,0.72);
+        }
+
+
+        .ow-prose {
+            max-width: 870px;
+        }
+
+
+        .ow-prose p {
+            margin: 0 0 20px;
+        }
+
+
+        .ow-prose p:last-child {
+            margin-bottom: 0;
+        }
+
+
+        .ow-prose strong {
+            color: var(--ow-green-dark);
+        }
+
+
+        /* =====================================================
+           CARDS
+        ====================================================== */
+
+        .ow-grid {
+            display: grid;
+            grid-template-columns: repeat(3,minmax(0,1fr));
+            gap: 20px;
+        }
+
+
+        .ow-grid.two {
+            grid-template-columns: repeat(2,minmax(0,1fr));
+        }
+
+
+        .ow-card {
+            height: 100%;
+            padding: 28px;
+            border: 1px solid var(--ow-border);
+            border-radius: var(--ow-radius);
+            background: var(--ow-white);
+        }
+
+
+        .ow-card.shadow {
+            box-shadow: var(--ow-shadow);
+        }
+
+
+        .ow-card-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 19px;
+            border-radius: 14px;
+            background: var(--ow-green-soft);
+            color: var(--ow-green);
+        }
+
+
+        .ow-card h3 {
+            margin: 0 0 10px;
+            color: var(--ow-green-dark);
+            font-family: "Manrope", sans-serif;
+            font-size: 1.15rem;
+            line-height: 1.25;
+        }
+
+
+        .ow-card p {
+            margin: 0;
+            color: var(--ow-muted);
+        }
+
+
+        /* =====================================================
+           DAILY ROUTINE
+        ====================================================== */
+
+        .ow-routine {
+            display: grid;
+            grid-template-columns: repeat(4,minmax(0,1fr));
+            gap: 16px;
+        }
+
+
+        .ow-routine-item {
+            padding: 25px 21px;
+            border: 1px solid var(--ow-border);
+            border-radius: var(--ow-radius);
+            background: var(--ow-white);
+        }
+
+
+        .ow-time {
+            margin-bottom: 14px;
+            color: var(--ow-gold);
+            font-family: "Manrope", sans-serif;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+
+        .ow-routine-item h3 {
+            margin: 0 0 8px;
+            color: var(--ow-green-dark);
+            font-family: "Manrope", sans-serif;
+            font-size: 1rem;
+        }
+
+
+        .ow-routine-item p {
+            margin: 0;
+            color: var(--ow-muted);
+            font-size: 0.91rem;
+        }
+
+
+        /* =====================================================
+           CHECKLIST
+        ====================================================== */
+
+        .ow-list {
+            display: grid;
+            gap: 14px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+
+        .ow-list li {
+            display: grid;
+            grid-template-columns: 28px 1fr;
+            gap: 12px;
+            align-items: start;
+        }
+
+
+        .ow-check {
+            width: 25px;
+            height: 25px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--ow-green-soft);
+            color: var(--ow-green);
+        }
+
+
+        .ow-check .material-icons-round {
+            font-size: 16px;
+        }
+
+
+        .ow-list strong {
+            color: var(--ow-green-dark);
+        }
+
+
+        /* =====================================================
+           TWO COLUMN FEATURE
+        ====================================================== */
+
+        .ow-feature {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+
+        .ow-feature-box {
+            padding: 35px;
+            border-radius: 24px;
+            background:
+                linear-gradient(
+                    145deg,
+                    var(--ow-green),
+                    var(--ow-green-dark)
+                );
+            color: var(--ow-white);
+        }
+
+
+        .ow-feature-box h3 {
+            margin: 0 0 14px;
+            font-family: "Manrope", sans-serif;
+            font-size: 1.6rem;
+            line-height: 1.2;
+        }
+
+
+        .ow-feature-box p {
+            margin: 0;
+            color: rgba(255,255,255,0.73);
+        }
+
+
+        .ow-feature-content h3 {
+            margin: 0 0 12px;
+            color: var(--ow-green-dark);
+            font-family: "Manrope", sans-serif;
+            font-size: 1.4rem;
+        }
+
+
+        .ow-feature-content p {
+            color: var(--ow-muted);
+        }
+
+
+        /* =====================================================
+           CALLOUT
+        ====================================================== */
+
+        .ow-callout {
+            margin-top: 32px;
+            padding: 25px 28px;
+            border-left: 4px solid var(--ow-gold);
+            border-radius: 0 14px 14px 0;
+            background: var(--ow-gold-soft);
+        }
+
+
+        .ow-callout strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--ow-green-dark);
+        }
+
+
+        .ow-callout p {
+            margin: 0;
+            color: var(--ow-muted);
+        }
+
+
+        /* =====================================================
+           TRAFFIC / WORK CYCLE
+        ====================================================== */
+
+        .ow-cycle {
+            display: grid;
+            grid-template-columns: repeat(5,minmax(0,1fr));
+            gap: 12px;
+        }
+
+
+        .ow-cycle-item {
+            position: relative;
+            padding: 22px 17px;
+            border: 1px solid var(--ow-border);
+            border-radius: 15px;
+            background: var(--ow-white);
+            text-align: center;
+        }
+
+
+        .ow-cycle-item:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -17px;
+            top: 50%;
+            z-index: 2;
+            transform: translateY(-50%);
+            color: var(--ow-gold);
+            font-weight: 800;
+        }
+
+
+        .ow-cycle-item .material-icons-round {
+            margin-bottom: 10px;
+            color: var(--ow-green);
+        }
+
+
+        .ow-cycle-item strong {
+            display: block;
+            color: var(--ow-green-dark);
+            font-size: 0.91rem;
+        }
+
+
+        .ow-cycle-item span {
+            display: block;
+            margin-top: 5px;
+            color: var(--ow-muted);
+            font-size: 0.8rem;
+        }
+
+
+        /* =====================================================
+           FAQ
+        ====================================================== */
+
+        .ow-faq {
+            display: grid;
+            gap: 12px;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+
+        .ow-faq details {
+            border: 1px solid var(--ow-border);
+            border-radius: 14px;
+            background: var(--ow-white);
+            overflow: hidden;
+        }
+
+
+        .ow-faq summary {
+            cursor: pointer;
+            padding: 21px 23px;
+            color: var(--ow-green-dark);
+            font-family: "Manrope", sans-serif;
+            font-weight: 800;
+            list-style: none;
+        }
+
+
+        .ow-faq summary::-webkit-details-marker {
+            display: none;
+        }
+
+
+        .ow-faq summary::after {
+            content: "+";
+            float: right;
+            color: var(--ow-gold);
+            font-size: 1.3rem;
+        }
+
+
+        .ow-faq details[open] summary::after {
+            content: "−";
+        }
+
+
+        .ow-faq-answer {
+            padding: 0 23px 22px;
+            color: var(--ow-muted);
+        }
+
+
+        .ow-faq-answer p {
+            margin: 0;
+        }
+
+
+        /* =====================================================
+           LINKS
+        ====================================================== */
+
+        .ow-links {
+            display: grid;
+            grid-template-columns: repeat(2,minmax(0,1fr));
+            gap: 14px;
+        }
+
+
+        .ow-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 20px;
+            border: 1px solid var(--ow-border);
+            border-radius: 15px;
+            background: var(--ow-white);
+            text-decoration: none;
+        }
+
+
+        .ow-link:hover {
+            border-color: var(--ow-gold);
+        }
+
+
+        .ow-link strong {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--ow-green-dark);
+            font-family: "Manrope", sans-serif;
+        }
+
+
+        .ow-link span {
+            color: var(--ow-muted);
+            font-size: 0.86rem;
+        }
+
+
+        .ow-link .material-icons-round {
+            color: var(--ow-gold);
+        }
+
+
+        /* =====================================================
+           FINAL CTA
+        ====================================================== */
+
+        .ow-final {
+            padding: 85px 0;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--ow-green-dark),
+                    var(--ow-green)
+                );
+            color: var(--ow-white);
+            text-align: center;
+        }
+
+
+        .ow-final-inner {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+
+        .ow-final h2 {
+            margin: 0 0 16px;
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2rem,4vw,3.2rem);
+            line-height: 1.1;
+        }
+
+
+        .ow-final p {
+            max-width: 680px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.75);
+        }
+
+
+        .ow-final .ow-actions {
+            justify-content: center;
+        }
+
+
+        /* =====================================================
+           DISCLAIMER
+        ====================================================== */
+
+        .ow-disclaimer {
+            padding: 30px 0;
+            background: #f1f3f1;
+            color: #68736e;
+            font-size: 0.83rem;
+        }
+
+
+        .ow-disclaimer p {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 1000px) {
+
+            .ow-routine {
+                grid-template-columns: repeat(2,minmax(0,1fr));
+            }
+
+            .ow-cycle {
+                grid-template-columns: repeat(3,minmax(0,1fr));
+            }
+
+            .ow-cycle-item:not(:last-child)::after {
+                display: none;
+            }
+
+        }
+
+
+        @media (max-width: 900px) {
+
+            .ow-hero-inner,
+            .ow-feature {
+                grid-template-columns: 1fr;
+            }
+
+            .ow-grid {
+                grid-template-columns: repeat(2,minmax(0,1fr));
+            }
+
+        }
+
+
+        @media (max-width: 640px) {
+
+            .ow-container {
+                width: min(100% - 28px, 1180px);
+            }
+
+            .ow-hero {
+                padding: 65px 0 70px;
+            }
+
+            .ow-section {
+                padding: 62px 0;
+            }
+
+            .ow-answer-card {
+                grid-template-columns: 1fr;
+                padding: 24px;
+            }
+
+            .ow-grid,
+            .ow-grid.two,
+            .ow-routine,
+            .ow-cycle,
+            .ow-links {
+                grid-template-columns: 1fr;
+            }
+
+            .ow-actions {
+                flex-direction: column;
+            }
+
+            .ow-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+
+    <!-- =========================================================
+         BUSINESS ENTITY
+    ========================================================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "DaySpa",
+        "@id": "https://paxandpearl.vercel.app/#business",
+        "name": "Pax & Pearl Body Works",
+        "url": "https://paxandpearl.vercel.app/",
+        "image": "https://paxandpearl.vercel.app/assets/images/logo.png",
+        "description": "Pax & Pearl Body Works is a massage and spa destination in Festac Town, Lagos, offering massage, facial, body, waxing, pedicure and wellness treatments.",
+        "telephone": [
+            "+2347064302016",
+            "+2348122270495"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Suite 8, Okaka Plaza, 1st Avenue",
+            "addressLocality": "Festac Town",
+            "addressRegion": "Lagos",
+            "addressCountry": "NG"
+        },
+        "areaServed": [
+            "Festac Town",
+            "Amuwo Odofin",
+            "Lagos",
+            "Nigeria"
+        ]
+    }
+    </script>
+
+
+    <!-- =========================================================
+         ARTICLE
+    ========================================================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "@id": "https://paxandpearl.vercel.app/office-worker-wellness-lagos#article",
+        "headline": "Office Worker Wellness in Lagos: A Practical Guide to Desk Work, Stress and Recovery",
+        "description": "A practical guide to wellness for office workers and desk-based professionals in Lagos, covering prolonged sitting, screen time, movement, workplace stress, commuting and recovery.",
+        "url": "https://paxandpearl.vercel.app/office-worker-wellness-lagos",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://paxandpearl.vercel.app/office-worker-wellness-lagos"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Pax & Pearl Body Works",
+            "url": "https://paxandpearl.vercel.app/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Pax & Pearl Body Works",
+            "url": "https://paxandpearl.vercel.app/"
+        },
+        "about": [
+            {
+                "@type": "Thing",
+                "name": "Office worker wellness"
+            },
+            {
+                "@type": "Thing",
+                "name": "Desk worker wellness"
+            },
+            {
+                "@type": "Thing",
+                "name": "Workplace wellness"
+            },
+            {
+                "@type": "Place",
+                "name": "Lagos, Nigeria"
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- =========================================================
+         BREADCRUMB
+    ========================================================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://paxandpearl.vercel.app/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Workplace Wellness",
+                "item": "https://paxandpearl.vercel.app/workplace-wellness-lagos"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Office Worker Wellness Lagos",
+                "item": "https://paxandpearl.vercel.app/office-worker-wellness-lagos"
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- =========================================================
+         FAQ
+    ========================================================== -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is office worker wellness?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Office worker wellness is the practical support of physical comfort, movement, recovery, stress management and healthy work habits for people whose jobs involve significant desk, computer or office-based work."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How can office workers reduce the effects of prolonged sitting?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Office workers can reduce prolonged static sitting by setting up their workstation appropriately, changing position regularly, standing when practical, taking short movement breaks and incorporating walking or other comfortable movement into the working day."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How often should an office worker take a movement break?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A practical approach is to interrupt long periods of sitting with brief movement. A two- to three-minute movement break approximately once an hour can be a useful starting habit where work responsibilities allow it."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does working on a laptop affect workplace posture?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Laptop use can encourage people to look downward or work with the screen and keyboard in a fixed position. Where laptop use is prolonged, employees can consider a setup that allows the screen and input devices to be positioned more comfortably."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How does commuting affect office worker wellness in Lagos?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A long commute can add another extended period of sitting to a day that already contains substantial desk work. Recognising the commute as part of the overall workday can make workplace wellness planning more realistic."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can massage be part of office worker wellness?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Massage can form part of a broader wellness and recovery routine for some people. It should complement, rather than replace, appropriate workstation adjustments, movement habits and professional healthcare when those are needed."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "When should an office worker seek medical or professional help?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Persistent, severe, worsening or concerning symptoms should be evaluated by an appropriately qualified healthcare professional rather than being managed solely through general wellness activities."
+                }
+            }
+        ]
+    }
+    </script>
+
+</head>
+
+
+<body>
+
+<div class="ow-page">
+
+
+    <!-- =========================================================
+         BREADCRUMB
+    ========================================================== -->
+
+    <nav
+        class="ow-breadcrumb"
+        aria-label="Breadcrumb"
+    >
+
+        <div class="ow-container">
+
+            <ol>
+
+                <li>
+                    <a href="/">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/workplace-wellness-lagos">
+                        Workplace Wellness
+                    </a>
+                </li>
+
+                <li aria-current="page">
+                    Office Worker Wellness Lagos
+                </li>
+
+            </ol>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <header class="ow-hero">
+
+        <div class="ow-container">
+
+            <div class="ow-hero-inner">
+
+                <div>
+
+                    <span class="ow-eyebrow">
+                        Wellness for Professionals
+                    </span>
+
+                    <h1>
+                        Office Worker Wellness in
+                        <span>Lagos</span>
+                    </h1>
+
+                    <p class="ow-hero-intro">
+                        A practical guide for professionals who spend
+                        much of their working day at a desk, in meetings,
+                        on a computer or travelling between home and
+                        work.
+                    </p>
+
+                    <div class="ow-actions">
+
+                        <a
+                            href="/wellness-for-desk-workers"
+                            class="ow-button ow-button-primary"
+                        >
+                            Desk Worker Wellness
+
+                            <span class="material-icons-round">
+                                arrow_forward
+                            </span>
+                        </a>
+
+                        <a
+                            href="/booking"
+                            class="ow-button ow-button-secondary"
+                        >
+                            Book a Wellness Experience
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <aside class="ow-hero-card">
+
+                    <div class="ow-hero-card-label">
+                        The office worker cycle
+                    </div>
+
+                    <strong>
+                        Sit. Work. Commute. Repeat.
+                    </strong>
+
+                    <p>
+                        A realistic wellness routine has to account
+                        for the complete working day—not just the
+                        eight hours spent at a desk.
+                    </p>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         QUICK ANSWER
+    ========================================================== -->
+
+    <section
+        class="ow-answer"
+        aria-label="Quick answer"
+    >
+
+        <div class="ow-container">
+
+            <div class="ow-answer-card">
+
+                <div class="ow-answer-icon">
+
+                    <span class="material-icons-round">
+                        self_improvement
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <h2>
+                        What does office worker wellness mean?
+                    </h2>
+
+                    <p>
+                        Office worker wellness means creating practical
+                        habits that support physical comfort, movement,
+                        recovery, stress management and sustainable
+                        working for people whose jobs involve substantial
+                        desk, computer or office-based work.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <main>
+
+
+        <!-- =====================================================
+             INTRODUCTION
+        ====================================================== -->
+
+        <section class="ow-section">
+
+            <div class="ow-container">
+
+                <div class="ow-heading">
+
+                    <span class="eyebrow">
+                        The modern office day
+                    </span>
+
+                    <h2>
+                        Your body experiences the whole workday,
+                        not just the work task
+                    </h2>
+
+                    <p>
+                        Office wellness becomes more useful when it
+                        reflects the actual routine of a Lagos
+                        professional.
+                    </p>
+
+                </div>
+
+
+                <div class="ow-prose">
+
+                    <p>
+                        An office worker may wake up, travel through
+                        traffic, arrive at work, sit through meetings,
+                        spend hours answering emails, work on reports,
+                        attend another meeting, return to a vehicle or
+                        public transport and spend another long period
+                        seated before getting home.
+                    </p>
+
+                    <p>
+                        This means that a person's daily physical
+                        experience is not defined by the desk alone.
+                        <strong>Commuting, workstation setup, screen
+                        use, movement, workload, breaks, sleep and
+                        recovery</strong> all form part of the wider
+                        wellness picture.
+                    </p>
+
+                    <p>
+                        Office worker wellness is therefore not about
+                        telling employees to “sit properly” and
+                        returning them to the same chair for another
+                        five hours. It is about creating a pattern in
+                        which work is supported by sensible setup,
+                        regular movement and appropriate recovery.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             COMMON EXPERIENCE
+        ====================================================== -->
+
+        <section class="ow-section soft">
+
+            <div class="ow-container">
+
+                <div class="ow-heading">
+
+                    <span class="eyebrow">
+                        Common office worker challenges
+                    </span>
+
+                    <h2>
+                        What can make desk-based work physically
+                        demanding?
+                    </h2>
+
+                </div>
+
+
+                <div class="ow-grid">
+
+                    <article class="ow-card shadow">
+
+                        <div class="ow-card-icon">
+                            <span class="material-icons-round">
+                                computer
+                            </span>
+                        </div>
+
+                        <h3>
+                            Extended screen time
+                        </h3>
+
+                        <p>
+                            Computer-based work can involve prolonged
+                            visual attention and relatively fixed head,
+                            neck and upper-body positions.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card shadow">
+
+                        <div class="ow-card-icon">
+                            <span class="material-icons-round">
+                                event_seat
+                            </span>
+                        </div>
+
+                        <h3>
+                            Prolonged sitting
+                        </h3>
+
+                        <p>
+                            Long periods at a workstation can reduce
+                            opportunities for natural movement unless
+                            employees deliberately interrupt sitting.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card shadow">
+
+                        <div class="ow-card-icon">
+                            <span class="material-icons-round">
+                                groups
+                            </span>
+                        </div>
+
+                        <h3>
+                            Meeting-heavy days
+                        </h3>
+
+                        <p>
+                            Meetings can extend sitting even when the
+                            employee is not actively using a computer.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card shadow">
+
+                        <div class="ow-card-icon">
+                            <span class="material-icons-round">
+                                phone_iphone
+                            </span>
+                        </div>
+
+                        <h3>
+                            Constant device use
+                        </h3>
+
+                        <p>
+                            Phones and laptops can extend screen-based
+                            work beyond normal office hours.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card shadow">
+
+                        <div class="ow-card-icon">
+                            <span class="material-icons-round">
+                                traffic
+                            </span>
+                        </div>
+
+                        <h3>
+                            Commute sitting
+                        </h3>
+
+                        <p>
+                            A long journey to and from work can add
+                            substantial sitting before and after the
+                            formal working day.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card shadow">
+
+                        <div class="ow-card-icon">
+                            <span class="material-icons-round">
+                                battery_alert
+                            </span>
+                        </div>
+
+                        <h3>
+                            Incomplete recovery
+                        </h3>
+
+                        <p>
+                            When work continues into evenings and
+                            weekends, opportunities for proper rest and
+                            recovery can become limited.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DAILY ROUTINE
+        ====================================================== -->
+
+        <section class="ow-section">
+
+            <div class="ow-container">
+
+                <div class="ow-heading">
+
+                    <span class="eyebrow">
+                        A realistic routine
+                    </span>
+
+                    <h2>
+                        Build wellness into the workday
+                    </h2>
+
+                    <p>
+                        Wellness habits become easier to maintain when
+                        they are attached to activities that already
+                        happen during the day.
+                    </p>
+
+                </div>
+
+
+                <div class="ow-routine">
+
+                    <article class="ow-routine-item">
+
+                        <div class="ow-time">
+                            Start of work
+                        </div>
+
+                        <h3>
+                            Reset your workstation
+                        </h3>
+
+                        <p>
+                            Check monitor height, seating support,
+                            feet and keyboard/mouse position before
+                            beginning a long work block.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-routine-item">
+
+                        <div class="ow-time">
+                            During work
+                        </div>
+
+                        <h3>
+                            Interrupt sitting
+                        </h3>
+
+                        <p>
+                            Stand, walk briefly or change position
+                            rather than remaining static throughout
+                            the entire work period.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-routine-item">
+
+                        <div class="ow-time">
+                            Lunch / break
+                        </div>
+
+                        <h3>
+                            Move away from the desk
+                        </h3>
+
+                        <p>
+                            Where possible, use breaks as an
+                            opportunity to leave the workstation and
+                            move rather than continuing to work.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-routine-item">
+
+                        <div class="ow-time">
+                            End of work
+                        </div>
+
+                        <h3>
+                            Create a transition
+                        </h3>
+
+                        <p>
+                            Give the body and mind a clear transition
+                            from work into the evening instead of
+                            carrying uninterrupted work into the night.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DESK SETUP
+        ====================================================== -->
+
+        <section class="ow-section soft">
+
+            <div class="ow-container">
+
+                <div class="ow-feature">
+
+                    <div class="ow-feature-box">
+
+                        <h3>
+                            Your desk should support you—not force
+                            you into one position.
+                        </h3>
+
+                        <p>
+                            A good workstation makes comfortable
+                            working easier while still allowing you
+                            to change position and move.
+                        </p>
+
+                    </div>
+
+
+                    <div class="ow-feature-content">
+
+                        <h3>
+                            Quick desk setup
+                        </h3>
+
+                        <ul class="ow-list">
+
+                            <li>
+
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Position the monitor so you are
+                                    not repeatedly bending your neck
+                                    downward.
+                                </span>
+
+                            </li>
+
+
+                            <li>
+
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Use your chair's back support
+                                    rather than constantly sitting on
+                                    the front edge.
+                                </span>
+
+                            </li>
+
+
+                            <li>
+
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Keep the shoulders relaxed while
+                                    working at the keyboard.
+                                </span>
+
+                            </li>
+
+
+                            <li>
+
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Keep the feet comfortably
+                                    supported.
+                                </span>
+
+                            </li>
+
+
+                            <li>
+
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Change position regularly rather
+                                    than attempting to hold a single
+                                    posture all day.
+                                </span>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ow-callout">
+
+                    <strong>
+                        Remember:
+                    </strong>
+
+                    <p>
+                        Ergonomic measurements are useful starting
+                        points, not rigid rules for every person.
+                        Individual body dimensions, equipment, visual
+                        needs, tasks and existing health concerns can
+                        change what is appropriate.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MICRO BREAKS
+        ====================================================== -->
+
+        <section class="ow-section">
+
+            <div class="ow-container">
+
+                <div class="ow-heading">
+
+                    <span class="eyebrow">
+                        Movement
+                    </span>
+
+                    <h2>
+                        The two-minute rule for a long desk day
+                    </h2>
+
+                    <p>
+                        You do not need a gym inside the office to
+                        introduce more movement into your day.
+                    </p>
+
+                </div>
+
+
+                <div class="ow-grid">
+
+                    <article class="ow-card shadow">
+
+                        <div class="ow-card-icon">
+                            <span class="material-icons-round">
+                                accessibility
+                            </span>
+                        </div>
+
+                        <h3>
+                            Stand
+                        </h3>
+
+                        <p>
+                            Change from sitting to standing when your
+                            task allows it. Even a short change of
+                            position can break up prolonged static
+                            sitting.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card shadow">
+
+                        <div class="ow-card-icon">
+                            <span class="material-icons-round">
+                                directions_walk
+                            </span>
+                        </div>
+
+                        <h3>
+                            Walk
+                        </h3>
+
+                        <p>
+                            Walk to refill water, move between rooms
+                            or take a short walk during an appropriate
+                            break instead of remaining at the desk.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card shadow">
+
+                        <div class="ow-card-icon">
+                            <span class="material-icons-round">
+                                swap_vert
+                            </span>
+                        </div>
+
+                        <h3>
+                            Change position
+                        </h3>
+
+                        <p>
+                            A workstation should allow you to move
+                            between comfortable positions rather than
+                            treating one sitting posture as permanent.
+                        </p>
+
+                    </article>
+
+                </div>
+
+
+                <div class="ow-callout">
+
+                    <strong>
+                        A practical starting habit:
+                    </strong>
+
+                    <p>
+                        Where work responsibilities allow, consider a
+                        brief two- to three-minute movement interruption
+                        approximately once every hour. The goal is
+                        consistency rather than perfection.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             LAGOS COMMUTE
+        ====================================================== -->
+
+        <section class="ow-section green">
+
+            <div class="ow-container">
+
+                <div class="ow-heading">
+
+                    <span class="eyebrow">
+                        Lagos reality
+                    </span>
+
+                    <h2>
+                        Your wellness day may start before you reach
+                        the office
+                    </h2>
+
+                    <p>
+                        For many Lagos professionals, commuting is an
+                        important part of the physical workday.
+                    </p>
+
+                </div>
+
+
+                <div class="ow-cycle">
+
+                    <div class="ow-cycle-item">
+
+                        <span class="material-icons-round">
+                            home
+                        </span>
+
+                        <strong>
+                            Leave home
+                        </strong>
+
+                        <span>
+                            Start the day
+                        </span>
+
+                    </div>
+
+
+                    <div class="ow-cycle-item">
+
+                        <span class="material-icons-round">
+                            directions_car
+                        </span>
+
+                        <strong>
+                            Commute
+                        </strong>
+
+                        <span>
+                            Prolonged sitting
+                        </span>
+
+                    </div>
+
+
+                    <div class="ow-cycle-item">
+
+                        <span class="material-icons-round">
+                            computer
+                        </span>
+
+                        <strong>
+                            Work
+                        </strong>
+
+                        <span>
+                            Desk + meetings
+                        </span>
+
+                    </div>
+
+
+                    <div class="ow-cycle-item">
+
+                        <span class="material-icons-round">
+                            directions_car
+                        </span>
+
+                        <strong>
+                            Return
+                        </strong>
+
+                        <span>
+                            More sitting
+                        </span>
+
+                    </div>
+
+
+                    <div class="ow-cycle-item">
+
+                        <span class="material-icons-round">
+                            nightlight
+                        </span>
+
+                        <strong>
+                            Recover
+                        </strong>
+
+                        <span>
+                            Evening routine
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ow-callout">
+
+                    <strong>
+                        Think beyond the office.
+                    </strong>
+
+                    <p>
+                        Professionals travelling from areas such as
+                        Lekki, Lagos Island, Ikoyi, Victoria Island or
+                        Ikeja may experience substantial sitting before
+                        and after their desk-based work. That makes
+                        movement and recovery relevant throughout the
+                        entire day.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             WORK STRESS
+        ====================================================== -->
+
+        <section class="ow-section">
+
+            <div class="ow-container">
+
+                <div class="ow-heading">
+
+                    <span class="eyebrow">
+                        Mental & physical recovery
+                    </span>
+
+                    <h2>
+                        Wellness is not only about posture
+                    </h2>
+
+                    <p>
+                        A person can have a well-arranged workstation
+                        and still have an unsustainable workday.
+                    </p>
+
+                </div>
+
+
+                <div class="ow-grid two">
+
+                    <article class="ow-card shadow">
+
+                        <h3>
+                            Workload matters
+                        </h3>
+
+                        <p>
+                            Continuous deadlines, meetings,
+                            interruptions and after-hours work can
+                            affect how effectively a person recovers.
+                            Wellness should therefore sit alongside
+                            sensible workload, rest and organisational
+                            practices.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card shadow">
+
+                        <h3>
+                            Recovery matters
+                        </h3>
+
+                        <p>
+                            Rest, sleep, hydration, appropriate
+                            movement and time away from work all
+                            contribute to the broader recovery
+                            process. A massage session can be one
+                            wellness activity within that wider
+                            routine.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card shadow">
+
+                        <h3>
+                            Boundaries matter
+                        </h3>
+
+                        <p>
+                            Constantly checking work messages after
+                            hours can make it difficult to establish
+                            a genuine transition from work to personal
+                            time.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card shadow">
+
+                        <h3>
+                            Consistency matters
+                        </h3>
+
+                        <p>
+                            Small habits repeated through the week can
+                            be more practical than an ambitious
+                            wellness routine that an employee cannot
+                            sustain.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             OFFICE WORKER SELF CHECK
+        ====================================================== -->
+
+        <section class="ow-section soft">
+
+            <div class="ow-container">
+
+                <div class="ow-heading">
+
+                    <span class="eyebrow">
+                        Self-check
+                    </span>
+
+                    <h2>
+                        How sustainable is your current workday?
+                    </h2>
+
+                    <p>
+                        Use these questions to identify areas that may
+                        need attention.
+                    </p>
+
+                </div>
+
+
+                <div class="ow-grid two">
+
+                    <div class="ow-card shadow">
+
+                        <ul class="ow-list">
+
+                            <li>
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Do you regularly spend several
+                                    hours without standing or changing
+                                    position?
+                                </span>
+                            </li>
+
+
+                            <li>
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Do you frequently work with your
+                                    head bent toward a laptop?
+                                </span>
+                            </li>
+
+
+                            <li>
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Do you eat lunch at your desk while
+                                    continuing to work?
+                                </span>
+                            </li>
+
+
+                            <li>
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Do you spend most of your commute
+                                    seated?
+                                </span>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="ow-card shadow">
+
+                        <ul class="ow-list">
+
+                            <li>
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Do you regularly continue working
+                                    late into the evening?
+                                </span>
+                            </li>
+
+
+                            <li>
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Do you have a clear transition
+                                    between work and personal time?
+                                </span>
+                            </li>
+
+
+                            <li>
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Do you intentionally move during
+                                    your working day?
+                                </span>
+                            </li>
+
+
+                            <li>
+                                <span class="ow-check">
+                                    <span class="material-icons-round">
+                                        check
+                                    </span>
+                                </span>
+
+                                <span>
+                                    Do you have a recovery routine that
+                                    you can actually maintain?
+                                </span>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             OCCUPATION CONTEXT
+        ====================================================== -->
+
+        <section class="ow-section">
+
+            <div class="ow-container">
+
+                <div class="ow-heading">
+
+                    <span class="eyebrow">
+                        Different jobs, similar challenges
+                    </span>
+
+                    <h2>
+                        Office wellness applies across professional
+                        roles
+                    </h2>
+
+                    <p>
+                        The exact work pattern differs, but many
+                        desk-based professionals share the same basic
+                        challenges.
+                    </p>
+
+                </div>
+
+
+                <div class="ow-grid">
+
+                    <article class="ow-card">
+
+                        <h3>
+                            Bankers
+                        </h3>
+
+                        <p>
+                            Long periods of computer work, meetings,
+                            reporting and customer-facing tasks can
+                            make movement and recovery important parts
+                            of the workday.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card">
+
+                        <h3>
+                            Executives
+                        </h3>
+
+                        <p>
+                            Meetings, travel, decision-making and
+                            extended screen time can create a demanding
+                            combination of mental workload and physical
+                            inactivity.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card">
+
+                        <h3>
+                            Accountants & analysts
+                        </h3>
+
+                        <p>
+                            Spreadsheet-heavy work can involve long
+                            uninterrupted periods at a monitor,
+                            particularly during reporting cycles.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card">
+
+                        <h3>
+                            Software & technology professionals
+                        </h3>
+
+                        <p>
+                            Coding, design, testing and remote meetings
+                            can produce long blocks of screen-based
+                            work if movement is not deliberately
+                            introduced.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card">
+
+                        <h3>
+                            HR professionals
+                        </h3>
+
+                        <p>
+                            HR teams often combine desk administration,
+                            employee meetings, documentation and
+                            people-support responsibilities.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ow-card">
+
+                        <h3>
+                            Entrepreneurs
+                        </h3>
+
+                        <p>
+                            Business owners can find it difficult to
+                            disconnect from work, making deliberate
+                            recovery and movement particularly
+                            important.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MASSAGE / RECOVERY
+        ====================================================== -->
+
+        <section class="ow-section soft">
+
+            <div class="ow-container">
+
+                <div class="ow-feature">
+
+                    <div class="ow-feature-content">
+
+                        <h3>
+                            Where massage can fit into an office
+                            worker's wellness routine
+                        </h3>
+
+                        <p>
+                            Massage can be used by some people as a
+                            relaxation and recovery activity alongside
+                            other healthy habits.
+                        </p>
+
+                        <p>
+                            For a desk-based professional, this may be
+                            particularly relevant after demanding
+                            periods of work, provided the person does
+                            not treat massage as a substitute for
+                            appropriate healthcare or workstation
+                            changes.
+                        </p>
+
+                        <p>
+                            At Pax & Pearl Body Works, massage and spa
+                            experiences are part of a broader wellness
+                            offering in Festac Town, Lagos.
+                        </p>
+
+                    </div>
+
+
+                    <div class="ow-feature-box">
+
+                        <h3>
+                            Recovery works best as a system.
+                        </h3>
+
+                        <p>
+                            Workstation habits + movement + rest +
+                            appropriate professional care + enjoyable
+                            wellness experiences can work together
+                            without pretending that one service solves
+                            every workplace problem.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RELATED PAGES
+        ====================================================== -->
+
+        <section class="ow-section">
+
+            <div class="ow-container">
+
+                <div class="ow-heading">
+
+                    <span class="eyebrow">
+                        Related resources
+                    </span>
+
+                    <h2>
+                        Continue your workplace wellness journey
+                    </h2>
+
+                </div>
+
+
+                <div class="ow-links">
+
+                    <a
+                        href="/corporate-ergonomics-lagos"
+                        class="ow-link"
+                    >
+
+                        <div>
+                            <strong>
+                                Corporate Ergonomics Lagos
+                            </strong>
+
+                            <span>
+                                Workstation setup, posture and
+                                ergonomic workplace practices.
+                            </span>
+                        </div>
+
+                        <span class="material-icons-round">
+                            arrow_forward
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="/workplace-commute-wellness-lagos"
+                        class="ow-link"
+                    >
+
+                        <div>
+                            <strong>
+                                Lagos Commute Wellness
+                            </strong>
+
+                            <span>
+                                Practical wellness considerations for
+                                long Lagos commutes.
+                            </span>
+                        </div>
+
+                        <span class="material-icons-round">
+                            arrow_forward
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="/stress-and-recovery"
+                        class="ow-link"
+                    >
+
+                        <div>
+                            <strong>
+                                Stress & Recovery
+                            </strong>
+
+                            <span>
+                                Explore practical recovery principles
+                                around demanding work.
+                            </span>
+                        </div>
+
+                        <span class="material-icons-round">
+                            arrow_forward
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="/employee-wellness"
+                        class="ow-link"
+                    >
+
+                        <div>
+                            <strong>
+                                Employee Wellness
+                            </strong>
+
+                            <span>
+                                Wellness considerations for employees
+                                and workplace teams.
+                            </span>
+                        </div>
+
+                        <span class="material-icons-round">
+                            arrow_forward
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="/wellness-for-bankers"
+                        class="ow-link"
+                    >
+
+                        <div>
+                            <strong>
+                                Wellness for Bankers
+                            </strong>
+
+                            <span>
+                                A profession-specific wellness resource
+                                for banking professionals.
+                            </span>
+                        </div>
+
+                        <span class="material-icons-round">
+                            arrow_forward
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="/wellness-for-executives"
+                        class="ow-link"
+                    >
+
+                        <div>
+                            <strong>
+                                Wellness for Executives
+                            </strong>
+
+                            <span>
+                                Wellness considerations for demanding
+                                executive work.
+                            </span>
+                        </div>
+
+                        <span class="material-icons-round">
+                            arrow_forward
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FAQ
+        ====================================================== -->
+
+        <section class="ow-section soft">
+
+            <div class="ow-container">
+
+                <div class="ow-heading center">
+
+                    <span class="eyebrow">
+                        Frequently asked questions
+                    </span>
+
+                    <h2>
+                        Office worker wellness FAQs
+                    </h2>
+
+                    <p>
+                        Clear answers to common questions from
+                        desk-based professionals.
+                    </p>
+
+                </div>
+
+
+                <div class="ow-faq">
+
+
+                    <details>
+
+                        <summary>
+                            What is office worker wellness?
+                        </summary>
+
+                        <div class="ow-faq-answer">
+
+                            <p>
+                                Office worker wellness is the practical
+                                support of physical comfort, movement,
+                                recovery, stress management and
+                                sustainable working for people whose
+                                jobs involve significant desk,
+                                computer or office-based work.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            How can I reduce prolonged sitting at work?
+                        </summary>
+
+                        <div class="ow-faq-answer">
+
+                            <p>
+                                Interrupt long periods of sitting by
+                                standing, walking, changing position
+                                and taking brief movement breaks.
+                                Adjust your workstation so comfortable
+                                movement is possible rather than
+                                trying to maintain one position all
+                                day.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            How often should an office worker take a movement break?
+                        </summary>
+
+                        <div class="ow-faq-answer">
+
+                            <p>
+                                A practical starting point is a brief
+                                two- to three-minute movement
+                                interruption approximately once an
+                                hour, where the nature of the work
+                                allows it.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            Is working on a laptop bad for posture?
+                        </summary>
+
+                        <div class="ow-faq-answer">
+
+                            <p>
+                                Laptop use can encourage downward
+                                viewing and a fixed relationship
+                                between the screen and keyboard.
+                                For prolonged use, a workstation
+                                arrangement that allows the screen
+                                and input devices to be positioned
+                                comfortably may be preferable.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            How does Lagos traffic affect office worker wellness?
+                        </summary>
+
+                        <div class="ow-faq-answer">
+
+                            <p>
+                                A long commute can add another extended
+                                period of sitting to a workday that
+                                already includes substantial desk work.
+                                Treating commuting as part of the
+                                overall daily routine can help
+                                professionals think more realistically
+                                about movement and recovery.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            Can massage help office workers relax?
+                        </summary>
+
+                        <div class="ow-faq-answer">
+
+                            <p>
+                                Massage can be part of a personal
+                                relaxation and recovery routine for
+                                some people. It should complement
+                                appropriate workstation habits and
+                                professional healthcare when needed,
+                                rather than being presented as a
+                                treatment for an underlying medical
+                                condition.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details>
+
+                        <summary>
+                            When should I seek professional healthcare?
+                        </summary>
+
+                        <div class="ow-faq-answer">
+
+                            <p>
+                                Persistent, severe, worsening or
+                                concerning symptoms should be assessed
+                                by an appropriately qualified
+                                healthcare professional. General
+                                workplace wellness information should
+                                not replace individual medical advice.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FINAL CTA
+        ====================================================== -->
+
+        <section class="ow-final">
+
+            <div class="ow-container">
+
+                <div class="ow-final-inner">
+
+                    <span class="ow-eyebrow">
+                        Make recovery part of the routine
+                    </span>
+
+                    <h2>
+                        Your workday deserves a wellness strategy too.
+                    </h2>
+
+                    <p>
+                        Support your desk habits, movement, rest and
+                        recovery—and make wellness something you can
+                        actually sustain.
+                    </p>
+
+
+                    <div class="ow-actions">
+
+                        <a
+                            href="/booking"
+                            class="ow-button ow-button-primary"
+                        >
+                            Book Pax & Pearl
+
+                            <span class="material-icons-round">
+                                arrow_forward
+                            </span>
+                        </a>
+
+
+                        <a
+                            href="/corporate-wellness-lagos"
+                            class="ow-button ow-button-secondary"
+                        >
+                            Corporate Wellness
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DISCLAIMER
+        ========================================================== -->
+
+        <section class="ow-disclaimer">
+
+            <div class="ow-container">
+
+                <p>
+                    <strong>Wellness information:</strong>
+                    This page provides general workplace wellness
+                    information for educational purposes. It is not
+                    medical advice, a diagnosis, physiotherapy
+                    assessment or occupational-health assessment.
+                    Individual needs vary. Persistent, severe,
+                    worsening or concerning symptoms should be
+                    evaluated by an appropriately qualified healthcare
+                    professional.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script>
+
+    /*
+     * Office Worker Wellness Lagos
+     *
+     * The page intentionally requires no heavy JavaScript.
+     * Native <details> elements power the FAQ section.
+     */
+
+    document.documentElement.classList.add("ow-page-ready");
+
+</script>
+
+</body>
+
+</html>
