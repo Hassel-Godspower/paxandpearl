@@ -215,9 +215,16 @@
     {
       "source": "/wellness-for-desk-workers",
       "destination": "/wellness-for-desk-workers.html"
-    }
+    },
 
-    
+    {
+      "source": "/corporate-wellness-lagos",
+      "destination": "/corporate-wellness-lagos.html"
+    },
+    {
+      "source": "/employee-wellness",
+      "destination": "/employee-wellness.html"
+    }
 
   ]
 }
