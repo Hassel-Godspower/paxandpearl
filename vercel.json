@@ -257,7 +257,11 @@
     {
       "source": "/employee-wellness",
       "destination": "/employee-wellness.html"
-     }
+     }, 
+    {
+      "source": "/corporate-wellness-lagos",
+      "destination": "/corporate-wellness-lagos.html"
+    }
 
   ]
 }
