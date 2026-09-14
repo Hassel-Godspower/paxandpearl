@@ -224,6 +224,15 @@
     {
       "source": "/employee-wellness",
       "destination": "/employee-wellness.html"
+    },
+
+    {
+      "source": "/corporate-massage-lagos",
+      "destination": "/Corporate-Massage-Lagos.html"
+    },
+    {
+      "source": "/wellness-for-bankers",
+      "destination": "/wellness-for-bankers.html"
     }
 
   ]
