@@ -233,7 +233,16 @@
     {
       "source": "/wellness-for-bankers",
       "destination": "/wellness-for-bankers.html"
-    }
+    },
+
+    {
+      "source": "/wellness-for-executives",
+      "destination": "/wellness-for-executives.html"
+    },
+    {
+      "source": "/wellness-for-remote-workers",
+      "destination": "/wellness-for-remote-workers.html"
+   }
 
   ]
 }
