@@ -247,6 +247,11 @@
     {
       "source": "/corporate-ergonomics-lagos",
       "destination": "/corporate-ergonomics-lagos.html"
+    },
+
+    {
+      "source": "/hr-wellness-resources-lagos",
+      "destination": "/hr-wellness-resources-lagos.html"
     }
 
   ]
