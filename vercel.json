@@ -242,7 +242,12 @@
     {
       "source": "/wellness-for-remote-workers",
       "destination": "/wellness-for-remote-workers.html"
-   }
+   },
+
+    {
+      "source": "/corporate-ergonomics-lagos",
+      "destination": "/corporate-ergonomics-lagos.html"
+    }
 
   ]
 }
