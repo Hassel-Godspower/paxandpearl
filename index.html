@@ -2568,6 +2568,718 @@
     </div>
 </div>
 
+<!-- =====================================================
+     PAX & PEARL
+     CORPORATE MASSAGE CALCULATOR
+===================================================== -->
+
+<div
+    class="corporate-calculator-modal"
+    data-corporate-calculator-modal
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="corporate-calculator-title"
+>
+
+    <div class="corporate-calculator-panel">
+
+        <!-- HEADER -->
+
+        <header class="corporate-calculator-header">
+
+            <div>
+
+                <h2 id="corporate-calculator-title">
+                    Corporate Massage Program
+                </h2>
+
+                <p>
+                    Build an instant estimate for your team
+                    and download it for management approval.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="corporate-calculator-close"
+                data-corporate-calculator-close
+                aria-label="Close corporate massage calculator"
+            >
+                ×
+            </button>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <div class="corporate-calculator-content">
+
+            <div class="corporate-calculator-grid">
+
+
+                <!-- =========================================
+                     FORM
+                ========================================== -->
+
+                <section class="corporate-form-section">
+
+                    <h3>
+                        Company Information
+                    </h3>
+
+
+                    <form
+                        data-corporate-form
+                        novalidate
+                    >
+
+                        <!-- COMPANY -->
+
+                        <div class="corporate-form-group">
+
+                            <label
+                                for="corporate-company-name"
+                            >
+                                Company Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="corporate-company-name"
+                                name="company_name"
+                                autocomplete="organization"
+                                placeholder="e.g. ABC Technologies Ltd"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="corporate-form-group">
+
+                            <label
+                                for="corporate-email"
+                            >
+                                Official Company Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="corporate-email"
+                                name="official_email"
+                                autocomplete="email"
+                                placeholder="hr@company.com"
+                                required
+                            >
+
+                            <span class="corporate-field-help">
+                                Please use your official company email
+                                where possible.
+                            </span>
+
+                        </div>
+
+
+                        <!-- EMPLOYEES -->
+
+                        <div class="corporate-form-group">
+
+                            <label
+                                for="corporate-employees"
+                            >
+                                Number of Employees
+                            </label>
+
+                            <input
+                                type="number"
+                                id="corporate-employees"
+                                name="employees"
+                                min="10"
+                                step="1"
+                                inputmode="numeric"
+                                placeholder="10"
+                                required
+                            >
+
+                            <span class="corporate-field-help">
+                                Corporate program pricing starts
+                                from 10 employees.
+                            </span>
+
+                        </div>
+
+
+                        <!-- OFFICE LOCATION -->
+
+                        <div class="corporate-form-group">
+
+                            <label
+                                for="corporate-location"
+                            >
+                                Workplace Location
+                                <span class="corporate-field-help">
+                                    Required for onsite service
+                                </span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="corporate-location"
+                                name="office_location"
+                                placeholder="e.g. Ikeja, Lagos"
+                                autocomplete="street-address"
+                            >
+
+                        </div>
+
+
+                        <!-- FREQUENCY -->
+
+                        <div class="corporate-form-group">
+
+                            <label>
+                                Program Frequency
+                            </label>
+
+                            <div
+                                class="corporate-option-grid"
+                            >
+
+                                <div class="corporate-option">
+
+                                    <input
+                                        type="radio"
+                                        id="frequency-monthly"
+                                        name="corporate-frequency"
+                                        value="monthly"
+                                    >
+
+                                    <label
+                                        for="frequency-monthly"
+                                    >
+
+                                        <span
+                                            class="corporate-option-title"
+                                        >
+                                            Monthly
+                                        </span>
+
+                                        <span
+                                            class="corporate-option-description"
+                                        >
+                                            10% off
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="corporate-option">
+
+                                    <input
+                                        type="radio"
+                                        id="frequency-biannual"
+                                        name="corporate-frequency"
+                                        value="biannual"
+                                    >
+
+                                    <label
+                                        for="frequency-biannual"
+                                    >
+
+                                        <span
+                                            class="corporate-option-title"
+                                        >
+                                            Bi-annual
+                                        </span>
+
+                                        <span
+                                            class="corporate-option-description"
+                                        >
+                                            5% off
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="corporate-option">
+
+                                    <input
+                                        type="radio"
+                                        id="frequency-annual"
+                                        name="corporate-frequency"
+                                        value="annual"
+                                    >
+
+                                    <label
+                                        for="frequency-annual"
+                                    >
+
+                                        <span
+                                            class="corporate-option-title"
+                                        >
+                                            Annual
+                                        </span>
+
+                                        <span
+                                            class="corporate-option-description"
+                                        >
+                                            3% off
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SERVICE -->
+
+                        <div class="corporate-form-group">
+
+                            <label>
+                                Service Location
+                            </label>
+
+                            <div
+                                class="corporate-option-grid two"
+                            >
+
+                                <div class="corporate-option">
+
+                                    <input
+                                        type="radio"
+                                        id="service-onsite"
+                                        name="corporate-service"
+                                        value="onsite"
+                                    >
+
+                                    <label
+                                        for="service-onsite"
+                                    >
+
+                                        <span
+                                            class="corporate-option-title"
+                                        >
+                                            Onsite
+                                        </span>
+
+                                        <span
+                                            class="corporate-option-description"
+                                        >
+                                            We come to your office
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="corporate-option">
+
+                                    <input
+                                        type="radio"
+                                        id="service-spa"
+                                        name="corporate-service"
+                                        value="spa"
+                                    >
+
+                                    <label
+                                        for="service-spa"
+                                    >
+
+                                        <span
+                                            class="corporate-option-title"
+                                        >
+                                            Spa Visit
+                                        </span>
+
+                                        <span
+                                            class="corporate-option-description"
+                                        >
+                                            Your employees visit us
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DURATION -->
+
+                        <div class="corporate-form-group">
+
+                            <label>
+                                Massage Duration
+                            </label>
+
+                            <div
+                                class="corporate-option-grid"
+                            >
+
+                                <div class="corporate-option">
+
+                                    <input
+                                        type="radio"
+                                        id="duration-20"
+                                        name="corporate-duration"
+                                        value="20"
+                                    >
+
+                                    <label
+                                        for="duration-20"
+                                    >
+
+                                        <span
+                                            class="corporate-option-title"
+                                        >
+                                            20 Minutes
+                                        </span>
+
+                                        <span
+                                            class="corporate-option-description"
+                                        >
+                                            ₦15,000 / employee
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="corporate-option">
+
+                                    <input
+                                        type="radio"
+                                        id="duration-30"
+                                        name="corporate-duration"
+                                        value="30"
+                                    >
+
+                                    <label
+                                        for="duration-30"
+                                    >
+
+                                        <span
+                                            class="corporate-option-title"
+                                        >
+                                            30 Minutes
+                                        </span>
+
+                                        <span
+                                            class="corporate-option-description"
+                                        >
+                                            ₦20,000 / employee
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="corporate-option">
+
+                                    <input
+                                        type="radio"
+                                        id="duration-60"
+                                        name="corporate-duration"
+                                        value="60"
+                                    >
+
+                                    <label
+                                        for="duration-60"
+                                    >
+
+                                        <span
+                                            class="corporate-option-title"
+                                        >
+                                            60 Minutes
+                                        </span>
+
+                                        <span
+                                            class="corporate-option-description"
+                                        >
+                                            ₦35,000 / employee
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SUBMIT -->
+
+                        <div class="corporate-submit-area">
+
+                            <div
+                                class="corporate-submit-message"
+                                data-submit-message
+                                role="status"
+                                aria-live="polite"
+                            ></div>
+
+                            <button
+                                type="submit"
+                                class="corporate-action-button primary"
+                                data-submit-corporate
+                                disabled
+                            >
+                                Request Corporate Program
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+
+                <!-- =========================================
+                     SUMMARY
+                ========================================== -->
+
+                <aside class="corporate-summary-section">
+
+                    <div class="corporate-summary-card">
+
+                        <p class="corporate-summary-kicker">
+                            Instant Estimate
+                        </p>
+
+                        <h3 class="corporate-summary-title">
+                            Your Program
+                        </h3>
+
+
+                        <div class="corporate-summary-row">
+
+                            <span>
+                                Company
+                            </span>
+
+                            <strong data-summary-company>
+                                Your company
+                            </strong>
+
+                        </div>
+
+
+                        <div class="corporate-summary-row">
+
+                            <span>
+                                Employees
+                            </span>
+
+                            <strong data-summary-employees>
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="corporate-summary-row">
+
+                            <span>
+                                Frequency
+                            </span>
+
+                            <strong data-summary-frequency>
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="corporate-summary-row">
+
+                            <span>
+                                Service
+                            </span>
+
+                            <strong data-summary-service>
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="corporate-summary-row">
+
+                            <span>
+                                Duration
+                            </span>
+
+                            <strong data-summary-duration>
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="corporate-summary-row">
+
+                            <span>
+                                Base Fee
+                            </span>
+
+                            <strong data-summary-base>
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="corporate-summary-row discount">
+
+                            <span>
+                                Discount
+                            </span>
+
+                            <strong data-summary-discount>
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="corporate-summary-row discount">
+
+                            <span>
+                                Discount Amount
+                            </span>
+
+                            <strong data-summary-discount-amount>
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <!-- TOTAL -->
+
+                        <div class="corporate-total">
+
+                            <div class="corporate-total-label">
+                                ESTIMATED PROGRAM FEE
+                            </div>
+
+                            <div
+                                class="corporate-total-value"
+                                data-summary-total
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <!-- ANNUAL -->
+
+                        <div class="corporate-annual-value">
+
+                            <span
+                                data-summary-annual-label
+                            >
+                                Annual program value
+                            </span>
+
+                            <strong
+                                data-summary-annual
+                            >
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <!-- ONSITE NOTICE -->
+
+                        <div
+                            class="corporate-location-notice"
+                            data-location-notice
+                            hidden
+                        >
+                        </div>
+
+
+                        <!-- ACTIONS -->
+
+                        <div
+                            class="corporate-calculator-actions"
+                        >
+
+                            <button
+                                type="button"
+                                class="corporate-action-button secondary"
+                                data-download-pdf
+                                disabled
+                            >
+                                Download PDF
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="corporate-action-button primary"
+                                data-print-calculation
+                                disabled
+                            >
+                                Print / Save PDF
+                            </button>
+
+                        </div>
+
+
+                        <p
+                            class="corporate-calculator-footnote"
+                        >
+
+                            <strong>
+                                Important:
+                            </strong>
+
+                            The displayed amount is an estimate
+                            based on the selected number of employees,
+                            massage duration and program frequency.
+
+                            Onsite location, transportation or logistics
+                            fees, where applicable, are not included and
+                            will be confirmed separately by Pax & Pearl.
+
+                        </p>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 <script src="js/home.js"></script>
     
 </body>
