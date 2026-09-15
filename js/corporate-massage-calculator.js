@@ -1395,7 +1395,7 @@ Pax & Pearl Body Works.
 
 
         window.location.href =
-            `mailto:info@paxandpearl.vercel.app?subject=${subject}&body=${body}`;
+            `mailto:paxandpearlbodyworks@gmail.com?subject=${subject}&body=${body}`;
 
 
         showMessage(
