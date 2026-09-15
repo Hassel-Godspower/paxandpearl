@@ -271,6 +271,11 @@
     {
       "source": "/lagos-business-district-wellness",
       "destination": "/lagos-business-district-wellness.html"
+    },
+
+    {
+      "source": "/workplace-wellness-guide",
+      "destination": "/workplace-wellness-guide.html"
     }
 
   ]
