@@ -263,5 +263,10 @@
       "destination": "/corporate-wellness-lagos.html"
     }
 
+    {
+      "source": "/corporate-massage-lagos",
+      "destination": "/corporate-massage-lagos.html"
+    }
+
   ]
 }
