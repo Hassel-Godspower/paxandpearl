@@ -685,3 +685,284 @@
         padding: 18px;
     }
 }
+
+/* =========================================================
+   PAX & PEARL — CORPORATE WELLNESS SECTION
+========================================================= */
+
+.corporate-wellness-section {
+    position: relative;
+    padding: 90px 20px;
+    background: var(--cream, #f7f2e8);
+    overflow: hidden;
+}
+
+.corporate-wellness-container {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+}
+
+.corporate-wellness-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* -----------------------------------------
+   EYEBROW
+----------------------------------------- */
+
+.corporate-wellness-eyebrow {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: var(--gold, #c9a227);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+/* -----------------------------------------
+   HEADING
+----------------------------------------- */
+
+.corporate-wellness-content h2 {
+    margin: 0 auto 20px;
+    max-width: 760px;
+    color: var(--forest, #0d2f25);
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+}
+
+.corporate-wellness-content h2 span {
+    color: var(--gold, #c9a227);
+}
+
+.corporate-wellness-intro {
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--muted, #65736d);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+/* -----------------------------------------
+   FEATURE GRID
+----------------------------------------- */
+
+.corporate-wellness-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 42px 0 36px;
+    text-align: left;
+}
+
+.corporate-wellness-feature {
+    display: flex;
+    gap: 14px;
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid var(--line, #ddd5c8);
+    border-radius: 14px;
+}
+
+.corporate-feature-icon {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: var(--forest, #0d2f25);
+    color: #ffffff;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.corporate-wellness-feature strong {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--forest, #0d2f25);
+    font-size: 0.95rem;
+}
+
+.corporate-wellness-feature p {
+    margin: 0;
+    color: var(--muted, #65736d);
+    font-size: 0.88rem;
+    line-height: 1.65;
+}
+
+/* -----------------------------------------
+   ACTIONS
+----------------------------------------- */
+
+.corporate-wellness-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Main calculator button */
+
+.corporate-calculator-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    min-height: 54px;
+    padding: 14px 22px;
+
+    border: 1px solid var(--forest, #0d2f25);
+    border-radius: 8px;
+
+    background: var(--forest, #0d2f25);
+    color: #ffffff;
+
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.corporate-calculator-trigger:hover {
+    background: var(--forest-2, #143e31);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(13, 47, 37, 0.15);
+}
+
+.corporate-calculator-trigger:focus-visible {
+    outline: 3px solid rgba(201, 162, 39, 0.4);
+    outline-offset: 4px;
+}
+
+.corporate-trigger-arrow {
+    font-size: 1.15rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.corporate-calculator-trigger:hover .corporate-trigger-arrow {
+    transform: translateX(4px);
+}
+
+/* Secondary link */
+
+.corporate-learn-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 54px;
+    padding: 14px 20px;
+
+    border: 1px solid var(--line, #ddd5c8);
+    border-radius: 8px;
+
+    color: var(--forest, #0d2f25);
+    background: transparent;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.corporate-learn-more:hover {
+    background: #ffffff;
+    border-color: var(--forest, #0d2f25);
+}
+
+/* -----------------------------------------
+   NOTE
+----------------------------------------- */
+
+.corporate-wellness-note {
+    max-width: 680px;
+    margin: 22px auto 0;
+
+    color: var(--muted, #65736d);
+    font-size: 0.78rem;
+    line-height: 1.6;
+}
+
+/* -----------------------------------------
+   TABLET
+----------------------------------------- */
+
+@media (max-width: 800px) {
+
+    .corporate-wellness-section {
+        padding: 70px 18px;
+    }
+
+    .corporate-wellness-features {
+        grid-template-columns: 1fr;
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+/* -----------------------------------------
+   MOBILE
+----------------------------------------- */
+
+@media (max-width: 560px) {
+
+    .corporate-wellness-section {
+        padding: 60px 16px;
+    }
+
+    .corporate-wellness-content {
+        text-align: left;
+    }
+
+    .corporate-wellness-content h2 {
+        font-size: 2rem;
+    }
+
+    .corporate-wellness-intro {
+        font-size: 0.95rem;
+    }
+
+    .corporate-wellness-features {
+        margin-top: 30px;
+    }
+
+    .corporate-wellness-feature {
+        padding: 18px;
+    }
+
+    .corporate-wellness-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .corporate-calculator-trigger,
+    .corporate-learn-more {
+        width: 100%;
+    }
+
+    .corporate-wellness-note {
+        text-align: left;
+    }
+}
