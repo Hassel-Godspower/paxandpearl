@@ -1129,3 +1129,805 @@
     }
 
 }
+
+/* =========================================================
+   PAX & PEARL BODY WORKS
+   CORPORATE ESTIMATE
+   PDF + PRINT SYSTEM
+========================================================= */
+
+
+/* =========================================================
+   PDF DOCUMENT
+========================================================= */
+
+.pax-corporate-pdf-document {
+
+    position: absolute;
+
+    left: -10000px;
+
+    top: 0;
+
+    width: 794px;
+
+    min-height: 1123px;
+
+    box-sizing: border-box;
+
+    padding: 52px;
+
+    background: #ffffff;
+
+    color: #18312a;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    line-height: 1.5;
+
+    overflow: visible;
+
+    z-index: -1;
+
+}
+
+
+/* =========================================================
+   PDF HEADER
+========================================================= */
+
+.pax-pdf-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding-bottom: 24px;
+
+    border-bottom: 2px solid #0d2f25;
+
+}
+
+
+.pax-pdf-brand {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.pax-pdf-brand-name {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: #0d2f25;
+
+}
+
+
+.pax-pdf-brand-subtitle {
+
+    margin-top: 6px;
+
+    font-size: 10px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    color: #c9a227;
+
+}
+
+
+.pax-pdf-document-label {
+
+    padding: 7px 12px;
+
+    border: 1px solid #c9a227;
+
+    color: #8b6d08;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.pax-pdf-title-section {
+
+    padding: 34px 0 24px;
+
+}
+
+
+.pax-pdf-title-section h1 {
+
+    margin: 0 0 10px;
+
+    color: #0d2f25;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 30px;
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+}
+
+
+.pax-pdf-title-section p {
+
+    margin: 0;
+
+    color: #65736d;
+
+    font-size: 14px;
+
+}
+
+
+.pax-pdf-title-section strong {
+
+    color: #18312a;
+
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.pax-pdf-meta {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap: 18px;
+
+    margin-bottom: 30px;
+
+    padding: 18px;
+
+    background: #f7f2e8;
+
+    border: 1px solid #ddd5c8;
+
+}
+
+
+.pax-pdf-meta div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    min-width: 0;
+
+}
+
+
+.pax-pdf-meta span {
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.2px;
+
+    color: #65736d;
+
+    font-weight: 700;
+
+}
+
+
+.pax-pdf-meta strong {
+
+    font-size: 12px;
+
+    color: #18312a;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.pax-pdf-section {
+
+    margin-bottom: 28px;
+
+    break-inside: avoid;
+
+    page-break-inside: avoid;
+
+}
+
+
+.pax-pdf-section h2 {
+
+    margin: 0 0 12px;
+
+    color: #0d2f25;
+
+    font-size: 15px;
+
+    line-height: 1.3;
+
+    font-weight: 700;
+
+    letter-spacing: .2px;
+
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.pax-pdf-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    border-spacing: 0;
+
+    font-size: 11px;
+
+}
+
+
+.pax-pdf-table tr {
+
+    break-inside: avoid;
+
+    page-break-inside: avoid;
+
+}
+
+
+.pax-pdf-table td {
+
+    padding: 11px 12px;
+
+    border: 1px solid #ddd5c8;
+
+    vertical-align: top;
+
+}
+
+
+.pax-pdf-table td:first-child {
+
+    width: 58%;
+
+    color: #65736d;
+
+    font-weight: 500;
+
+}
+
+
+.pax-pdf-table td:last-child {
+
+    color: #18312a;
+
+    font-weight: 700;
+
+    text-align: right;
+
+}
+
+
+/* =========================================================
+   FEE TABLE
+========================================================= */
+
+.pax-pdf-fee-table td:first-child {
+
+    width: 70%;
+
+}
+
+
+.pax-pdf-fee-table td:last-child {
+
+    width: 30%;
+
+}
+
+
+.pax-pdf-total-row td {
+
+    padding-top: 15px;
+
+    padding-bottom: 15px;
+
+    background: #0d2f25;
+
+    border-color: #0d2f25;
+
+    color: #ffffff !important;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.pax-pdf-total-row td:last-child {
+
+    color: #ffffff !important;
+
+    font-size: 15px;
+
+}
+
+
+/* =========================================================
+   ANNUAL VALUE
+========================================================= */
+
+.pax-pdf-annual {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin: 10px 0 28px;
+
+    padding: 20px;
+
+    background: #f7f2e8;
+
+    border-left: 4px solid #c9a227;
+
+    break-inside: avoid;
+
+    page-break-inside: avoid;
+
+}
+
+
+.pax-pdf-annual > div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.pax-pdf-annual span {
+
+    color: #18312a;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.pax-pdf-annual small {
+
+    color: #65736d;
+
+    font-size: 9px;
+
+}
+
+
+.pax-pdf-annual strong {
+
+    color: #0d2f25;
+
+    font-size: 18px;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================================================
+   IMPORTANT NOTICE
+========================================================= */
+
+.pax-pdf-notice {
+
+    margin-bottom: 35px;
+
+    padding: 16px;
+
+    border: 1px solid #ddd5c8;
+
+    background: #ffffff;
+
+    color: #65736d;
+
+    font-size: 9.5px;
+
+    line-height: 1.65;
+
+    break-inside: avoid;
+
+    page-break-inside: avoid;
+
+}
+
+
+.pax-pdf-notice strong {
+
+    color: #18312a;
+
+}
+
+
+/* =========================================================
+   PDF FOOTER
+========================================================= */
+
+.pax-pdf-footer {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #ddd5c8;
+
+    break-inside: avoid;
+
+    page-break-inside: avoid;
+
+}
+
+
+.pax-pdf-footer > div:first-child {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.pax-pdf-footer strong {
+
+    color: #0d2f25;
+
+    font-size: 11px;
+
+}
+
+
+.pax-pdf-footer span {
+
+    color: #65736d;
+
+    font-size: 9px;
+
+}
+
+
+.pax-pdf-contact {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 3px;
+
+    text-align: right;
+
+}
+
+
+/* =========================================================
+   PRINT MODE
+========================================================= */
+
+@media print {
+
+    /*
+     * Hide everything except the generated estimate.
+     */
+    body.is-printing-corporate-estimate
+    > * {
+
+        display: none !important;
+
+    }
+
+
+    /*
+     * Display the temporary estimate.
+     */
+    body.is-printing-corporate-estimate
+    > #pax-corporate-print-area {
+
+        display: block !important;
+
+        position: static !important;
+
+        left: auto !important;
+
+        top: auto !important;
+
+        width: 100% !important;
+
+        min-height: 0 !important;
+
+        padding: 0 !important;
+
+        margin: 0 !important;
+
+        z-index: auto !important;
+
+        background: #ffffff !important;
+
+        color: #18312a !important;
+
+        overflow: visible !important;
+
+    }
+
+
+    /*
+     * Make sure the browser does not add
+     * unnecessary URL/header/footer content.
+     */
+    @page {
+
+        size: A4 portrait;
+
+        margin: 12mm;
+
+    }
+
+
+    html,
+    body {
+
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+
+        background: #ffffff !important;
+
+    }
+
+
+    /*
+     * Prevent important sections from being
+     * split between pages.
+     */
+    .pax-pdf-section,
+    .pax-pdf-annual,
+    .pax-pdf-notice,
+    .pax-pdf-footer {
+
+        break-inside: avoid !important;
+
+        page-break-inside: avoid !important;
+
+    }
+
+
+    .pax-pdf-table tr {
+
+        break-inside: avoid !important;
+
+        page-break-inside: avoid !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE PDF GENERATION SAFETY
+========================================================= */
+
+@media screen and (max-width: 700px) {
+
+    .pax-corporate-pdf-document {
+
+        width: 794px;
+
+        max-width: none;
+
+    }
+
+}
+
+
+/* =========================================================
+   CALCULATOR STATUS
+========================================================= */
+
+.corporate-submit-message {
+
+    min-height: 20px;
+
+    margin-bottom: 10px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+.corporate-submit-message.success {
+
+    color: #176b4d;
+
+}
+
+
+.corporate-submit-message.error {
+
+    color: #a32626;
+
+}
+
+
+/* =========================================================
+   LOCATION NOTICE
+========================================================= */
+
+.corporate-location-notice {
+
+    margin-top: 15px;
+
+    padding: 12px 14px;
+
+    border-left: 3px solid #c9a227;
+
+    background: #f7f2e8;
+
+    color: #65736d;
+
+    font-size: 12px;
+
+    line-height: 1.55;
+
+}
+
+
+.corporate-location-notice strong {
+
+    color: #18312a;
+
+}
+
+
+/* =========================================================
+   ACTION BUTTON SAFETY
+========================================================= */
+
+.corporate-action-button {
+
+    cursor: pointer;
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease,
+        background-color .2s ease;
+
+}
+
+
+.corporate-action-button:disabled {
+
+    cursor: not-allowed;
+
+    opacity: .45;
+
+}
+
+
+.corporate-action-button:not(:disabled):active {
+
+    transform: translateY(1px);
+
+}
+
+
+/* =========================================================
+   BODY SCROLL LOCK
+========================================================= */
+
+body.corporate-calculator-open {
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
+   PRINT VISIBILITY
+========================================================= */
+
+#pax-corporate-print-area {
+
+    display: none;
+
+}
+
+
+/*
+ * Do not accidentally show the PDF renderer on screen.
+ */
+[data-pax-corporate-pdf] {
+
+    pointer-events: none;
+
+}
