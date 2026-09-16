@@ -3323,15 +3323,25 @@
 
                         <div class="corporate-calculator-actions">
 
-                         <button
+                          <button
+                             type="button"
+                             class="corporate-action-button secondary"
+                             data-save-calculation
+                             disabled
+                         >
+                             <span aria-hidden="true">💾</span>
+                             Save Estimate
+                         </button>
+
+                          <button
                              type="button"
                              class="corporate-action-button secondary"
                              data-download-pdf
                              disabled
                          >
-                             Download PDF
+                              <span aria-hidden="true">↓</span>
+                              Download PDF
                          </button>
-
 
                          <button
                              type="button"
@@ -3339,18 +3349,9 @@
                              data-print-calculation
                              disabled
                          >
-                             Print / Save PDF
+                             <span aria-hidden="true">⎙</span>
+                             Print / Save as PDF
                          </button>
-
-
-                         <button
-                             type="button"
-                             class="corporate-action-button secondary"
-                             data-save-calculation
-                             disabled
-                         >
-                             Save Estimate
-                          </button>
 
                         </div>
 
