@@ -341,6 +341,183 @@ body {
     0 6px 15px rgba(139, 111, 71, 0.18);
 }
 
+/* =====================================================
+   SERVICES LOADING STATE
+===================================================== */
+
+.services-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  width: 100%;
+  min-height: 190px;
+
+  margin: 5px 0 20px;
+  padding: 35px 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(243, 238, 230, 0.82)
+    );
+
+  border:
+    1px solid rgba(184, 149, 90, 0.18);
+
+  border-radius: var(--services-radius);
+
+  box-shadow: var(--services-shadow);
+
+  text-align: center;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0.35s ease;
+}
+
+
+/* LOADING SPINNER */
+
+.services-loader-spinner {
+  width: 34px;
+  height: 34px;
+
+  border:
+    2px solid rgba(184, 149, 90, 0.20);
+
+  border-top-color:
+    var(--services-gold);
+
+  border-right-color:
+    var(--services-primary);
+
+  border-radius: 50%;
+
+  animation:
+    servicesLoaderSpin
+    0.9s linear infinite;
+}
+
+
+/* LOADING TEXT */
+
+.services-loader-text {
+  color:
+    var(--services-primary-dark);
+
+  font-family:
+    "Montserrat",
+    sans-serif;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: 0.15px;
+}
+
+
+/* ANIMATED DOTS */
+
+.services-loader-text::after {
+  content: "";
+
+  display: inline-block;
+
+  width: 18px;
+
+  text-align: left;
+
+  animation:
+    servicesLoaderDots
+    1.4s steps(4, end)
+    infinite;
+}
+
+
+/* SPINNER ANIMATION */
+
+@keyframes servicesLoaderSpin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* DOT ANIMATION */
+
+@keyframes servicesLoaderDots {
+
+  0% {
+    content: "";
+  }
+
+  25% {
+    content: ".";
+  }
+
+  50% {
+    content: "..";
+  }
+
+  75% {
+    content: "...";
+  }
+
+  100% {
+    content: "";
+  }
+
+}
+
+
+/* HIDDEN STATE */
+
+.services-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+
+  transform:
+    translateY(-5px);
+
+  pointer-events: none;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .services-loader {
+    min-height: 165px;
+    padding: 30px 18px;
+  }
+
+  .services-loader-spinner {
+    width: 30px;
+    height: 30px;
+  }
+
+  .services-loader-text {
+    font-size: 11px;
+  }
+
+}
+
 
 /* =====================================================
    SERVICES SECTION
@@ -809,222 +986,6 @@ body {
     font-size: 21px;
   }
 
-  /* =====================================================
-        SERVICES LOADING STATE
-     ===================================================== */
-     
-     .services-loader {
-     
-       display: flex;
-     
-       flex-direction: column;
-     
-       align-items: center;
-     
-       justify-content: center;
-     
-       gap: 13px;
-     
-       width: 100%;
-     
-       min-height: 190px;
-     
-       margin: 5px 0 20px;
-     
-       padding: 35px 20px;
-     
-       background:
-         linear-gradient(
-           145deg,
-           rgba(255, 255, 255, 0.96),
-           rgba(243, 238, 230, 0.82)
-         );
-     
-       border:
-         1px solid rgba(184, 149, 90, 0.18);
-     
-       border-radius:
-         var(--services-radius);
-     
-       box-shadow:
-         var(--services-shadow);
-     
-       text-align: center;
-     
-       transition:
-         opacity 0.35s ease,
-         transform 0.35s ease;
-     
-     }
-     
-     
-     /* =====================================================
-        LOADING SPINNER
-     ===================================================== */
-     
-     .services-loader-spinner {
-     
-       width: 34px;
-     
-       height: 34px;
-     
-       border:
-         2px solid rgba(184, 149, 90, 0.20);
-     
-       border-top-color:
-         var(--services-gold);
-     
-       border-right-color:
-         var(--services-primary);
-     
-       border-radius: 50%;
-     
-       animation:
-         servicesLoaderSpin
-         0.9s linear infinite;
-     
-     }
-     
-     
-     /* =====================================================
-        LOADING TEXT
-     ===================================================== */
-     
-     .services-loader-text {
-     
-       color:
-         var(--services-primary-dark);
-     
-       font-family:
-         "Montserrat",
-         sans-serif;
-     
-       font-size: 12px;
-     
-       font-weight: 600;
-     
-       letter-spacing:
-         0.15px;
-     
-     }
-     
-     
-     /* =====================================================
-        SUBTLE TEXT ANIMATION
-     ===================================================== */
-     
-     .services-loader-text::after {
-     
-       content: "";
-     
-       display: inline-block;
-     
-       width: 18px;
-     
-       text-align: left;
-     
-       animation:
-         servicesLoaderDots
-         1.4s steps(4, end)
-         infinite;
-     
-     }
-     
-     
-     /* =====================================================
-        SPINNER ANIMATION
-     ===================================================== */
-     
-     @keyframes servicesLoaderSpin {
-     
-       from {
-         transform: rotate(0deg);
-       }
-     
-       to {
-         transform: rotate(360deg);
-       }
-     
-     }
-     
-     
-     /* =====================================================
-        DOT ANIMATION
-     ===================================================== */
-     
-     @keyframes servicesLoaderDots {
-     
-       0% {
-         content: "";
-       }
-     
-       25% {
-         content: ".";
-       }
-     
-       50% {
-         content: "..";
-       }
-     
-       75% {
-         content: "...";
-       }
-     
-       100% {
-         content: "";
-       }
-     
-     }
-     
-     
-     /* =====================================================
-        HIDE LOADER
-     ===================================================== */
-     
-     .services-loader.is-hidden {
-     
-       opacity: 0;
-     
-       transform:
-         translateY(-5px);
-     
-       pointer-events: none;
-     
-     }
-     
-     
-     /* =====================================================
-        MOBILE
-     ===================================================== */
-     
-     @media (max-width: 600px) {
-     
-       .services-loader {
-     
-         min-height: 165px;
-     
-         padding:
-           30px 18px;
-     
-       }
-     
-       .services-loader-spinner {
-     
-         width: 30px;
-     
-         height: 30px;
-     
-       }
-     
-       .services-loader-text {
-     
-         font-size: 11px;
-     
-       }
-     
-     }
-}
-
 </style>
 </head>
 
@@ -1330,6 +1291,13 @@ let categories = {};
 let activeCategory = "all";
 
 let searchQuery = "";
+
+/* =====================================================
+   START SERVICES LOADER
+===================================================== */
+
+showServicesLoader();
+
 
 
 /* =====================================================
@@ -1654,12 +1622,9 @@ function renderServices() {
 function showServicesLoader() {
 
   if (!servicesLoader) return;
-     
-    servicesLoader.style.display =
-    "flex";
 
-  
-  requestAnimationFrame(() => {
+  servicesLoader.style.display = "flex";
+
   servicesLoader.classList.remove(
     "is-hidden"
   );
@@ -1671,10 +1636,6 @@ function showServicesLoader() {
 
 }
 
-
-/* =====================================================
-   HIDE SERVICES LOADER
-===================================================== */
 
 function hideServicesLoader() {
 
@@ -1689,29 +1650,20 @@ function hideServicesLoader() {
     "true"
   );
 
-  /*
-   * Remove it completely after the fade-out
-   * so it doesn't leave empty space above
-   * the service cards.
-   */
-  window.setTimeout(
-    () => {
+  window.setTimeout(() => {
 
-      if (
-        servicesLoader &&
-        servicesLoader.classList.contains(
-          "is-hidden"
-        )
-      ) {
+    if (
+      servicesLoader &&
+      servicesLoader.classList.contains(
+        "is-hidden"
+      )
+    ) {
 
-        servicesLoader.style.display =
-          "none";
+      servicesLoader.style.display = "none";
 
-      }
+    }
 
-    },
-    350
-  );
+  }, 350);
 
 }
      
