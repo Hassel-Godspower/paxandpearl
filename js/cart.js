@@ -1,21 +1,23 @@
-const servicesDiv = document.getElementById("services");
-let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-
-SPA_DATA.services.forEach(service => {
-  servicesDiv.innerHTML += `
-    <div class="card">
-      <h3>${service.name}</h3>
-      <p>$${service.price}</p>
-      <button class="btn" onclick="addToCart(${service.id})">
-        Add Service
-      </button>
-    </div>
-  `;
-});
-
-function addToCart(id) {
-  const service = SPA_DATA.services.find(s => s.id === id);
-  cart.push(service);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert("Service added to booking");
-}
+/* Legacy compatibility bridge. The canonical cart is js/pax-cart.js. */
+(function () {
+  "use strict";
+  if (!window.PaxCart) {
+    console.error("Load /js/pax-cart.js before the legacy cart bridge.");
+    return;
+  }
+  window.addToCart = function (serviceOrId) {
+    const service = typeof serviceOrId === "object"
+      ? serviceOrId
+      : (window.SPA_DATA?.services || []).find(item => String(item.id) === String(serviceOrId));
+    if (!service) {
+      alert("This service is unavailable. Please refresh and try again.");
+      return;
+    }
+    try {
+      window.PaxCart.add(service);
+      alert(`${service.name} added to booking.`);
+    } catch (error) {
+      alert(error.message || "Unable to save this service.");
+    }
+  };
+})();
