@@ -1153,6 +1153,7 @@ body {
 </nav>
 
 
+<script src="/js/pax-cart.js"></script>
 <script>
 
 /* =====================================================
@@ -1234,30 +1235,16 @@ const SERVICES_API =
 
 
 /* =====================================================
-   CART
+   SHARED BOOKING CART
 ===================================================== */
-
-const CART_KEY =
-  "spaBookingCart";
-
-let cart =
-  JSON.parse(
-    localStorage.getItem(CART_KEY)
-  ) || [];
-
-const bookingCountEl =
-  document.getElementById(
-    "bookingCount"
-  );
-
-
+const bookingCountEl = document.getElementById("bookingCount");
 function updateBadge() {
-
-  bookingCountEl.textContent =
-    cart.length;
-
+  if (bookingCountEl && window.PaxCart) bookingCountEl.textContent = String(PaxCart.count());
 }
-
+window.addEventListener("paxpearl:cartchange", updateBadge);
+window.addEventListener("storage", event => {
+  if (event.key === PaxCart.key) updateBadge();
+});
 
 /* =====================================================
    SERVICES STATE
@@ -1573,38 +1560,23 @@ function renderServices() {
     `;
 
 
-    card
-      .querySelector("button")
-      .onclick = () => {
-
-        cart.push({
-
-          id:
-            service.id,
-
-          name:
-            service.name,
-
-          price:
-            service.price
-
-        });
-
-
-        localStorage.setItem(
-          CART_KEY,
-          JSON.stringify(cart)
-        );
-
-
+    card.querySelector("button").onclick = () => {
+      try {
+        PaxCart.add(service);
         updateBadge();
-
-
-        alert(
-          `${service.name} added to booking`
-        );
-
-      };
+        const button = card.querySelector("button");
+        const original = button.textContent;
+        button.textContent = "Added ✓";
+        button.disabled = true;
+        window.setTimeout(() => {
+          button.textContent = original;
+          button.disabled = false;
+        }, 900);
+      } catch (error) {
+        console.error("Unable to add service to booking:", error);
+        alert(error.message || "Unable to save this service. Please try again.");
+      }
+    };
 
 
     servicesContainer.appendChild(

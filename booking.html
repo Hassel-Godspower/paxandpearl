@@ -678,606 +678,119 @@
 </nav>
 
 
+<script src="/js/pax-cart.js"></script>
 <script>
+"use strict";
+let ADMIN_WHATSAPP = "";
+fetch("/catalog1.json").then(r => { if (!r.ok) throw new Error(`Catalog HTTP ${r.status}`); return r.json(); })
+.then(data => {
+  ADMIN_WHATSAPP = String(data?.admin?.whatsapp || "").replace(/\D/g, "");
+  const link = document.getElementById("messageAdmin");
+  if (link && ADMIN_WHATSAPP) { link.href = `https://wa.me/${ADMIN_WHATSAPP}`; link.target = "_blank"; link.rel = "noopener noreferrer"; }
+}).catch(error => console.warn("Admin contact unavailable:", error));
 
-/* ============================
-   MOBILE NAV – ADMIN WHATSAPP
-============================ */
+const cartItemsEl = document.getElementById("cartItems");
+const totalEl = document.getElementById("total");
 
-(function bindAdminWhatsAppFromCatalog() {
-
-  const msgBtn = document.getElementById("messageAdmin");
-
-  if (!msgBtn) return;
-
-  fetch("/catalog1.json")
-
-    .then(res => {
-
-      if (!res.ok) {
-        throw new Error("Catalog not found");
-      }
-
-      return res.json();
-
-    })
-
-    .then(data => {
-
-      const phone = data?.admin?.whatsapp;
-
-      if (!phone) {
-        throw new Error("Admin WhatsApp missing");
-      }
-
-      const cleanPhone = phone.replace(/\D/g, "");
-
-      msgBtn.href = `https://wa.me/${cleanPhone}`;
-      msgBtn.target = "_blank";
-
-    })
-
-    .catch(() => {
-
-      msgBtn.href = "#";
-
-      msgBtn.addEventListener("click", e => {
-
-        e.preventDefault();
-
-        alert("Admin WhatsApp not available yet.");
-
-      });
-
-    });
-
-})();
-
-
-/* ============================
-   SAFARI DETECTION
-============================ */
-
-function isSafariBrowser() {
-
-  const ua = navigator.userAgent;
-
-  return (
-    ua.includes("Safari") &&
-    !ua.includes("Chrome") &&
-    !ua.includes("Android")
-  );
-
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-
-
-/* ============================
-   SAFARI SEND BUTTON
-============================ */
-
-function showSafariSendButton(booking) {
-
-  const existing =
-    document.getElementById("safariSendWrap");
-
-  if (existing) {
-    existing.remove();
-  }
-
-  const wrapper =
-    document.createElement("div");
-
-  wrapper.id = "safariSendWrap";
-
-  const btn =
-    document.createElement("button");
-
-  btn.className = "btn btn-primary";
-
-  btn.textContent = "Send Booking to Admin";
-
-  btn.onclick = () =>
-    notifyAdminImmediately(booking);
-
-  const note =
-    document.createElement("p");
-
-  note.className = "note";
-
-  note.textContent =
-    "Tap to notify admin on WhatsApp";
-
-  wrapper.appendChild(btn);
-
-  wrapper.appendChild(note);
-
-  document
-    .querySelector(".booking-form")
-    .appendChild(wrapper);
-
-}
-
-
-/* ============================
-   SERVICES API
-============================ */
-
-const SERVICES_API =
-  "https://script.google.com/macros/s/AKfycbyruovbZRwQr2Smn-zfKQyMjHAKYS18wpU9Nk8rN0Mdvtblz5yuY9LGgk3a3IwREq59/exec?type=services";
-
-
-const CART_KEY = "spaBookingCart";
-
-let cart =
-  JSON.parse(
-    localStorage.getItem(CART_KEY)
-  ) || [];
-
-let SERVICES = [];
-
-
-/* ============================
-   LOAD SERVICES
-============================ */
-
-async function loadServicesAndSyncCart() {
-
-  try {
-
-    const res =
-      await fetch(SERVICES_API);
-
-    SERVICES =
-      await res.json();
-
-    cart = cart.filter(item =>
-      SERVICES.some(
-        s => s.id === item.id
-      )
-    );
-
-    cart = cart.map(item => {
-
-      const live =
-        SERVICES.find(
-          s => s.id === item.id
-        );
-
-      return {
-        ...item,
-        price: live.price
-      };
-
-    });
-
-    localStorage.setItem(
-      CART_KEY,
-      JSON.stringify(cart)
-    );
-
-    renderCart();
-
-  } catch (err) {
-
-    console.error(
-      "Failed to sync services",
-      err
-    );
-
-    renderCart();
-
-  }
-
-}
-
-
-/* ============================
-   CART ELEMENTS
-============================ */
-
-const cartItemsEl =
-  document.getElementById("cartItems");
-
-const totalEl =
-  document.getElementById("total");
-
-
-/* ============================
-   RENDER CART
-============================ */
-
 function renderCart() {
-
-  cartItemsEl.innerHTML = "";
-
-  if (!cart.length) {
-
-    cartItemsEl.innerHTML =
-      "<p class='empty'>No services selected yet.</p>";
-
+  const items = PaxCart.read();
+  if (!cartItemsEl || !totalEl) return;
+  if (!items.length) {
+    cartItemsEl.innerHTML = '<p class="empty">No services selected yet. <a href="services.html">Browse our services</a> to get started.</p>';
     totalEl.textContent = "₦0";
-
     return;
-
   }
-
-  let total = 0;
-
-  cart.forEach((item, index) => {
-
-    total += item.price;
-
-    const row =
-      document.createElement("div");
-
-    row.className = "cart-item";
-
-    row.innerHTML = `
-
-      <div class="cart-left">
-        <span>${item.name}</span>
-      </div>
-
+  cartItemsEl.innerHTML = items.map(item => `
+    <div class="cart-item" data-line-id="${escapeHTML(item.lineId)}">
+      <div class="cart-left"><strong>${escapeHTML(item.name)}</strong>${item.duration ? `<small>${item.duration} minutes</small>` : ""}</div>
       <div class="cart-right">
-
-        <strong>
-          ₦${item.price.toLocaleString()}
-        </strong>
-
-        <button
-          class="remove-btn"
-          onclick="removeFromCart(${index})"
-          aria-label="Remove service"
-        >
-          <span class="material-icons-round">
-            close
-          </span>
+        <strong>₦${Number(item.price).toLocaleString("en-NG")}</strong>
+        <button type="button" class="remove-btn" data-remove-line="${escapeHTML(item.lineId)}" aria-label="Remove ${escapeHTML(item.name)}">
+          <span class="material-icons-round" aria-hidden="true">close</span>
         </button>
-
       </div>
-
-    `;
-
-    cartItemsEl.appendChild(row);
-
-  });
-
-  totalEl.textContent =
-    "₦" + total.toLocaleString();
-
+    </div>`).join("");
+  totalEl.textContent = `₦${PaxCart.total(items).toLocaleString("en-NG")}`;
 }
+cartItemsEl?.addEventListener("click", event => {
+  const button = event.target.closest("[data-remove-line]");
+  if (!button) return;
+  PaxCart.remove(button.dataset.removeLine);
+  renderCart();
+});
+window.addEventListener("paxpearl:cartchange", renderCart);
+window.addEventListener("storage", event => { if (event.key === PaxCart.key) renderCart(); });
 
-
-/* =========================
-   GLOBAL ADMIN CATALOG
-========================= */
-
-let PUBLIC_CATALOG = {
-
-  admin: {
-    whatsapp: null
-  }
-
-};
-
-
-/* =========================
-   LOAD ADMIN WHATSAPP
-========================= */
-
-fetch("/catalog1.json")
-
-  .then(res => res.json())
-
-  .then(data => {
-
-    if (data?.admin?.whatsapp) {
-
-      PUBLIC_CATALOG.admin.whatsapp =
-        data.admin.whatsapp.replace(/\D/g, "");
-
-      const msgBtn =
-        document.getElementById(
-          "messageAdmin"
-        );
-
-      if (msgBtn) {
-
-        msgBtn.href =
-          `https://wa.me/${PUBLIC_CATALOG.admin.whatsapp}`;
-
-        msgBtn.target = "_blank";
-
-      }
-
-    }
-
-  })
-
-  .catch(() => {
-
-    console.warn(
-      "catalog1.json not found or invalid"
-    );
-
-  });
-
-
-/* =========================
-   WHATSAPP NOTIFY ADMIN
-========================= */
-
-function notifyAdmin(booking) {
-
-  const phone =
-    PUBLIC_CATALOG.admin.whatsapp;
-
-  if (!phone) {
-
-    alert(
-      "Admin WhatsApp not available yet. Please try again."
-    );
-
-    return;
-
-  }
-
-  const message = `
-
-📅 NEW BOOKING ALERT
-
-👤 Name: ${booking.customer.name}
-📞 Phone: ${booking.customer.phone}
-📧 Email: ${booking.customer.email}
-
-🧖 Services:
-${booking.services}
-
-🗓 Date: ${booking.date}
-⏰ Time: ${booking.time}
-
-💰 Total: ₦${booking.total.toLocaleString()}
-
-`;
-
-  window.open(
-
-    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-
-    "_blank"
-
-  );
-
-}
-
-
-/* =========================
-   CONFIRM BOOKING
-========================= */
-
-const FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSe6deSJ1KcJgDcRWqhuF8ZmUtgJNdB1vXapQtkmHlqUdEydow/formResponse";
-
+function getValue(id) { return (document.getElementById(id)?.value || "").trim(); }
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe6deSJ1KcJgDcRWqhuF8ZmUtgJNdB1vXapQtkmHlqUdEydow/formResponse";
 
 function confirmBooking() {
-
-  if (!cart.length) {
-
-    alert(
-      "Please select at least one service."
-    );
-
-    return;
-
+  const items = PaxCart.read();
+  if (!items.length) { alert("Please add at least one service before booking."); return; }
+  const customer = { name: getValue("name"), email: getValue("email"), phone: getValue("phone") };
+  const date = getValue("date"), time = getValue("time");
+  if (!customer.name || !customer.email || !customer.phone || !date || !time) {
+    alert("Please complete your name, email, WhatsApp number, preferred date and time."); return;
   }
-
-
-  const name =
-    getValue("name");
-
-  const email =
-    getValue("email");
-
-  const phone =
-    getValue("phone");
-
-  const date =
-    getValue("date");
-
-  const time =
-    getValue("time");
-
-
-  if (
-    !name ||
-    !email ||
-    !phone ||
-    !date ||
-    !time
-  ) {
-
-    alert(
-      "Fill all booking details."
-    );
-
-    return;
-
-  }
-
-
-  const total =
-    cart.reduce(
-      (sum, item) =>
-        sum + item.price,
-      0
-    );
-
-
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer.email)) { alert("Please enter a valid email address."); return; }
+  const total = PaxCart.total(items);
   const booking = {
-
-    id:
-      "bk_" + Date.now(),
-
-    customer: {
-      name,
-      email,
-      phone
-    },
-
-    services:
-      cart.map(
-        s => s.name
-      ).join(", "),
-
-    date,
-
-    time,
-
-    total,
-
-    status:
-      "submitted",
-
-    createdAt:
-      new Date().toISOString()
-
+    id: `bk_${Date.now()}`, customer, serviceItems: items,
+    services: items.map(item => item.name).join(", "),
+    date, time, total, status: "submitted", createdAt: new Date().toISOString()
   };
 
-
-  /* SAVE LOCALLY */
-
-  const bookings =
-    JSON.parse(
-      localStorage.getItem(
-        "spaBookings"
-      ) || "[]"
-    );
-
-  bookings.push(booking);
-
-  localStorage.setItem(
-    "spaBookings",
-    JSON.stringify(bookings)
-  );
-
-
-  /* =========================
-     SEND TO GOOGLE FORM
-  ========================= */
-
-  const formData =
-    new URLSearchParams();
-
-  formData.append(
-    "entry.1782671902",
-    name
-  );
-
-  formData.append(
-    "entry.429038329",
-    email
-  );
-
-  formData.append(
-    "entry.85535944",
-    phone
-  );
-
-  formData.append(
-    "entry.1834985643",
-    booking.services
-  );
-
-  formData.append(
-    "entry.58735690",
-    date
-  );
-
-  formData.append(
-    "entry.436380386",
-    time
-  );
-
-  formData.append(
-    "entry.2083144677",
-    total
-  );
-
-
-  fetch(FORM_URL, {
-
-    method: "POST",
-
-    mode: "no-cors",
-
-    body: formData
-
-  });
-
-
-  renderCart();
-
-
-  alert(
-    "Booking submitted successfully ✅"
-  );
-
-
-  /* WHATSAPP ADMIN */
-
-  if (
-    PUBLIC_CATALOG.admin.whatsapp
-  ) {
-
-    notifyAdmin(booking);
-
+  /* Save full booking record before touching the cart. */
+  try {
+    const previous = JSON.parse(localStorage.getItem("spaBookings") || "[]");
+    if (!Array.isArray(previous)) throw new Error("Booking history is invalid.");
+    previous.push(booking);
+    localStorage.setItem("spaBookings", JSON.stringify(previous));
+  } catch (error) {
+    console.error("Could not save booking:", error);
+    alert("We couldn't save this booking on your device. Your selected services remain in your cart. Please try again.");
+    return;
   }
 
-}
+  /* Notify admin in the same user gesture to avoid popup blocking. */
+  if (ADMIN_WHATSAPP) {
+    const message = [
+      "📅 NEW BOOKING REQUEST — PAX & PEARL",
+      `Reference: ${booking.id}`, `Name: ${customer.name}`,
+      `Phone: ${customer.phone}`, `Email: ${customer.email}`, "",
+      "SERVICES:", ...items.map(item => `• ${item.name} — ₦${Number(item.price).toLocaleString("en-NG")}${item.duration ? ` (${item.duration} mins)` : ""}`),
+      "", `Preferred date: ${date}`, `Preferred time: ${time}`,
+      `Total: ₦${total.toLocaleString("en-NG")}`, "Please confirm availability."
+    ].join("\n");
+    window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+  }
 
+  /* Best-effort Google Forms copy; no-cors cannot verify receipt. */
+  try {
+    const formData = new URLSearchParams();
+    formData.append("entry.1782671902", customer.name);
+    formData.append("entry.429038329", customer.email);
+    formData.append("entry.85535944", customer.phone);
+    formData.append("entry.1834985643", booking.services);
+    formData.append("entry.58735690", date);
+    formData.append("entry.436380386", time);
+    formData.append("entry.2083144677", String(total));
+    fetch(FORM_URL, { method: "POST", mode: "no-cors", body: formData })
+      .catch(error => console.warn("Google Forms submission could not be confirmed:", error));
+  } catch (error) { console.warn("Google Forms request could not be started:", error); }
 
-/* =========================
-   HELPERS
-========================= */
-
-function getValue(id) {
-
-  return (
-    document
-      .getElementById(id)
-      ?.value
-      .trim() || ""
-  );
-
-}
-
-
-/* =========================
-   REMOVE FROM CART
-========================= */
-
-function removeFromCart(index) {
-
-  cart.splice(index, 1);
-
-  localStorage.setItem(
-    CART_KEY,
-    JSON.stringify(cart)
-  );
-
+  PaxCart.clear();
   renderCart();
-
+  alert(`Your booking request has been saved. Reference: ${booking.id}. Our team will confirm your appointment.`);
 }
-
-
-/* =========================
-   INIT
-========================= */
-
-renderCart();
-
-loadServicesAndSyncCart();
-
+document.addEventListener("DOMContentLoaded", () => {
+  renderCart();
+  const dateInput = document.getElementById("date");
+  if (dateInput) dateInput.min = new Date().toISOString().slice(0, 10);
+});
 </script>
 
 </body>
