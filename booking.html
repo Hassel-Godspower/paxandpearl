@@ -553,6 +553,21 @@
     }
 
   </style>
+
+  <!-- Payment options (Wellness Wallet / Paystack) -->
+  <style>
+    .pay-title { margin: 18px 0 8px; }
+    .pay-opt { display:flex; gap:12px; align-items:flex-start; padding:12px 14px; border:1px solid #e5e5ea; border-radius:12px; margin-bottom:10px; cursor:pointer; background:#fff; }
+    .pay-opt input { width:auto !important; margin:4px 0 0 !important; padding:0 !important; }
+    .pay-opt strong { display:block; font-size:.92rem; }
+    .pay-opt small { display:block; color:#6b6b70; font-size:.78rem; margin-top:2px; }
+    .pay-opt[hidden] { display:none; }
+    .pay-opt.disabled { opacity:.6; cursor:not-allowed; }
+    .pay-opt a { color:#7a0c0c; font-weight:600; }
+    .pay-success { text-align:center; padding:8px 0; }
+    .pay-success .material-icons-round { font-size:56px; color:#1b7f3b; }
+    .pay-success .btn { display:block; margin-top:12px; text-decoration:none; text-align:center; }
+  </style>
 </head>
 
 <body>
@@ -627,8 +642,27 @@
       >
 
     </div>
+    <h3 class="pay-title">How would you like to pay?</h3>
+
+    <label class="pay-opt" id="optWallet" hidden>
+      <input type="radio" name="payMethod" value="wallet">
+      <span><strong>Wellness Wallet</strong><small id="walletNote"></small></span>
+    </label>
+
+    <label class="pay-opt">
+      <input type="radio" name="payMethod" value="paystack">
+      <span><strong>Pay now (card, bank transfer, USSD)</strong><small>Secure checkout by Paystack. Your booking is marked paid right away.</small></span>
+    </label>
+
+    <label class="pay-opt">
+      <input type="radio" name="payMethod" value="later" checked>
+      <span><strong>Pay at the spa</strong><small>Send a booking request and we'll confirm by WhatsApp.</small></span>
+    </label>
+
+    <p class="note" id="loginHint" hidden><a href="profile.html" style="color:#7a0c0c;font-weight:600">Log in</a> to pay from your Wellness Wallet.</p>
 
     <button
+      id="bookBtn"
       class="btn btn-primary"
       onclick="confirmBooking()"
     >
@@ -678,6 +712,9 @@
 </nav>
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/js/config.js"></script>
+<script src="/js/pax-auth.js"></script>
 <script src="/js/pax-cart.js"></script>
 <script>
 "use strict";
@@ -727,15 +764,49 @@ window.addEventListener("storage", event => { if (event.key === PaxCart.key) ren
 function getValue(id) { return (document.getElementById(id)?.value || "").trim(); }
 const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe6deSJ1KcJgDcRWqhuF8ZmUtgJNdB1vXapQtkmHlqUdEydow/formResponse";
 
-function confirmBooking() {
-  const items = PaxCart.read();
-  if (!items.length) { alert("Please add at least one service before booking."); return; }
+const fmt = n => "₦" + Number(n || 0).toLocaleString("en-NG");
+const escHtml = escapeHTML;
+
+function readForm() {
   const customer = { name: getValue("name"), email: getValue("email"), phone: getValue("phone") };
   const date = getValue("date"), time = getValue("time");
   if (!customer.name || !customer.email || !customer.phone || !date || !time) {
-    alert("Please complete your name, email, WhatsApp number, preferred date and time."); return;
+    alert("Please complete your name, email, WhatsApp number, preferred date and time."); return null;
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer.email)) { alert("Please enter a valid email address."); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer.email)) { alert("Please enter a valid email address."); return null; }
+  return { customer, date, time };
+}
+
+function whatsAppText({ title, ref, customer, items, date, time, total, paidVia }) {
+  return [
+    title, `Reference: ${ref}`,
+    customer.name ? `Name: ${customer.name}` : "", customer.phone ? `Phone: ${customer.phone}` : "", customer.email ? `Email: ${customer.email}` : "",
+    "", "SERVICES:",
+    ...items.map(item => `• ${item.name} — ₦${Number(item.price).toLocaleString("en-NG")}${item.duration ? ` (${item.duration} mins)` : ""}`),
+    "", `Preferred date: ${date}`, `Preferred time: ${time}`, `Total: ₦${Number(total).toLocaleString("en-NG")}`,
+    paidVia ? `✅ PAID via ${paidVia}` : "Please confirm availability."
+  ].filter((line, i, arr) => line !== "" || (arr[i - 1] !== "" && i > 0)).join("\n");
+}
+
+/* Best-effort Google Forms copy; no-cors cannot verify receipt. */
+function sendGoogleFormCopy(customer, servicesText, date, time, total) {
+  try {
+    const formData = new URLSearchParams();
+    formData.append("entry.1782671902", customer.name);
+    formData.append("entry.429038329", customer.email);
+    formData.append("entry.85535944", customer.phone);
+    formData.append("entry.1834985643", servicesText);
+    formData.append("entry.58735690", date);
+    formData.append("entry.436380386", time);
+    formData.append("entry.2083144677", String(total));
+    fetch(FORM_URL, { method: "POST", mode: "no-cors", body: formData })
+      .catch(error => console.warn("Google Forms submission could not be confirmed:", error));
+  } catch (error) { console.warn("Google Forms request could not be started:", error); }
+}
+
+/* ---------- Option 3: "Pay at the spa" (the original request flow, unchanged in behaviour) ---------- */
+function submitRequestOnly(items, form) {
+  const { customer, date, time } = form;
   const total = PaxCart.total(items);
   const booking = {
     id: `bk_${Date.now()}`, customer, serviceItems: items,
@@ -757,39 +828,139 @@ function confirmBooking() {
 
   /* Notify admin in the same user gesture to avoid popup blocking. */
   if (ADMIN_WHATSAPP) {
-    const message = [
-      "📅 NEW BOOKING REQUEST — PAX & PEARL",
-      `Reference: ${booking.id}`, `Name: ${customer.name}`,
-      `Phone: ${customer.phone}`, `Email: ${customer.email}`, "",
-      "SERVICES:", ...items.map(item => `• ${item.name} — ₦${Number(item.price).toLocaleString("en-NG")}${item.duration ? ` (${item.duration} mins)` : ""}`),
-      "", `Preferred date: ${date}`, `Preferred time: ${time}`,
-      `Total: ₦${total.toLocaleString("en-NG")}`, "Please confirm availability."
-    ].join("\n");
+    const message = whatsAppText({ title: "📅 NEW BOOKING REQUEST — PAX & PEARL", ref: booking.id, customer, items, date, time, total });
     window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
   }
-
-  /* Best-effort Google Forms copy; no-cors cannot verify receipt. */
-  try {
-    const formData = new URLSearchParams();
-    formData.append("entry.1782671902", customer.name);
-    formData.append("entry.429038329", customer.email);
-    formData.append("entry.85535944", customer.phone);
-    formData.append("entry.1834985643", booking.services);
-    formData.append("entry.58735690", date);
-    formData.append("entry.436380386", time);
-    formData.append("entry.2083144677", String(total));
-    fetch(FORM_URL, { method: "POST", mode: "no-cors", body: formData })
-      .catch(error => console.warn("Google Forms submission could not be confirmed:", error));
-  } catch (error) { console.warn("Google Forms request could not be started:", error); }
+  sendGoogleFormCopy(customer, booking.services, date, time, total);
 
   PaxCart.clear();
   renderCart();
   alert(`Your booking request has been saved. Reference: ${booking.id}. Our team will confirm your appointment.`);
 }
+
+/* ---------- Paid bookings (wallet, or Paystack after the customer returns) ---------- */
+function showPaidSuccess({ bookingId, customer, items, date, time, total, via }) {
+  const key = `pp_notified_${bookingId}`;
+  const shortRef = String(bookingId).slice(0, 8).toUpperCase();
+  const msg = whatsAppText({ title: "✅ PAID BOOKING — PAX & PEARL", ref: shortRef, customer, items, date, time, total, paidVia: via });
+  const wa = ADMIN_WHATSAPP ? `https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent(msg)}` : "";
+
+  document.querySelector(".booking-form").innerHTML = `
+    <div class="pay-success">
+      <span class="material-icons-round">check_circle</span>
+      <h3>Booking paid</h3>
+      <p>Reference <strong>${escHtml(shortRef)}</strong><br>${fmt(total)} paid via ${escHtml(via)}.</p>
+      <p>Requested slot: ${escHtml(date)} at ${escHtml(time)}. Our team will confirm your appointment.</p>
+      ${wa ? `<a class="btn btn-primary" href="${wa}" target="_blank" rel="noopener noreferrer">Send details to Pax &amp; Pearl on WhatsApp</a>` : ""}
+      <a class="btn btn-outline" href="profile.html">Go to my profile</a>
+    </div>`;
+
+  try {
+    if (localStorage.getItem(key)) return;           // only record once per booking
+    localStorage.setItem(key, "1");
+    const previous = JSON.parse(localStorage.getItem("spaBookings") || "[]");
+    previous.push({ id: bookingId, customer, serviceItems: items, services: items.map(i => i.name).join(", "), date, time, total, status: "paid", createdAt: new Date().toISOString() });
+    localStorage.setItem("spaBookings", JSON.stringify(previous));
+  } catch (_) {}
+  sendGoogleFormCopy(customer, `${items.map(i => i.name).join(", ")} [PAID via ${via}]`, date, time, total);
+}
+
+async function confirmBooking() {
+  const items = PaxCart.read();
+  if (!items.length) { alert("Please add at least one service before booking."); return; }
+  const form = readForm();
+  if (!form) return;
+  const method = document.querySelector('input[name="payMethod"]:checked')?.value || "later";
+  if (method === "later") return submitRequestOnly(items, form);
+
+  const btn = document.getElementById("bookBtn");
+  btn.disabled = true;
+  try {
+    const r = await PaxAuth.api("/api/book", { method: "POST", body: {
+      method, items: items.map(i => ({ id: i.id })),
+      name: form.customer.name, email: form.customer.email, phone: form.customer.phone,
+      date: form.date, time: form.time
+    }});
+    if (r.authorization_url) { location.href = r.authorization_url; return; }   // Paystack checkout
+    PaxCart.clear(); renderCart();
+    showPaidSuccess({ bookingId: r.bookingId, customer: form.customer, items: r.items, date: form.date, time: form.time, total: r.total, via: "Wellness Wallet" });
+  } catch (e) {
+    alert(e.message || "We couldn't complete the booking. Please try again.");
+  } finally { btn.disabled = false; }
+}
+
+/* ---------- Wellness Wallet option ---------- */
+let walletKobo = null;
+function updatePayUI() {
+  const total = PaxCart.total();
+  const opt = document.getElementById("optWallet");
+  const radio = opt.querySelector("input");
+  const note = document.getElementById("walletNote");
+  if (walletKobo !== null) {
+    opt.hidden = false;
+    const enough = walletKobo >= total * 100 && total > 0;
+    radio.disabled = !enough;
+    opt.classList.toggle("disabled", !enough);
+    note.innerHTML = enough
+      ? `Balance ${fmt(walletKobo / 100)}. Pay instantly from your wallet.`
+      : `Balance ${fmt(walletKobo / 100)} is not enough for this booking. <a href="profile.html">Top up</a>`;
+    if (!enough && radio.checked) document.querySelector('input[value="later"]').checked = true;
+  }
+  const method = document.querySelector('input[name="payMethod"]:checked')?.value;
+  document.getElementById("bookBtn").textContent =
+    method === "wallet" ? "Pay from Wallet & Book" : method === "paystack" ? "Pay Now & Book" : "Book Now";
+}
+document.addEventListener("change", e => { if (e.target.name === "payMethod") updatePayUI(); });
+window.addEventListener("paxpearl:cartchange", updatePayUI);
+
+async function setupWalletOption() {
+  if (!PaxAuth.configured) return;
+  const s = await PaxAuth.session();
+  if (!s) { document.getElementById("loginHint").hidden = false; return; }
+  const [w, p] = await Promise.all([
+    PaxAuth.client.from("wallets").select("balance_kobo").eq("user_id", s.user.id).maybeSingle(),
+    PaxAuth.client.from("profiles").select("full_name,email,phone").eq("id", s.user.id).maybeSingle()
+  ]);
+  if (!p.data) return;
+  walletKobo = w.data?.balance_kobo ?? 0;
+  for (const [id, v] of [["name", p.data.full_name], ["email", p.data.email], ["phone", p.data.phone]]) {
+    const el = document.getElementById(id); if (el && !el.value) el.value = v || "";
+  }
+  const total = PaxCart.total();
+  if (total > 0 && walletKobo >= total * 100) document.querySelector('input[value="wallet"]').checked = true;
+  updatePayUI();
+}
+
+/* ---------- Returning from Paystack: ?paid=bk_... ---------- */
+async function handlePaystackReturn() {
+  const ref = new URLSearchParams(location.search).get("paid");
+  if (!ref || !/^bk_[0-9a-f]{32}$/.test(ref)) return;
+  history.replaceState(null, "", location.pathname);
+  const formEl = document.querySelector(".booking-form");
+  formEl.innerHTML = '<p class="note">Confirming your payment…</p>';
+  for (let i = 0; i < 15; i++) {
+    try {
+      const r = await PaxAuth.api(`/api/booking-status?ref=${encodeURIComponent(ref)}`);
+      if (r.status === "paid" || r.status === "confirmed") {
+        PaxCart.clear(); renderCart();
+        showPaidSuccess({ bookingId: r.bookingId, customer: { name: r.name, email: "", phone: "" }, items: r.items, date: r.date, time: r.time, total: r.total, via: "Paystack" });
+        return;
+      }
+    } catch (e) { if (e.status === 400 || e.status === 404) break; }
+    await new Promise(res => setTimeout(res, 2000));
+  }
+  formEl.innerHTML = `<div class="pay-success"><h3>We haven't received your payment yet</h3>
+    <p>If you were charged, your booking will be confirmed shortly. You can also message us on WhatsApp with your payment receipt.</p>
+    <a class="btn btn-outline" href="booking.html">Back to booking</a></div>`;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderCart();
   const dateInput = document.getElementById("date");
   if (dateInput) dateInput.min = new Date().toISOString().slice(0, 10);
+  updatePayUI();
+  setupWalletOption();
+  handlePaystackReturn();
 });
 </script>
 

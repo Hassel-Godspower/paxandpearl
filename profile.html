@@ -2,179 +2,450 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign Up / Login</title>
+  <title>My Profile | Pax &amp; Pearl Body Works</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Google Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
-  <!-- Core Styles -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-</head>
-  <style>
-    body { font-family:'DM Sans',sans-serif; background:#fafafa; }
-    .container { padding:20px 16px 70px; max-width:300px; margin:auto; }
-    h2 { margin-bottom:12px; }
-    input, button {
-      width:100%; padding:12px; margin-bottom:12px;
-      border-radius:10px; border:1px solid #ddd;
-      font-size:14px;
-    }
-    
-    .divider {
-      text-align:center;
-      font-size:12px;
-      color:#777;
-      margin:14px 0;
-    }
-  </style>
-  
+  <link rel="stylesheet" href="css/wallet.css">
 </head>
 
 <body>
+<main class="wl-wrap">
 
-<div class="container">
-  <h2>Create Account / Login</h2>
+  <!-- ============ LOGGED OUT ============ -->
+  <section id="loginView" hidden>
+    <div class="wl-login">
+      <h1>Welcome back</h1>
+      <p>Enter the email we have on file for you and we'll send a secure login link. No password needed.</p>
+      <form id="loginForm" novalidate>
+        <label class="wl-field"><span>Email</span>
+          <input id="loginEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </label>
+        <p id="loginMsg" class="wl-error" role="status"></p>
+        <button id="loginBtn" class="wl-primary" type="submit">Email me a login link</button>
+      </form>
+      <p class="wl-muted" style="margin-top:14px">Not a client yet? Message us on WhatsApp from the Message tab and we'll set up your profile.</p>
+    </div>
+  </section>
 
-  <!-- USER SIGN UP -->
-  <input id="name" placeholder="Full Name">
-  <input id="email" placeholder="Email">
-  <input id="phone" placeholder="WhatsApp Number">
+  <!-- ============ LOGGED IN ============ -->
+  <section id="appView" hidden>
+    <div id="payBanner" class="wl-banner" hidden role="status"></div>
 
-  <button class="btn btn-primary" onclick="signupUser()">Continue</button>
+    <!-- Profile -->
+    <div class="wl-profile">
+      <div class="wl-avatar" id="avatar" aria-hidden="true">?</div>
+      <div class="wl-profile-info">
+        <h1 id="pName"></h1>
+        <p id="pEmail"></p>
+        <p id="pPhone"></p>
+      </div>
+      <div class="wl-profile-actions">
+        <button class="wl-bell" id="bellBtn" aria-label="Notifications">
+          <span class="material-icons-round">notifications</span>
+          <span class="wl-badge" id="bellBadge" hidden>0</span>
+        </button>
+        <button class="wl-link" id="signOutBtn">Sign out</button>
+      </div>
+    </div>
+
+    <!-- Wellness Wallet -->
+    <section class="wl-section">
+      <div class="wl-section-head"><h2>Wellness Wallet</h2></div>
+      <div class="wl-wallet-grid">
+        <div class="wl-balance">
+          <small>Total balance</small>
+          <div class="wl-balance-row">
+            <span class="wl-balance-amount" id="balanceText">₦0</span>
+            <button class="wl-eye" id="eyeBtn" aria-label="Show or hide balance"><span class="material-icons-round" id="eyeIcon">visibility</span></button>
+          </div>
+          <div class="wl-balance-actions">
+            <button class="wl-pill wl-pill-gold" id="topUpBtn"><span class="material-icons-round" style="font-size:18px">add</span>Top up</button>
+            <button class="wl-pill wl-pill-ghost" id="historyBtn"><span class="material-icons-round" style="font-size:18px">history</span>History</button>
+          </div>
+          <p class="wl-note">Wallet balance can only be used for Pax &amp; Pearl spa services.</p>
+        </div>
+
+        <div class="wl-favs">
+          <h3>Favorite services</h3>
+          <div class="wl-fav-tiles" id="favTiles"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficiaries -->
+    <section class="wl-section">
+      <div class="wl-section-head">
+        <h2>Beneficiaries</h2>
+        <button class="wl-link" id="addBenBtn"><span class="material-icons-round" style="font-size:18px">person_add</span>Add more</button>
+      </div>
+      <div class="wl-bens" id="benList"></div>
+    </section>
+
+    <button class="wl-gift" id="giftBtn">
+      <span>Gift a Spa Treat</span><span class="material-icons-round">arrow_forward</span>
+    </button>
+  </section>
+</main>
+
+<!-- ============ MODALS ============ -->
+<div class="wl-modal" id="topUpModal" hidden role="dialog" aria-modal="true" aria-labelledby="topUpTitle">
+  <div class="wl-sheet">
+    <div class="wl-sheet-head"><h3 id="topUpTitle">Top up your wallet</h3><button class="wl-x" data-close aria-label="Close"><span class="material-icons-round">close</span></button></div>
+    <div class="wl-chips" id="topUpChips">
+      <button type="button" data-amt="5000">₦5,000</button>
+      <button type="button" data-amt="10000">₦10,000</button>
+      <button type="button" data-amt="20000">₦20,000</button>
+      <button type="button" data-amt="50000">₦50,000</button>
+    </div>
+    <label class="wl-field"><span>Amount (₦)</span><input id="topAmount" type="number" inputmode="numeric" min="1000" step="500" placeholder="Minimum ₦1,000"></label>
+    <p class="wl-error" id="topErr"></p>
+    <button class="wl-primary" id="topPay">Continue to secure payment</button>
+    <p class="wl-muted" style="margin-top:10px">Payments are processed by Paystack. Your balance updates as soon as the payment is confirmed.</p>
+  </div>
 </div>
 
-<!-- =========================
-     MOBILE BOTTOM NAV
-========================== -->
+<div class="wl-modal" id="fundModal" hidden role="dialog" aria-modal="true" aria-labelledby="fundTitle">
+  <div class="wl-sheet">
+    <div class="wl-sheet-head"><h3 id="fundTitle">Add funds for a beneficiary</h3><button class="wl-x" data-close aria-label="Close"><span class="material-icons-round">close</span></button></div>
+    <label class="wl-field"><span>Beneficiary</span><select id="fundBen"></select></label>
+    <label class="wl-field"><span>Amount (₦)</span><input id="fundAmount" type="number" inputmode="numeric" min="500" step="500" placeholder="Minimum ₦500"></label>
+    <label class="wl-radio"><input type="radio" name="fundMethod" value="wallet" checked><span id="fundWalletLabel">From my wallet</span></label>
+    <label class="wl-radio"><input type="radio" name="fundMethod" value="paystack"><span>Pay by card or transfer</span></label>
+    <p class="wl-error" id="fundErr"></p>
+    <button class="wl-primary" id="fundGo">Send</button>
+    <p class="wl-muted" style="margin-top:10px">They'll be notified when their wallet is funded. Funds can only be used for spa services.</p>
+  </div>
+</div>
+
+<div class="wl-modal" id="addBenModal" hidden role="dialog" aria-modal="true" aria-labelledby="addBenTitle">
+  <div class="wl-sheet">
+    <div class="wl-sheet-head"><h3 id="addBenTitle">Add a beneficiary</h3><button class="wl-x" data-close aria-label="Close"><span class="material-icons-round">close</span></button></div>
+    <form id="addBenForm" novalidate>
+      <label class="wl-field"><span>Name</span><input id="benName" type="text" autocomplete="off" maxlength="80" required></label>
+      <label class="wl-field"><span>Phone number</span><input id="benPhone" type="tel" autocomplete="off" placeholder="08012345678" required></label>
+      <label class="wl-field"><span>Email (needed if they're not a Pax &amp; Pearl client yet)</span><input id="benEmail" type="email" autocomplete="off"></label>
+      <p class="wl-error" id="benErr"></p>
+      <button class="wl-primary" id="benSave" type="submit">Add beneficiary</button>
+      <p class="wl-muted" style="margin-top:10px">Existing clients are notified in the app. New people get an email invite with an account created for them.</p>
+    </form>
+  </div>
+</div>
+
+<div class="wl-modal" id="historyModal" hidden role="dialog" aria-modal="true" aria-labelledby="histTitle">
+  <div class="wl-sheet">
+    <div class="wl-sheet-head"><h3 id="histTitle">Wallet history</h3><button class="wl-x" data-close aria-label="Close"><span class="material-icons-round">close</span></button></div>
+    <ul class="wl-list" id="histList"></ul>
+  </div>
+</div>
+
+<div class="wl-modal" id="notifModal" hidden role="dialog" aria-modal="true" aria-labelledby="notifTitle">
+  <div class="wl-sheet">
+    <div class="wl-sheet-head"><h3 id="notifTitle">Notifications</h3><button class="wl-x" data-close aria-label="Close"><span class="material-icons-round">close</span></button></div>
+    <ul class="wl-list" id="notifList"></ul>
+  </div>
+</div>
+
+<div class="wl-toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ============ MOBILE BOTTOM NAV ============ -->
 <nav class="mobile-nav">
-  <a href="index.html">
-    <span class="material-icons-round">home</span>
-    <small>Home</small>
-  </a>
-
-  <a href="booking.html">
-    <span class="material-icons-round">event</span>
-    <small>Booking</small>
-  </a>
-
-  <a href="saved.html">
-    <span class="material-icons-round">favorite</span>
-    <small>Saved</small>
-  </a>
-
-  <a id="messageAdmin" href="#">
-    <span class="material-icons-round">chat</span>
-    <small>Message</small>
-  </a>
-
-  <a href="profile.html" class="active">
-    <span class="material-icons-round">person</span>
-    <small>Profile</small>
-  </a>
+  <a href="index.html"><span class="material-icons-round">home</span><small>Home</small></a>
+  <a href="booking.html"><span class="material-icons-round">event</span><small>Booking</small></a>
+  <a href="saved.html"><span class="material-icons-round">favorite</span><small>Saved</small></a>
+  <a id="messageAdmin" href="#"><span class="material-icons-round">chat</span><small>Message</small></a>
+  <a href="profile.html" class="active"><span class="material-icons-round">person</span><small>Profile</small></a>
 </nav>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/js/config.js"></script>
+<script src="/js/pax-auth.js"></script>
 <script>
-/* ============================
-   MOBILE NAV – ADMIN WHATSAPP
-   (Public, GitHub-safe)
-============================ */
-(function bindAdminWhatsAppFromCatalog() {
-  const msgBtn = document.getElementById("messageAdmin");
-  if (!msgBtn) return;
+"use strict";
 
-  fetch("/catalog1.json")
-    .then(res => {
-      if (!res.ok) throw new Error("Catalog not found");
-      return res.json();
-    })
-    .then(data => {
-      const phone = data?.admin?.whatsapp;
-
-      if (!phone) {
-        throw new Error("Admin WhatsApp missing");
-      }
-
-      // Ensure digits only
-      const cleanPhone = phone.replace(/\D/g, "");
-
-      msgBtn.href = `https://wa.me/${cleanPhone}`;
-      msgBtn.target = "_blank";
-    })
-    .catch(() => {
-      msgBtn.href = "#";
-      msgBtn.addEventListener("click", e => {
-        e.preventDefault();
-        alert("Admin WhatsApp not available yet.");
-      });
-    });
+/* ---------- Admin WhatsApp on the Message tab (same as the other pages) ---------- */
+(function () {
+  const btn = document.getElementById("messageAdmin");
+  fetch("/catalog1.json").then(r => { if (!r.ok) throw 0; return r.json(); }).then(d => {
+    const phone = String(d?.admin?.whatsapp || "").replace(/\D/g, "");
+    if (!phone) throw 0;
+    btn.href = `https://wa.me/${phone}`; btn.target = "_blank"; btn.rel = "noopener noreferrer";
+  }).catch(() => btn.addEventListener("click", e => { e.preventDefault(); alert("Admin WhatsApp not available yet."); }));
 })();
-</script>
 
-<script>
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const { naira } = PaxAuth;
+const state = { uid: null, profile: null, balanceKobo: 0, hideBalance: false, bens: [], bookings: [] };
 
-/* ============================
-   INPUT REFERENCES (IMPORTANT)
-============================ */
-const nameInput  = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const phoneInput = document.getElementById("phone");
+let toastTimer;
+function toast(msg) {
+  const t = $("toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 3500);
+}
+const openModal = id => { $(id).hidden = false; };
+const closeModals = () => document.querySelectorAll(".wl-modal").forEach(m => { m.hidden = true; });
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-close]") || e.target.classList.contains("wl-modal")) closeModals();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModals(); });
 
-/* ============================
-   AUTO LOAD USER
-============================ */
-const userProfile = JSON.parse(localStorage.getItem("userProfile") || "{}");
-
-if (userProfile.name) {
-  nameInput.value  = userProfile.name;
-  emailInput.value = userProfile.email || "";
-  phoneInput.value = userProfile.phone || "";
+function fmtDate(iso) {
+  return new Date(iso).toLocaleString("en-NG", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit", timeZone: "Africa/Lagos" });
 }
 
-/* ============================
-   USER SIGN UP / LOGIN
-============================ */
-function signupUser() {
-  const name  = nameInput.value.trim();
-  const phone = phoneInput.value.trim();
-  const email = emailInput.value.trim();
+/* ---------- views ---------- */
+function showLogin() { $("appView").hidden = true; $("loginView").hidden = false; }
+function showApp() { $("loginView").hidden = true; $("appView").hidden = false; }
+function setLoginMsg(text, ok) { const m = $("loginMsg"); m.textContent = text; m.style.color = ok ? "#1b7f3b" : ""; }
 
-  if (name === "" || phone === "") {
-    alert("Please enter at least your name and WhatsApp number.");
+/* ---------- login (email magic link; only existing/invited accounts can sign in) ---------- */
+$("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const email = $("loginEmail").value.trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return setLoginMsg("Enter a valid email address.");
+  $("loginBtn").disabled = true;
+  const { error } = await PaxAuth.client.auth.signInWithOtp({
+    email, options: { shouldCreateUser: false, emailRedirectTo: `${location.origin}/profile` }
+  });
+  $("loginBtn").disabled = false;
+  if (error && error.status === 429) return setLoginMsg("Please wait a minute before asking for another link.");
+  // Same message whether or not the email is registered, so nobody can probe who our clients are.
+  setLoginMsg("If that email is registered with us, a login link is on its way. Check your inbox (and spam).", true);
+});
+
+$("signOutBtn").addEventListener("click", async () => {
+  await PaxAuth.client.auth.signOut();
+  try { localStorage.removeItem("userSession"); localStorage.removeItem("userProfile"); } catch (_) {}
+  state.uid = null; showLogin();
+});
+
+/* ---------- data ---------- */
+async function loadApp(user) {
+  state.uid = user.id;
+  const c = PaxAuth.client;
+  const [p, w, t, n, b] = await Promise.all([
+    c.from("profiles").select("full_name,email,phone,status").eq("id", user.id).maybeSingle(),
+    c.from("wallets").select("balance_kobo").eq("user_id", user.id).maybeSingle(),
+    c.from("wallet_transactions").select("type,amount_kobo,created_at").order("created_at", { ascending: false }).limit(30),
+    c.from("notifications").select("id,message,read,created_at").order("created_at", { ascending: false }).limit(20),
+    c.from("bookings").select("items").order("created_at", { ascending: false }).limit(50)
+  ]);
+
+  if (!p.data) { // signed in, but not a Pax & Pearl client profile
+    await c.auth.signOut(); state.uid = null; showLogin();
+    setLoginMsg("We couldn't find a client profile for that email. Message us on WhatsApp and we'll set you up.");
     return;
   }
+  state.profile = p.data;
+  state.balanceKobo = w.data?.balance_kobo ?? 0;
+  state.bookings = b.data || [];
 
-  localStorage.setItem("userSession", "true");
+  // keep the rest of the site (home greeting, booking prefill) in sync
+  try {
+    localStorage.setItem("userSession", "true");
+    localStorage.setItem("userProfile", JSON.stringify({ name: p.data.full_name, email: p.data.email, phone: p.data.phone }));
+  } catch (_) {}
 
-  localStorage.setItem("userProfile", JSON.stringify({
-    name,
-    email,
-    phone
-  }));
-
-  window.location.href = "index.html";
+  renderProfile(); renderWallet(); renderFavs(); renderHistory(t.data || []); renderNotifs(n.data || []);
+  showApp();
+  await loadBens();
+  handlePaidReturn();
 }
-</script> 
 
-<script>
-  const adminProfile = JSON.parse(localStorage.getItem("adminProfile") || {});
-  const msgBtn = document.getElementById("messageAdmin");
+async function refreshMoney() {
+  const c = PaxAuth.client;
+  const [w, t] = await Promise.all([
+    c.from("wallets").select("balance_kobo").eq("user_id", state.uid).maybeSingle(),
+    c.from("wallet_transactions").select("type,amount_kobo,created_at").order("created_at", { ascending: false }).limit(30)
+  ]);
+  state.balanceKobo = w.data?.balance_kobo ?? state.balanceKobo;
+  renderWallet(); renderHistory(t.data || []);
+}
+async function refreshNotifs() {
+  const { data } = await PaxAuth.client.from("notifications").select("id,message,read,created_at").order("created_at", { ascending: false }).limit(20);
+  renderNotifs(data || []);
+}
+async function loadBens() {
+  try { state.bens = (await PaxAuth.api("/api/beneficiaries")).beneficiaries; } catch (_) { state.bens = []; }
+  renderBens();
+}
 
-  if (msgBtn && adminProfile.phone) {
-    msgBtn.href = `https://wa.me/${adminProfile.phone}`;
-    msgBtn.target = "_blank";
-  } else if (msgBtn) {
-    msgBtn.addEventListener("click", () => {
-      alert("Admin contact not available yet.");
-    });
+/* ---------- renderers ---------- */
+function renderProfile() {
+  const p = state.profile;
+  $("avatar").textContent = (p.full_name || "?").trim().charAt(0).toUpperCase();
+  $("pName").textContent = p.full_name; $("pEmail").textContent = p.email; $("pPhone").textContent = p.phone;
+}
+function renderWallet() {
+  $("balanceText").textContent = state.hideBalance ? "₦ ••••••" : naira(state.balanceKobo / 100);
+  $("eyeIcon").textContent = state.hideBalance ? "visibility_off" : "visibility";
+}
+$("eyeBtn").addEventListener("click", () => { state.hideBalance = !state.hideBalance; renderWallet(); });
+
+function renderFavs() {
+  let saved = []; try { saved = JSON.parse(localStorage.getItem("saved") || "[]"); } catch (_) {}
+  const out = [], seen = new Set();
+  const add = (name, price) => {
+    const k = String(name || "").trim(); if (!k || seen.has(k.toLowerCase())) return;
+    seen.add(k.toLowerCase()); out.push({ name: k, price: Number(price) });
+  };
+  (Array.isArray(saved) ? saved : []).forEach(s => add(s?.name, s?.price));
+  const counts = new Map();
+  state.bookings.forEach(b => (b.items || []).forEach(i => {
+    if (!i?.name) return; const e = counts.get(i.name) || { n: 0, price: i.price }; e.n++; counts.set(i.name, e);
+  }));
+  [...counts.entries()].sort((a, b) => b[1].n - a[1].n).forEach(([name, e]) => add(name, e.price));
+  const top = out.slice(0, 3);
+  $("favTiles").innerHTML = top.length
+    ? top.map(f => `<a class="wl-fav" href="services.html"><span class="material-icons-round">spa</span><strong>${esc(f.name)}</strong>${Number.isFinite(f.price) && f.price > 0 ? `<span class="p">${naira(f.price)}</span>` : ""}</a>`).join("")
+    : `<p class="wl-muted" style="grid-column:1/-1;margin:0">Save services you love, or book your first treat, and your favorites will show here. <a href="services.html" style="color:var(--primary-red)">Browse services</a></p>`;
+}
+
+function renderBens() {
+  const box = $("benList");
+  if (!state.bens.length) {
+    box.innerHTML = `<div class="wl-empty" style="grid-column:1/-1"><p class="wl-muted" style="margin:0 0 8px">Add family or friends and fund their wallet so they can enjoy a spa treat.</p><button class="wl-link" id="emptyAdd">Add your first beneficiary</button></div>`;
+    $("emptyAdd").addEventListener("click", () => openModal("addBenModal"));
+    return;
   }
-</script>
+  box.innerHTML = state.bens.map(b => `
+    <div class="wl-ben">
+      <strong>${esc(b.name)}</strong>
+      <span class="ph">${esc(b.phone)}</span>
+      ${b.status === "invited" ? '<span class="wl-chip">Invite sent</span>' : ""}
+      <button type="button" data-fund="${esc(b.userId)}">+ Add Fund</button>
+    </div>`).join("");
+}
+$("benList").addEventListener("click", e => {
+  const btn = e.target.closest("[data-fund]"); if (btn) openFund(btn.dataset.fund);
+});
 
+const TX = {
+  topup: ["Wallet top-up", 1], transfer_in: ["Gift received", 1], refund: ["Refund", 1],
+  booking: ["Spa booking", -1], transfer_out: ["Sent to a beneficiary", -1]
+};
+function renderHistory(rows) {
+  $("histList").innerHTML = rows.length ? rows.map(r => {
+    const [label, sign] = TX[r.type] || [r.type, 1];
+    return `<li><div>${esc(label)}<small>${esc(fmtDate(r.created_at))}</small></div><span class="${sign > 0 ? "wl-in" : "wl-out"}">${sign > 0 ? "+" : "−"}${naira(r.amount_kobo / 100)}</span></li>`;
+  }).join("") : `<li><span class="wl-muted">No transactions yet.</span></li>`;
+}
+$("historyBtn").addEventListener("click", () => openModal("historyModal"));
+
+function renderNotifs(rows) {
+  const unread = rows.filter(r => !r.read).length;
+  $("bellBadge").hidden = unread === 0; $("bellBadge").textContent = unread > 9 ? "9+" : unread;
+  $("notifList").innerHTML = rows.length ? rows.map(r =>
+    `<li class="${r.read ? "" : "wl-unread"}"><div>${esc(r.message)}<small>${esc(fmtDate(r.created_at))}</small></div></li>`).join("")
+    : `<li><span class="wl-muted">Nothing new.</span></li>`;
+}
+$("bellBtn").addEventListener("click", async () => {
+  openModal("notifModal");
+  await PaxAuth.client.from("notifications").update({ read: true }).eq("read", false);
+  $("bellBadge").hidden = true;
+});
+
+/* ---------- top up ---------- */
+$("topUpBtn").addEventListener("click", () => { $("topErr").textContent = ""; openModal("topUpModal"); });
+$("topUpChips").addEventListener("click", e => {
+  const b = e.target.closest("button[data-amt]"); if (!b) return;
+  $("topAmount").value = b.dataset.amt;
+  [...$("topUpChips").children].forEach(x => x.classList.toggle("on", x === b));
+});
+$("topPay").addEventListener("click", async () => {
+  const amount = Number($("topAmount").value);
+  if (!Number.isInteger(amount) || amount < 1000) { $("topErr").textContent = "Enter a whole-naira amount of at least ₦1,000."; return; }
+  $("topPay").disabled = true; $("topErr").textContent = "";
+  try {
+    const r = await PaxAuth.api("/api/topup", { method: "POST", body: { amount } });
+    location.href = r.authorization_url;
+  } catch (e) { $("topErr").textContent = e.message; $("topPay").disabled = false; }
+});
+
+/* ---------- add beneficiary ---------- */
+$("addBenBtn").addEventListener("click", () => { $("benErr").textContent = ""; openModal("addBenModal"); });
+$("addBenForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  $("benSave").disabled = true; $("benErr").textContent = "";
+  try {
+    const r = await PaxAuth.api("/api/beneficiaries", { method: "POST", body: {
+      name: $("benName").value, phone: $("benPhone").value, email: $("benEmail").value
+    }});
+    $("addBenForm").reset(); closeModals(); await loadBens();
+    toast(r.outcome === "invited" ? "Added. We've emailed them an invite." : "Added. They've been notified.");
+  } catch (err) { $("benErr").textContent = err.message; }
+  $("benSave").disabled = false;
+});
+
+/* ---------- fund a beneficiary / gift a spa treat ---------- */
+function openFund(userId) {
+  if (!state.bens.length) { toast("Add a beneficiary first."); openModal("addBenModal"); return; }
+  $("fundBen").innerHTML = state.bens.map(b => `<option value="${esc(b.userId)}">${esc(b.name)} (${esc(b.phone)})</option>`).join("");
+  if (userId) $("fundBen").value = userId;
+  $("fundWalletLabel").textContent = `From my wallet (${naira(state.balanceKobo / 100)})`;
+  $("fundErr").textContent = ""; openModal("fundModal");
+}
+$("giftBtn").addEventListener("click", () => openFund(null));
+$("fundGo").addEventListener("click", async () => {
+  const amount = Number($("fundAmount").value);
+  const method = document.querySelector('input[name="fundMethod"]:checked').value;
+  if (!Number.isInteger(amount) || amount < 500) { $("fundErr").textContent = "Enter a whole-naira amount of at least ₦500."; return; }
+  $("fundGo").disabled = true; $("fundErr").textContent = "";
+  try {
+    const r = await PaxAuth.api("/api/beneficiary-fund", { method: "POST", body: { beneficiaryUserId: $("fundBen").value, amount, method } });
+    if (r.authorization_url) { location.href = r.authorization_url; return; }
+    closeModals(); $("fundAmount").value = ""; await refreshMoney(); toast("Sent! They've been notified.");
+  } catch (e) { $("fundErr").textContent = e.message; }
+  $("fundGo").disabled = false;
+});
+
+/* ---------- returning from Paystack ---------- */
+async function handlePaidReturn() {
+  const ref = new URLSearchParams(location.search).get("paid");
+  if (!ref) return;
+  history.replaceState(null, "", location.pathname);
+  const banner = $("payBanner"); banner.hidden = false; banner.textContent = "Confirming your payment…";
+  for (let i = 0; i < 15; i++) {
+    try {
+      const r = await PaxAuth.api(`/api/payment-status?ref=${encodeURIComponent(ref)}`);
+      if (r.status === "paid") {
+        banner.textContent = "Payment received. Thank you!";
+        await refreshMoney(); setTimeout(() => { banner.hidden = true; }, 6000); return;
+      }
+    } catch (e) { if (e.status === 400 || e.status === 404) { banner.hidden = true; return; } }
+    await new Promise(r => setTimeout(r, 2000));
+  }
+  banner.textContent = "We haven't received this payment yet. If you were charged, your balance will update shortly. Refresh in a minute.";
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && state.uid) { refreshMoney(); refreshNotifs(); }
+});
+
+/* ---------- start ---------- */
+(async function init() {
+  if (!PaxAuth.configured) {
+    showLogin(); $("loginBtn").disabled = true;
+    setLoginMsg("Wellness Wallet is being set up. Please check back soon.");
+    return;
+  }
+  const s = await PaxAuth.session();
+  if (s) await loadApp(s.user); else showLogin();
+  PaxAuth.client.auth.onAuthStateChange((evt, sess) => {
+    // defer: calling Supabase inside this callback can deadlock
+    if (evt === "SIGNED_IN" && sess && state.uid !== sess.user.id) setTimeout(() => loadApp(sess.user), 0);
+    if (evt === "SIGNED_OUT") { state.uid = null; showLogin(); }
+  });
+})();
+</script>
 </body>
 </html>
