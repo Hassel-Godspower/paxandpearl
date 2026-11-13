@@ -51,21 +51,6 @@
     .title-badge { display: inline-flex !important; align-items: center; gap: 6px; margin-top: 8px !important; background: linear-gradient(120deg, #f6eedb, #efd9a0); color: #5c4510 !important; border-radius: 999px; padding: 5px 11px; font-size: .74rem !important; }
     .title-badge .material-icons-round { font-size: 16px; color: #a77c22; }
     .title-badge b { font-weight: 600; }
-    .moods { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 10px 0 12px; }
-    .mood { border: 1px solid var(--pp-line); background: var(--pp-soft); border-radius: 14px; padding: 8px 2px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; font: 500 .68rem "Poppins", sans-serif; color: var(--pp-muted); }
-    .mood span.e { font-size: 1.5rem; line-height: 1; }
-    .mood.on { border-color: var(--pp-red); background: #fbeeee; color: var(--pp-red); }
-    .refl { border: 1px solid var(--pp-line); border-radius: 18px; padding: 14px; margin-bottom: 12px; }
-    .refl:last-child { margin-bottom: 0; }
-    .refl-head { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
-    .refl-head strong { font-size: .92rem; font-weight: 600; }
-    .refl-head small { color: var(--pp-muted); font-size: .76rem; }
-    .refl textarea { width: 100%; min-height: 64px; border: 1px solid var(--pp-line); border-radius: 14px; padding: 10px 12px; font: 400 .88rem "Poppins", sans-serif; resize: vertical; box-sizing: border-box; }
-    .refl textarea:focus { outline: 2px solid var(--pp-gold); outline-offset: 1px; border-color: transparent; }
-    .refl .wl-primary { margin-top: 10px; padding: 11px; font-size: .88rem; }
-    .refl-done { display: flex; gap: 12px; align-items: flex-start; }
-    .refl-done .e { font-size: 1.6rem; line-height: 1; }
-    .refl-done p { font-size: .86rem; color: var(--pp-ink); line-height: 1.45; margin-top: 2px; }
     .ach-title { font: 700 1.05rem "Montserrat", sans-serif; margin: 2px 0 4px; }
     .ach-sub { color: var(--pp-muted); font-size: .84rem; line-height: 1.45; }
     .ach-track { height: 10px; border-radius: 999px; background: var(--pp-soft); margin: 14px 0 8px; overflow: hidden; }
@@ -186,11 +171,6 @@
           <div class="stat"><small>Beneficiaries</small><strong id="statPeople">0</strong></div>
         </div>
 
-        <section class="card" id="reflect" aria-labelledby="refTitle" hidden>
-          <div class="card-head"><div><h2 id="refTitle">How did your treat feel?</h2><p class="muted" style="margin-top:2px">Share a quick reflection. It helps you see your progress.</p></div></div>
-          <div id="reflectList"></div>
-        </section>
-
         <section class="card" id="insights" aria-labelledby="insTitle">
           <div class="card-head">
             <div><h2 id="insTitle">Treat activity</h2><p class="muted" style="margin-top:2px">Treats booked per month, last 6 months</p></div>
@@ -219,7 +199,6 @@
             </div>
           </div>
           <p class="nudge" id="rhyNudge"></p>
-          <p class="fine">This tracks how consistently you book, not a medical measure. Next, you'll be able to log how you feel after each treat to see your progress over time.</p>
         </section>
 
         <section class="card" id="activity" aria-labelledby="actTitle">
@@ -266,11 +245,6 @@
         <section class="card" id="achieve" aria-labelledby="achTitle">
           <div class="card-head"><h2 id="achTitle">Your wellness title</h2></div>
           <div id="achBody"></div>
-        </section>
-
-        <section class="card" id="reflections" aria-labelledby="relTitle" hidden>
-          <div class="card-head"><h2 id="relTitle">Your reflections</h2></div>
-          <div id="reflectionList"></div>
         </section>
 
         <section class="card" id="people">
@@ -507,7 +481,7 @@ async function loadApp(user) {
 
   showApp();
   renderAll();
-  loadReflections(); loadAchievements();
+  loadAchievements();
   await loadBens();
   handlePaidReturn();
 }
@@ -532,59 +506,6 @@ async function loadBens() {
 }
 
 /* ---------- renderers ---------- */
-const MOODS = [
-  { v: 1, e: "😣", l: "Tense" }, { v: 2, e: "😕", l: "Meh" }, { v: 3, e: "😐", l: "Okay" },
-  { v: 4, e: "🙂", l: "Good" }, { v: 5, e: "😊", l: "Great" }
-];
-const treatName = items => (items || []).map(i => i.name).join(", ") || "Spa treat";
-
-async function loadReflections() {
-  try {
-    const r = await PaxAuth.api("/api/feedback");
-    renderReflect(r.pending || []); renderReflections(r.done || []);
-  } catch (_) { renderReflect([]); renderReflections([]); }
-}
-function renderReflect(pending) {
-  $("reflect").hidden = !pending.length;
-  $("reflectList").innerHTML = pending.slice(0, 3).map(p => `
-    <form class="refl" data-bid="${esc(p.id)}">
-      <div class="refl-head"><strong>${esc(treatName(p.items))}</strong><small>${esc(fmtShort(p.date))}</small></div>
-      <div class="moods" role="radiogroup" aria-label="How did you feel?">
-        ${MOODS.map(m => `<button type="button" class="mood" data-mood="${m.v}" role="radio" aria-checked="false" aria-label="${m.l}"><span class="e">${m.e}</span>${m.l}</button>`).join("")}
-      </div>
-      <textarea maxlength="500" placeholder="Anything you'd like to share? (optional)"></textarea>
-      <p class="wl-error" data-err></p>
-      <button class="wl-primary" type="submit">Share my reflection</button>
-    </form>`).join("");
-}
-$("reflectList").addEventListener("click", e => {
-  const m = e.target.closest(".mood"); if (!m) return;
-  const form = m.closest("form");
-  form.querySelectorAll(".mood").forEach(x => { const on = x === m; x.classList.toggle("on", on); x.setAttribute("aria-checked", String(on)); });
-  form.dataset.mood = m.dataset.mood;
-});
-$("reflectList").addEventListener("submit", async e => {
-  e.preventDefault();
-  const form = e.target, err = form.querySelector("[data-err]"), btn = form.querySelector("button[type=submit]");
-  if (!form.dataset.mood) { err.textContent = "Choose how you felt first."; return; }
-  btn.disabled = true; err.textContent = "";
-  try {
-    await PaxAuth.api("/api/feedback", { method: "POST", body: {
-      bookingId: form.dataset.bid, mood: Number(form.dataset.mood), comment: form.querySelector("textarea").value
-    }});
-    toast("Thank you. Your reflection is saved.");
-    await Promise.all([loadReflections(), loadAchievements()]);
-  } catch (ex) { err.textContent = ex.message; btn.disabled = false; }
-});
-
-function renderReflections(done) {
-  $("reflections").hidden = !done.length;
-  $("reflectionList").innerHTML = done.slice(0, 8).map(d => {
-    const m = MOODS.find(x => x.v === d.mood) || MOODS[2];
-    return `<div class="refl"><div class="refl-done"><span class="e">${m.e}</span><div><strong style="font-size:.9rem">${esc(m.l)}</strong><small class="muted" style="display:block">${esc(treatName(d.items))} · ${esc(fmtShort(d.date))}</small>${d.comment ? `<p>${esc(d.comment)}</p>` : ""}</div></div></div>`;
-  }).join("");
-}
-
 async function loadAchievements() {
   try { renderAchievements(await PaxAuth.api("/api/achievements")); }
   catch (_) { $("achBody").innerHTML = `<p class="muted">Your progress will appear here shortly.</p>`; }
