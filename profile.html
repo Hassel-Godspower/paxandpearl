@@ -16,6 +16,37 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/wallet.css">
+
+  <style>
+    .bars { display: flex; align-items: flex-end; gap: 10px; height: 170px; padding-top: 6px; }
+    .bar { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; min-width: 0; }
+    .bar-val { font: 600 .74rem "Montserrat", sans-serif; color: var(--pp-ink); min-height: 1em; }
+    .bar-fill { width: 100%; max-width: 46px; border-radius: 16px 16px 8px 8px; background: #eee3cc; min-height: 4px; transition: height .4s; }
+    .bar.now .bar-fill { background: linear-gradient(180deg, #a10f0f, #5f0808); box-shadow: 0 8px 18px rgba(122,12,12,.25); }
+    .bar-lbl { font-size: .72rem; color: var(--pp-muted); }
+    .bar.now .bar-lbl { color: var(--pp-red); font-weight: 600; }
+    .rhythm { display: flex; align-items: center; gap: 18px; }
+    .ring-box { position: relative; width: 104px; height: 104px; flex: none; }
+    .ring-box svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring-bg { fill: none; stroke: var(--pp-line); stroke-width: 8; }
+    .ring-fg { fill: none; stroke: var(--pp-gold); stroke-width: 8; stroke-linecap: round; transition: stroke-dasharray .6s; }
+    .ring-val { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+    .ring-val strong { font: 700 1.2rem "Montserrat", sans-serif; }
+    .ring-val small { font-size: .66rem; color: var(--pp-muted); }
+    .rhythm-stats { display: grid; gap: 10px; min-width: 0; flex: 1; }
+    .rhythm-stats small { display: block; color: var(--pp-muted); font-size: .72rem; }
+    .rhythm-stats strong { font: 600 .92rem "Montserrat", sans-serif; }
+    .nudge { margin-top: 14px; background: var(--pp-gold-soft); border-radius: 14px; padding: 11px 13px; font-size: .84rem; line-height: 1.45; color: #5c4510; }
+    .fine { margin-top: 10px; font-size: .72rem; color: var(--pp-muted); line-height: 1.5; }
+    .freq { padding: 12px 0; border-bottom: 1px solid var(--pp-line); }
+    .freq:last-child { border-bottom: 0; }
+    .freq-top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+    .freq-top strong { font-size: .88rem; font-weight: 600; overflow-wrap: anywhere; }
+    .freq-top span { font: 600 .8rem "Montserrat", sans-serif; color: var(--pp-red); white-space: nowrap; }
+    .freq-track { height: 8px; border-radius: 999px; background: var(--pp-soft); margin: 9px 0 7px; overflow: hidden; }
+    .freq-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--pp-gold), var(--pp-red)); min-width: 6px; transition: width .5s; }
+    .freq small { color: var(--pp-muted); font-size: .76rem; }
+  </style>
 </head>
 
 <body class="pp-dash">
@@ -126,6 +157,37 @@
           <div class="stat"><small>Beneficiaries</small><strong id="statPeople">0</strong></div>
         </div>
 
+        <section class="card" id="insights" aria-labelledby="insTitle">
+          <div class="card-head">
+            <div><h2 id="insTitle">Treat activity</h2><p class="muted" style="margin-top:2px">Treats booked per month, last 6 months</p></div>
+            <span class="chip-btn" id="insTotal">0 treats</span>
+          </div>
+          <div class="bars" id="monthBars" role="img" aria-label="Treats booked per month"></div>
+          <p class="muted" id="insNote" style="margin-top:12px"></p>
+        </section>
+
+        <section class="card" id="rhythm" aria-labelledby="rhyTitle">
+          <div class="card-head">
+            <div><h2 id="rhyTitle">Wellness rhythm</h2><p class="muted" style="margin-top:2px">How steadily you look after yourself</p></div>
+          </div>
+          <div class="rhythm">
+            <div class="ring-box">
+              <svg viewBox="0 0 88 88" aria-hidden="true">
+                <circle cx="44" cy="44" r="36" class="ring-bg"></circle>
+                <circle cx="44" cy="44" r="36" class="ring-fg" id="ringFg" stroke-dasharray="0 226"></circle>
+              </svg>
+              <div class="ring-val"><strong id="ringPct">0%</strong><small>of 12 weeks</small></div>
+            </div>
+            <div class="rhythm-stats">
+              <div><small>Current streak</small><strong id="rhyStreak">0 weeks</strong></div>
+              <div><small>Last treat</small><strong id="rhyLast">None yet</strong></div>
+              <div><small>vs prior 4 weeks</small><strong id="rhyTrend">–</strong></div>
+            </div>
+          </div>
+          <p class="nudge" id="rhyNudge"></p>
+          <p class="fine">This tracks how consistently you book, not a medical measure. Next, you'll be able to log how you feel after each treat to see your progress over time.</p>
+        </section>
+
         <section class="card" id="activity" aria-labelledby="actTitle">
           <div class="card-head">
             <h2 id="actTitle">Recent activity</h2>
@@ -159,12 +221,11 @@
           <div id="upcoming"></div>
         </section>
 
-        <section class="card" id="favs">
+        <section class="card" id="favs" aria-labelledby="freqTitle">
           <div class="card-head">
-            <h2>Your treats</h2>
-            <a class="link" href="services.html">See all<span class="material-icons-round" style="font-size:18px">arrow_forward</span></a>
+            <div><h2 id="freqTitle">Booking frequency</h2><p class="muted" style="margin-top:2px">How often you book each service</p></div>
           </div>
-          <div class="treats" id="favTiles"></div>
+          <div id="freqList"></div>
         </section>
 
         <section class="card" id="people">
@@ -379,7 +440,7 @@ async function loadApp(user) {
     c.from("wallets").select("balance_kobo").eq("user_id", user.id).maybeSingle(),
     c.from("wallet_transactions").select("type,amount_kobo,created_at").order("created_at", { ascending: false }).limit(60),
     c.from("notifications").select("id,message,read,created_at").order("created_at", { ascending: false }).limit(20),
-    c.from("bookings").select("items,amount_kobo,preferred_date,preferred_time,status,created_at").order("created_at", { ascending: false }).limit(60)
+    c.from("bookings").select("items,amount_kobo,preferred_date,preferred_time,status,created_at").order("created_at", { ascending: false }).limit(300)
   ]);
 
   if (!p.data) { // signed in, but no client profile for this login
@@ -480,24 +541,116 @@ function renderUpcoming() {
     </div>`;
 }
 
-function renderFavs() {
-  let saved = []; try { saved = JSON.parse(localStorage.getItem("saved") || "[]"); } catch (_) {}
-  const out = [], seen = new Set();
-  const add = (name, price) => {
-    const k = String(name || "").trim(); if (!k || seen.has(k.toLowerCase())) return;
-    seen.add(k.toLowerCase()); out.push({ name: k, price: Number(price) });
-  };
-  (Array.isArray(saved) ? saved : []).forEach(s => add(s?.name, s?.price));
-  const counts = new Map();
-  state.bookings.forEach(b => (b.items || []).forEach(i => {
-    if (!i?.name) return; const e = counts.get(i.name) || { n: 0, price: i.price }; e.n++; counts.set(i.name, e);
-  }));
-  [...counts.entries()].sort((a, b) => b[1].n - a[1].n).forEach(([name, e]) => add(name, e.price));
-  const top = out.slice(0, 4);
-  $("favTiles").innerHTML = top.length
-    ? top.map(f => `<a class="treat" href="services.html"><span class="material-icons-round">spa</span><strong>${esc(f.name)}</strong><small>${Number.isFinite(f.price) && f.price > 0 ? naira(f.price) : "View price"}</small></a>`).join("")
-    : `<p class="muted" style="grid-column:1/-1">Your favourite treats will show here after your first booking. <a class="link" href="services.html">Browse services</a></p>`;
+const DAY = 864e5;
+const dayNum = ds => Date.parse(ds + "T00:00:00Z") / DAY;
+const fmtShort = ds => new Date(ds + "T12:00:00").toLocaleDateString("en-NG", { day: "numeric", month: "short", timeZone: LAGOS });
+
+function validRows() {
+  return state.bookings.filter(b => b.status !== "cancelled" && b.preferred_date);
 }
+
+function renderInsights() {
+  const rows = validRows();
+  const today = todayLagos(), [ty, tm] = today.split("-").map(Number);
+
+  // 1) treats per month, last 6 months
+  const buckets = [];
+  for (let i = 5; i >= 0; i--) {
+    let mm = tm - i, yy = ty;
+    while (mm <= 0) { mm += 12; yy--; }
+    const key = `${yy}-${String(mm).padStart(2, "0")}`;
+    const count = rows.filter(r => r.preferred_date.slice(0, 7) === key).length;
+    const label = new Date(Date.UTC(yy, mm - 1, 1)).toLocaleDateString("en-NG", { month: "short", timeZone: "UTC" });
+    buckets.push({ key, count, label, now: i === 0 });
+  }
+  const max = Math.max(1, ...buckets.map(b => b.count));
+  $("monthBars").innerHTML = buckets.map(b => `
+    <div class="bar ${b.now ? "now" : ""}" title="${b.count} treat${b.count === 1 ? "" : "s"} in ${esc(b.label)}">
+      <span class="bar-val">${b.count || ""}</span>
+      <span class="bar-fill" style="height:${b.count ? Math.max(8, Math.round(b.count / max * 100)) : 0}%"></span>
+      <span class="bar-lbl">${esc(b.label)}</span>
+    </div>`).join("");
+  const total6 = buckets.reduce((s, b) => s + b.count, 0);
+  const prev = buckets[4].count, cur = buckets[5].count;
+  $("insTotal").textContent = `${total6} treat${total6 === 1 ? "" : "s"}`;
+  $("insNote").textContent = total6 === 0
+    ? "Your chart fills in as you book treats."
+    : cur === prev ? `You've booked ${cur} this month, the same as last month.`
+    : cur > prev ? `Up from ${prev} last month to ${cur} this month. Keep it going.`
+    : `${cur} this month, down from ${prev} last month. A treat soon would help.`;
+
+  // 2) wellness rhythm: rolling 7-day windows, measured in days before today
+  const ago = r => dayNum(today) - dayNum(r.preferred_date);
+  const past = rows.filter(r => ago(r) >= 0);
+  const weeksHit = new Set(past.filter(r => ago(r) < 84).map(r => Math.floor(ago(r) / 7)));
+  const consistency = Math.round(weeksHit.size / 12 * 100);
+  let streak = 0; while (weeksHit.has(streak)) streak++;
+  const lastAgo = past.length ? Math.min(...past.map(ago)) : null;
+  const last28 = past.filter(r => ago(r) < 28).length;
+  const prev28 = past.filter(r => ago(r) >= 28 && ago(r) < 56).length;
+
+  const C = 2 * Math.PI * 36;
+  $("ringFg").setAttribute("stroke-dasharray", `${(C * consistency / 100).toFixed(1)} ${C.toFixed(1)}`);
+  $("ringPct").textContent = `${consistency}%`;
+  $("rhyStreak").textContent = streak ? `${streak} week${streak === 1 ? "" : "s"}` : "None yet";
+  $("rhyLast").textContent = lastAgo === null ? "None yet" : lastAgo === 0 ? "Today" : lastAgo === 1 ? "Yesterday" : `${lastAgo} days ago`;
+  $("rhyTrend").textContent = last28 === prev28 ? "Steady" : last28 > prev28 ? `↑ ${last28 - prev28} more` : `↓ ${prev28 - last28} fewer`;
+  $("rhyTrend").style.color = last28 < prev28 ? "var(--pp-red)" : "var(--pp-green)";
+
+  // nudge: compare time since last treat with the usual gap for their most-booked service
+  const freq = frequencyRows();
+  const usual = freq.find(f => f.avgGap)?.avgGap;
+  let nudge;
+  if (!rows.length) nudge = "Book your first treat to start your rhythm. Even one a month builds a habit.";
+  else if (usual && lastAgo !== null && lastAgo > usual * 1.3) nudge = `It's been ${lastAgo} days, longer than your usual gap of about ${Math.round(usual)} days. Time for your next treat?`;
+  else if (streak >= 4) nudge = `${streak} weeks in a row. That's a strong rhythm. Keep it steady.`;
+  else nudge = "You're on track. Regular sessions help most when they're spaced evenly.";
+  $("rhyNudge").innerHTML = `${esc(nudge)}${!rows.length || (usual && lastAgo !== null && lastAgo > usual * 1.3) ? ' <a class="link" href="services.html">Book now</a>' : ""}`;
+}
+
+function frequencyRows() {
+  const map = new Map();
+  validRows().forEach(b => {
+    const seen = new Set();
+    (b.items || []).forEach(i => {
+      const name = String(i?.name || "").trim(); if (!name || seen.has(name)) return;
+      seen.add(name);
+      const e = map.get(name) || { name, dates: [], price: i.price };
+      e.dates.push(b.preferred_date); map.set(name, e);
+    });
+  });
+  return [...map.values()].map(e => {
+    e.dates.sort();
+    const n = e.dates.length;
+    e.avgGap = n > 1 ? (dayNum(e.dates[n - 1]) - dayNum(e.dates[0])) / (n - 1) : null;
+    e.last = e.dates[n - 1];
+    return e;
+  }).sort((a, b) => b.dates.length - a.dates.length);
+}
+
+function cadenceText(f) {
+  if (!f.avgGap) return "Booked once so far";
+  if (f.avgGap < 10) return `About every ${Math.round(f.avgGap)} days`;
+  const w = Math.round(f.avgGap / 7);
+  return `About every ${w} week${w === 1 ? "" : "s"}`;
+}
+
+function renderFrequency() {
+  const list = frequencyRows();
+  if (!list.length) {
+    $("freqList").innerHTML = `<div class="empty">Your booking frequency will appear here after your first treat. <br><a class="link" href="services.html" style="margin-top:8px">Browse services</a></div>`;
+    return;
+  }
+  const max = list[0].dates.length;
+  $("freqList").innerHTML = list.map(f => `
+    <div class="freq">
+      <div class="freq-top"><strong>${esc(f.name)}</strong><span>${f.dates.length}×</span></div>
+      <div class="freq-track"><div class="freq-fill" style="width:${Math.round(f.dates.length / max * 100)}%"></div></div>
+      <small>${esc(cadenceText(f))} · last ${esc(fmtShort(f.last))}</small>
+    </div>`).join("");
+}
+
+function renderFavs() { renderFrequency(); renderInsights(); }
 
 function renderBens() {
   const box = $("benList");
