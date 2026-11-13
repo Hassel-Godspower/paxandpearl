@@ -6,18 +6,24 @@
  *   2. SUPABASE_URL=https://xxxx.supabase.co SUPABASE_SERVICE_ROLE_KEY=... \
  *        node scripts/import-clients.mjs clients.csv --dry-run      # check first, writes nothing
  *   3. Run again without --dry-run to create the accounts.
+ *   4. To email every client their login link straight away, add --send-links:
+ *        SUPABASE_ANON_KEY=... SITE_URL=https://paxandpearl.com node scripts/import-clients.mjs clients.csv --send-links
+ *      Each client gets the Magic Link email (your branded template, sent through your Resend SMTP).
  *
  * - Safe to re-run: people who already exist (same phone or email) are skipped.
- * - No emails are sent. Clients log in on /profile with the email you imported (magic link).
+ * - No emails are sent unless you add --send-links. Clients can always log in on /profile with their email.
  * - Rows without a valid email or phone are written to import-skipped.csv so you can fix them.
  * - Run this on your own computer. The service-role key must never go in the website code.
  */
 import { readFileSync, writeFileSync } from "node:fs";
+import { createClient } from "@supabase/supabase-js";
 import { admin, normalizePhone, isEmail } from "../api/_lib/util.js";
 
 const args = process.argv.slice(2);
 const file = args.find((a) => !a.startsWith("--"));
 const dryRun = args.includes("--dry-run");
+const sendLinks = args.includes("--send-links");
+const siteUrl = (process.env.SITE_URL || "https://paxandpearl.com").replace(/\/$/, "");
 if (!file) { console.error("Usage: node scripts/import-clients.mjs clients.csv [--dry-run]"); process.exit(1); }
 
 /* ---- tiny CSV parser (handles quotes, commas and newlines inside quotes) ---- */
@@ -56,7 +62,8 @@ if (iName < 0 || iPhone < 0 || iEmail < 0) {
 
 const db = admin();
 const seenPhones = new Set(), seenEmails = new Set();
-const stats = { created: 0, existing: 0, skipped: 0, failed: 0 };
+const stats = { created: 0, existing: 0, skipped: 0, failed: 0, linksSent: 0 };
+const toLink = [];
 const skipped = [["Name", "Phone", "Email", "Reason"]];
 
 for (let r = 1; r < rows.length; r++) {
@@ -71,6 +78,7 @@ for (let r = 1; r < rows.length; r++) {
   if (!isEmail(email)) { skip("missing or invalid email (needed to log in)"); continue; }
   if (seenPhones.has(phone) || seenEmails.has(email)) { skip("duplicate row in this file"); continue; }
   seenPhones.add(phone); seenEmails.add(email);
+  toLink.push({ name, phone, email, raw });
 
   const { data: dup } = await db.from("profiles").select("id").or(`phone.eq.${phone},email.ilike.${email}`).limit(1);
   if (dup?.length) { stats.existing++; continue; }
@@ -96,6 +104,28 @@ console.log(`${dryRun ? "[DRY RUN] would create" : "Created"}: ${stats.created}`
 console.log(`Already existed (skipped): ${stats.existing}`);
 console.log(`Skipped for bad data: ${stats.skipped}`);
 console.log(`Failed: ${stats.failed}`);
+
+/* ---- optional: email each client a magic login link ---- */
+if (sendLinks && !dryRun) {
+  if (!process.env.SUPABASE_ANON_KEY) { console.error("--send-links needs SUPABASE_ANON_KEY (the publishable/anon key)."); process.exit(1); }
+  const anon = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY, {
+    auth: { persistSession: false, autoRefreshToken: false }
+  });
+  for (const c of toLink) {
+    const { error } = await anon.auth.signInWithOtp({
+      email: c.email,
+      options: { shouldCreateUser: false, emailRedirectTo: `${siteUrl}/profile` }
+    });
+    if (error) {
+      skipped.push([c.name, c.phone, c.email, `login link failed: ${error.message}`]);
+      if (/rate limit|too many/i.test(error.message)) { console.log("Email rate limit reached. Wait an hour and run this command again; it will continue."); break; }
+    } else stats.linksSent++;
+    await new Promise((resolve) => setTimeout(resolve, 2500));   // pace the emails
+  }
+  console.log(`Login links sent: ${stats.linksSent} of ${toLink.length}`);
+} else if (sendLinks && dryRun) {
+  console.log(`[DRY RUN] would email login links to ${toLink.length} clients`);
+}
 if (skipped.length > 1) {
   writeFileSync("import-skipped.csv", skipped.map((r) => r.map(csvCell).join(",")).join("\n"));
   console.log("Rows that need attention were written to import-skipped.csv");
