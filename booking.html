@@ -852,6 +852,10 @@ function showPaidSuccess({ bookingId, customer, items, date, time, total, via })
       <p>Reference <strong>${escHtml(shortRef)}</strong><br>${fmt(total)} paid via ${escHtml(via)}.</p>
       <p>Requested slot: ${escHtml(date)} at ${escHtml(time)}. Our team will confirm your appointment.</p>
       ${wa ? `<a class="btn btn-primary" href="${wa}" target="_blank" rel="noopener noreferrer">Send details to Pax &amp; Pearl on WhatsApp</a>` : ""}
+      ${via === "Paystack" ? `<div class="wallet-offer">
+        <p><strong>Create your Wellness Wallet</strong><br>Top up once, then book spa treats in a tap, and add funds for family or friends.</p>
+        <a class="btn btn-outline" href="profile.html?register=1&name=${encodeURIComponent(customer?.name || "")}&email=${encodeURIComponent(customer?.email || "")}&phone=${encodeURIComponent(customer?.phone || "")}">Create my wallet</a>
+      </div>` : ""}
       <a class="btn btn-outline" href="profile.html">Go to my profile</a>
     </div>`;
 
@@ -943,7 +947,7 @@ async function handlePaystackReturn() {
       const r = await PaxAuth.api(`/api/booking-status?ref=${encodeURIComponent(ref)}`);
       if (r.status === "paid" || r.status === "confirmed") {
         PaxCart.clear(); renderCart();
-        showPaidSuccess({ bookingId: r.bookingId, customer: { name: r.name, email: "", phone: "" }, items: r.items, date: r.date, time: r.time, total: r.total, via: "Paystack" });
+        showPaidSuccess({ bookingId: r.bookingId, customer: { name: r.name, email: r.email || "", phone: r.phone || "" }, items: r.items, date: r.date, time: r.time, total: r.total, via: "Paystack" });
         return;
       }
     } catch (e) { if (e.status === 400 || e.status === 404) break; }

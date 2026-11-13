@@ -14,6 +14,11 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/wallet.css">
+  <style>
+    .wl-tabs { display:flex; gap:6px; background:var(--bg); border-radius:var(--radius-pill); padding:4px; margin-bottom:18px; }
+    .wl-tab { flex:1; border:0; background:transparent; border-radius:var(--radius-pill); padding:9px 10px; font:600 .85rem "Poppins",sans-serif; color:var(--text-muted); cursor:pointer; }
+    .wl-tab.on { background:#fff; color:var(--primary-red); box-shadow:var(--shadow-card); }
+  </style>
 </head>
 
 <body>
@@ -22,16 +27,43 @@
   <!-- ============ LOGGED OUT ============ -->
   <section id="loginView" hidden>
     <div class="wl-login">
-      <h1>Welcome back</h1>
-      <p>Enter the email we have on file for you and we'll send a secure login link. No password needed.</p>
-      <form id="loginForm" novalidate>
-        <label class="wl-field"><span>Email</span>
-          <input id="loginEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
-        </label>
-        <p id="loginMsg" class="wl-error" role="status"></p>
-        <button id="loginBtn" class="wl-primary" type="submit">Email me a login link</button>
-      </form>
-      <p class="wl-muted" style="margin-top:14px">Not a client yet? Message us on WhatsApp from the Message tab and we'll set up your profile.</p>
+      <div class="wl-tabs" role="tablist">
+        <button type="button" id="tabLogin" class="wl-tab on" role="tab" aria-selected="true">I have an account</button>
+        <button type="button" id="tabRegister" class="wl-tab" role="tab" aria-selected="false">New here?</button>
+      </div>
+
+      <!-- Log in -->
+      <div id="panelLogin">
+        <h1>Welcome back</h1>
+        <p>Enter your email and we'll send you a secure login link. No password needed.</p>
+        <form id="loginForm" novalidate>
+          <label class="wl-field"><span>Email</span>
+            <input id="loginEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </label>
+          <p id="loginMsg" class="wl-error" role="status"></p>
+          <button id="loginBtn" class="wl-primary" type="submit">Email me a login link</button>
+        </form>
+      </div>
+
+      <!-- Create account -->
+      <div id="panelRegister" hidden>
+        <h1>Create your Wellness Wallet</h1>
+        <p>Sign up with your details. We'll email you a link to open your wallet. No password needed.</p>
+        <form id="registerForm" novalidate>
+          <label class="wl-field"><span>Full name</span>
+            <input id="regName" type="text" autocomplete="name" maxlength="80" required>
+          </label>
+          <label class="wl-field"><span>Email</span>
+            <input id="regEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </label>
+          <label class="wl-field"><span>Phone number</span>
+            <input id="regPhone" type="tel" autocomplete="tel" placeholder="08012345678" required>
+          </label>
+          <p id="regMsg" class="wl-error" role="status"></p>
+          <button id="regBtn" class="wl-primary" type="submit">Create my account</button>
+        </form>
+        <p class="wl-muted" style="margin-top:12px">One account per phone number. Already a client? Use <a href="#" id="goLogin" style="color:var(--primary-red)">I have an account</a>.</p>
+      </div>
     </div>
   </section>
 
@@ -207,20 +239,67 @@ function showLogin() { $("appView").hidden = true; $("loginView").hidden = false
 function showApp() { $("loginView").hidden = true; $("appView").hidden = false; }
 function setLoginMsg(text, ok) { const m = $("loginMsg"); m.textContent = text; m.style.color = ok ? "#1b7f3b" : ""; }
 
-/* ---------- login (email magic link; only existing/invited accounts can sign in) ---------- */
+/* ---------- login / sign-up tabs ---------- */
+function showPanel(which) {
+  const reg = which === "register";
+  $("panelLogin").hidden = reg; $("panelRegister").hidden = !reg;
+  $("tabLogin").classList.toggle("on", !reg); $("tabRegister").classList.toggle("on", reg);
+  $("tabLogin").setAttribute("aria-selected", String(!reg)); $("tabRegister").setAttribute("aria-selected", String(reg));
+}
+$("tabLogin").addEventListener("click", () => showPanel("login"));
+$("tabRegister").addEventListener("click", () => showPanel("register"));
+$("goLogin").addEventListener("click", e => { e.preventDefault(); showPanel("login"); });
+
+/* ---------- log in (email magic link; the account must already exist) ---------- */
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+async function sendLoginLink(email) {
+  return PaxAuth.client.auth.signInWithOtp({
+    email, options: { shouldCreateUser: false, emailRedirectTo: `${location.origin}/profile` }
+  });
+}
 $("loginForm").addEventListener("submit", async e => {
   e.preventDefault();
   const email = $("loginEmail").value.trim().toLowerCase();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return setLoginMsg("Enter a valid email address.");
+  if (!EMAIL_RE.test(email)) return setLoginMsg("Enter a valid email address.");
   $("loginBtn").disabled = true;
-  const { error } = await PaxAuth.client.auth.signInWithOtp({
-    email, options: { shouldCreateUser: false, emailRedirectTo: `${location.origin}/profile` }
-  });
+  const { error } = await sendLoginLink(email);
   $("loginBtn").disabled = false;
   if (error && error.status === 429) return setLoginMsg("Please wait a minute before asking for another link.");
   // Same message whether or not the email is registered, so nobody can probe who our clients are.
   setLoginMsg("If that email is registered with us, a login link is on its way. Check your inbox (and spam).", true);
 });
+
+/* ---------- create account (anyone with an email; one account per phone number) ---------- */
+$("registerForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = $("regName").value.trim(), email = $("regEmail").value.trim().toLowerCase(), phone = $("regPhone").value.trim();
+  const msg = t => { $("regMsg").textContent = t; $("regMsg").style.color = ""; };
+  if (name.length < 2) return msg("Enter your full name.");
+  if (!EMAIL_RE.test(email)) return msg("Enter a valid email address.");
+  if (!phone) return msg("Enter your phone number.");
+  $("regBtn").disabled = true; msg("");
+  try {
+    await PaxAuth.api("/api/register", { method: "POST", body: { name, email, phone } });
+    await sendLoginLink(email);   // the account now exists, so this emails the link
+    $("regMsg").style.color = "#1b7f3b";
+    $("regMsg").textContent = "Almost there. Check your email for your link to open your wallet (and check spam).";
+    $("registerForm").reset();
+  } catch (err) {
+    msg(err.message || "Could not create your account. Please try again.");
+  }
+  $("regBtn").disabled = false;
+});
+
+/* arriving from a paid booking: prefill the form */
+(function prefillFromUrl() {
+  const q = new URLSearchParams(location.search);
+  if (q.get("register") !== "1") return;
+  showPanel("register");
+  if (q.get("name")) $("regName").value = q.get("name");
+  if (q.get("email")) $("regEmail").value = q.get("email");
+  if (q.get("phone")) $("regPhone").value = q.get("phone");
+  history.replaceState(null, "", location.pathname);
+})();
 
 $("signOutBtn").addEventListener("click", async () => {
   await PaxAuth.client.auth.signOut();
