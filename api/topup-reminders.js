@@ -1,5 +1,5 @@
 // GET /api/topup-reminders
-// Run daily by Vercel Cron (see vercel.json). Emails each active client a top-up reminder
+// Run daily by Vercel Cron (see vercel.json). Emails each active client a top-up reminder..
 // at most once every 21 days. Protected by CRON_SECRET (Vercel sends it automatically once set).
 // Needs env: RESEND_API_KEY, optional RESEND_FROM and SITE_URL.
 import { admin, send, methodGuard } from "./_lib/util.js";
