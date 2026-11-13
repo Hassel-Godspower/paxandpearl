@@ -139,7 +139,7 @@
       "description": "This treatment involves sitting in a steam machine to envelop the body in the steam\n\nPlease note: Individuals with certain medical conditions, like high blood pressure or heart issues, should consult a doctor before using the steam.",
       "price": 10000,
       "duration": 15000,
-      "category": "massage",
+      "category": "hammam-body-wash",
       "order": 11
     },
     {
