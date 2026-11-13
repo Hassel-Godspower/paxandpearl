@@ -60,6 +60,11 @@
     .tier .material-icons-round { font-size: 20px; }
     .tier.done { color: var(--pp-ink); border-color: #ead9a8; background: var(--pp-gold-soft); }
     .tier.done .material-icons-round { color: #a77c22; }
+    .nudge { display: flex; flex-direction: column; gap: 12px; background: linear-gradient(120deg, #fbf6ea, #f4e6c2); border-color: #ead9a8; }
+    .nudge-text { font: 500 .95rem "Poppins", sans-serif; color: var(--pp-ink); line-height: 1.45; min-height: 2.9em; margin: 0; }
+    .nudge-dots { display: flex; gap: 6px; }
+    .nudge-dots .dot { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; background: #d9c99a; cursor: pointer; }
+    .nudge-dots .dot.on { background: var(--pp-red); width: 22px; border-radius: 999px; }
   </style>
 </head>
 
@@ -170,6 +175,11 @@
           <div class="stat"><small>Treats booked</small><strong id="statTreats">0</strong></div>
           <div class="stat"><small>Beneficiaries</small><strong id="statPeople">0</strong></div>
         </div>
+
+        <section class="card nudge" id="nudge" aria-live="polite" hidden>
+          <p class="nudge-text" id="nudgeText"></p>
+          <div class="nudge-dots" id="nudgeDots"></div>
+        </section>
 
         <section class="card" id="insights" aria-labelledby="insTitle">
           <div class="card-head">
@@ -533,9 +543,85 @@ function renderAchievements(a) {
     </div>`;
 }
 
+/* ---------- Dashboard tips: one at a time, from last booking and wallet balance ---------- */
+const TREAT_STATUSES = ["paid", "confirmed", "completed"];
+let catalogServices = [];
+let nudges = [], nudgeIdx = 0, nudgeTimer = null;
+const svcById = id => catalogServices.find(x => String(x.id) === String(id));
+const isMassageItem = i => (svcById(i?.id)?.category === "massage") || /massage/i.test(String(i?.name || ""));
+fetch("/catalog.json").then(r => (r.ok ? r.json() : null)).then(d => {
+  catalogServices = (d?.services || []).filter(x => Number(x.price) > 0);
+  renderNudges();
+}).catch(() => {});
+
+function buildNudges() {
+  if (!catalogServices.length || !state.profile) return [];
+  const bal = state.balanceKobo / 100;
+  const paid = state.bookings
+    .filter(b => TREAT_STATUSES.includes(b.status))
+    .sort((a, b) => String(b.preferred_date).localeCompare(String(a.preferred_date)));
+  const out = [];
+
+  // Usual massage: the last massage booked, otherwise the cheapest massage on the menu.
+  const lastMassage = paid.map(b => (b.items || []).find(isMassageItem)).find(Boolean);
+  const massages = catalogServices.filter(s => s.category === "massage");
+  if (lastMassage || massages.length) {
+    const target = lastMassage
+      ? Number(svcById(lastMassage.id)?.price ?? lastMassage.price)
+      : Math.min(...massages.map(s => Number(s.price)));
+    const gap = Math.ceil(target - bal);
+    if (Number.isFinite(target)) out.push(gap > 0
+      ? `You are ${naira(gap)} away from your next massage service.`
+      : "Your wallet balance is enough for your next massage service.");
+  }
+
+  // Last treat.
+  const last = paid[0];
+  if (!last) {
+    out.push("Book your first treat. Massage is a lovely place to start.");
+  } else {
+    const days = Math.max(0, Math.floor((Date.now() - new Date(last.preferred_date + "T12:00:00")) / 864e5));
+    if (days >= 30) out.push(`It has been ${days} days since your last treat. Your next visit is one tap away.`);
+  }
+
+  // Services the balance already covers (not the one just booked), most valuable first.
+  const lastIds = new Set((last?.items || []).map(i => String(i.id)));
+  catalogServices
+    .filter(s => Number(s.price) <= bal && !lastIds.has(String(s.id)))
+    .sort((a, b) => Number(b.price) - Number(a.price))
+    .slice(0, 3)
+    .forEach(s => out.push(`Your wallet balance is enough for a ${s.name} treat.`));
+
+  if (bal < Math.min(...catalogServices.map(s => Number(s.price)))) {
+    out.push("Top up your wallet to book your next treat.");
+  }
+  return out;
+}
+
+function renderNudges() {
+  nudges = buildNudges();
+  $("nudge").hidden = !nudges.length;
+  clearInterval(nudgeTimer);
+  if (!nudges.length) return;
+  nudgeIdx = Math.min(nudgeIdx, nudges.length - 1);
+  $("nudgeDots").innerHTML = nudges.map((_, i) => `<button type="button" class="dot" data-i="${i}" aria-label="Tip ${i + 1}"></button>`).join("");
+  showNudge();
+  if (nudges.length > 1) {
+    nudgeTimer = setInterval(() => { nudgeIdx = (nudgeIdx + 1) % nudges.length; showNudge(); }, 7000);
+  }
+}
+function showNudge() {
+  $("nudgeText").textContent = nudges[nudgeIdx];
+  $("nudgeDots").querySelectorAll(".dot").forEach((d, i) => d.classList.toggle("on", i === nudgeIdx));
+}
+$("nudgeDots").addEventListener("click", e => {
+  const b = e.target.closest(".dot"); if (!b) return;
+  nudgeIdx = Number(b.dataset.i); showNudge();
+});
+
 function renderAll() {
   renderProfile(); renderGreeting(); renderWallet(); renderStats();
-  renderUpcoming(); renderFavs(); renderActivity(); renderNotifs();
+  renderUpcoming(); renderFavs(); renderActivity(); renderNotifs(); renderNudges();
 }
 
 function renderGreeting() {
