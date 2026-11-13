@@ -59,7 +59,7 @@ export async function getAuthed(req) {
   if (error || !data?.user) return null;
   const { data: profile } = await db
     .from("profiles")
-    .select("id, full_name, email, phone")
+    .select("id, full_name, email, phone, wellness_title")
     .eq("id", data.user.id)
     .maybeSingle();
   return profile ? { user: data.user, profile } : null;
@@ -109,3 +109,13 @@ export async function loadCatalog(req) {
 export function lagosToday() {
   return new Date().toLocaleDateString("en-CA", { timeZone: "Africa/Lagos" }); // YYYY-MM-DD
 }
+
+/* Wellness Ambassador titles. Counts massage sessions (each massage service on a booking). */
+export const WELLNESS_TIERS = [
+  { min: 10, title: "Global Wellness Ambassador" },
+  { min: 2, title: "Wellness Ambassador" }
+];
+export function wellnessTitle(massageSessions) {
+  return WELLNESS_TIERS.find((t) => massageSessions >= t.min)?.title ?? null;
+}
+export const TREAT_STATUSES = ["paid", "confirmed", "completed"];
