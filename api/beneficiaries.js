@@ -55,7 +55,7 @@ export default async function handler(req, res) {
         return send(res, 400, { error: "email_required", message: "This person isn't a client yet. Add their email so we can send an invite." });
       }
       const { data: invited, error: inviteErr } = await db.auth.admin.inviteUserByEmail(email, {
-        data: { full_name: name, phone },
+        data: { full_name: name, phone, inviter_name: me.profile.full_name || "" },
         redirectTo: `${siteUrl(req)}/profile`
       });
       if (inviteErr || !invited?.user) {

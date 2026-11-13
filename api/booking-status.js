@@ -9,12 +9,12 @@ export default async function handler(req, res) {
   if (!/^bk_[0-9a-f]{32}$/.test(ref)) return send(res, 400, { error: "Invalid reference." });
   try {
     const { data, error } = await admin().from("bookings")
-      .select("id, status, customer_name, preferred_date, preferred_time, amount_kobo, items")
+      .select("id, status, customer_name, customer_email, customer_phone, preferred_date, preferred_time, amount_kobo, items")
       .eq("paystack_reference", ref).maybeSingle();
     if (error) throw error;
     if (!data) return send(res, 404, { error: "Booking not found." });
     send(res, 200, {
-      bookingId: data.id, status: data.status, name: data.customer_name,
+      bookingId: data.id, status: data.status, name: data.customer_name, email: data.customer_email, phone: data.customer_phone,
       date: data.preferred_date, time: String(data.preferred_time).slice(0, 5),
       total: data.amount_kobo / 100, items: data.items
     });
