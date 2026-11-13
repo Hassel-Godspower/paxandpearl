@@ -554,47 +554,96 @@ fetch("/catalog.json").then(r => (r.ok ? r.json() : null)).then(d => {
   renderNudges();
 }).catch(() => {});
 
+const DAY_MS = 864e5;
+const clampN = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
+const medianOf = arr => { if (!arr.length) return null; const x = [...arr].sort((p, q) => p - q), m = x.length >> 1; return x.length % 2 ? x[m] : (x[m - 1] + x[m]) / 2; };
+const dayMs = ds => Date.parse(String(ds) + "T12:00:00");
+const todayMs = () => dayMs(new Date().toLocaleDateString("en-CA", { timeZone: LAGOS }));
+const fmtDay = ms => new Date(ms).toLocaleDateString("en-NG", { day: "numeric", month: "short", timeZone: LAGOS });
+const serviceOf = i => {
+  const s = svcById(i?.id);
+  const name = s?.name || i?.name || "treat";
+  return { key: String(i?.id ?? name), name, price: Number(s?.price ?? i?.price ?? 0) };
+};
+
+/* Tips use: what the client has booked, the price gap to their usual service, and the time until their next visit. */
 function buildNudges() {
-  if (!catalogServices.length || !state.profile) return [];
+  if (!state.profile || !catalogServices.length) return [];
   const bal = state.balanceKobo / 100;
+  const now = todayMs();
   const paid = state.bookings
-    .filter(b => TREAT_STATUSES.includes(b.status))
-    .sort((a, b) => String(b.preferred_date).localeCompare(String(a.preferred_date)));
+    .filter(b => TREAT_STATUSES.includes(b.status) && b.preferred_date && !isNaN(dayMs(b.preferred_date)))
+    .sort((a, b) => dayMs(a.preferred_date) - dayMs(b.preferred_date));
   const out = [];
 
-  // Usual massage: the last massage booked, otherwise the cheapest massage on the menu.
-  const lastMassage = paid.map(b => (b.items || []).find(isMassageItem)).find(Boolean);
-  const massages = catalogServices.filter(s => s.category === "massage");
-  if (lastMassage || massages.length) {
-    const target = lastMassage
-      ? Number(svcById(lastMassage.id)?.price ?? lastMassage.price)
-      : Math.min(...massages.map(s => Number(s.price)));
-    const gap = Math.ceil(target - bal);
-    if (Number.isFinite(target)) out.push(gap > 0
-      ? `You are ${naira(gap)} away from your next massage service.`
-      : "Your wallet balance is enough for your next massage service.");
-  }
-
-  // Last treat.
-  const last = paid[0];
-  if (!last) {
+  if (!paid.length) {
     out.push("Book your first treat. Massage is a lovely place to start.");
-  } else {
-    const days = Math.max(0, Math.floor((Date.now() - new Date(last.preferred_date + "T12:00:00")) / 864e5));
-    if (days >= 30) out.push(`It has been ${days} days since your last treat. Your next visit is one tap away.`);
+    const massages = catalogServices.filter(s => s.category === "massage");
+    if (massages.length) {
+      const cheapest = Math.min(...massages.map(s => Number(s.price)));
+      out.push(bal >= cheapest
+        ? `Your balance covers a massage from ${naira(cheapest)}.`
+        : `A massage starts at ${naira(cheapest)}. Top up to book it from your wallet.`);
+    }
+    return out;
   }
 
-  // Services the balance already covers (not the one just booked), most valuable first.
-  const lastIds = new Set((last?.items || []).map(i => String(i.id)));
+  // Overall rhythm across all treats, and each service's own history.
+  const bookingDays = paid.map(b => dayMs(b.preferred_date));
+  const gaps = bookingDays.slice(1).map((d, i) => Math.round((d - bookingDays[i]) / DAY_MS)).filter(g => g > 0);
+  const overallInterval = clampN(medianOf(gaps) ?? 21, 7, 90);
+
+  const hist = new Map();
+  paid.forEach(b => {
+    const day = dayMs(b.preferred_date);
+    const seen = new Set();
+    (b.items || []).forEach(i => {
+      const svc = serviceOf(i);
+      if (seen.has(svc.key)) return;
+      seen.add(svc.key);
+      const h = hist.get(svc.key) || { svc, days: [] };
+      h.days.push(day);
+      hist.set(svc.key, h);
+    });
+  });
+  const fav = [...hist.values()].sort((a, b) =>
+    b.days.length - a.days.length || Math.max(...b.days) - Math.max(...a.days))[0];
+
+  if (fav && fav.svc.price > 0) {
+    const sorted = [...fav.days].sort((a, b) => a - b);
+    const last = sorted[sorted.length - 1];
+    const svcGaps = sorted.slice(1).map((d, i) => Math.round((d - sorted[i]) / DAY_MS)).filter(g => g > 0);
+    const interval = clampN(medianOf(svcGaps) ?? overallInterval, 7, 90);
+    const dueMs = last + interval * DAY_MS;
+    const daysSince = Math.round((now - last) / DAY_MS);
+    const daysUntil = Math.round((dueMs - now) / DAY_MS);
+    const gap = Math.ceil(fav.svc.price - bal);
+    const name = fav.svc.name;
+
+    if (gap > 0) {
+      out.push(daysUntil <= 0
+        ? `Top up ${naira(gap)} to book your ${name} now.`
+        : `Top up ${naira(gap)} by ${fmtDay(dueMs)} to be ready for your ${name}.`);
+      out.push(`You are ${naira(gap)} away from your next ${name}.`);
+    } else {
+      out.push(`Your balance covers your next ${name} (${naira(fav.svc.price)}).`);
+    }
+
+    out.push(daysUntil <= 0
+      ? `It has been ${daysSince} days since your last ${name}. You usually book about every ${interval} days, so it's time to book again.`
+      : `Your next ${name} is due in about ${daysUntil} days, around ${fmtDay(dueMs)}.`);
+
+    if (fav.days.length >= 3) out.push(`You have had ${fav.days.length} ${name} sessions. Keep your rhythm going.`);
+  }
+
+  // Other services the balance already covers.
+  const favKey = fav?.svc.key;
   catalogServices
-    .filter(s => Number(s.price) <= bal && !lastIds.has(String(s.id)))
+    .filter(s => Number(s.price) <= bal && String(s.id) !== favKey)
     .sort((a, b) => Number(b.price) - Number(a.price))
-    .slice(0, 3)
-    .forEach(s => out.push(`Your wallet balance is enough for a ${s.name} treat.`));
+    .slice(0, 2)
+    .forEach(s => out.push(`Your balance is enough for a ${s.name} treat.`));
 
-  if (bal < Math.min(...catalogServices.map(s => Number(s.price)))) {
-    out.push("Top up your wallet to book your next treat.");
-  }
   return out;
 }
 
