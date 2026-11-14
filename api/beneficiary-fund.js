@@ -1,8 +1,9 @@
-// POST /api/beneficiary-fund { beneficiaryUserId, amount, method: "wallet" | "paystack" }
+// POST /api/beneficiary-fund { beneficiaryUserId, amount, method: "wallet" | "paystack", note? }
 //   wallet   -> moves money from your wallet now             -> { ok: true }
 //   paystack -> pay by card/transfer straight into their wallet -> { authorization_url }
 // The beneficiary is notified when their wallet is credited.
 import { admin, getAuthed, send, methodGuard, siteUrl, nairaToKobo, newReference, paystackInitialize } from "./_lib/util.js";
+import { sendEmail, giftEmail, siteBase } from "./_lib/mail.js";
 
 export default async function handler(req, res) {
   if (!methodGuard(req, res, ["POST"])) return;
@@ -28,7 +29,19 @@ export default async function handler(req, res) {
         if (/insufficient/i.test(error.message)) return send(res, 402, { error: "Your wallet balance is too low. Top up first, or pay by card." });
         throw error;
       }
-      return send(res, 200, { ok: true });
+
+      // Gift card: a shareable page with an optional personal note.
+      const note = String(req.body?.note ?? "").trim().slice(0, 280) || null;
+      const { data: gift, error: gErr } = await db.from("gifts").insert({
+        from_user: me.profile.id, to_user: benId, amount_kobo: amountKobo, note
+      }).select("share_token").single();
+      if (gErr) throw gErr;
+      const giftLink = `${siteBase()}/gift.html?g=${gift.share_token}`;
+      const { data: ben } = await db.from("profiles").select("full_name, email").eq("id", benId).maybeSingle();
+      if (ben?.email) {
+        await sendEmail({ to: ben.email, ...giftEmail({ toName: ben.full_name, fromName: me.profile.full_name, amountKobo, note, link: giftLink }) });
+      }
+      return send(res, 200, { ok: true, giftLink });
     }
 
     const reference = newReference("fund");
