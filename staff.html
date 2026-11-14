@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Staff view · Pax &amp; Pearl</title>
+<style>
+  :root { --red:#7a0c0c; --gold:#c9a24d; --bg:#f6f4f0; --card:#fff; --ink:#1c1c1e; --muted:#6b6b70; --line:#e5e0d6; }
+  * { box-sizing: border-box; }
+  body { margin:0; font: 400 15px/1.45 "Poppins", system-ui, sans-serif; color:var(--ink); background:var(--bg); }
+  header { background:var(--red); color:#fff; padding:14px 16px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+  header h1 { font: 700 1.05rem "Montserrat", sans-serif; margin:0; }
+  main { padding:16px; max-width:1100px; margin:0 auto; }
+  button, input { font: inherit; }
+  button { min-height:44px; min-width:44px; border:0; border-radius:999px; padding:10px 18px; background:var(--red); color:#fff; font-weight:600; cursor:pointer; }
+  button.ghost { background:transparent; border:1px solid rgba(255,255,255,.6); }
+  button:focus-visible, input:focus-visible { outline:3px solid var(--gold); outline-offset:2px; }
+  input[type=search], input[type=password] { min-height:44px; width:100%; padding:10px 14px; border:1px solid var(--line); border-radius:12px; background:#fff; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px; margin-bottom:16px; }
+  .card h2 { font: 700 1rem "Montserrat", sans-serif; margin:0 0 12px; }
+  .toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
+  .toolbar input[type=search] { flex:1 1 220px; }
+  .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th, td { text-align:left; padding:10px 8px; border-bottom:1px solid var(--line); vertical-align:top; white-space:nowrap; }
+  th { color:var(--muted); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+  td.wrap { white-space:normal; min-width:180px; }
+  .pill { display:inline-block; padding:3px 9px; border-radius:999px; font-size:12px; font-weight:600; background:#f1ece2; }
+  .pill.paid, .pill.confirmed, .pill.completed { background:#e4f4ea; color:#1b7f3b; }
+  .pill.cancelled { background:#fbe9e9; color:var(--red); }
+  .muted { color:var(--muted); font-size:13px; }
+  .empty { padding:24px; text-align:center; color:var(--muted); }
+  #gate { max-width:360px; margin:12vh auto; padding:0 16px; }
+  .err { color:#b3261e; font-size:14px; min-height:1.2em; }
+  .hidden { display:none !important; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Staff view · Wellness Wallet</h1>
+  <button class="ghost hidden" id="refresh" type="button">Refresh</button>
+</header>
+
+<section id="gate" class="card">
+  <h2>Enter the staff key</h2>
+  <form id="gateForm">
+    <input id="key" type="password" autocomplete="off" placeholder="Staff key" required>
+    <p class="err" id="gateErr"></p>
+    <button type="submit">Open</button>
+  </form>
+  <p class="muted">Staff only. Closing the browser tab signs you out.</p>
+</section>
+
+<main id="app" class="hidden">
+  <section class="card">
+    <h2>Bookings</h2>
+    <div class="toolbar">
+      <input id="bq" type="search" placeholder="Search name, phone, service or date">
+      <span class="muted" id="bcount"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Date</th><th>Time</th><th>Client</th><th>Phone</th><th>Services</th><th>Amount</th><th>Paid by</th><th>Status</th></tr></thead>
+        <tbody id="bookings"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Wallet balances</h2>
+    <div class="toolbar">
+      <input id="wq" type="search" placeholder="Search client name, phone or email">
+      <span class="muted" id="wcount"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Client</th><th>Phone</th><th>Email</th><th>Balance</th></tr></thead>
+        <tbody id="wallets"></tbody>
+      </table>
+    </div>
+  </section>
+  <p class="muted" id="updated"></p>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const naira = (n) => "₦" + Math.round(Number(n || 0)).toLocaleString("en-NG");
+  const KEY = "ppStaffKey";
+  let data = { bookings: [], wallets: [] };
+
+  async function load(key) {
+    const res = await fetch("/api/staff", { headers: { "x-staff-key": key } });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(json.error || "Could not load.");
+    return json;
+  }
+
+  function show(json) {
+    data = json;
+    $("gate").classList.add("hidden");
+    $("app").classList.remove("hidden");
+    $("refresh").classList.remove("hidden");
+    renderBookings(); renderWallets();
+    $("updated").textContent = `Updated ${new Date().toLocaleTimeString("en-NG", { timeZone: "Africa/Lagos" })} (Lagos time)`;
+  }
+
+  function renderBookings() {
+    const q = $("bq").value.trim().toLowerCase();
+    const rows = data.bookings.filter((b) => {
+      const hay = [b.customer_name, b.customer_phone, b.customer_email, b.preferred_date, (b.items || []).map((i) => i.name).join(" ")].join(" ").toLowerCase();
+      return !q || hay.includes(q);
+    });
+    $("bcount").textContent = `${rows.length} shown`;
+    $("bookings").innerHTML = rows.length ? rows.map((b) => `
+      <tr>
+        <td>${esc(b.preferred_date)}</td>
+        <td>${esc(String(b.preferred_time).slice(0, 5))}</td>
+        <td>${esc(b.customer_name)}<div class="muted">${esc(b.customer_email)}</div></td>
+        <td>${esc(b.customer_phone)}</td>
+        <td class="wrap">${esc((b.items || []).map((i) => i.name).join(", "))}</td>
+        <td>${esc(naira(b.amount_kobo / 100))}</td>
+        <td>${esc(b.payment_method === "wallet" ? "Wallet" : "Card / transfer")}</td>
+        <td><span class="pill ${esc(b.status)}">${esc(b.status.replace("_", " "))}</span></td>
+      </tr>`).join("") : `<tr><td colspan="8" class="empty">No bookings match.</td></tr>`;
+  }
+
+  function renderWallets() {
+    const q = $("wq").value.trim().toLowerCase();
+    const rows = data.wallets.filter((w) => !q || [w.name, w.phone, w.email].join(" ").toLowerCase().includes(q));
+    $("wcount").textContent = `${rows.length} shown`;
+    $("wallets").innerHTML = rows.length ? rows.map((w) => `
+      <tr><td>${esc(w.name)}</td><td>${esc(w.phone)}</td><td>${esc(w.email)}</td><td><strong>${esc(naira(w.balance))}</strong></td></tr>`).join("")
+      : `<tr><td colspan="4" class="empty">No wallets match.</td></tr>`;
+  }
+
+  $("gateForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const key = $("key").value.trim();
+    $("gateErr").textContent = "";
+    try {
+      const json = await load(key);
+      sessionStorage.setItem(KEY, key);
+      show(json);
+    } catch (err) { $("gateErr").textContent = err.message; }
+  });
+
+  $("refresh").addEventListener("click", async () => {
+    try { show(await load(sessionStorage.getItem(KEY) || "")); }
+    catch (err) { sessionStorage.removeItem(KEY); location.reload(); }
+  });
+  $("bq").addEventListener("input", renderBookings);
+  $("wq").addEventListener("input", renderWallets);
+
+  // Stay signed in for this tab only.
+  const saved = sessionStorage.getItem(KEY);
+  if (saved) load(saved).then(show).catch(() => sessionStorage.removeItem(KEY));
+})();
+</script>
+</body>
+</html>

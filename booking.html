@@ -968,5 +968,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+/* "Book again" from the wallet dashboard: the cart is already filled; pre-fill the date and time. */
+(function () {
+  if (new URLSearchParams(location.search).get("rebook") !== "1") return;
+  let r = null;
+  try { r = JSON.parse(sessionStorage.getItem("ppRebook") || "null"); sessionStorage.removeItem("ppRebook"); } catch (_) {}
+  if (!r) return;
+  const d = document.getElementById("date"), t = document.getElementById("time");
+  if (d && r.date) d.value = r.date;
+  if (t && r.time) t.value = r.time;
+})();
+</script>
 </body>
 </html>

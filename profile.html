@@ -221,6 +221,10 @@
             <button class="filter" data-f="booking" type="button">Treats</button>
             <button class="filter" data-f="gift" type="button">Gifts</button>
           </div>
+          <div class="stmt">
+            <label class="stmt-field"><span>Statement month</span><input id="stmtMonth" type="month"></label>
+            <button class="wl-pill-soft" id="stmtBtn" type="button"><span class="material-icons-round" aria-hidden="true">download</span>Download statement</button>
+          </div>
           <div id="activityList"></div>
         </section>
       </div>
@@ -255,6 +259,16 @@
         <section class="card" id="achieve" aria-labelledby="achTitle">
           <div class="card-head"><h2 id="achTitle">Your wellness title</h2></div>
           <div id="achBody"></div>
+        </section>
+
+        <section class="card" id="autoCard" aria-labelledby="autoTitle">
+          <div class="card-head"><h2 id="autoTitle">Monthly top-up</h2></div>
+          <div id="autoBody"><div class="skel" style="width:70%"></div><div class="skel" style="width:45%"></div></div>
+        </section>
+
+        <section class="card" id="specialCard" aria-labelledby="specTitle">
+          <div class="card-head"><h2 id="specTitle">Your special day</h2></div>
+          <div id="specialBody"></div>
         </section>
 
         <section class="card" id="people">
@@ -296,6 +310,7 @@
     <div class="wl-sheet-head"><h3 id="fundTitle">Add funds for a beneficiary</h3><button class="wl-x" data-close aria-label="Close"><span class="material-icons-round">close</span></button></div>
     <label class="wl-field"><span>Beneficiary</span><select id="fundBen"></select></label>
     <label class="wl-field"><span>Amount (₦)</span><input id="fundAmount" type="number" inputmode="numeric" min="500" step="500" placeholder="Minimum ₦500"></label>
+    <label class="wl-field"><span>Personal note (optional, for their gift card)</span><textarea id="fundNote" maxlength="280" rows="2" placeholder="Happy birthday! Treat yourself." style="width:100%;box-sizing:border-box;padding:12px;border:1px solid var(--border);border-radius:var(--radius-sm);font:400 .95rem 'Poppins',sans-serif"></textarea></label>
     <label class="wl-radio" id="fundWalletOpt"><input type="radio" name="fundMethod" value="wallet" checked><span id="fundWalletLabel">From my wallet</span></label>
     <label class="wl-radio"><input type="radio" name="fundMethod" value="paystack"><span>Pay by card or transfer</span></label>
     <p class="wl-error" id="fundErr"></p>
@@ -461,8 +476,19 @@ $("signOutBtn").addEventListener("click", async () => {
 });
 
 /* ---------- data ---------- */
+function setSkeletons() {
+  const bar = (w) => `<div class="skel" style="width:${w}%"></div>`;
+  $("balanceText").textContent = "…";
+  $("upcoming").innerHTML = `<div class="up-skel">${bar(60)}${bar(40)}</div>`;
+  $("freqList").innerHTML = `<div class="up-skel">${bar(80)}${bar(55)}${bar(70)}</div>`;
+  $("activityList").innerHTML = `<div class="up-skel">${bar(90)}${bar(65)}${bar(75)}</div>`;
+  $("benList").innerHTML = `<div class="up-skel">${bar(50)}</div>`;
+}
+
 async function loadApp(user) {
   state.uid = user.id;
+  showApp();
+  setSkeletons();
   const c = PaxAuth.client;
   const [p, w, t, n, b] = await Promise.all([
     c.from("profiles").select("full_name,email,phone,status").eq("id", user.id).maybeSingle(),
@@ -489,9 +515,10 @@ async function loadApp(user) {
     localStorage.setItem("userProfile", JSON.stringify({ name: p.data.full_name, email: p.data.email, phone: p.data.phone }));
   } catch (_) {}
 
-  showApp();
   renderAll();
   loadAchievements();
+  loadAutopay();
+  loadMe();
   await loadBens();
   handlePaidReturn();
 }
@@ -683,8 +710,24 @@ function renderProfile() {
   $("avatar").textContent = initials(p.full_name);
   $("pName").textContent = p.full_name; $("pEmail").textContent = p.email; $("pPhone").textContent = p.phone;
 }
+const reduceMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let shownKobo = null;
+function showBalance() {
+  const el = $("balanceText"), to = state.balanceKobo;
+  if (state.hideBalance) { el.textContent = "₦ • • • • • •"; shownKobo = to; return; }
+  if (shownKobo === null || shownKobo === to || reduceMotion()) { el.textContent = naira(to / 100); shownKobo = to; return; }
+  const from = shownKobo, start = performance.now();
+  el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump");
+  const step = (t) => {
+    const k = Math.min(1, (t - start) / 600), eased = 1 - Math.pow(1 - k, 3);
+    el.textContent = naira((from + (to - from) * eased) / 100);
+    if (k < 1) requestAnimationFrame(step); else el.textContent = naira(to / 100);
+  };
+  requestAnimationFrame(step);
+  shownKobo = to;
+}
 function renderWallet() {
-  $("balanceText").textContent = state.hideBalance ? "₦ • • • • • •" : naira(state.balanceKobo / 100);
+  showBalance();
   $("eyeIcon").textContent = state.hideBalance ? "visibility_off" : "visibility";
   $("eyeBtn").setAttribute("aria-label", state.hideBalance ? "Show balance" : "Hide balance");
   const fw = $("fundWalletLabel");
@@ -705,13 +748,25 @@ function renderStats() {
   $("statPeople").textContent = state.bens.length;
 }
 
+function paidBookings() {
+  return state.bookings
+    .filter(b => ["paid", "confirmed", "completed"].includes(b.status) && b.preferred_date)
+    .sort((x, y) => String(y.preferred_date).localeCompare(String(x.preferred_date)));
+}
 function renderUpcoming() {
   const today = todayLagos();
   const next = state.bookings
     .filter(b => ["paid", "confirmed"].includes(b.status) && b.preferred_date >= today)
     .sort((a, b) => (a.preferred_date + a.preferred_time) < (b.preferred_date + b.preferred_time) ? -1 : 1)[0];
+  const last = paidBookings()[0];
+  const rebook = last ? `
+    <button class="wl-pill-soft rebook" id="rebookBtn" type="button">
+      <span class="material-icons-round" aria-hidden="true">replay</span>
+      Book again · ${esc((last.items || []).map(i => i.name).join(", ") || "your last treat")} · ${esc(String(last.preferred_time).slice(0, 5))}
+    </button>` : "";
   if (!next) {
-    $("upcoming").innerHTML = `<div class="empty">No treats booked yet.<br><a class="link" href="services.html" style="margin-top:8px">Browse services</a></div>`;
+    $("upcoming").innerHTML = `
+      <div class="empty">Your first treat is one tap away.<br><a class="link" href="services.html" style="margin-top:8px">Browse services</a></div>${rebook}`;
     return;
   }
   const d = new Date(`${next.preferred_date}T12:00:00`);
@@ -720,8 +775,27 @@ function renderUpcoming() {
     <div class="up-when">
       <div class="cal"><b>${esc(d.toLocaleDateString("en-NG", { month: "short" }))}</b><span>${d.getDate()}</span></div>
       <div><strong>${esc(names)}</strong><small>${esc(String(next.preferred_time).slice(0, 5))} · Requested slot</small><br><span class="status">${next.status === "paid" ? "Paid" : "Confirmed"}</span></div>
-    </div>`;
+    </div>${rebook}`;
 }
+
+/* One tap: fill the booking cart with the last treat, and pre-fill the time and a date one week ahead. */
+function rebookLast() {
+  const last = paidBookings()[0];
+  if (!last || !(last.items || []).length) return;
+  const items = last.items.map((i, n) => ({
+    lineId: `rb_${Date.now()}_${n}`, id: String(i.id ?? ""), name: String(i.name || "Treat"), description: "",
+    price: Number(i.price) || 0, duration: Number(i.duration) || 0, category: String(i.category || "")
+  }));
+  try {
+    localStorage.setItem("spaBookingCart", JSON.stringify(items));
+    localStorage.setItem("spaBookingCart.version", "2");
+    sessionStorage.setItem("ppRebook", JSON.stringify({
+      date: lagosDay(Date.now() + 7 * 864e5), time: String(last.preferred_time).slice(0, 5)
+    }));
+  } catch (_) {}
+  location.href = "/booking?rebook=1";
+}
+$("upcoming").addEventListener("click", e => { if (e.target.closest("#rebookBtn")) rebookLast(); });
 
 const DAY = 864e5;
 const dayNum = ds => Date.parse(ds + "T00:00:00Z") / DAY;
@@ -845,7 +919,7 @@ function renderBens() {
   const addTile = `<button class="person add" type="button" id="addTile"><span class="ini"><span class="material-icons-round">add</span></span><strong>Add</strong></button>`;
   box.innerHTML = cards + addTile || "";
   if (!state.bens.length) {
-    box.innerHTML = addTile + `<p class="muted" style="align-self:center;margin:0 0 0 6px;max-width:220px">Add family or friends and fund their wallet for a spa treat.</p>`;
+    box.innerHTML = addTile + `<p class="muted" style="align-self:center;margin:0 0 0 6px;max-width:220px">Gift someone a treat in one tap. Add a friend or family member.</p>`;
   }
   $("addTile").addEventListener("click", () => { $("benErr").textContent = ""; openModal("addBenModal"); });
 }
@@ -866,7 +940,7 @@ function renderActivity() {
   document.querySelectorAll("#filters .filter").forEach(b => b.classList.toggle("on", b.dataset.f === state.filter));
   const rows = state.txs.filter(t => state.filter === "all" || (TX[t.type]?.cat === state.filter));
   if (!rows.length) {
-    $("activityList").innerHTML = `<div class="empty">${state.filter === "all" ? "No activity yet. Top up your wallet to get started." : "Nothing here yet."}</div>`;
+    $("activityList").innerHTML = `<div class="empty">${state.filter === "all" ? "No activity yet. Top up your wallet and your first treat is one tap away." : "Nothing here yet."}</div>`;
     return;
   }
   let html = "", lastDay = "";
@@ -954,11 +1028,138 @@ $("fundGo").addEventListener("click", async () => {
   if (!Number.isInteger(amount) || amount < 500) { $("fundErr").textContent = "Enter a whole-naira amount of at least ₦500."; return; }
   $("fundGo").disabled = true; $("fundErr").textContent = "";
   try {
-    const r = await PaxAuth.api("/api/beneficiary-fund", { method: "POST", body: { beneficiaryUserId: $("fundBen").value, amount, method } });
+    const note = $("fundNote").value.trim();
+    const r = await PaxAuth.api("/api/beneficiary-fund", { method: "POST", body: { beneficiaryUserId: $("fundBen").value, amount, method, note } });
     if (r.authorization_url) { location.href = r.authorization_url; return; }
-    closeModals(); $("fundAmount").value = ""; await refreshMoney(); toast("Sent! They've been notified.");
+    closeModals(); $("fundAmount").value = ""; $("fundNote").value = ""; await refreshMoney();
+    if (r.giftLink) {
+      try { await navigator.clipboard.writeText(r.giftLink); toast("Sent! Their gift card link is copied."); }
+      catch (_) { toast("Sent! They've been notified."); }
+    } else toast("Sent! They've been notified.");
   } catch (e) { $("fundErr").textContent = e.message; }
   $("fundGo").disabled = false;
+});
+
+/* ---------- monthly statement (CSV for the chosen month, Lagos time) ---------- */
+$("stmtMonth").value = todayLagos().slice(0, 7);
+$("stmtBtn").addEventListener("click", async () => {
+  const month = $("stmtMonth").value || todayLagos().slice(0, 7);
+  const [y, m] = month.split("-").map(Number);
+  const start = `${month}-01T00:00:00+01:00`;
+  const nextM = m === 12 ? `${y + 1}-01` : `${y}-${String(m + 1).padStart(2, "0")}`;
+  const end = `${nextM}-01T00:00:00+01:00`;
+  const btn = $("stmtBtn"); btn.disabled = true;
+  try {
+    const { data, error } = await PaxAuth.client.from("wallet_transactions")
+      .select("created_at,type,amount_kobo,balance_after,reference")
+      .gte("created_at", start).lt("created_at", end).order("created_at", { ascending: true });
+    if (error) throw error;
+    if (!data?.length) { toast("No wallet activity in that month."); return; }
+    const cell = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
+    const lines = [["Date", "Time", "Description", "Money in (₦)", "Money out (₦)", "Balance after (₦)", "Reference"].map(cell).join(",")];
+    data.forEach(t => {
+      const meta = TX[t.type] || { label: t.type, dir: "in" };
+      const amt = Number(t.amount_kobo) / 100;
+      const local = new Date(t.created_at);
+      lines.push([
+        local.toLocaleDateString("en-CA", { timeZone: LAGOS }),
+        local.toLocaleTimeString("en-GB", { timeZone: LAGOS, hour: "2-digit", minute: "2-digit" }),
+        meta.label,
+        meta.dir === "in" ? amt : "", meta.dir === "in" ? "" : amt,
+        Number(t.balance_after) / 100, t.reference
+      ].map(cell).join(","));
+    });
+    const blob = new Blob(["\ufeff" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = `pax-and-pearl-statement-${month}.csv`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  } catch (_) { toast("Could not prepare the statement. Please try again."); }
+  finally { btn.disabled = false; }
+});
+
+/* ---------- monthly auto top-up ---------- */
+async function loadAutopay() {
+  try { renderAutopay(await PaxAuth.api("/api/autopay")); }
+  catch (_) { $("autoBody").innerHTML = `<p class="muted">Your monthly top-up will appear here shortly.</p>`; }
+}
+function renderAutopay(a) {
+  const box = $("autoBody");
+  if (!a.card) {
+    box.innerHTML = `<p class="muted" style="margin:0 0 12px">Top up once by card and you can set a monthly amount. Your card is saved securely by Paystack.</p>
+      <button class="wl-pill-soft" type="button" id="autoTopBtn"><span class="material-icons-round" aria-hidden="true">add_card</span>Top up by card</button>`;
+    $("autoTopBtn").addEventListener("click", () => $("topUpBtn").click());
+    return;
+  }
+  const card = `Card ending ${esc(a.card.last4 || "····")}`;
+  const ap = a.autopay;
+  if (ap && ap.active) {
+    box.innerHTML = `
+      <p style="margin:0 0 4px"><strong>${esc(naira(ap.amount))}</strong> every month</p>
+      <p class="muted" data-amount="${ap.amount}" style="margin:0 0 12px">Next: ${esc(fmtShort(ap.nextRunOn))} · ${card}</p>
+      <div class="stmt" style="margin:0">
+        <button class="wl-pill-soft" type="button" data-auto="change">Change amount</button>
+        <button class="wl-pill-soft" type="button" data-auto="pause">Pause</button>
+      </div>`;
+  } else {
+    box.innerHTML = `
+      <p class="muted" style="margin:0 0 10px">${card}. Choose an amount to add each month.</p>
+      <form id="autoForm" class="stmt" style="margin:0">
+        <label class="stmt-field"><span>Monthly amount (₦)</span><input id="autoAmount" type="number" inputmode="numeric" min="1000" step="500" value="${ap ? ap.amount : 20000}"></label>
+        <button class="wl-pill-soft" type="submit">Start monthly top-up</button>
+      </form>
+      <p class="wl-error" id="autoErr"></p>`;
+  }
+}
+$("autoBody").addEventListener("click", async e => {
+  const b = e.target.closest("[data-auto]"); if (!b) return;
+  if (b.dataset.auto === "pause") {
+    try { await PaxAuth.api("/api/autopay", { method: "POST", body: { active: false } }); toast("Monthly top-up paused."); await loadAutopay(); }
+    catch (err) { toast(err.message); }
+  } else { renderAutopayForm(); }
+});
+function renderAutopayForm() {
+  const cur = Math.round(Number($("autoBody").querySelector("[data-amount]")?.dataset.amount || 20000));
+  $("autoBody").innerHTML = `
+    <form id="autoForm" class="stmt" style="margin:0">
+      <label class="stmt-field"><span>Monthly amount (₦)</span><input id="autoAmount" type="number" inputmode="numeric" min="1000" step="500" value="${cur}"></label>
+      <button class="wl-pill-soft" type="submit">Save</button>
+    </form>
+    <p class="wl-error" id="autoErr"></p>`;
+}
+$("autoBody").addEventListener("submit", async e => {
+  if (e.target.id !== "autoForm") return;
+  e.preventDefault();
+  const amount = Number($("autoAmount").value);
+  if (!Number.isInteger(amount) || amount < 1000) { $("autoErr").textContent = "Enter a whole-naira amount of at least ₦1,000."; return; }
+  try {
+    await PaxAuth.api("/api/autopay", { method: "POST", body: { active: true, amount } });
+    toast("Monthly top-up set. Your first one is next month.");
+    await loadAutopay();
+  } catch (err) { $("autoErr").textContent = err.message; }
+});
+
+/* ---------- special day (birthday; anniversary is automatic) ---------- */
+async function loadMe() {
+  const box = $("specialBody");
+  try {
+    const me = await PaxAuth.api("/api/me");
+    box.innerHTML = `
+      <p class="muted" style="margin:0 0 10px">Add your birthday and we'll send a little note on the day. We also mark your first year with us.</p>
+      <form id="bdayForm" class="stmt" style="margin:0">
+        <label class="stmt-field"><span>Birthday</span><input id="bday" type="date" value="${esc(me.birthday || "")}" max="${todayLagos()}"></label>
+        <button class="wl-pill-soft" type="submit">Save</button>
+      </form>
+      <p class="wl-error" id="bdayErr"></p>`;
+  } catch (_) { box.innerHTML = `<p class="muted">Your special dates will appear here shortly.</p>`; }
+}
+$("specialBody").addEventListener("submit", async e => {
+  if (e.target.id !== "bdayForm") return;
+  e.preventDefault();
+  try {
+    await PaxAuth.api("/api/me", { method: "POST", body: { birthday: $("bday").value || null } });
+    toast("Saved. Happy early celebrations!");
+  } catch (err) { $("bdayErr").textContent = err.message; }
 });
 
 /* ---------- returning from Paystack ---------- */

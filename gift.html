@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>A gift from Pax &amp; Pearl</title>
+<style>
+  :root { --red:#7a0c0c; --red-dark:#5f0808; --gold:#c9a24d; --gold-light:#dfc47b; --bg:#f6f4f0; --ink:#1c1c1e; --muted:#6b6b70; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink); font:400 15px/1.5 "Poppins", system-ui, sans-serif; display:grid; place-items:center; padding:24px 16px; }
+  button, a.btn { font:inherit; min-height:44px; min-width:44px; }
+  .card { width:100%; max-width:420px; background:linear-gradient(135deg, var(--red), var(--red-dark)); color:#fff; border-radius:26px; padding:28px 24px; box-shadow:0 18px 40px rgba(60,0,0,.25); position:relative; overflow:hidden; }
+  .card::after { content:""; position:absolute; right:-60px; top:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(201,162,77,.35), transparent 70%); }
+  .eyebrow { font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-light); margin:0 0 10px; }
+  h1 { font:700 1.5rem/1.25 "Montserrat", sans-serif; margin:0 0 6px; }
+  .amount { font:700 2.4rem "Montserrat", sans-serif; margin:14px 0 4px; color:#fff; }
+  .note { margin:18px 0 0; padding:14px 16px; border-left:3px solid var(--gold); background:rgba(255,255,255,.08); border-radius:12px; font-style:italic; }
+  .meta { font-size:13px; opacity:.85; margin-top:14px; }
+  .actions { display:grid; gap:10px; margin-top:22px; }
+  .btn { display:flex; align-items:center; justify-content:center; border-radius:999px; padding:12px 18px; text-decoration:none; font-weight:600; border:0; cursor:pointer; }
+  .btn-gold { background:var(--gold); color:#2a1a00; }
+  .btn-ghost { background:rgba(255,255,255,.14); color:#fff; }
+  .btn:focus-visible { outline:3px solid var(--gold-light); outline-offset:3px; }
+  .plain { text-align:center; max-width:420px; }
+  .plain p { color:var(--muted); }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<main id="out" style="width:100%;display:grid;place-items:center"><p>Loading your gift…</p></main>
+<script>
+(function () {
+  "use strict";
+  const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const naira = (n) => "₦" + Math.round(Number(n || 0)).toLocaleString("en-NG");
+  const out = document.getElementById("out");
+  const token = new URLSearchParams(location.search).get("g") || "";
+  const link = location.href;
+
+  if (!/^[a-f0-9]{32}$/i.test(token)) {
+    out.innerHTML = `<div class="plain"><h1>This gift link isn't valid</h1><p>Check the link in your email, or <a href="/booking">book a treat</a> directly.</p></div>`;
+    return;
+  }
+  fetch(`/api/gift?g=${token}`).then(r => r.ok ? r.json() : Promise.reject()).then(g => {
+    const when = new Date(g.date).toLocaleDateString("en-NG", { day: "numeric", month: "long", year: "numeric", timeZone: "Africa/Lagos" });
+    const msg = `${g.from} sent you a Pax & Pearl gift: ${naira(g.amount)} for your treats.`;
+    out.innerHTML = `
+      <div style="width:100%;display:grid;place-items:center;gap:18px">
+        <article class="card" aria-label="Gift card">
+          <p class="eyebrow">Pax &amp; Pearl · Gift</p>
+          <h1>For ${esc(g.to)}</h1>
+          <p style="margin:0;opacity:.9">From ${esc(g.from)}</p>
+          <p class="amount">${esc(naira(g.amount))}</p>
+          <p style="margin:0;opacity:.9">added to your Wellness Wallet</p>
+          ${g.note ? `<blockquote class="note">“${esc(g.note)}”</blockquote>` : ""}
+          <p class="meta">Sent ${esc(when)}</p>
+          <div class="actions">
+            <a class="btn btn-gold" href="/profile">Use my wallet</a>
+            <a class="btn btn-ghost" href="/booking">Book a treat</a>
+            <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(msg + " " + link)}">Share on WhatsApp</a>
+          </div>
+        </article>
+      </div>`;
+  }).catch(() => {
+    out.innerHTML = `<div class="plain"><h1>We couldn't find this gift</h1><p>It may have been removed. <a href="/profile">Open your wallet</a> to see your balance.</p></div>`;
+  });
+})();
+</script>
+</body>
+</html>

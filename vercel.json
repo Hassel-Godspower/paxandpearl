@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/staff",
+      "destination": "/staff.html"
+    },
+    {
+      "source": "/gift",
+      "destination": "/gift.html"
+    },
+    {
       "source": "/",
       "destination": "/index.html"
     },
@@ -231,8 +239,8 @@
   ],
   "crons": [
     {
-      "path": "/api/topup-reminders",
-      "schedule": "0 9 * * *"
+      "path": "/api/daily",
+      "schedule": "0 8 * * *"
     }
   ]
 }
