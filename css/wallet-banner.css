@@ -1,0 +1,27 @@
+/* Wellness Wallet banner on the homepage. Uses the site's brand tokens from variables.css. */
+.pp-wallet-wrap { padding: 24px 0 8px; }
+.pp-wallet-banner {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  padding: 18px 20px; border-radius: var(--radius-xl);
+  background: var(--gradient); color: var(--text-light);
+  text-decoration: none; box-shadow: var(--shadow-soft);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.pp-wallet-banner:hover { transform: translateY(-2px); box-shadow: var(--shadow-large); }
+.pp-wallet-banner:focus-visible { outline: 3px solid var(--primary-gold-light); outline-offset: 3px; }
+.pp-wallet-ico {
+  flex: none; width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255, 255, 255, .16); display: grid; place-items: center;
+}
+.pp-wallet-text { flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.pp-wallet-text strong { font: 700 1.05rem "Montserrat", sans-serif; }
+.pp-wallet-text span:not(.pp-wallet-cta) { font-size: .86rem; line-height: 1.4; opacity: .92; }
+.pp-wallet-cta {
+  flex: none; white-space: nowrap; font-weight: 600; font-size: .88rem;
+  background: var(--primary-gold); color: #2a1a00;
+  padding: 10px 16px; border-radius: var(--radius-pill);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pp-wallet-banner { transition: none; }
+  .pp-wallet-banner:hover { transform: none; }
+}
