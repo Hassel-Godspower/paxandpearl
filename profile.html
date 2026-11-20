@@ -993,7 +993,7 @@ $("topPay").addEventListener("click", async () => {
   if (!Number.isInteger(amount) || amount < 1000) { $("topErr").textContent = "Enter a whole-naira amount of at least ₦1,000."; return; }
   $("topPay").disabled = true; $("topErr").textContent = "";
   try {
-    const r = await PaxAuth.api("/api/topup", { method: "POST", body: { amount } });
+    const r = await PaxAuth.api("/api/me?action=topup", { method: "POST", body: { amount } });
     location.href = r.authorization_url;
   } catch (e) { $("topErr").textContent = e.message; $("topPay").disabled = false; }
 });
@@ -1080,7 +1080,7 @@ $("stmtBtn").addEventListener("click", async () => {
 
 /* ---------- monthly auto top-up ---------- */
 async function loadAutopay() {
-  try { renderAutopay(await PaxAuth.api("/api/autopay")); }
+  try { renderAutopay(await PaxAuth.api("/api/me?action=autopay")); }
   catch (_) { $("autoBody").innerHTML = `<p class="muted">Your monthly top-up will appear here shortly.</p>`; }
 }
 function renderAutopay(a) {
@@ -1114,7 +1114,7 @@ function renderAutopay(a) {
 $("autoBody").addEventListener("click", async e => {
   const b = e.target.closest("[data-auto]"); if (!b) return;
   if (b.dataset.auto === "pause") {
-    try { await PaxAuth.api("/api/autopay", { method: "POST", body: { active: false } }); toast("Monthly top-up paused."); await loadAutopay(); }
+    try { await PaxAuth.api("/api/me?action=autopay", { method: "POST", body: { active: false } }); toast("Monthly top-up paused."); await loadAutopay(); }
     catch (err) { toast(err.message); }
   } else { renderAutopayForm(); }
 });
@@ -1133,7 +1133,7 @@ $("autoBody").addEventListener("submit", async e => {
   const amount = Number($("autoAmount").value);
   if (!Number.isInteger(amount) || amount < 1000) { $("autoErr").textContent = "Enter a whole-naira amount of at least ₦1,000."; return; }
   try {
-    await PaxAuth.api("/api/autopay", { method: "POST", body: { active: true, amount } });
+    await PaxAuth.api("/api/me?action=autopay", { method: "POST", body: { active: true, amount } });
     toast("Monthly top-up set. Your first one is next month.");
     await loadAutopay();
   } catch (err) { $("autoErr").textContent = err.message; }
@@ -1170,7 +1170,7 @@ async function handlePaidReturn() {
   const banner = $("payBanner"); banner.hidden = false; banner.textContent = "Confirming your payment…";
   for (let i = 0; i < 15; i++) {
     try {
-      const r = await PaxAuth.api(`/api/payment-status?ref=${encodeURIComponent(ref)}`);
+      const r = await PaxAuth.api(`/api/me?action=payment-status&ref=${encodeURIComponent(ref)}`);
       if (r.status === "paid") {
         banner.textContent = "Payment received. Thank you!";
         await refreshMoney(); setTimeout(() => { banner.hidden = true; }, 6000); return;
